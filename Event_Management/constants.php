@@ -2,7 +2,6 @@
     //start session
     session_start();
 
-    
     define('SITEURL','http://localhost/Event_Management/');
     define('LOCALHOST','localhost');
     define('DB_USERNAME','root');
