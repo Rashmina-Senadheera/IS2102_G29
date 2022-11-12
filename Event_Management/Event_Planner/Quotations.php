@@ -1,3 +1,8 @@
+<?php
+include('eventplanner_sidenav.php');
+include('eventplanner_header.php');
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -6,20 +11,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/eventPlannerMain.css">
-    <link rel="stylesheet" href="../css/navigationBar.css">
 </head>
 
 <body>
-    <?php include('../components/navigationBar.php'); ?>
     <div class="grid-container-payments">
-        <div class="gridHeader">
-            Quotations
-        </div>
-        <div class="gridMenu">
-            <?php include('../components/eventPlannerMenu.php'); ?>
-        </div>
         <div class="gridSearch">
             <div class="searchSec">
+            <div class="page-title"> Quotations </div>
                 <div class="input-container">
                     <input class="input-field" type="text" placeholder="Search quotation" name="search">
                     <i class="fa fa-search icon"></i>
