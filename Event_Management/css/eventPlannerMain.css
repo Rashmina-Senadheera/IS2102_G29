@@ -44,7 +44,7 @@ hr {
 .gridMain {
     border-radius: 0.5rem;
     margin: 0 1vw;
-    padding: 1vw;
+    padding: 0.2vh 1vw;
     box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
 }
 
