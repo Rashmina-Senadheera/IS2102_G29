@@ -18,15 +18,21 @@
         </div>
         <ul class="nav-links">
             <li>
-                <a href="#" class="active">
+                <a href=<?php echo SITEURL . 'event_planner/Suppliers.php'  ?>>
                     <i class='bx bx-package'></i>
                     <span class="links_name">Suppliers</span>
                 </a>
             </li>
             <li>
-                <a href=<?php echo SITEURL . 'event_planner/Quotations.php'  ?> class="active">
+                <a href=<?php echo SITEURL . 'event_planner/CustomerQuotations.php'  ?>>
                     <i class='bx bx-task'></i>
-                    <span class="links_name">Quatations</span>
+                    <span class="links_name">Customer Quatations</span>
+                </a>
+            </li>
+            <li>
+                <a href=<?php echo SITEURL . 'event_planner/SupplierQuotations.php'  ?>>
+                    <i class='bx bx-task'></i>
+                    <span class="links_name">Supplier Quatations</span>
                 </a>
             </li>
             <li>
@@ -36,9 +42,9 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href=<?php echo SITEURL . 'event_planner/MyEvents.php'  ?>>
                     <i class='bx bx-calendar-event'></i>
-                    <span class="links_name">Events</span>
+                    <span class="links_name">My Events</span>
                 </a>
             </li>
             <li>
