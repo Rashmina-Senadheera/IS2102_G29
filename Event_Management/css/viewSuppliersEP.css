@@ -1,0 +1,128 @@
+/********* View Suppliers Cards *********/
+@import url(eventPlannerMain.css);
+
+.suppliers-cards-container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 40px 0;
+}
+
+.suppliers-cards-container .card {
+    position: relative;
+    width: 250px;
+    height: 300px;
+    padding: 8px 8px 0 8px;
+    background: rgba(255, 255, 255, 0.05);
+    margin: 20px;
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
+    border-radius: .5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.suppliers-cards-container .card .content {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: 0.2s;
+}
+
+/* .suppliers-cards-container .card:hover .content {
+	transform: translateY(-20px);
+} */
+
+.suppliers-cards-container .card .content .imgBx {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+}
+
+.suppliers-cards-container .card .content .imgBx img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: .5rem;
+}
+
+.suppliers-cards-container .card .content .contentBx h3 {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+    margin: 20px 0 10px;
+    line-height: 1.1em;
+}
+
+.suppliers-cards-container .card .content .contentBx h3 span {
+    font-size: 12px;
+    font-weight: 300;
+    text-transform: initial;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* number of lines to show */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.suppliers-cards-container .card .sci {
+    position: absolute;
+    bottom: 0px;
+    /* justify-content: center; */
+    /* align-items: center; */
+    text-align: center;
+    width: 100%;
+    /* display: flex; */
+}
+
+.suppliers-cards-container .card:hover .sci {
+    background-color: white;
+    /* backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); */
+    padding: 20px 10px;
+    border-radius: .5rem;
+}
+
+.suppliers-cards-container .card .sci li {
+    list-style: none;
+    margin: 0 10px;
+    /* transform: translateY(40px); */
+    transition: 0.2s;
+    opacity: 0;
+}
+
+.suppliers-cards-container .card:hover .sci li {
+    transform: translateY(0px);
+    opacity: 1;
+    margin-top: 20px;
+}
+
+.suppliers-cards-container .card .sci li a.view-supplier {
+    text-decoration: none;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background-color: var(--mainColor);
+    color: white;
+    padding: 5px 30px;
+    border-radius: .5rem;
+}
+
+.suppliers-cards-container .card .sci li a.request {
+    text-decoration: underline;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 12px;
+}
