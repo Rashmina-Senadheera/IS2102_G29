@@ -60,7 +60,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href=<?php echo SITEURL . 'event_planner/Calendar.php'  ?>>
                     <i class='bx bx-calendar'></i>
                     <span class="links_name">Calendar</span>
                 </a>
