@@ -1,5 +1,6 @@
 <?php
 include('constants.php');
+include('Event_Planner/eventplanner_header.php');
 ?>
 
 <!DOCTYPE html>
@@ -14,36 +15,34 @@ include('constants.php');
 </head>
 
 <body>
-    <div class="box">
-        <div class="image-box">
-            <img src="images/Login-2.svg" class="sign_in_logo" />
-        </div>
-        <div class="white-box">
-            <p class="heading">Sign In</p>
-            <form class="login-form">
-                <div class="input">
-                    <input type="text" class="input-field" required />
-                    <label class="input-label">Email</label>
-                </div>
-                <div class="input">
-                    <input type="password" class="input-field" required />
-                    <label class="input-label">Password</label>
-                </div>
-                <div class="action">
-                    <button class="action-button">Sign In</button>
-                </div>
-                <div class="login-card-info">
-                    Don't have an account?
-                    <a href="sign_up.php">Sign Up</a>
-                </div>
-            </form>
+    <div class="loginbody">
+        <div class="box">
+            <div class="image-box">
+                <img src="images/Login-2.svg" class="sign_in_logo" />
+            </div>
+            <div class="white-box">
+                <p class="heading">Sign In</p>
+                <form class="login-form">
+                    <div class="input">
+                        <input type="text" class="input-field" required />
+                        <label class="input-label">Email</label>
+                    </div>
+                    <div class="input">
+                        <input type="password" class="input-field" required />
+                        <label class="input-label">Password</label>
+                    </div>
+                    <div class="action">
+                        <button class="action-button">Sign In</button>
+                    </div>
+                    <div class="login-card-info">
+                        Don't have an account?
+                        <a href="sign_up.php">Sign Up</a>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
 </body>
 
 </html>
-<?php
-
-
-?>
