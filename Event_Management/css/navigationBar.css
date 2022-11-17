@@ -1,22 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
 
 .headAll {
     box-sizing: border-box;
+    margin-left: 240px;
     border: none;
     outline: none;
     text-decoration: none;
     text-transform: capitalize;
-    /* transition: all .2s linear; */
     overflow-x: hidden;
     text-decoration: none;
     background-color: #fff;
-    border-bottom-right-radius: 0.5rem;
-    border-bottom-left-radius: 0.5rem;
+
     box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
 }
 
 :root {
-    --mainColor: #6C429C;
+    --mainColor:#490258;
     --secondColor: #D0AFF4;
     --mainGradient: linear-gradient(94.56deg, #6C429C 0%, #7D56AA 100%);
 
@@ -46,28 +44,24 @@
 }
 
 .header-2 .navbar a {
-    padding: .5rem 1.5rem;
-    font-size: 1.3rem;
+    padding-bottom: 0.1rem;
     color: var(--mainColor);
-    border-radius: .5rem;
     text-decoration: none;
+    margin: 0.5rem;
+    margin-left: 3rem;
+    border-bottom: white 2px solid;
 }
 
 .header-2 .navbar a:hover {
-    color: #fff;
-    background-color: var(--mainColor);
+    border-bottom: #490258 2px solid;
 }
 
 .header-2 .icons a {
-    font-size: 1.3rem;
     color: var(--mainColor);
     padding-right: 1rem;
     text-decoration: none;
 }
 
-.header-2 .icons a:hover {
-    font-weight: 800;
-}
 
 .header-2 .header-2-logo {
     width: 5rem;
