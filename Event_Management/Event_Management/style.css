@@ -1,0 +1,736 @@
+.sign_body {
+    background-color: #6C429C;
+    overflow:hidden;
+    display: flex;
+    justify-content: center;
+    font-family: 'Poppins' ;
+
+}
+body{
+    background-color: #FFFFFF;
+    margin: 0;
+
+}
+.sign_in_header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 60px;
+    position: absolute;
+    background-image: linear-gradient(45deg, rgba(247,97,161,1),rgba(140,27,171,1));
+    box-shadow: 0px 1px 2px grey;
+    background-size: cover;
+}
+.box {
+    background-image: linear-gradient(135deg, rgba(247,97,161,1),rgba(140,27,171,1));
+    width: 95%;
+    height: 600px;
+    border-radius: 30px;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 50px 2px;
+
+}
+.center {
+    margin-top: 90px;
+}
+
+.off-white-box {
+    height: 600px;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.4);
+
+}
+.white-box {
+    position: absolute;
+    right: 30px;
+    width: 40%;
+    height: 600px;
+    border-radius: 0px 30px 30px 0px;
+    background: rgba(255, 255, 255, 1);
+
+}
+.login-form {
+    padding: 20px;
+    margin-left: 40px;
+    
+    font-size: 15px;
+    font-weight: bold;
+}
+.logo{
+    width: 75px;
+    height: 62px;
+    position: absolute;
+    right: 30px;
+    top: 25px;
+}
+.heading {
+    font-family: 'Poppins';
+    font-size: 60px;
+    font-weight: 900;
+    margin-left: 60px;
+    margin-top: 70px;
+    margin-bottom: 0px;
+}
+.hr1 {
+    width: 80%;
+    text-align: center;
+    height: 2px;
+    background: black;
+
+}
+input {
+    font-size: 15px;
+    padding: 15px;
+    font-family: 'Poppins';
+    border: none;
+}
+.login-form input{
+    width: 65%;
+    background-color: #D9D9D9 ;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+} 
+.login-form input[type=submit]{
+    width: auto;
+    background-color: #8C1BAB ;
+    color: #FFFFFF;
+    font-weight: 800;
+    box-shadow:2px 4px 20px 2px rgba(0, 0, 0, 0.3) ;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    
+
+}
+.admin_img {
+    width: 41%;
+    float: left;
+    margin-left: 100px;
+}
+.error {
+    color: red;
+    font-family: 'Poppins' ;
+    font-size: 15px;
+    font-weight: bold;
+    
+}
+.margin-left-60 {
+    margin-left: 60px;
+    
+}
+
+.main{
+    left: 15%;
+    top: 30px;
+    position: relative;
+    background-color: #FFFFFF;
+    width: 85%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-basis: auto;
+
+}
+
+
+.menu_logo {
+    width: 75px;
+    height: 62px;
+    position: absolute;
+    top: 20px;
+    left: 65px;
+
+    
+}
+.btn {
+    display: flex;
+    border-radius: 5px;
+    flex-direction: row;
+    padding: 5px;
+    gap: 5px;
+    font-family: 'Poppins';
+    justify-content: center;
+    align-content: center;
+    box-shadow: 0px 1px 5px grey;
+    background-color: #ba41db;
+}
+
+
+/* Sign Up */
+.select_register{
+    font-family: 'Poppins';
+    font-size: 16px;
+    margin-top: 30px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+
+}
+.register_as {
+    font-size: 20px;
+    font-weight: 600;
+    justify-content: start;
+    width: 100%;
+    margin-left: 110px;
+
+}
+.select_register img {
+    width: 35px;
+    height: 35px;
+    margin-left: 20px;
+}
+.btn_register {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 15px;
+    width: 200px;
+    padding: 15px;
+    background-color: #8C1BAB;
+    border-radius: 15px;
+    box-shadow: 0px 1px 5px grey ;
+    
+}
+.btn_register a {
+    font-size: 17px;
+    text-decoration: none;
+    color: #FFFFFF
+}
+.select_register .sign_in_txt {
+    width: 100%;
+    margin-left: 110px;
+    font-weight: 600;
+    margin-top: 15px;
+}
+.sign_in_logo 
+{
+    width: 500px;
+    height: 382px;
+    position: absolute;
+    left: 200px;
+    top: 150px;
+}
+/* unregistered user header */
+.lp_header {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Poppins';
+    height: 50%;
+    background: linear-gradient(45deg, rgba(247,97,161,1) 0%, rgba(173,17,129,1) 48%, rgba(178,41,215,1) 100%);
+    background-size: cover;
+    box-shadow: 0px 1px 5px black;
+
+}
+.lp_header .unreg_top_head{
+    display: flex;
+    flex-direction: row;
+    margin: 10px 10px 0px 10px;
+}
+.lp_header .unreg_top_head span:nth-child(1) {
+    flex-basis: 85%;
+}
+
+.lp_header .unreg_top_head span:nth-child(2) {
+    flex-basis: 15%;
+    display: flex;
+    /*gap: 30px;*/
+    justify-content: space-evenly;
+    align-items: center;
+}
+.lp_header .unreg_top_head span:nth-child(2) a {
+    text-decoration: none;
+    padding: 8px;
+    color: #FFFFFF;
+    background-color: #6C429C;
+}
+.lp_header .unreg_header_logo {
+    width: 100px;
+    height: 76px;
+    margin-left: 30px;
+}
+
+/* Registered user header */ 
+
+.lp_header .reg_top_head{
+    display: flex;
+    flex-direction: row;
+    margin: 10px 10px 0px 10px;
+}
+.lp_header .reg_top_head span:nth-child(1) {
+    flex-basis: 75%;
+}
+
+.lp_header .reg_top_head span:nth-child(2) {
+    flex-basis: 25%;
+    display: flex;
+    flex-direction: row;
+    /*gap: 30px;*/
+    justify-content: space-evenly;
+    align-items: center;
+}
+.lp_header .reg_header_logo {
+    width: 100px;
+    height: 76px;
+    margin-left: 30px;
+}
+
+.lp_header .reg_top_head .user_details{
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+.lp_header .reg_top_head .user_details .user_name{
+    color: #FFFFFF;
+}
+.lp_header .reg_top_head .user_details .user_logo {
+    width: 35px;
+    height: 35px;
+}
+.dropdown_content {
+    position: absolute;
+    background-color: #b17bef;
+    display: none;
+    right: 100px;
+    top: 70px;
+    box-shadow: 0px 1px 5px grey;
+    border-radius: 10px;
+
+
+
+}
+.dropdown_content span:first-child{
+    border-radius: 10px 10px 0px 0px;
+}
+.dropdown_content span:last-child{
+    border-radius: 0px 0px 10px 10px;
+}
+
+.dropdown_content .dropdown_element {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transition: all .5s ease;
+
+}
+.dropdown_content img {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+
+}
+.dropdown_content a{
+    text-decoration: none;
+    color: #FFFFFF;
+    padding-left: 2px;
+    padding: 5px;
+    width: 150px;
+    text-align: center;
+    
+}
+.user_details:hover {
+    cursor: pointer;
+}
+
+.user_details:hover .dropdown_content {
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+
+
+}
+.dropdown_content .dropdown_element:hover {
+    background-color: #8C1BAB;
+}
+.header_menu {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    
+}
+.header_menu ul{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 80px;
+    padding: 0;
+    margin-bottom: 3%;
+    list-style: none;
+    font-size: 18px;
+    font-weight: 600;
+    color: #FFFFFF;
+}
+ .header_menu ul li a {
+    text-decoration: none;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+.header_menu .menu_link::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #fff;
+    transition: width .3s;
+
+}
+.header_menu .menu_link:hover::after {
+    width: 100%;
+}
+.header_menu .menu_link a:is(:link, :active, :visited).active {
+    border-bottom: 3px solid #FFF;
+    width: 100%;
+}
+
+.header_menu span:nth-child(2) {
+    display: flex;
+    flex-direction: row;
+    padding: 1%;
+    width: 80%;
+    align-items: center;
+    justify-content: center;
+    gap: 2%;
+}
+.header_menu span:nth-child(2) input[type=search] {
+    width: 500px;
+    border-radius: 10px;
+    height: 50px;
+    border: 1px solid #ba41db;
+    
+}
+.header_menu span:nth-child(3){
+    padding: 0.5%;
+}
+.header_menu span:nth-child(2) input[type=submit]{
+    padding: 12px;
+    background: #6C429C;
+    border-radius: 10px;
+    color: #FFFFFF;
+    border: 1px solid black;
+
+} 
+.header_menu span:nth-child(2) input[type=submit]:hover{
+    cursor: pointer;
+
+} 
+
+.header_menu h1 {
+    color: white;
+    font-size: 50px;
+    padding-bottom: 5%;
+    margin: 0;
+    text-shadow: 0px 0px 8px grey;
+}
+.login-form .pasword {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    margin-top: 20px;
+    left: 400px;
+
+}
+.password .password_icon {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    margin-top: 20px;
+    left: 390px;
+    cursor: pointer;
+
+}
+
+#hide_password_icon {
+    display: none;
+}
+.landing_page_main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+.landing_page_main .latest {
+    margin-top: 1%;
+    font-family: 'Poppins';
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid black;
+    padding: 2%;
+
+}
+.landing_page_main .latest .lbl_latest{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+.landing_page_main .latest .lbl_latest label:nth-child(1){
+    flex-basis: 15%;
+    font-family: 'Poppins';
+    font-size: 20px;
+    color: #6C429C;
+    font-weight: bold;
+
+}
+.landing_page_main .latest .lbl_latest label:nth-child(2){
+    font-family: 'Poppins';
+    font-size: 15px;
+    color: #6C429C;
+    flex-basis: 85%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.latest .latest_cards{
+    margin-top: 1%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 1%;
+    
+
+}
+
+.latest .latest_cards .card {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    /*border: 0.5px solid #b7b7b7;*/
+    border-radius: 5px;
+    padding: 1%;
+    box-shadow: 0px 0px 0.5px 1px #b7b7b7;
+    
+    
+
+}
+.latest .latest_cards .card h4 ,p {
+    margin-top: 1px;
+    margin-bottom: 2px;
+}
+
+
+.landing_page_main .event_planners {
+    margin-top: 1%;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid black;
+    padding: 2%;
+    font-family: 'Poppins';
+
+}
+.landing_page_main .event_planners .lbl_evt_planners{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    
+
+}
+
+.landing_page_main .event_planners .lbl_evt_planners label:nth-child(1){
+    flex-basis: 15%;
+    font-family: 'Poppins';
+    font-size: 20px;
+    color: #6C429C;
+    font-weight: bold;
+
+}
+.landing_page_main .event_planners .lbl_evt_planners label:nth-child(2){
+    
+    font-size: 15px;
+    color: #6C429C;
+    flex-basis: 85%;
+    display: flex;
+    justify-content: flex-end;
+}
+.landing_page_main .event_planners .lbl_evt_planners a{
+    text-decoration: none;
+}
+
+.event_planners .evt_planner_cards{
+    margin-top: 1%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 1%;
+    
+
+}
+
+.event_planners .evt_planner_cards .card {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    /*border: 0.5px solid #b7b7b7;*/
+    border-radius: 5px;
+    padding: 1%;
+    box-shadow: 0px 0px 0.5px 1px #b7b7b7;
+    
+    
+
+}
+.event_planners .evt_planner_cards .card h4 ,p {
+    margin-top: 1px;
+    margin-bottom: 2px;
+}
+
+.btn_view {
+    width: 30%;
+    background-color:#ba41db;
+    color: #FFFFFF;
+    margin-left:70px;
+    margin-top: 2%;
+}
+.event_planners .evt_planner_cards .card a{
+    text-decoration: none;
+    font-size: 15px;
+}
+.name_rating {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.name_rating a {
+    color: #6C429C;
+    margin-left: 50px;
+}
+.event_planner_main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.event_planner_main .event_planners {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    padding: 1%;
+    font-family: 'Poppins';
+    
+
+}
+.event_planner_main .event_planners .lbl_evt_planners{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    
+}
+.event_planner_main .event_planners .evt_planner_cards {
+    flex-wrap: wrap;
+    
+}
+.event_planner_main .event_planners .evt_planner_cards .card {
+    margin-top: 3%;
+    
+}
+
+.flex-column{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+.event_planner_info .details   {
+    margin-top: 1%;
+    width: 70%;
+    /*border-left: 1px solid black;
+    border-right: 1px solid black;
+    box-shadow: -10px 0 8px -8px grey, 10px 0 8px -8px grey;*/
+    padding-left: 1%;
+    padding-right: 1%;
+
+
+}
+
+.event_planner_info .details .information img {
+    width: 290px;
+    height: 290px;
+    float: left;
+    padding: 2%;
+    
+
+}
+h1,h2,h3,h4 {
+    margin: 0;
+}
+.font-poppins {
+    font-family: 'Poppins';
+}
+/* event planner details */
+.event_planner_info .details .information p {
+    padding: 2%;
+    margin-top: 0;
+    text-align: justify;
+}
+.event_planner_info .details h1 {
+    margin-top: 1%;
+}
+.event_planner_info .details h3{
+    width: 96%;
+    margin-top: 1%;
+}
+html {
+    scroll-behavior: smooth;
+}
+.event_planner_main .card label {
+    font-size: 15px;
+}
+.btns_info {
+    margin-top: 0;
+    gap: 20px;
+    border-bottom: 1px solid black;
+    width: 100%;
+    padding-bottom: 2%;
+    margin-bottom: 2%;
+}
+.btns_info a:first-child{
+    margin-left: 79%;
+}
+.btn_contact {
+    color: #FFFFFF;
+    width: 65px;
+    margin-left: 140px;
+}
+.a-txt-deco-none{
+    text-decoration: none;
+}
+.txt-white {
+    color: #FFFFFF;
+}
+/* event planner events */
+.details .events_cards{
+    margin-top: 2%;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1%;
+    width: 100%;
+}
+.details .events_cards img{
+    width: 200px;
+}
+
+.details .events_cards .card{
+    width: 20%;
+    border: 0.5px solid #b7b7b7;
+    border-radius: 5px;
+    padding: 1%;
+    
+
+}
