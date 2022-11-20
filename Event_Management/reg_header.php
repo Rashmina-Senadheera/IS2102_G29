@@ -10,7 +10,7 @@
 </head>
 <body>
 
-    <header class="reg_header">
+    <header class="lp_header">
         <div class="reg_top_head">
         <span>
         <img src="images/logo.png" class="reg_header_logo">
