@@ -104,6 +104,16 @@
     </script>
 </head>
 <body class="sign_body" onload="logout_check()">
+        <header class="sign_in_header">
+        <div class="header_menu">
+            <ul class="menu_items">
+                <li class="menu_link"><a href="landing_page.php">Home</a></li>
+                <li class="menu_link"><a href="event_planners.php">Event Planners</a></li>
+                <li class="menu_link"><a>About us</a></li>
+                <li class="menu_link"><a>Contact Us</a></li>
+            </ul>
+        </div>
+        </header>
     <div class="box center">
         <div class="off-white-box">
             <img src="images/admin.png" class="admin_img">
