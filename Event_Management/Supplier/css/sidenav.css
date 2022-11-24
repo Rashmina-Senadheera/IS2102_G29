@@ -318,7 +318,7 @@ nav .profile-details i {
 
 
 /* Responsive Media Query */
-@media (max-width: 1240px) {
+@media (max-width: 1000px) {
     .sidebar {
         width: 60px;
     }
@@ -346,6 +346,12 @@ nav .profile-details i {
     .sidebar.active~.home-section nav {
         width: calc(100% - 220px);
         left: 220px;
+    }
+    .links_name{
+        display: none;
+    }
+    .logo_name{
+        display: none;
     }
 }
 
