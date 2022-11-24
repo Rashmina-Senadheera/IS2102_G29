@@ -1,189 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 body{
     background-color: #FFFFFF;
     margin: 0;
 
 }
+:root {
+    --mainColor: #3a0247;
+    --secondColor: #D0AFF4;
+    --mainGradient: linear-gradient(94.56deg, #6C429C 0%, #7D56AA 100%);
+}
 .admin_main{
-    left: 15%;
-    top: 30px;
-    position: relative;
+    margin-left: 242px;
+    position: absolute;
     background-color: #FFFFFF;
-    width: 85%;
-    height: 100%;
+    width: 84%;
     display: flex;
     flex-direction: column;
     align-items: center;
     flex-basis: auto;
+    top: 100px;
 
 }
-/* Main Menu */
-nav {
-    width: 20%;
-    position: absolute;
-    background-color: #d0aff5;
-    height: 100%;
-    top: 0;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-}
-    
-nav a{
-    
-    color: black;
-    display: block;
-    padding: 15px;
-    text-decoration: none;
-    font-size: 17px;
-    font-family: 'Poppins';
-    margin-left: 20px;
-
-    
-
-}
-nav a:hover{
-    background-color: #b17bef;
-    border-radius: 30px 0 0 30px;
-}
-
-nav a:is(:link, :active, :visited).active {
-    background-color: #6C429C;
-}
-
-nav .m_logo{
-    width: 93%;
-    padding: 10px;
-    margin-bottom: 10px;
-    text-align: center;
-    margin-left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-nav .menu_logo{
-    width: 100px;
-    height: 76px;
-}
-
-nav .m_logo:hover{
-    background-color: #d0aff5;
-    cursor: pointer;
-
-}
-/* admin header */
-
-.admin_header{
-    height: 75px;
-    background-color: #FFFFFF;
-    width: 87%;
-    box-shadow: 0px 1px 5px grey ;
-    margin-left: 200px;
-    top: 0;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-
-}
-.detail_heading {
-    padding-left: 150px;
-    flex-basis: 80%;
-    font-size: 20px;
-    font-weight: 600;
-    font-family: 'Poppins';
-}
-.admin_details {
-    flex-basis: 25%;
-    display: flex;
-    justify-content: space-around;
-    padding-bottom: 15px;
-    padding-top: 15px;
-    margin-right: 50px;
-
-   
-}
-
-.admin_user_logo {
-    width: 25px;
-    height: 25px;
-    padding-right: 50px;
-    
-}
-.admin_name {
-    font-size: 15px;
-    font-weight: 500;
-    font-family: 'Poppins';
-    padding-left: 50px;
-    margin-top: 2px;
-    
-}
-.admin_details .dropdown_content {
-    position: absolute;
-    background-color: #b17bef;
-    display: none;
-    top: 60px;
-    box-shadow: 0px 1px 5px black;
 
 
-
-}
-.admin_details .dropdown_content .dropdown_element {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-
-}
-.admin_details .dropdown_content img {
-    width: 20px;
-    height: 20px;
-    margin-left: 10px;
-
-}
-.admin_details .dropdown_content a{
-    text-decoration: none;
-    color: #FFFFFF;
-    padding-left: 2px;
-    padding: 5px;
-    
-    width: 100px;
-    text-align: center;
-    
-}
-.admin_details:hover {
-    cursor: pointer;
-}
-
-.admin_details:hover .dropdown_content {
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-
-}
-.dropdown_content .dropdown_element:hover {
-    background-color: #8C1BAB;
-}
 
 /* table*/
 .details_table{
-    width: 82%;
+    width: 85%;
+    border-radius: .5rem;
+    font-size: 0.9rem;
     margin-top: 30px;
-    font-family: 'Poppins';
     background-color: #ffffff;
-    border-radius: 20px;
     box-shadow: 0px 1px 5px grey;
 }
-.details_table tr th:nth-child(2) {
-    width: 400px;
-}
+
 .details_table th{
-    border-bottom: 1px solid black;
-    padding: 10px;
+    background-color: var(--mainColor);
+    color: white;
+    padding: 1rem;
+    text-align: center;
 
 }
-
-.details_table tr td{
-    border-right: 1px solid black;
+.details_table th,td {
+    padding: 8px;
+    border-radius: .5rem;
 }
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
 .details_table .action_buttons {
     display:flex;
     flex-direction: row;
@@ -229,21 +95,26 @@ nav .m_logo:hover{
 
 /* search */
 .search_add .add-btn{
-    background-color: #6C429C;
+    color: var(--mainColor);
+    margin-left: 20%;
+
+}
+.add-btn{
+    border: 2px solid var(--mainColor);
+    color: var(--mainColor);
+    background-color: #FFFFFF;
     padding: 1%;
     border-radius: 5px;
-    box-shadow: 0px 1px 5px black;
-    margin-left: 20%;
+    
 
 }
 .search_add {
     display: flex;
     box-shadow: 0px 1px 5px grey;
-    width: 79%;
+    width: 85%;
     align-items: center;
     padding: 20px;
     border-radius: 10px;
-    margin-top: 20px;
 
 }
 .search_add a{
@@ -273,31 +144,50 @@ nav .m_logo:hover{
 
 }
 .search input[type=search]{
-    padding: 10px;
-    border-radius: 10px;
-    width: 350px;
-    border: 1px solid black;
-
-}
-.search input[type=submit]{
-    background-color: #6C429C;
     padding: 1.5%;
     border-radius: 5px;
-    box-shadow: 0px 0.5px 3px grey;
-    color: #FFFFFF;
+    width: 350px;
+    border: 1px solid black;
+    font-size: 15px;
+
 }
-.icon_search{
-    width: 20px;
-    height:20px;
-    z-index: 1;
+
+.search i{
     position: absolute;
-    left: 50%;
+    left: 48%;
+    padding: 10px;
+    min-width: 50px;
+    text-align: center;
+    color: var(--mainColor);
 
 }
 .search .btn_search {
     border: none;
     font-size: 15px;
+    border: 2px solid var(--mainColor);
+    color: var(--mainColor);
+    background-color: #fff;
+    padding: 1.5%;
+    border-radius: 5px;
 
+}
+.btn_search:hover,.add-btn:hover{
+    cursor: pointer;
+    background-color: var(--mainColor);
+    color: white;
+}
+
+
+.btn_new {
+    border: 2px solid var(--mainColor);
+    color: var(--mainColor);
+    background-color: #fff;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: .5rem;
+    padding: 0.5rem 1rem;
+    margin-left: 1rem;
 }
 
 /*  dashboard */
@@ -308,7 +198,6 @@ nav .m_logo:hover{
     font-size: 20px;
     width: 60vw;
     border-radius: 15px;
-
 
 }
 .users_summary .summary_heading{
@@ -328,9 +217,10 @@ nav .m_logo:hover{
     padding: 15px;
     border-radius: 15px;
     box-shadow: 0px 0.5px 3px grey;
-    width: 140px;
+    width: 160px;
     font-size: 60px;
-    height: 120px;
+    height: 140px;
+
    
 }
 .summary_boxes .customers_num {
@@ -341,10 +231,13 @@ nav .m_logo:hover{
     font-size: 15px;
     margin-top: 0;
     width: 130px;
+    margin-left: 20px;
+    font-weight: 500;
 
 }
 .summary_box .customers_num .d_icon {
-    margin-left: 40px;
+
+    margin-left: 20px;
     padding: 0;
     height: 70px;
 }   
@@ -354,4 +247,82 @@ nav .m_logo:hover{
     height: 50px;
     margin: 0;
     padding: 0;
+}
+/* background blur */
+.blur_bg{
+    position: absolute;
+    top: -5%;
+    left: 0px;
+    width: 100%;
+    height: 89.5vh;
+    background-color: rgba(0,0,0, 0.4);
+    z-index: -1;
+    backdrop-filter: blur(2px);
+    opacity: 0;
+    transition:all 0.5s ease-in-out;
+}
+
+
+
+/* Add Form */
+.add-form {
+    border: 1px solid black;
+    width: 700px;
+    padding: 2%;
+    z-index: -1;
+    position: absolute;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    border: 1px solid var(--mainColor);
+    opacity: 0;
+    transition:all 0.5s ease-in-out;
+
+}
+.add-form span:nth-child(1){
+    display: flex;
+    flex-direction: row;
+    
+    align-items: center;
+    justify-content: space-between;
+}
+.add-form label {
+    font-size: 20px;
+    font-weight: 600;
+}
+.add-form i{
+    font-size: 25px;
+}
+.add-form form .info-box{
+    display: flex;
+    flex-direction: column;
+    margin-top: 2%;
+}
+
+.add-form .info-box .box{
+    display: flex;
+    flex-direction: row;
+    padding: 2%;
+}
+.add-form .info-box .box span{
+    width: 200px;
+}
+.add-form .info-box .box input{
+    padding: 0.5rem;
+    width: 70%;
+    border-radius: 5px;
+    border: 1px solid var(--mainColor);
+
+    
+}
+.add-form .add-btn{
+    padding: 2%;
+    margin-top: 2%;
+
+}
+
+
+/* display show class */
+.show {
+    display: block;
+    
 }
