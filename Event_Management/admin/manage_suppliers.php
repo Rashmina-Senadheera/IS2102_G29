@@ -1,6 +1,6 @@
 <?php
     include('admin_header.php');
-    include('admin_main_menu.php');
+    include('admin_nav.php');
     //include('header.php');
     //include('login_access.php');
     //include('constants.php');
@@ -21,10 +21,10 @@
                 
                 <div class="search_add">
                     <span class="search">
-                        <label class="search_customers">Search Suppliers</label>
+                        <label class="search_customers">Suppliers</label>
                         <input type="search" name="search_box" placeholder="Search Here">
                                   
-                        <img src="../images/search.png" class="icon_search">
+                        <i class="fa fa-search icon"></i>
                         <input type="submit" class="btn_search" value="Search">
                         
                     </span>

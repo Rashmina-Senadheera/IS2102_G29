@@ -1,7 +1,7 @@
 
 <?php
     include('admin_header.php');
-    include('admin_main_menu.php');
+    include('admin_nav.php');
     
     $_SESSION['page_name'] = "Dashboard";
     
@@ -51,6 +51,22 @@
                     
                 </label>
                 <p>Event Planners</p>
+            </div>
+            <div class="summary_box customer_summary">
+                <?php
+                    $sql = "SELECT * FROM tbl_customers ";
+                    $res = mysqli_query($conn,$sql);
+                    $count = mysqli_num_rows($res);                    
+                ?>
+                <label class="customers_num">
+                    <?php echo $count; ?>
+                    <div class="d_icon">
+                    <img src="../images/d_supplier.png">
+                    </div>
+                    
+                </label>
+                <p>Suppliers</p>
+                
             </div>
             <div class="summary_box customer_summary">
                 <?php
