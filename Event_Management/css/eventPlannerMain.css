@@ -1,3 +1,12 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+} */
+
 body {
     font-family: 'Nunito';
     background: #FAFAFA;
@@ -16,6 +25,25 @@ body {
 
 hr {
     border: 0.5px solid var(--mainColor);
+}
+
+.new-button-container {
+    display: flex;
+    /* justify-content: flex-end; */
+    width: 99%;
+    padding-left: 10px;
+}
+
+.new-button-container .add-new-button {
+    padding: .5em 1rem;
+    font-weight: 500;
+    background-color: var(--mainColor);
+    border-radius: .5rem;
+    color: #fff;
+    border: 0;
+    cursor: pointer;
+    align-self: flex-end;
+    text-decoration: none;
 }
 
 /********* For grid view *********/
@@ -63,7 +91,6 @@ hr {
         'main';
     gap: 10px;
     padding: 10px 0 10px 20px;
-    padding-left: 20px;
 }
 
 .grid-container-profile {
@@ -75,6 +102,10 @@ hr {
     gap: 10px;
     padding: 10px;
     padding-left: 20px;
+}
+
+.main-body {
+    margin-left: 240px;
 }
 
 
@@ -130,7 +161,7 @@ tr:nth-child(even) {
 
 .page-title {
     flex-grow: 1;
-    font-size: 1.3rem;
+    font-size: 1rem;
     font-weight: 900px;
 }
 
