@@ -7,7 +7,7 @@
     /* justify-content: center; */
     /* align-items: center; */
     flex-wrap: wrap;
-    margin: 40px 0;
+    margin: 10px 0 50px;
 }
 
 .my-events-container .card {

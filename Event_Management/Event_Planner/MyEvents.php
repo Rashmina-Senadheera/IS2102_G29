@@ -28,6 +28,9 @@ include('eventplanner_header.php');
         </div>
         <div class="gridMain">
             <div class="my-events-container">
+                <div class="new-button-container">
+                    <a href="./AddNewEvent.php" class="add-new-button">Add New Event</a>
+                </div>
 
                 <div class="card">
                     <div class="content">

@@ -19,7 +19,7 @@ include('eventplanner_header.php');
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
-                height: 650, 
+                height: 600, 
             });
             calendar.render();
         });
