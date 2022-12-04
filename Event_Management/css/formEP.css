@@ -11,6 +11,8 @@
 .row {
     display: flex;
     flex-wrap: wrap;
+    flex-shrink: 0;
+    width: 100%;
     justify-content: space-between;
     margin: 0 -10px;
 }
@@ -20,14 +22,24 @@
     padding: 0 10px;
 }
 
+.width-50 {
+    flex: 0.5;
+    margin-right: 20px;
+}
+
+.hide {
+    display: none;
+}
+
 .input {
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .input-label {
     display: block;
     font-weight: 500;
+    font-size: 14px;
 }
 
 .input-label span {
@@ -52,7 +64,7 @@
     border-radius: 4px;
     background-color: #f9f9f9;
     border: 1px solid #e5e5e5 !important;
-    padding: 10px !important;
+    padding: 5px !important;
 }
 
 .add-service-btn {
@@ -132,6 +144,7 @@
     text-align: center;
     margin-top: 20px;
 }
+
 .action input[type="submit"] {
     padding: .5em;
     width: 40%;

@@ -135,6 +135,7 @@
     text-transform: uppercase;
     /* letter-spacing: 2px; */
     font-size: 12px;
+    color: var(--mainColor);
 }
 
 .gridMain {

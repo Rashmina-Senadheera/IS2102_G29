@@ -32,6 +32,7 @@ include('eventplanner_header.php');
                             <option value="Company Party">Company Party</option>
                             <option value="Conference">Conference</option>
                             <option value="Exhibition">Exhibition</option>
+                            <option value="Exhibition">Musical Show</option>
                             <option value="Seminar">Seminar</option>
                             <option value="Sports and Competition">Sports and Competition</option>
                             <option value="Wedding">Wedding</option>
@@ -59,7 +60,7 @@ include('eventplanner_header.php');
                     <div class="input">
                         <label class="input-label">Description <span>*</span></label>
                         <!-- <input type="text" class="input-field" required /> -->
-                        <textarea class="input-field"></textarea>
+                        <textarea class="input-field" rows="5"></textarea>
                     </div>
                 </div>
                 <div class="row">

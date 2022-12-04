@@ -117,7 +117,7 @@ table {
     /* border-collapse: collapse; */
     width: 100%;
     border-radius: .5rem;
-    font-size: 0.9rem;
+    font-size: 14px;
 }
 
 th {
@@ -130,7 +130,7 @@ th {
 
 th,
 td {
-    padding: 8px;
+    padding: 5px;
     border-radius: .5rem;
 }
 
@@ -217,9 +217,8 @@ textarea {
 }
 
 label {
-    padding: 12px 12px 8px 0;
+    padding: 12px 12px 5px 0;
     display: inline-block;
-    font-size: 15px;
 }
 
 /* input[type=submit] {
