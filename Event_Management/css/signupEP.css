@@ -18,7 +18,7 @@ body {
 
 .heading {
     text-align: center;
-    font-size: 48px;
+    font-size: 36px;
     font-weight: 900;
     color: #fff;
     margin: 20px 10% 0 10%;
@@ -26,13 +26,14 @@ body {
 }
 
 .register-form {
-    width: 800px;
+    width: 720px;
     padding: 0 50px 50px;
     background-color: #fff;
     border-radius: .5rem;
     margin-top: 1rem;
     margin-bottom: 80px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
 }
 
 .row {
