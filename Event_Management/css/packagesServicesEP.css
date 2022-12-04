@@ -1,0 +1,124 @@
+/********* My Packages *********/
+
+.my-packages-container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    /* justify-content: center; */
+    /* align-items: center; */
+    flex-wrap: wrap;
+    margin: 10px 0 50px;
+}
+
+.my-packages-container .card {
+    position: relative;
+    width: 48%;
+    height: 150px;
+    background: rgba(255, 255, 255, 0.05);
+    margin: 10px;
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
+    border-radius: .5rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.my-packages-container .card .content {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    /* align-items: center; */
+    flex-direction: row;
+    transition: 0.5s;
+    width: 100%;
+}
+
+.my-packages-container .card .content .imgBx {
+    position: relative;
+    width: 150px;
+    height: 100%;
+    overflow: hidden;
+    float: left;
+    margin-right: 20px;
+    /* flex: 1;
+    flex-grow: 1; */
+}
+
+.my-packages-container .card .content .imgBx img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: .5rem;
+}
+
+.my-packages-container .card .content .contentBx {
+    flex: 1;
+    flex-wrap: wrap;
+}
+
+.my-packages-container .card .content .contentBx h3 {
+    /* color: #fff; */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
+    font-size: 16px;
+    text-align: left;
+    margin: 20px 10px 10px 0;
+    line-height: 1.1em;
+}
+
+.my-packages-container .card .content .contentBx h3 span {
+    font-size: 12px;
+    font-weight: 300;
+    flex-wrap: wrap;
+    text-transform: initial;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* number of lines to show */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.my-packages-container .card .sci {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+}
+
+.my-packages-container .card .sci li {
+    list-style: none;
+    margin: 0 10px;
+    /* transform: translateY(40px); */
+    transition: 0.5s;
+}
+
+.my-packages-container .card .sci li a {
+    text-decoration: none;
+    color: grey
+}
+
+.my-packages-container .card:hover .sci li a {
+    color: black
+}
+
+.add-new-section {
+    width: 100%;
+    padding: 10px;
+}
+
+.add-new-section .add-new {
+    padding: .5em 1rem;
+    font-weight: 500;
+    background-color: #3a0247;
+    border-radius: .5rem;
+    color: #fff;
+    border: 0;
+    cursor: pointer;
+    align-self: flex-end;
+    text-decoration: none;
+}

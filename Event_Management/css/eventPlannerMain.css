@@ -106,6 +106,8 @@ hr {
 
 .main-body {
     margin-left: 240px;
+    display: flex;
+    justify-content: center;
 }
 
 
@@ -215,11 +217,12 @@ textarea {
 }
 
 label {
-    padding: 12px 12px 12px 0;
+    padding: 12px 12px 8px 0;
     display: inline-block;
+    font-size: 15px;
 }
 
-input[type=submit] {
+/* input[type=submit] {
     background: var(--mainGradient);
     color: white;
     padding: 12px 20px;
@@ -229,7 +232,7 @@ input[type=submit] {
     font-size: 1.3rem;
     margin: 0.8rem;
     margin-left: 0;
-}
+} */
 
 .col-30 {
     float: left;
