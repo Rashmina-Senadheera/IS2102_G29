@@ -1,6 +1,12 @@
 <?php
+session_start();
 include('customer_sidenav.php');
 include('customer_header.php');
+
+// if (isset($_SESSION['fname'])){
+//     header("location:./home.php");
+//     }
+
 ?>
 
 <!DOCTYPE html>

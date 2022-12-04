@@ -1,6 +1,14 @@
 <?php
+session_start();
 include('customer_sidenav.php');
 include('customer_header.php');
+
+// if (isset($_SESSION['fname'])){
+//     header("location:./home.php");
+//     }
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -87,7 +95,7 @@ include('customer_header.php');
                         </div>
                         <div class="contentBx">
                             <h3>Sandali's Birthday<br><span>
-                                    The lovely Sandali was on cloud nine when she was pleasantly surprised by her loved ones and friends on her birthday!! The atmosphere and decorum created by DEVENT, truly set the tone to create a memorable experience for her. Do not hesitate to contact us in making your dream event a reality.
+                                    The lovely Sewwandi was on cloud nine when she was pleasantly surprised by her loved ones and friends on her birthday!! The atmosphere and decorum created by DEVENT, truly set the tone to create a memorable experience for her. Do not hesitate to contact us in making your dream event a reality.
                                 </span></h3>
                         </div>
                     </div>

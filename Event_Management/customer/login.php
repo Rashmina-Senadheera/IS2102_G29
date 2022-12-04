@@ -1,6 +1,5 @@
 <?php 
-
-
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +14,14 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-<link rel="stylesheet" href="../css/eventPlannerMain.css">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
  <style>
   
 
@@ -227,22 +233,28 @@ input[type="checkbox"]:checked + label span::after {
 }
 
 
+
  </style>
 </head>
 
 <body style="background: #f2f4f8;">
- <div class="gridMain">
+
+ <!-- ======= Include nav here ======= -->
+ <?php include('Staticnavbar.php') ?>
+
+ <!-- End nav -->
+
   <div class="container-fluid" style="margin-top: 100px;">
     <div class="container" >
       <div class="row shadow-lg " style="border-color:black; background-color: white;">
         <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 col-xxl-8">
-          <img src="../images/undraw_welcome_re_h3d9.svg" class="img-fluid img_form_custom" height="auto" width="75%">
+          <img src="./assets/img/undraw_welcome_re_h3d9.svg" class="img-fluid img_form_custom" height="auto" width="75%">
         </div>
         <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 col-xxl-4">
           <!--Form start-->
-<br ><br ><br ><br >
+          <br ><br ><br ><br >
           <form class="shadow w-450 p-3" 
-            action="Profile.php" 
+            action="php/login.php" 
             method="post">
             <h1 class="a11y-hidden">Login Form</h1>
             <div>
@@ -258,33 +270,30 @@ input[type="checkbox"]:checked + label span::after {
                class="form-control"
                name="uname"
                value="<?php echo (isset($_GET['uname']))?$_GET['uname']:"" ?>">
-                <span class="required">Email</span>
+                <span class="required" style="font-family:'Poppins'" ><b>Email</b></span>
               </label>
             </div>
             <input type="checkbox" name="show-password" class="show-password a11y-hidden" id="show-password" tabindex="3" />
             <label class="label-show-password" for="show-password">
-              <span>Show Password</span>
+              <span style="font-family:'Poppins'">Show Password</span>
             </label>
             <div>
               <label class="label-password">
               <input type="password" 
                class="form-control"
                name="pass">
-                <span class="required">Password</span>
+                <span class="required" style="font-family:'Poppins'"> <b>Password</b></span>
               </label>
             </div>
-           <input type="submit" value="Log In" >
+            <input type="submit"   style="font-family:'Poppins'" value="Log In" >
             
-          </form><div class="login-card-info">
-                Dont't Have an Account?
-                <a href="register.php">Regiser Here</a>
-            </div>
+          </form>
           <!--Form end-->
         </div>
       </div>
     </div>
   </div>
-</div>
+
 
 
 

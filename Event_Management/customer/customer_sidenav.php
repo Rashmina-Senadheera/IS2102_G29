@@ -1,4 +1,3 @@
-<?php include('../constants.php'); ?>
 
 <head>
     <link rel="stylesheet" href="../css/sidenav.css">
@@ -18,45 +17,45 @@
         </div>
         <ul class="nav-links">
             <li>
-                <a href=<?php echo SITEURL . 'customer/Profile.php' ?>>
+                <a href=<?php echo 'http://localhost/Event_Management002/customer/Profile.php' ?>>
                     <i class='bx bx-user'></i>
                     <span class="links_name">Profile</span>
                 </a>
             </li>
             <li>
-                <a href=<?php echo SITEURL . 'customer/Password.php'  ?>>
+                <a href=<?php echo  'http://localhost/Event_Management002/customer/Password.php'  ?>>
                     <i class='bx bx-package'></i>
                     <span class="links_name">Password</span>
                 </a>
             </li>
             <li>
-                <a href=<?php echo SITEURL . 'customer/QuotationNw.php'  ?>>
+                <a href=<?php echo  'http://localhost/Event_Management002/customer/QuotationNw.php'  ?>>
                     <i class='bx bx-task'></i>
                     <span class="links_name">Quotations</span>
                 </a>
             </li>
             <li>
-                <a href=<?php echo SITEURL . 'customer/Events.php'  ?>>
+                <a href=<?php echo  'http://localhost/Event_Management002/customer/Events.php'  ?>>
                     <i class='bx bx-calendar-event'></i>
                     <span class="links_name">Events</span>
                 </a>
             </li>
             <li>
-                <a href=<?php echo SITEURL . 'customer/Payments.php'  ?>>
+                <a href=<?php echo  'http://localhost/Event_Management002/customer/Payments.php'  ?>>
                     <i class='bx bx-money'></i>
                     <span class="links_name">Payments</span>
                 </a>
             </li>
             
             <li>
-                <a href="#">
+                <a href=<?php echo  'http://localhost/Event_Management002/customer/Feedback.php'  ?>>
                     <i class='bx bx-heart'></i>
                     <span class="links_name">Feedback</span>
                 </a>
             </li> 
 
             <li class="log_out">
-               <a href=<?php echo SITEURL . 'customer/Payments.php'  ?>>
+               <a href=<?php echo 'http://localhost/Event_Management002/customer/logout.php'  ?>>
                     <i class='bx bx-log-out'></i>
                     <span class="links_name">Log out</span>
                 </a>
