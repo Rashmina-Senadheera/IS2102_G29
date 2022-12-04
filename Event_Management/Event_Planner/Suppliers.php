@@ -47,7 +47,7 @@ include('eventplanner_header.php');
                             <a href="" class="view-supplier">View</a>
                         </li>
                         <li>
-                            <a href="./RequestQuotation.php" class="request">Request a Quotation</a>
+                            <a href="./request-quotation-venue.php" class="request">Request a Quotation</a>
                         </li>
                     </ul>
                 </div>
@@ -68,7 +68,7 @@ include('eventplanner_header.php');
                             <a href="" class="view-supplier">View</a>
                         </li>
                         <li>
-                            <a href="" class="request">Request a Quotation</a>
+                            <a href="./request-quotation-catering.php" class="request">Request a Quotation</a>
                         </li>
                     </ul>
                 </div>
@@ -89,7 +89,7 @@ include('eventplanner_header.php');
                             <a href="" class="view-supplier">View</a>
                         </li>
                         <li>
-                            <a href="" class="request">Request a Quotation</a>
+                            <a href="./request-quotation-decoration.php" class="request">Request a Quotation</a>
                         </li>
                     </ul>
                 </div>

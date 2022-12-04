@@ -1,0 +1,51 @@
+/********* Request quotation from a supplier *********/
+
+body {
+    background-color: #fff !important;
+}
+
+.quotation-body {
+    margin: 20px;
+    margin-left: 260px;
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
+    border-radius: .5rem;
+    padding: 0.2vh 50px 50px;
+}
+
+.row .input {
+    width: 50%;
+    padding: 0 10px;
+}
+
+.row .input .input-label span {
+    color: #f00;
+}
+
+.action {
+    margin-top: 3rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.action-button {
+    font: inherit;
+    font-size: 1.25rem;
+    padding: .5em;
+    width: 60%;
+    font-weight: 500;
+    background-color: #3a0247;
+    border-radius: .5rem;
+    color: #fff;
+    border: 0;
+    cursor: pointer;
+}
+
+.action-button:hover {
+    opacity: 0.8;
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.action-button:focus {
+    outline: 0;
+}
