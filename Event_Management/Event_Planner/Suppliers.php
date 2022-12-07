@@ -47,7 +47,10 @@ include('eventplanner_header.php');
                             <a href="" class="view-supplier">View</a>
                         </li>
                         <li>
-                            <a href="./request-quotation-venue.php" class="request">Request a Quotation</a>
+                            <form action="./request-quotation.php" method="POST">
+                                <button type="submit" name="quotation-type" value="Venue" class="request">Request a Quotation</button>
+                            </form>
+                            <!-- <a href="./request-quotation-venue.php" class="request">Request a Quotation</a> -->
                         </li>
                     </ul>
                 </div>
@@ -68,7 +71,10 @@ include('eventplanner_header.php');
                             <a href="" class="view-supplier">View</a>
                         </li>
                         <li>
-                            <a href="./request-quotation-catering.php" class="request">Request a Quotation</a>
+                            <form action="./request-quotation.php" method="POST">
+                                <button type="submit" name="quotation-type" value="Catering" class="request">Request a Quotation</button>
+                            </form>
+                            <!-- <a href="./request-quotation-catering.php" class="request">Request a Quotation</a> -->
                         </li>
                     </ul>
                 </div>
@@ -89,7 +95,10 @@ include('eventplanner_header.php');
                             <a href="" class="view-supplier">View</a>
                         </li>
                         <li>
-                            <a href="./request-quotation-decoration.php" class="request">Request a Quotation</a>
+                            <form action="./request-quotation.php" method="POST">
+                                <button type="submit" name="quotation-type" value="Decoration" class="request">Request a Quotation</button>
+                            </form>
+                            <!-- <a href="./request-quotation-decoration.php" class="request">Request a Quotation</a> -->
                         </li>
                     </ul>
                 </div>
