@@ -134,3 +134,12 @@ body {
     color: #3a0247;
     text-decoration: none;
 }
+
+.signupError {
+    /* show error in the bottom of the input */
+    position: absolute;
+    top: 3rem;
+    font-size: 11px;
+    margin-top: 8px;
+    color: red;
+}
