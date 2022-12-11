@@ -1,8 +1,8 @@
 /********* Sign in - Sachintha *********/
 
 body {
- margin: 0;
- background-color: #3a0247;
+    margin: 0;
+    background-color: #3a0247;
 }
 
 .headAll {
@@ -58,7 +58,7 @@ body {
     font-size: 48px;
     font-weight: 900;
     color: #3a0247;
-    margin: 20px 10% 10% 10%;
+    margin: 20px 10% 20px 10%;
     border-bottom: #3a0247 2px solid;
 }
 
@@ -152,4 +152,22 @@ body {
     color: #3a0247;
     text-decoration: none;
 
+}
+
+.signinError {
+    /* show error in the bottom of the input */
+    position: absolute;
+    top: 3rem;
+    font-size: 11px;
+    margin-top: 15px;
+    color: red;
+}
+
+.signinTopError {
+    /* show error in the top of form */
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 10px;
+    color: red;
+    text-align: center;
 }
