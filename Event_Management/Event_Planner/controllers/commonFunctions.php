@@ -46,10 +46,9 @@ function sendEmailOTP($to, $name, $otp)
         $mail->Subject = 'OTP for EVENTRA registration confirmation';
         $mail->Body    = 'Dear ' . $name . ', Thank you for registering with EVENTRA! <br/> Your OTP is <b>' . $otp . '</b>. To finalize your registration, please enter the above code in your registration window. <br/> Thank you! <br/> Eventra Team';
         // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
+        $mail->SMTPDebug  = SMTP::DEBUG_OFF; //Disable SMTP debug output
         $mail->send();
         echo 'Message has been sent';
-        header('Location: ../email_verification.php');
     } catch (Exception $e) {
         $_SESSION['error'] = "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";

@@ -1,7 +1,7 @@
 <?php include('../constants.php'); ?>
 <?php
 // check user already logged in
-if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
+if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && !isset($_SESSION['userStatus'])) {
     // check user role
     if ($_SESSION['role'] == 'event_planner') {
         // do nothing

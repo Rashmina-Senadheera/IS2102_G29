@@ -19,6 +19,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = checkInput($_POST["email"]);
     $password = checkInput($_POST["password"]);
+    unset($_SESSION['userStatus']);
 
     // check if email and password empty
     if (empty($email)) {
@@ -43,8 +44,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['role'] = $row['role'];
             $_SESSION['user_name'] = $row['name'];
 
-            // redirect to the relevant page
-            header("location: location_check.php");
+            $userStatus = $row['email_verified'];
+            if ($userStatus == '0') {
+                $_SESSION['userStatus'] = $userStatus;
+                $_SESSION['email'] = $email;
+                $_SESSION['from_page'] = 'signin';
+                unset($_SESSION['otp']);
+                header("location: ./Event_Planner/email_verification.php");
+            } else {
+                // redirect to the relevant page
+                header("location: location_check.php");
+            }
         } else {
             $_SESSION['error'] = "Incorrect password";
             $_SESSION['email'] = $email;
@@ -86,7 +96,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <input type="text" value="<?php
                                                     if (isset($_SESSION['email'])) {
                                                         echo $_SESSION['email'];
-                                                        unset($_SESSION['email']);
                                                     }
                                                     ?>" name="email" class="input-field" required />
                         <label class="input-label">Email</label>

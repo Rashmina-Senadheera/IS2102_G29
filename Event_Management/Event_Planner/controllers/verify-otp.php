@@ -26,6 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
             // remove otp and email from session
             unset($_SESSION['otp']);
             unset($_SESSION['email']);
+            unset($_SESSION['userStatus']);
 
             // from page = login page
             if ($_SESSION['from_page'] == 'signin') {
