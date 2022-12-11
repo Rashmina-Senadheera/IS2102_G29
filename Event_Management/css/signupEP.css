@@ -18,7 +18,7 @@ body {
 
 .heading {
     text-align: center;
-    font-size: 36px;
+    font-size: 24px;
     font-weight: 900;
     color: #3a0247;
     margin: 20px 10% 0 10%;
@@ -102,9 +102,9 @@ body {
 
 .register-form .action-button {
     font: inherit;
-    font-size: 1.25rem;
+    font-size: 1rem;
     padding: .5em;
-    width: 60%;
+    width: 30%;
     font-weight: 500;
     background-color: #3a0247;
     border-radius: .5rem;
@@ -150,5 +150,31 @@ body {
     font-weight: 500;
     margin-top: 10px;
     color: red;
+    text-align: center;
+}
+
+.otp_row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.otp_row .input {
+    justify-content: center;
+}
+
+.otp_row .input .input-field,
+.otp_row .input .input-label {
+    /* type text center */
+    text-align: center;
+    width: 100%;
+
+}
+
+.form-description {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #8597a3;
     text-align: center;
 }

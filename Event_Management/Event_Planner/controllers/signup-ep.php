@@ -14,16 +14,16 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     $firstname = $lastname = $email = $nic = $contact = $password = $cpassword = $address = $city = $zip = "";
 
     // get all data that have been received from post method
-    $firstname = chekcInput($_POST['firstname']);
-    $lastname = chekcInput($_POST['lastname']);
-    $email = chekcInput($_POST['email']);
-    $nic = chekcInput($_POST['nic']);
-    $contact = chekcInput($_POST['contact']);
-    $password = chekcInput($_POST['password']);
-    $cpassword = chekcInput($_POST['cpassword']);
-    $address = chekcInput($_POST['address']);
-    $city = chekcInput($_POST['city']);
-    $zip = chekcInput($_POST['zip']);
+    $firstname = checkInput($_POST['firstname']);
+    $lastname = checkInput($_POST['lastname']);
+    $email = checkInput($_POST['email']);
+    $nic = checkInput($_POST['nic']);
+    $contact = checkInput($_POST['contact']);
+    $password = checkInput($_POST['password']);
+    $cpassword = checkInput($_POST['cpassword']);
+    $address = checkInput($_POST['address']);
+    $city = checkInput($_POST['city']);
+    $zip = checkInput($_POST['zip']);
 
     // Validation patterns
     $onlyLetters = "/^[a-zA-Z ]*$/";
@@ -156,8 +156,10 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                 mysqli_query($conn, "COMMIT");
                 mysqli_query($conn, "SET autocommit = 1");
                 // echo "<script> alert ('You have successfully registered!'); </script>";
-                $_SESSION['register-success'] = "You have successfully registered!";
-                header("Location: ../../sign_in2.php");
+                $_SESSION['email'] = $email;
+                $_SESSION['user_name'] = $firstname;
+                $_SESSION['from_page'] = 'register';
+                header("Location: ../email_verification.php");
             }
         }
     }

@@ -410,3 +410,12 @@ label {
 .eventList li {
     list-style: none;
 }
+
+.success-message {
+    font-size: 14px;
+    font-weight: 500;
+    /* padding: 10px; */
+    color: #fff;
+    background-color: green;
+    text-align: center;
+}

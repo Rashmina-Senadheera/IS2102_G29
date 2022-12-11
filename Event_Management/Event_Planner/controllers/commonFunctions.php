@@ -34,7 +34,7 @@ function sendEmailOTP($to, $name, $otp)
 
         //Recipients
         $mail->setFrom($_ENV['EMAIL'], 'Eventra');
-        $mail->addAddress($to, 'Sachintha Gunaratne');              //Add a recipient. Name is optional
+        $mail->addAddress($to, $name);              //Add a recipient. Name is optional
         $mail->addReplyTo($_ENV['EMAIL'], 'Eventra');
 
         //Attachments
@@ -49,7 +49,9 @@ function sendEmailOTP($to, $name, $otp)
 
         $mail->send();
         echo 'Message has been sent';
+        header('Location: ../email_verification.php');
     } catch (Exception $e) {
+        $_SESSION['error'] = "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
 }
@@ -64,7 +66,7 @@ function showSessionMessage($error)
 }
 
 // remove white spaces and unwanted special characters
-function chekcInput($data)
+function checkInput($data)
 {
     $data = trim($data);
     $data = stripslashes($data);

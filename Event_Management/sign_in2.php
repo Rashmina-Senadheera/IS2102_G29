@@ -17,8 +17,8 @@ if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['
 
 // check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = chekcInput($_POST["email"]);
-    $password = chekcInput($_POST["password"]);
+    $email = checkInput($_POST["email"]);
+    $password = checkInput($_POST["password"]);
 
     // check if email and password empty
     if (empty($email)) {
@@ -68,6 +68,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
+    <!-- Show success message -->
+    <div class="success-message">
+        <?php echo showSessionMessage('success'); ?>
+    </div>
     <div class="loginbody">
         <div class="box">
             <div class="image-box">

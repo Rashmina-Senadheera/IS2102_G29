@@ -171,3 +171,11 @@ body {
     color: red;
     text-align: center;
 }
+
+.success-message {
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    background-color: green;
+    text-align: center;
+}
