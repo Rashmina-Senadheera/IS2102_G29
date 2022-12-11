@@ -4,7 +4,6 @@ session_start();
 // Check the method of the request
 // If request methot is not POST redirect to the register page
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
-    $_SESSION['error'] = "Invalid request method!";
     header("location: ../sign_up_form.php");
 } else {
     // include the database config file
@@ -121,6 +120,50 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         // go back to the signup page with entered values
         echo "<script> history.back(); </script>";
     } else {
-        // code for no form validation errors
+        // Check for duplicate email or contact number
+        $chkDuplicateEmail = mysqli_query($conn, "select user_id from user where email='$email' ");
+        $chkDuplicateContact = mysqli_query($conn, "select user_id from user_phone where phone_number='$contact' ");
+        if (mysqli_num_rows($chkDuplicateEmail) > 0) {
+            $_SESSION['error-email'] = "The EMAIL you have entered is already taken!";
+        }
+        if (mysqli_num_rows($chkDuplicateContact) > 0) {
+            $_SESSION['error-contact'] = "The CONTACT number you have entered is already taken!";
+        }
+
+        // if there is any error, go back to signup page
+        if (isset($_SESSION['error-email']) || isset($_SESSION['error-contact'])) {
+            echo "<script> history.back(); </script>";
+        } else {
+            // Hash the password
+            $password = password_hash($password, PASSWORD_DEFAULT);
+
+            // Insert email, name, password, address and role to user table
+            // Insert firstname, lastname, nic, address, city, zip to evetn_planner table
+            // Insert contact to user_phone table
+            // If one of the queries fail, rollback all the queries
+            mysqli_query($conn, "SET autocommit = 0");
+            mysqli_query($conn, "START TRANSACTION");
+
+            $insertUser = mysqli_query($conn, "insert into user (name, email, password, address, role) values ('$firstname', '$email', '$password', '$address', 'event_planner')");
+
+            // select the user id of the user who is just inserted
+            mysqli_query($conn, "SELECT @user_id:=MAX(user_id) FROM user;");
+
+            $insertEventPlanner = mysqli_query($conn, "insert into event_planner (user_id, firstname, lastname, nic, city, zip_code) values (@user_id, '$firstname', '$lastname', '$nic', '$city', '$zip')");
+            $insertUserPhone = mysqli_query($conn, "insert into user_phone (user_id, phone_number) values (@user_id, '$contact')");
+
+            if (!$insertUser || !$insertEventPlanner || !$insertUserPhone) {
+                mysqli_query($conn, "ROLLBACK");
+                mysqli_query($conn, "SET autocommit = 1");
+                $_SESSION['error'] = "Something went wrong! Please try again!";
+                echo "<script> history.back(); </script>";
+            } else {
+                mysqli_query($conn, "COMMIT");
+                mysqli_query($conn, "SET autocommit = 1");
+                // echo "<script> alert ('You have successfully registered!'); </script>";
+                $_SESSION['register-success'] = "You have successfully registered!";
+                header("Location: ../../sign_in2.php");
+            }
+        }
     }
 }

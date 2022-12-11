@@ -20,9 +20,9 @@ body {
     text-align: center;
     font-size: 36px;
     font-weight: 900;
-    color: #fff;
+    color: #3a0247;
     margin: 20px 10% 0 10%;
-    border-bottom: #fff 2px solid;
+    border-bottom: #3a0247 2px solid;
 }
 
 .register-form {
@@ -142,4 +142,13 @@ body {
     font-size: 11px;
     margin-top: 8px;
     color: red;
+}
+
+.signupTopError {
+    /* show error in the top of form */
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 10px;
+    color: red;
+    text-align: center;
 }

@@ -1,15 +1,7 @@
 <?php
 include('../constants.php');
 include('eventplanner_header.php');
-
-function showErrors($error)
-{
-    if (isset($_SESSION[$error])) {
-        $tempErr = $_SESSION[$error];
-        unset($_SESSION[$error]);
-        return $tempErr;
-    }
-}
+include('controllers/commonFunctions.php');
 ?>
 
 <!DOCTYPE html>
@@ -26,22 +18,22 @@ function showErrors($error)
 
 <body>
     <div class="register-body">
-        <p class="heading">Event Planner Registration</span></p>
         <form class="register-form" method="POST" action="./controllers/signup-ep.php">
 
+            <p class="heading">Event Planner Registration</p>
             <!-- Show errors -->
-            <?php echo showErrors('error') ?>
+            <div class="signupTopError"><?php echo showSessionMessage('error') ?></div>
 
             <div class="row">
                 <div class="input">
                     <input type="text" name="firstname" class="input-field" required />
                     <label class="input-label">First Name <span>*</span></label>
-                    <div class="signupError"><?php echo showErrors('error-firstname') ?></div>
+                    <div class="signupError"><?php echo showSessionMessage('error-firstname') ?></div>
                 </div>
                 <div class="input">
                     <input type="text" name="lastname" class="input-field" required />
                     <label class="input-label">Last Name <span>*</span></label>
-                    <div class="signupError"><?php echo showErrors('error-lastname') ?></div>
+                    <div class="signupError"><?php echo showSessionMessage('error-lastname') ?></div>
 
                 </div>
             </div>
@@ -49,12 +41,12 @@ function showErrors($error)
                 <div class="input">
                     <input type="text" name="email" class="input-field" required />
                     <label class="input-label">Email <span>*</span></label>
-                    <div class="signupError"><?php echo showErrors('error-email') ?></div>
+                    <div class="signupError"><?php echo showSessionMessage('error-email') ?></div>
                 </div>
                 <div class="input">
                     <input type="text" name="nic" class="input-field" required />
                     <label class="input-label">NIC Number <span>*</span></label>
-                    <div class="signupError"><?php echo showErrors('error-nic') ?></div>
+                    <div class="signupError"><?php echo showSessionMessage('error-nic') ?></div>
                 </div>
             </div>
 
@@ -62,7 +54,7 @@ function showErrors($error)
                 <div class="input">
                     <input type="tel" name="contact" class="input-field" required />
                     <label class="input-label">Contact Number <span>*</span></label>
-                    <div class="signupError"><?php echo showErrors('error-contact') ?></div>
+                    <div class="signupError"><?php echo showSessionMessage('error-contact') ?></div>
                 </div>
             </div>
             <br />
@@ -70,12 +62,12 @@ function showErrors($error)
                 <div class="input">
                     <input type="password" name="password" class="input-field" required />
                     <label class="input-label">Password <span>*</span></label>
-                    <div class="signupError"><?php echo showErrors('error-password') ?></div>
+                    <div class="signupError"><?php echo showSessionMessage('error-password') ?></div>
                 </div>
                 <div class="input">
                     <input type="password" name="cpassword" class="input-field" required />
                     <label class="input-label">Confirm Password <span>*</span></label>
-                    <div class="signupError"><?php echo showErrors('error-cpassword') ?></div>
+                    <div class="signupError"><?php echo showSessionMessage('error-cpassword') ?></div>
                 </div>
             </div>
             <br />
@@ -83,7 +75,7 @@ function showErrors($error)
                 <div class="input full">
                     <input type="text" name="address" class="input-field" required />
                     <label class="input-label">House No, Street <span>*</span></label>
-                    <div class="signupError"><?php echo showErrors('error-address') ?></div>
+                    <div class="signupError"><?php echo showSessionMessage('error-address') ?></div>
                 </div>
             </div>
 
@@ -91,12 +83,12 @@ function showErrors($error)
                 <div class="input">
                     <input type="text" name="city" class="input-field" required />
                     <label class="input-label">City <span>*</span></label>
-                    <div class="signupError"><?php echo showErrors('error-city') ?></div>
+                    <div class="signupError"><?php echo showSessionMessage('error-city') ?></div>
                 </div>
                 <div class="input">
                     <input type="text" name="zip" class="input-field" required />
                     <label class="input-label">ZIP Code <span>*</span></label>
-                    <div class="signupError"><?php echo showErrors('error-zip') ?></div>
+                    <div class="signupError"><?php echo showSessionMessage('error-zip') ?></div>
                 </div>
             </div>
 
