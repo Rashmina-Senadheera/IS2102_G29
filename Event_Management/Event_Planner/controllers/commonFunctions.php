@@ -8,4 +8,12 @@ function showSessionMessage($error)
         return $tempErr;
     }
 }
-?>
+
+// remove white spaces and unwanted special characters
+function chekcInput($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}

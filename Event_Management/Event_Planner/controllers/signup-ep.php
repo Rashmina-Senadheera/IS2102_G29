@@ -8,15 +8,10 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
 } else {
     // include the database config file
     include_once '../../constants.php';
+    include_once './commonFunctions.php';
 
-    // remove white spaces and unwanted special characters
-    function chekcInput($data)
-    {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-    }
+    // define variables and set to empty values
+    $firstname = $lastname = $email = $nic = $contact = $password = $cpassword = $address = $city = $zip = "";
 
     // get all data that have been received from post method
     $firstname = chekcInput($_POST['firstname']);
