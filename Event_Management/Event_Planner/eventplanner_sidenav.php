@@ -1,21 +1,18 @@
 <?php include('../constants.php'); ?>
 <?php
 // check user already logged in
-if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['user-name'])) {
+if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     // check user role
     if ($_SESSION['role'] == 'event_planner') {
         // do nothing
     } else {
-        unset($_SESSION['role']);
-        unset($_SESSION['user_id']);
-        unset($_SESSION['user-name']);
         // redirect to unauthorized page
         header('location: ' . SITEURL . 'Event_Planner/unauthorized.php');
     }
 } else {
     unset($_SESSION['role']);
     unset($_SESSION['user_id']);
-    unset($_SESSION['user-name']);
+    unset($_SESSION['user_name']);
     // redirect to unauthorized page
     header('location: ' . SITEURL . 'Event_Planner/unauthorized.php');
 } 

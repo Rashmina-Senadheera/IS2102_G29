@@ -7,12 +7,12 @@ include('Event_Planner/controllers/commonFunctions.php');
 $email = $password = "";
 
 // check user already logged in
-if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['user-name'])) {
+if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     header("location: location_check.php");
 } else {
     unset($_SESSION['role']);
     unset($_SESSION['user_id']);
-    unset($_SESSION['user-name']);
+    unset($_SESSION['user_name']);
 }
 
 // check if the form is submitted
@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // set session variables
             $_SESSION['user_id'] = $row['user_id'];
             $_SESSION['role'] = $row['role'];
-            $_SESSION['user-name'] = $row['name'];
+            $_SESSION['user_name'] = $row['name'];
 
             // redirect to the relevant page
             header("location: location_check.php");

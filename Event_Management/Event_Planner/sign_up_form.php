@@ -4,12 +4,12 @@ include('eventplanner_header.php');
 include('controllers/commonFunctions.php');
 
 // check user already logged in
-if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['user-name'])) {
+if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     header("location: ../location_check.php");
 } else {
     unset($_SESSION['role']);
     unset($_SESSION['user_id']);
-    unset($_SESSION['user-name']);
+    unset($_SESSION['user_name']);
 }
 ?>
 

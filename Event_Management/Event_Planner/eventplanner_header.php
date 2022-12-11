@@ -13,8 +13,8 @@
         <div class="icons">
             <a id="profile-name" href=<?php echo SITEURL ?> class="btna">
                 <?php 
-                    if(isset($_SESSION['user-name'])){
-                        echo $_SESSION['user-name'];
+                    if(isset($_SESSION['user_name'])){
+                        echo $_SESSION['user_name'];
                     } else {
                         echo "Login";
                     }
