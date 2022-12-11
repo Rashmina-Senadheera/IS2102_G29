@@ -1,4 +1,25 @@
 <?php include('../constants.php'); ?>
+<?php
+// check user already logged in
+if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['user-name'])) {
+    // check user role
+    if ($_SESSION['role'] == 'event_planner') {
+        // do nothing
+    } else {
+        unset($_SESSION['role']);
+        unset($_SESSION['user_id']);
+        unset($_SESSION['user-name']);
+        // redirect to unauthorized page
+        header('location: ' . SITEURL . 'Event_Planner/unauthorized.php');
+    }
+} else {
+    unset($_SESSION['role']);
+    unset($_SESSION['user_id']);
+    unset($_SESSION['user-name']);
+    // redirect to unauthorized page
+    header('location: ' . SITEURL . 'Event_Planner/unauthorized.php');
+} 
+?>
 
 <head>
     <link rel="stylesheet" href="../css/sidenav.css">
@@ -97,7 +118,7 @@
                 </a>
             </li> -->
             <li class="log_out">
-                <a href="#">
+                <a href="../logout.php">
                     <i class='bx bx-log-out'></i>
                     <span class="links_name">Log out</span>
                 </a>

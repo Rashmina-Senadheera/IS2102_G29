@@ -1,13 +1,3 @@
-<?php
-// check user already logged in
-if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['user-name'])) {
-    // header("location: ../location_check.php");
-} else {
-    unset($_SESSION['role']);
-    unset($_SESSION['user_id']);
-    unset($_SESSION['user-name']);
-}
-?>
 <!-- font awesome link  -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 <link rel="stylesheet" href="../css/navigationBar.css">
@@ -21,7 +11,15 @@ if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['
         </nav>
         <!-- login/profile button -->
         <div class="icons">
-            <a id="profile-name" href=<?php echo SITEURL ?> class="btna"><?php echo $_SESSION['user-name'] ?></a>
+            <a id="profile-name" href=<?php echo SITEURL ?> class="btna">
+                <?php 
+                    if(isset($_SESSION['user-name'])){
+                        echo $_SESSION['user-name'];
+                    } else {
+                        echo "Login";
+                    }
+                 ?>
+            </a>
         </div>
     </div>
 </header>

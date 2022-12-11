@@ -1,6 +1,14 @@
 <?php
 include('constants.php');
-$role = $_SESSION['role'];
+session_start();
+if (isset($_SESSION['role'])) {
+    $role = $_SESSION['role'];
+} else { ?>
+    <script>
+        location.replace('index.php');
+    </script>
+<?php
+}
 ?>
 <html>
 
