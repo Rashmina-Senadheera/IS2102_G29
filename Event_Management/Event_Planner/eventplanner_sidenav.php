@@ -1,4 +1,22 @@
 <?php include('../constants.php'); ?>
+<?php
+// check user already logged in
+if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && !isset($_SESSION['userStatus'])) {
+    // check user role
+    if ($_SESSION['role'] == 'event_planner') {
+        // do nothing
+    } else {
+        // redirect to unauthorized page
+        header('location: ' . SITEURL . 'Event_Planner/unauthorized.php');
+    }
+} else {
+    unset($_SESSION['role']);
+    unset($_SESSION['user_id']);
+    unset($_SESSION['user_name']);
+    // redirect to unauthorized page
+    header('location: ' . SITEURL . 'Event_Planner/unauthorized.php');
+} 
+?>
 
 <head>
     <link rel="stylesheet" href="../css/sidenav.css">
@@ -42,9 +60,9 @@
                 </a>
             </li>
             <li>
-                <a href=<?php echo SITEURL . 'event_planner/MyEvents.php'  ?>>
-                    <i class='bx bx-calendar-event'></i>
-                    <span class="links_name">My Events</span>
+                <a href=<?php echo SITEURL . 'event_planner/Calendar.php'  ?>>
+                    <i class='bx bx-calendar'></i>
+                    <span class="links_name">Calendar</span>
                 </a>
             </li>
             <li>
@@ -54,15 +72,21 @@
                 </a>
             </li>
             <li>
+                <a href=<?php echo SITEURL . 'event_planner/PackagesServices.php'  ?>>
+                    <i class='bx bx-package'></i>
+                    <span class="links_name">Packages & Services</span>
+                </a>
+            </li>
+            <!-- <li>
+                <a href=<?php echo SITEURL . 'event_planner/MyEvents.php'  ?>>
+                    <i class='bx bx-calendar-event'></i>
+                    <span class="links_name">My Events</span>
+                </a>
+            </li> -->
+            <li>
                 <a href="#">
                     <i class='bx bxs-report'></i>
                     <span class="links_name">Reports</span>
-                </a>
-            </li>
-            <li>
-                <a href=<?php echo SITEURL . 'event_planner/Calendar.php'  ?>>
-                    <i class='bx bx-calendar'></i>
-                    <span class="links_name">Calendar</span>
                 </a>
             </li>
             <li>
@@ -91,7 +115,7 @@
                 </a>
             </li> -->
             <li class="log_out">
-                <a href="#">
+                <a href="../logout.php">
                     <i class='bx bx-log-out'></i>
                     <span class="links_name">Log out</span>
                 </a>

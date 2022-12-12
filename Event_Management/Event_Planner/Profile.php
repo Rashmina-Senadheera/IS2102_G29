@@ -1,3 +1,8 @@
+<?php
+include('eventplanner_sidenav.php');
+include('eventplanner_header.php');
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -6,140 +11,169 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/eventPlannerMain.css">
-    <link rel="stylesheet" href="../css/navigationBar.css">
+    <link rel="stylesheet" href="../css/profileEP.css">
 </head>
 
 <body>
-    <?php include('../components/navigationBar.php'); ?>
-    <div class="grid-container-profile">
-        <div class="gridHeader">
-            Profile
-        </div>
-        <div class="gridMenu">
-            <?php include('../components/eventPlannerMenu.php'); ?>
-        </div>
-
-        <div class="gridMain">
-            <div class="profile">
-                <div class="row paddingLeft-2">
-                    <img class="profilePic" src="https://i.ndtvimg.com/i/2017-03/rowan-atkinson_640x480_71490079191.jpg" alt="profilePic">
-                    <h1>&nbsp&nbsp Sachintha Gunaratne</h1>
+    <!-- <div class="gridMain"> -->
+    <div class="container-profile">
+        <div class="flex-container-profile">
+            <div class="about">
+                <div class="image">
+                    <img src="../images/EP1.jpg" alt="Profile Picture">
                 </div>
-
-                <div class="row">
-                    <div class="col-30">
-                        <h3>Address</h3>
-                        No 1, Main Street, Colombo 01
+                <div class="profile-bio">
+                    <div class="profile-name">
+                        Sachintha Gunaratne
                     </div>
-                    <div class="col-30">
-                        <h3>Email</h3>
-                        sachinthasl99@gmail.com
+                    <div class="profile-role">
+                        Event Planner
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-30">
-                        <h3>Contact Number 1</h3>
-                        0711234567
+                <div class="social-media">
+                    <div class="sm-all">
+                        <div class="sm-logo">
+                            <img src="../images/icons/web.png" alt="">
+                        </div>
+                        <div class="sm-name">Website</div>
+                        <div class="sm-link">Not set</div>
                     </div>
-                    <div class="col-30">
-                        <h3>Contact Number 2</h3>
-                        0717654321
+                    <div class="sm-all">
+                        <div class="sm-logo">
+                            <img src="../images/icons/instagram.png" alt="">
+                        </div>
+                        <div class="sm-name">Instagram</div>
+                        <div class="sm-link">sxchintha</div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-30">
-                        <h3>Event Types</h3>
-                        <ul>
-                            <li>Wedding</li>
-                            <li>Corporate</li>
-                            <li>Party</li>
-                        </ul>
+                    <div class="sm-all">
+                        <div class="sm-logo">
+                            <img src="../images/icons/facebook.png" alt="">
+                        </div>
+                        <div class="sm-name">Facebook</div>
+                        <div class="sm-link">sxchintha</div>
                     </div>
                 </div>
             </div>
-            <br />
-            <div class="paddingLeft-1">
-                <button id="btnEditProfile" class="srcButton">Edit Profile</button>
-            </div>
-
-            <!-- The Modal -->
-            <div id="myModal" class="modal">
-
-                <!-- Modal content -->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <span class="close">&times;</span>
-                        Update your profile
-                    </div>
-                    <div class="modal-body">
-                        <form action="#" method="POST">
-                            <div class="row">
-                                <div class="col-50">
-                                    <label for="fname">First Name</label>
-                                    <input type="text" id="fname" name="firstname" placeholder="Your name..">
-                                </div>
-                                <div class="col-50">
-                                    <label for="lname">Last Name</label>
-                                    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-50">
-                                    <label for="email">Email</label>
-                                    <input type="text" id="email" name="email" placeholder="Your email..">
-                                </div>
-                                <div class="col-50">
-                                    <label for="address">Address</label>
-                                    <input type="text" id="address" name="address" placeholder="Your address..">
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-50">
-                                    <label for="contact1">Contact Number 1</label>
-                                    <input type="text" id="contact1" name="contact1" placeholder="Your contact number..">
-                                </div>
-                                <div class="col-50">
-                                    <label for="contact2">Contact Number 2</label>
-                                    <input type="text" id="contact2" name="contact2" placeholder="Your contact number..">
-                                </div>
-                            </div>
-                            <br />
-                            <div class="row">
-                                <div class="col-50">
-                                    <label for="eventTypes">Event Types</label>
-                                    <ul class="eventList">
-                                        <div class="row">
-                                            <li><input type="checkbox" /><label>Birthdays</label><br /></li>
-                                            <li><input type="checkbox" /><label>Company parties</label></li>
-                                            <li><input type="checkbox" /><label>Conferences</label></li>
-                                        </div>
-                                        <div class="row">
-                                            <li><input type="checkbox" /><label>Exhibitions</label></li>
-                                            <li><input type="checkbox" /><label>Seminars</label></li>
-                                            <li><input type="checkbox" /><label>Sports and competition</label></li>
-                                        </div>
-                                        <div class="row">
-                                            <li><input type="checkbox" /><label>Weddings</label></li>
-                                        </div>
-                                    </ul>
-                                </div>
-                            </div><br /><br />
-                            <div class="row">
-                                <div class="col-50">
-                                    <input type="submit" id="btnupdate" value="Update Profile">
-                                </div>
-                            </div>
-                        </form>
+            <div class="other">
+                <div class="info">
+                    <div class="personal-info">
+                        <div class="personal-info-heading">
+                            Personal Information
+                        </div>
+                        <div class="prof-all">
+                            <div class="prof-name">Full Name</div>
+                            <div class="prof-data">Sachintha Gunaratne</div>
+                        </div>
+                        <div class="prof-all">
+                            <div class="prof-name">Email</div>
+                            <div class="prof-data">sachinthasl99@gmail.com</div>
+                        </div>
+                        <div class="prof-all">
+                            <div class="prof-name">NIC</div>
+                            <div class="prof-data">991458123V</div>
+                        </div>
+                        <div class="prof-all">
+                            <div class="prof-name">Contact 1</div>
+                            <div class="prof-data">0769852145</div>
+                        </div>
+                        <div class="prof-all">
+                            <div class="prof-name">Contact 2</div>
+                            <div class="prof-data">0714523695</div>
+                        </div>
+                        <div class="prof-all">
+                            <div class="prof-name">Address</div>
+                            <div class="prof-data">No 35, Salmal road, Kalutara</div>
+                        </div>
+                        <div class="prof-all">
+                            <div class="prof-name">Bio</div>
+                            <div class="prof-data">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam consequatur voluptatibus official doloremque Voluptatem voluptate quidem dolorem inventore repudiandae accusamus quas consequuntur molestiae natus necessitatibus quae.</div>
+                        </div>
                     </div>
                 </div>
+                <div class="p-s-info">
+                    <main role="main">
+                        <div class="personal-info-heading">
+                            Packages & Services
+                        </div>
+                        <a href="#"><span class="tag tag-javascript tag-lg">#ListOfEventTypes</span></a>
+                    </main>
+                </div>
             </div>
-
         </div>
     </div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
 
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                Update your profile
+            </div>
+            <div class="modal-body">
+                <form action="#" method="POST">
+                    <div class="row">
+                        <div class="col-50">
+                            <label for="fname">First Name</label>
+                            <input type="text" id="fname" name="firstname" placeholder="Your name..">
+                        </div>
+                        <div class="col-50">
+                            <label for="lname">Last Name</label>
+                            <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-50">
+                            <label for="email">Email</label>
+                            <input type="text" id="email" name="email" placeholder="Your email..">
+                        </div>
+                        <div class="col-50">
+                            <label for="address">Address</label>
+                            <input type="text" id="address" name="address" placeholder="Your address..">
+                        </div>
+                    </div>
 
-
+                    <div class="row">
+                        <div class="col-50">
+                            <label for="contact1">Contact Number 1</label>
+                            <input type="text" id="contact1" name="contact1" placeholder="Your contact number..">
+                        </div>
+                        <div class="col-50">
+                            <label for="contact2">Contact Number 2</label>
+                            <input type="text" id="contact2" name="contact2" placeholder="Your contact number..">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-50">
+                            <label for="eventTypes">Event Types</label>
+                            <ul class="eventList">
+                                <div class="row">
+                                    <li><input type="checkbox" /><label>Birthdays</label><br /></li>
+                                    <li><input type="checkbox" /><label>Company parties</label></li>
+                                    <li><input type="checkbox" /><label>Conferences</label></li>
+                                </div>
+                                <div class="row">
+                                    <li><input type="checkbox" /><label>Exhibitions</label></li>
+                                    <li><input type="checkbox" /><label>Seminars</label></li>
+                                    <li><input type="checkbox" /><label>Sports and competition</label></li>
+                                </div>
+                                <div class="row">
+                                    <li><input type="checkbox" /><label>Weddings</label></li>
+                                </div>
+                            </ul>
+                        </div>
+                    </div><br /><br />
+                    <div class="row">
+                        <div class="col-50">
+                            <input type="submit" id="btnupdate" value="Update Profile">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- </div> -->
 
 </body>
 

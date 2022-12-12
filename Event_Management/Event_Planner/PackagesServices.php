@@ -11,25 +11,26 @@ include('eventplanner_header.php');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/eventPlannerMain.css">
-    <link rel="stylesheet" href="../css/eventPlannerMyevents.css">
+    <link rel="stylesheet" href="../css/packagesServicesEP.css">
 </head>
 
 <body>
     <div class="grid-container-payments">
         <div class="gridSearch">
             <div class="searchSec">
-                <div class="page-title"> My Events </div>
+                <div class="page-title"> Packages & Services </div>
                 <div class="input-container">
-                    <input class="input-field" type="text" placeholder="Search events" name="search">
+                    <input class="input-field" type="text" placeholder="Search Package" name="search">
                     <i class="fa fa-search icon"></i>
                 </div>
                 <button type="submit" class="srcButton">Search</button>
             </div>
         </div>
         <div class="gridMain">
-            <div class="my-events-container">
-                <div class="new-button-container">
-                    <a href="./AddNewEvent.php" class="add-new-button">Add New Event</a>
+            <div class="my-packages-container">
+
+                <div class="add-new-section">
+                    <a href="./AddNewPackage.php" class="add-new">Create new package</a>
                 </div>
 
                 <div class="card">

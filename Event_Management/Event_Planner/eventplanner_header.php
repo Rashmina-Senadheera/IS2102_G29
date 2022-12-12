@@ -11,7 +11,15 @@
         </nav>
         <!-- login/profile button -->
         <div class="icons">
-            <a id="profile-name" href=<?php echo SITEURL ?> class="btna">Sachintha</a>
+            <a id="profile-name" href=<?php echo SITEURL ?> class="btna">
+                <?php 
+                    if(isset($_SESSION['user_name'])){
+                        echo $_SESSION['user_name'];
+                    } else {
+                        echo "Login";
+                    }
+                 ?>
+            </a>
         </div>
     </div>
 </header>

@@ -1,3 +1,12 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+} */
+
 body {
     font-family: 'Nunito';
     background: #FAFAFA;
@@ -16,6 +25,25 @@ body {
 
 hr {
     border: 0.5px solid var(--mainColor);
+}
+
+.new-button-container {
+    display: flex;
+    /* justify-content: flex-end; */
+    width: 99%;
+    padding-left: 10px;
+}
+
+.new-button-container .add-new-button {
+    padding: .5em 1rem;
+    font-weight: 500;
+    background-color: var(--mainColor);
+    border-radius: .5rem;
+    color: #fff;
+    border: 0;
+    cursor: pointer;
+    align-self: flex-end;
+    text-decoration: none;
 }
 
 /********* For grid view *********/
@@ -63,7 +91,6 @@ hr {
         'main';
     gap: 10px;
     padding: 10px 0 10px 20px;
-    padding-left: 20px;
 }
 
 .grid-container-profile {
@@ -77,6 +104,12 @@ hr {
     padding-left: 20px;
 }
 
+.main-body {
+    margin-left: 240px;
+    display: flex;
+    justify-content: center;
+}
+
 
 
 /********* Table *********/
@@ -84,7 +117,7 @@ table {
     /* border-collapse: collapse; */
     width: 100%;
     border-radius: .5rem;
-    font-size: 0.9rem;
+    font-size: 14px;
 }
 
 th {
@@ -97,7 +130,7 @@ th {
 
 th,
 td {
-    padding: 8px;
+    padding: 5px;
     border-radius: .5rem;
 }
 
@@ -130,7 +163,7 @@ tr:nth-child(even) {
 
 .page-title {
     flex-grow: 1;
-    font-size: 1.3rem;
+    font-size: 1rem;
     font-weight: 900px;
 }
 
@@ -184,11 +217,11 @@ textarea {
 }
 
 label {
-    padding: 12px 12px 12px 0;
+    padding: 12px 12px 5px 0;
     display: inline-block;
 }
 
-input[type=submit] {
+/* input[type=submit] {
     background: var(--mainGradient);
     color: white;
     padding: 12px 20px;
@@ -198,7 +231,7 @@ input[type=submit] {
     font-size: 1.3rem;
     margin: 0.8rem;
     margin-left: 0;
-}
+} */
 
 .col-30 {
     float: left;
@@ -376,4 +409,13 @@ input[type=submit] {
 
 .eventList li {
     list-style: none;
+}
+
+.success-message {
+    font-size: 14px;
+    font-weight: 500;
+    /* padding: 10px; */
+    color: #fff;
+    background-color: green;
+    text-align: center;
 }
