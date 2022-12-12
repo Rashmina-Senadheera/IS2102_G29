@@ -15,7 +15,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['
     unset($_SESSION['user_name']);
     // redirect to unauthorized page
     header('location: ' . SITEURL . 'Event_Planner/unauthorized.php');
-} 
+}
 ?>
 
 <head>
@@ -36,6 +36,12 @@ if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['
         </div>
         <ul class="nav-links">
             <li>
+                <a href="#">
+                    <i class='bx bx-list-ul'></i>
+                    <span class="links_name">Requests</span>
+                </a>
+            </li>
+            <li>
                 <a href=<?php echo SITEURL . 'event_planner/Suppliers.php'  ?>>
                     <i class='bx bx-package'></i>
                     <span class="links_name">Suppliers</span>
@@ -51,18 +57,6 @@ if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['
                 <a href=<?php echo SITEURL . 'event_planner/SupplierQuotations.php'  ?>>
                     <i class='bx bx-task'></i>
                     <span class="links_name">Supplier Quatations</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class='bx bx-list-ul'></i>
-                    <span class="links_name">Requests</span>
-                </a>
-            </li>
-            <li>
-                <a href=<?php echo SITEURL . 'event_planner/Calendar.php'  ?>>
-                    <i class='bx bx-calendar'></i>
-                    <span class="links_name">Calendar</span>
                 </a>
             </li>
             <li>
@@ -83,6 +77,12 @@ if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['
                     <span class="links_name">My Events</span>
                 </a>
             </li> -->
+            <li>
+                <a href=<?php echo SITEURL . 'event_planner/Calendar.php'  ?>>
+                    <i class='bx bx-calendar'></i>
+                    <span class="links_name">Calendar</span>
+                </a>
+            </li>
             <li>
                 <a href="#">
                     <i class='bx bxs-report'></i>
