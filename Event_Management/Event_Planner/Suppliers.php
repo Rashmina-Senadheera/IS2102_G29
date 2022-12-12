@@ -49,7 +49,8 @@ include('./controllers/commonFunctions.php');
                     </div>
                     <ul class="sci">
                         <li>
-                            <a href="" class="view-supplier">View</a>
+                            <!-- <a href="" class="view-supplier">View</a> -->
+                            <a href="./Supplier-more-info.php" class="view-supplier">View</a>
                         </li>
                         <li>
                             <form action="./request-quotation.php" method="POST">
@@ -74,6 +75,7 @@ include('./controllers/commonFunctions.php');
                     <ul class="sci">
                         <li>
                             <a href="" class="view-supplier">View</a>
+                            <!-- <a href="./Supplier-more-info.php" class="view-supplier">View</a> -->
                         </li>
                         <li>
                             <form action="./request-quotation.php" method="POST">
@@ -98,6 +100,7 @@ include('./controllers/commonFunctions.php');
                     <ul class="sci">
                         <li>
                             <a href="" class="view-supplier">View</a>
+                            <!-- <a href="./Supplier-more-info.php" class="view-supplier">View</a> -->
                         </li>
                         <li>
                             <form action="./request-quotation.php" method="POST">
