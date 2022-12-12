@@ -191,7 +191,10 @@
                       </div>
                     </div>
                   </div>
-                </div>                
+                </div>
+                <div class="row">
+                  <button class=submit>Submit</button>
+                </div>                   
           </div>
         </form>
     </div>

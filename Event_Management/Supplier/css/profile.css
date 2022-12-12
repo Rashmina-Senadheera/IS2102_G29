@@ -42,12 +42,14 @@
     padding-top: 10px;
 }
 
+.mySlides {display:none;}
+
 .image{
     margin: auto;
     margin-top: 30px;
     width: 70%;
     height: 55%;
-    background-image: url("profile.jpg") ;
+    background-image: url("../images/profile.jpg") ;
     background-size: cover;
     border-radius: 0.7rem;
 

@@ -157,6 +157,14 @@ input.input-field-filter {
     flex-direction: row;
     width: 100%;
 }
+.ps-card:hover{
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+}
+a#a-card{
+    text-decoration: none;
+    color: black;
+}
 
 .srcButton#add:hover{
     background-color: #87309c;

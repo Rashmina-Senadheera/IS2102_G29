@@ -52,19 +52,19 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="calendar.php">
                     <i class='bx bx-book-alt'></i>
                     <span class="links_name">Calendar</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="payments.php">
                     <i class='bx bx-message'></i>
                     <span class="links_name">Payments</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="profile.php">
                     <i class='bx bx-user'></i>
                     <span class="links_name">Profile</span>
                 </a>

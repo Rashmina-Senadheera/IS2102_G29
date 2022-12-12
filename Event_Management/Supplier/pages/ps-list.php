@@ -33,6 +33,7 @@
         <div class="ps-list">
             <div class ='grid-main' id='ps-list'>
                 <div class="cards">
+                    <a href="more-info.php" id="a-card">
                     <div class="ps-card">
                         <div class="ps-card-img">
                             <img src="../images/profile.jpg" alt="">
@@ -42,11 +43,8 @@
                             <div class="ps-type">Catering</div>
                             <div class="ps-date">20/20/2022</div>
                         </div>
-                        <div class="ps-card-btn">
-                            <button type = 'submit' class= 'btn' id='edit'>Edit</button>
-                            <button type = 'submit' class= 'btn' id='del'>Delete</button>
-                        </div>
-                    </div>
+                    </div></a>
+                    <a href="more-info.php" id="a-card">
                     <div class="ps-card">
                         <div class="ps-card-img">
                             <img src="../images/profile.jpg" alt="">
@@ -56,11 +54,8 @@
                             <div class="ps-type">Catering</div>
                             <div class="ps-date">20/20/2022</div>
                         </div>
-                        <div class="ps-card-btn">
-                            <button type = 'submit' class= 'btn' id='edit'>Edit</button>
-                            <button type = 'submit' class= 'btn' id='del'>Delete</button>
-                        </div>
-                    </div>
+                    </div></a>
+                    <a href="more-info.php" id="a-card">
                     <div class="ps-card">
                         <div class="ps-card-img">
                             <img src="../images/profile.jpg" alt="">
@@ -70,11 +65,7 @@
                             <div class="ps-type">Catering</div>
                             <div class="ps-date">20/20/2022</div>
                         </div>
-                        <div class="ps-card-btn">
-                            <button type = 'submit' class= 'btn' id='edit'>Edit</button>
-                            <button type = 'submit' class= 'btn' id='del'>Delete</button>
-                        </div>
-                    </div>
+                    </div></a>
 
             
                 </div>

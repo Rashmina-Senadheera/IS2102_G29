@@ -49,6 +49,15 @@
   border-radius: 3px;
 
 }
+button.submit{
+    width: 100%;
+    padding: 10px;
+    color: white;
+    background-color: #1f0027;
+    border: 1px solid #1f0027;
+    border-radius: 5px;
+    cursor: pointer;
+}
 textarea.input-ps-in{
   height: 100px;
   color: rgb(196, 194, 194);
@@ -233,8 +242,7 @@ select#type{
   padding: 5px;
   transition: all 0.3s ease;
   cursor: pointer;
-  background-color: #1f0027;
-  border: 1px solid #1f0027;
+  background-color: #696969;
   border-radius: 5px;
   line-height: 26px;
   font-size: 14px;
@@ -288,8 +296,7 @@ select#type{
 #custom-button {
   padding: 10px;
   color: white;
-  background-color: #1f0027;
-  border: 1px solid #1f0027;
+  background-color: #696969;
   border-radius: 5px;
   cursor: pointer;
 }

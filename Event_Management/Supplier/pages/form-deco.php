@@ -30,7 +30,7 @@
       </div>
     <div class ='grid-main' id='ps'>
       <form class='add-ps'>
-        <h4 class='ps-form-title'>Add Photography Packages</h4>
+        <h4 class='ps-form-title'>Add Decoration </h4>
             <div class="row">
               <div class="input-ps">
                 <label for="" class="input-ps-label">Title</label>
@@ -46,7 +46,7 @@
             </div>
           <div class="row" id='check'>
               <div class="input-ps" id='check'>
-                <label for="" class="input-ps-label" id='check'>Photographs in</label>
+                <label for="" class="input-ps-label" id='check'>Suitablefor</label>
                 <div class="check-bx">
                   <div class="check-bx-opt">
                     <input type="checkbox" id="type-venue" name="type-venue" value="Car">
@@ -59,38 +59,20 @@
                 </div>
               </div>
               <div class="input-ps" id='check'>
-                <label for="" class="input-ps-label" id='check'>Transport </label>
+                <label for="" class="input-ps-label" id='check'>Transport provided</label>
                 <div class="check-bx">
                   <div class="check-bx-opt">
                     <input type="radio" id="type-venue" name="type-venue" value="Car">
-                    <label for="" class="input-ps-label-opt">Included</label>
+                    <label for="" class="input-ps-label-opt">provided</label>
                   </div>
                   <div class="check-bx-opt">
                     <input type="radio" id="type-venue" name="type-venue" value="Car">
-                    <label for="" class="input-ps-label-opt">Not Included</label>
+                    <label for="" class="input-ps-label-opt">not provided</label>
                   </div>
                 </div>
               </div>
           </div>
-          <div class="row" id='check'>
-              <div class="input-ps" id='check'>
-                <label for="" class="input-ps-label" id='check'>Provide </label>
-                <div class="check-bx">
-                  <div class="check-bx-opt">
-                    <input type="checkbox" id="type-venue" name="type-venue" value="Car">
-                    <label for="" class="input-ps-label-opt">DVD</label>
-                  </div>
-                  <div class="check-bx-opt">
-                    <input type="checkbox" id="type-venue" name="type-venue" value="Car">
-                    <label for="" class="input-ps-label-opt">Prints</label>
-                  </div>
-                  <div class="check-bx-opt">
-                    <input type="checkbox" id="type-venue" name="type-venue" value="Car">
-                    <label for="" class="input-ps-label-opt">Book</label>
-                  </div>
-                </div>
-              </div>
-              </div>
+           
               <div class="row" id='check'>
               <div class="input-ps" id='check'>
                 <label for="" class="input-ps-label" id='check'>Available Provinces </label>
@@ -138,7 +120,7 @@
               </div>
               <div class="row">
                   <div class="card">
-                    <label for="" class="input-ps-label" id='check'>Upload Menu </label>
+                    <label for="" class="input-ps-label" id='check'>Upload Catalog </label>
                     <div class="drop_box">
                       <header>
                         <h4>Select File here</h4>
@@ -168,7 +150,10 @@
                       </div>
                     </div>
                   </div>
-                </div>                
+                </div>
+                <div class="row">
+                  <button class=submit>Submit</button>
+                </div>                    
           </div>
         </form>
     </div>
