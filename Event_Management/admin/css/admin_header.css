@@ -1,0 +1,48 @@
+/* admin header */
+
+.admin_header{
+    height: 75px;
+    background-color: #FFFFFF;
+    width: 84.3%;
+    box-shadow: 0px 1px 5px grey ;
+    margin-left: 240px;
+    top: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+
+}
+.detail_heading {
+    padding-left: 110px;
+    flex-basis: 80%;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: 'Poppins';
+}
+.admin_details {
+    flex-basis: 25%;
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    margin-right: 50px;
+
+   
+}
+
+.admin_user_logo {
+    width: 25px;
+    height: 25px;
+    padding-right: 50px;
+    z-index: 2;
+    
+}
+.admin_name {
+    font-size: 15px;
+    font-weight: 500;
+    font-family: 'Poppins';
+    padding-left: 50px;
+    margin-top: 2px;
+    
+}
