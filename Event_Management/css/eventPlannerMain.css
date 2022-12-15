@@ -78,6 +78,7 @@ hr {
 
 .gridSearch {
     grid-area: search;
+    /* background-color: var(--mainColor); */
 }
 
 .gridMain {
@@ -159,12 +160,18 @@ tr:nth-child(even) {
     align-items: center;
     border-radius: 0.5rem;
     padding-left: 0.5rem;
+    margin: 5px 0;
+}
+
+.searchSec .input-field {
+    padding: 0 12px;
 }
 
 .page-title {
     flex-grow: 1;
-    font-size: 1rem;
+    font-size: 18px;
     font-weight: 900px;
+    font-weight: 700;
 }
 
 .icon {
@@ -190,11 +197,13 @@ tr:nth-child(even) {
     display: inline-block;
     cursor: pointer;
     border-radius: .5rem;
-    padding: 0.5rem 1rem;
+    padding: 5px 1rem;
     margin-left: 1rem;
+    /* opacity: 0.9; */
 }
 
 .srcButton:hover {
+    /* opacity: 1; */
     background-color: var(--mainColor);
     color: white;
 }

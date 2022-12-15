@@ -54,6 +54,8 @@ include('./controllers/commonFunctions.php');
                         </li>
                         <li>
                             <form action="./request-quotation.php" method="POST">
+                                <input type="hidden" name="ps-id" value="1">
+                                <input type="hidden" name="ps-title" value="Bravo Event Productions Hall">
                                 <button type="submit" name="quotation-type" value="Venue" class="request">Request a Quotation</button>
                             </form>
                             <!-- <a href="./request-quotation-venue.php" class="request">Request a Quotation</a> -->
@@ -79,6 +81,8 @@ include('./controllers/commonFunctions.php');
                         </li>
                         <li>
                             <form action="./request-quotation.php" method="POST">
+                                <input type="hidden" name="ps-id" value="1">
+                                <input type="hidden" name="ps-title" value="Fruit & Chocolate sensations">
                                 <button type="submit" name="quotation-type" value="Catering" class="request">Request a Quotation</button>
                             </form>
                             <!-- <a href="./request-quotation-catering.php" class="request">Request a Quotation</a> -->
@@ -91,7 +95,7 @@ include('./controllers/commonFunctions.php');
                             <img src="../images/Suppliers/supplier03.jpg">
                         </div>
                         <div class="contentBx">
-                            <h3>DECORENTO PARTY SUPPLIES</h3>
+                            <h3>Decorento Party Supplies</h3>
                             <span>
                                 Decorento Party Supplies is a leading party supplies company in Sri Lanka. We are the pioneers in the party supplies industry in Sri Lanka. We have been in the industry for over 20 years and have been providing our services to the public for over 10 years.
                             </span>
@@ -104,6 +108,8 @@ include('./controllers/commonFunctions.php');
                         </li>
                         <li>
                             <form action="./request-quotation.php" method="POST">
+                                <input type="hidden" name="ps-id" value="1">
+                                <input type="hidden" name="ps-title" value="Decorento Party Supplies">
                                 <button type="submit" name="quotation-type" value="Decoration" class="request">Request a Quotation</button>
                             </form>
                             <!-- <a href="./request-quotation-decoration.php" class="request">Request a Quotation</a> -->
@@ -160,7 +166,7 @@ include('./controllers/commonFunctions.php');
                             <img src="../images/Suppliers/supplier03.jpg">
                         </div>
                         <div class="contentBx">
-                            <h3>DECORENTO PARTY SUPPLIES</h3>
+                            <h3>Decorento Party Supplies</h3>
                             <span>
                                 Decorento Party Supplies is a leading party supplies company in Sri Lanka. We are the pioneers in the party supplies industry in Sri Lanka. We have been in the industry for over 20 years and have been providing our services to the public for over 10 years.
                             </span>
@@ -225,7 +231,7 @@ include('./controllers/commonFunctions.php');
                             <img src="../images/Suppliers/supplier03.jpg">
                         </div>
                         <div class="contentBx">
-                            <h3>DECORENTO PARTY SUPPLIES</h3>
+                            <h3>Decorento Party Supplies</h3>
                             <span>
                                 Decorento Party Supplies is a leading party supplies company in Sri Lanka. We are the pioneers in the party supplies industry in Sri Lanka. We have been in the industry for over 20 years and have been providing our services to the public for over 10 years.
                             </span>
