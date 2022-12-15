@@ -1,6 +1,5 @@
 <!-- <?php
-include('constants.php');
-include('Event_Planner/eventplanner_header.php');
+  include('header.php');
 ?>
 
 <!DOCTYPE html> -->

@@ -26,19 +26,16 @@
                     <input type="text" class="input-field" required />
                     <label class="input-label">Last Name <span>*</span></label>
                 </div>
-            </div>
-            <div class="row">
                 <div class="input">
                     <input type="text" class="input-field" required />
                     <label class="input-label">Email <span>*</span></label>
                 </div>
+            </div>
+            <div class="row">
                 <div class="input">
                     <input type="text" class="input-field" required />
                     <label class="input-label">NIC Number <span>*</span></label>
                 </div>
-            </div>
-
-            <div class="row">
                 <div class="input">
                     <input type="tel" class="input-field" required />
                     <label class="input-label">Contact Number 1 <span>*</span></label>
@@ -53,9 +50,6 @@
                     <input type="text" class="input-field" required />
                     <label class="input-label">House No, Street <span>*</span></label>
                 </div>
-            </div>
-
-            <div class="row">
                 <div class="input">
                     <input type="text" class="input-field" required />
                     <label class="input-label">City <span>*</span></label>
@@ -80,14 +74,6 @@
                     <label class="input-label">Confirm Password <span>*</span></label>
                 </div>
             </div>
-            <div class="row">
-                <div class="input">
-                    <input type="file" class="input-field-p" required />
-                    <label class="input-label-p">Profile Picture</label>
-                </div>
-                
-            </div>
-            
 
             <div class="action">
                 <button class="action-button">Register</button>

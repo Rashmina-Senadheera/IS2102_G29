@@ -16,22 +16,29 @@ body {
     align-items: center;
 }
 
-.heading {
+.heading#sp {
+    width: 60%;
+    font-size: 25px;
+    font-weight: bold;
+    color: #ffffff;
     text-align: center;
-    font-size: 30px;
-    color: #fff;
-    margin: 20px 10% 0 10%;
-    border-bottom: #fff 2px solid;
+    margin: 50px 10px 10px 40px;
+    margin: auto;
+    margin-top: 50px;
+    border-bottom: #ffffff 2px solid;
+}
+.box .image-box img#sp {
+    width: 80%;
+    height: 80%;
+    margin-left: 10%;
+    margin-top: 0%;
+    object-fit: contain;
 }
 
 .register-form {
-    width: 800px;
-    padding: 0 2rem 1rem;
-    background-color: #fff;
+    margin:3rem;
     border-radius: .5rem;
     margin-top: 1rem;
-    margin-bottom: 80px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
 .row {
@@ -54,8 +61,12 @@ body {
     flex-direction: column-reverse;
     position: relative;
     padding-top: 1.5rem;
+    margin: 10px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 1.5rem;
+    margin-top: 1rem;
 }
-
 .register-form .input-label {
     color: #8597a3;
     position: absolute;
@@ -132,26 +143,59 @@ body {
     text-decoration: none;
 }
 .p-info-title {
-    margin-top: 1rem;
     font-weight: bold;
     font-size: 17px;
 }
 .p-info-title#tit {
-    margin-top: 2rem;
+    margin-top: 20px;
 }
+
+
 .input-label-p{
     color: #8597a3;
     top: 1.5rem;
 
 }
+.signupError {
+    /* show error in the bottom of the input */
+    position: absolute;
+    top: 3rem;
+    font-size: 11px;
+    margin-top: 8px;
+    color: red;
+}
 
-input.input-field-p{
-    border: 0;
-    z-index: 1;
-    font-size: 16px;
-    padding: 0.25rem 0 0.25rem .5rem;
-    padding: 10px;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
+.signupTopError {
+    /* show error in the top of form */
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 10px;
+    color: red;
+    text-align: center;
+}
+
+.otp_row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.otp_row .input {
+    justify-content: center;
+}
+
+.otp_row .input .input-field,
+.otp_row .input .input-label {
+    /* type text center */
+    text-align: center;
+    width: 100%;
+
+}
+
+.form-description {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #8597a3;
+    text-align: center;
 }
