@@ -428,3 +428,11 @@ label {
     background-color: green;
     text-align: center;
 }
+
+.no-packages {
+    font-weight: 500;
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 1rem;
+    width: 100%;
+}

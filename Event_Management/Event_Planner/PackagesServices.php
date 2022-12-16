@@ -33,184 +33,60 @@ include('eventplanner_header.php');
                     <a href="./AddNewPackage.php" class="add-new">Create new package</a>
                 </div>
 
-                <div class="card">
-                    <div class="content">
-                        <div class="imgBx">
-                            <img src="../images/Events/event01.jpg">
-                        </div>
-                        <div class="contentBx">
-                            <h3>SEWWANDI'S BIRTHDAY<br><span>
-                                    The lovely Sewwandi was on cloud nine when she was pleasantly surprised by her loved ones and friends on her birthday!! The atmosphere and decorum created by DEVENT, truly set the tone to create a memorable experience for her. Do not hesitate to contact us in making your dream event a reality.
-                                </span></h3>
-                        </div>
-                    </div>
-                    <ul class="sci">
-                        <li>
-                            <a href="">Edit</a>
-                        </li>
-                        <li>
-                            <a href="">Delete</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <div class="content">
-                        <div class="imgBx">
-                            <img src="../images/Events/event02.jpg">
-                        </div>
-                        <div class="contentBx">
-                            <h3>the hottest wedding trend right now<br><span>
-                                    This is simply a wedding which takes place out in nature - preferably on a mountain top, or a slightly remote place surrounded by amazing scenery. The bride and groom often travels alone, or brings just the closest family.
-                                </span></h3>
-                        </div>
-                    </div>
-                    <ul class="sci">
-                        <li>
-                            <a href="">Edit</a>
-                        </li>
-                        <li>
-                            <a href="">Delete</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <div class="content">
-                        <div class="imgBx">
-                            <img src="../images/Events/event03.jpg">
-                        </div>
-                        <div class="contentBx">
-                            <h3>SWARA DAYADAYA<br><span>The first initiative undertaken by DEVENT, an event management firm aiming to reach the pinnacle of the industry. After thorough market research, we figured out one critical attention grasping issue faced by the wider community, which is the mental instability emerging due to the hectic monotonous routines of a substantial proportion of the population, ultimately leading to the deterioration of their overall wellbeing.</span></h3>
-                        </div>
-                    </div>
-                    <ul class="sci">
-                        <li>
-                            <a href="">Edit</a>
-                        </li>
-                        <li>
-                            <a href="">Delete</a>
-                        </li>
-                    </ul>
-                </div>
+                <?php
+                // Get user id from session
+                $epID = $_SESSION['user_id'];
 
+                // Get packages from database
+                $sql = "SELECT * FROM packages WHERE ep_id = $epID";
 
-                <div class="card">
-                    <div class="content">
-                        <div class="imgBx">
-                            <img src="../images/Events/event01.jpg">
-                        </div>
-                        <div class="contentBx">
-                            <h3>SEWWANDI'S BIRTHDAY<br><span>
-                                    The lovely Sewwandi was on cloud nine when she was pleasantly surprised by her loved ones and friends on her birthday!! The atmosphere and decorum created by DEVENT, truly set the tone to create a memorable experience for her. Do not hesitate to contact us in making your dream event a reality.
-                                </span></h3>
-                        </div>
-                    </div>
-                    <ul class="sci">
-                        <li>
-                            <a href="">Edit</a>
-                        </li>
-                        <li>
-                            <a href="">Delete</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <div class="content">
-                        <div class="imgBx">
-                            <img src="../images/Events/event02.jpg">
-                        </div>
-                        <div class="contentBx">
-                            <h3>the hottest wedding trend right now<br><span>
-                                    This is simply a wedding which takes place out in nature - preferably on a mountain top, or a slightly remote place surrounded by amazing scenery. The bride and groom often travels alone, or brings just the closest family.
-                                </span></h3>
-                        </div>
-                    </div>
-                    <ul class="sci">
-                        <li>
-                            <a href="">Edit</a>
-                        </li>
-                        <li>
-                            <a href="">Delete</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <div class="content">
-                        <div class="imgBx">
-                            <img src="../images/Events/event03.jpg">
-                        </div>
-                        <div class="contentBx">
-                            <h3>SWARA DAYADAYA<br><span>The first initiative undertaken by DEVENT, an event management firm aiming to reach the pinnacle of the industry. After thorough market research, we figured out one critical attention grasping issue faced by the wider community, which is the mental instability emerging due to the hectic monotonous routines of a substantial proportion of the population, ultimately leading to the deterioration of their overall wellbeing.</span></h3>
-                        </div>
-                    </div>
-                    <ul class="sci">
-                        <li>
-                            <a href="">Edit</a>
-                        </li>
-                        <li>
-                            <a href="">Delete</a>
-                        </li>
-                    </ul>
-                </div>
+                // Check if the query was successful
+                if ($result = $conn->query($sql)) {
+                    // Check if there are packages
+                    if ($result->num_rows > 0) {
+                        // Display packages
+                        while ($row = $result->fetch_assoc()) {
+                            $packageID = $row['package_id'];
+                            $packageName = $row['package_name'];
+                            $packageDescription = $row['description'];
 
+                            // Get package image
+                            $image_sql = "SELECT * FROM package_images WHERE package_id = $packageID LIMIT 1";
+                            $image_result = $conn->query($image_sql);
+                            $image_row = $image_result->fetch_assoc();
+                            $packageImage = $image_row['image'];
 
-                <div class="card">
-                    <div class="content">
-                        <div class="imgBx">
-                            <img src="../images/Events/event01.jpg">
-                        </div>
-                        <div class="contentBx">
-                            <h3>SEWWANDI'S BIRTHDAY<br><span>
-                                    The lovely Sewwandi was on cloud nine when she was pleasantly surprised by her loved ones and friends on her birthday!! The atmosphere and decorum created by DEVENT, truly set the tone to create a memorable experience for her. Do not hesitate to contact us in making your dream event a reality.
-                                </span></h3>
-                        </div>
-                    </div>
-                    <ul class="sci">
-                        <li>
-                            <a href="">Edit</a>
-                        </li>
-                        <li>
-                            <a href="">Delete</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <div class="content">
-                        <div class="imgBx">
-                            <img src="../images/Events/event02.jpg">
-                        </div>
-                        <div class="contentBx">
-                            <h3>the hottest wedding trend right now<br><span>
-                                    This is simply a wedding which takes place out in nature - preferably on a mountain top, or a slightly remote place surrounded by amazing scenery. The bride and groom often travels alone, or brings just the closest family.
-                                </span></h3>
-                        </div>
-                    </div>
-                    <ul class="sci">
-                        <li>
-                            <a href="">Edit</a>
-                        </li>
-                        <li>
-                            <a href="">Delete</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <div class="content">
-                        <div class="imgBx">
-                            <img src="../images/Events/event03.jpg">
-                        </div>
-                        <div class="contentBx">
-                            <h3>SWARA DAYADAYA<br><span>The first initiative undertaken by DEVENT, an event management firm aiming to reach the pinnacle of the industry. After thorough market research, we figured out one critical attention grasping issue faced by the wider community, which is the mental instability emerging due to the hectic monotonous routines of a substantial proportion of the population, ultimately leading to the deterioration of their overall wellbeing.</span></h3>
-                        </div>
-                    </div>
-                    <ul class="sci">
-                        <li>
-                            <a href="">Edit</a>
-                        </li>
-                        <li>
-                            <a href="">Delete</a>
-                        </li>
-                    </ul>
-                </div>
+                            // Display package with blob image
+                            // echo $packageImage;
+                            echo '<div class="card">
+                                    <div class="content">
+                                        <div class="imgBx">
+                                            <img src="data:image/jpeg;base64,' . base64_encode($packageImage) . '">
+                                        </div>
+                                        <div class="contentBx">
+                                            <h3>' . $packageName . '<br><span>' . $packageDescription . '</span></h3>
+                                        </div>
+                                    </div>
+                                    <ul class="sci">
+                                        <li>
+                                            <a href="./EditPackage.php?packageID=' . $packageID . '">Edit</a>
+                                        </li>
+                                        <li>
+                                            <a href="./DeletePackage.php?packageID=' . $packageID . '">Delete</a>
+                                        </li>
+                                    </ul>
+                                </div>';
+                        }
+                    } else {
+                        // Display no packages
+                        echo '<div class="no-packages">No package available</div>';
+                    }
+                } else {
+                    // Display error alert
+                    echo '<script>alert("Something went wrong. Please try again later.")</script>';
+                }
+
+                ?>
 
             </div>
         </div>
