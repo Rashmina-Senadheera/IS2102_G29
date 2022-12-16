@@ -143,7 +143,7 @@
 
 @media (max-width: 1200px) {
     .sm-name {
-        display: none;
+        /* display: none; */
     }
 }
 
@@ -161,7 +161,7 @@
     }
 
     .image {
-        height: 30%;
+        /* height: 30%; */
     }
 
     .about {
@@ -172,7 +172,7 @@
     }
 
     .sm-name {
-        display: none;
+        /* display: none; */
     }
 
     .info {

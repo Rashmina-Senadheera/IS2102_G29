@@ -8,13 +8,21 @@
     width: 50%;
 }
 
+.form-card2 {
+    margin: 20px;
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
+    border-radius: .5rem;
+    padding: 20px 50px 50px;
+    width: 50%;
+}
+
 .row {
     display: flex;
     flex-wrap: wrap;
     flex-shrink: 0;
     width: 100%;
-    justify-content: space-between;
-    margin: 0 -10px;
+    justify-content: flex-start;
+    /* margin: 0 -10px; */
 }
 
 .col {
@@ -24,7 +32,6 @@
 
 .width-50 {
     flex: 0.5;
-    margin-right: 20px;
 }
 
 .hide {
@@ -127,6 +134,44 @@
     border-radius: .5rem;
 }
 
+#imgResult {
+    display: flex;
+    gap: 10px;
+    padding: 10px 0;
+    flex-wrap: wrap;
+}
+
+.thumbnail {
+    height: 100px;
+    border-radius: .5rem;
+}
+
+
+.img-delete-btn {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-weight: 700;
+    position: relative;
+    top: -76px;
+    right: 30px;
+    text-align: center;
+    /* line-height: 24px; */
+    padding: 0 5px;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.form-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #3a0247;
+    text-align: center;
+}
+
 .form-description {
     margin-top: 20px;
     font-size: 12px;
@@ -155,4 +200,14 @@
     border: 0;
     cursor: pointer;
     font-size: 1rem;
+}
+
+.formInputError {
+    /* show error in the bottom of the input */
+    /* position: absolute; */
+    /* top: 3rem; */
+    font-size: 11px;
+    margin-top: 2px;
+    margin-left: 5px;
+    color: red;
 }
