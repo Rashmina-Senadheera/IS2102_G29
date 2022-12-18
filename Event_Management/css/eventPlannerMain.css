@@ -19,7 +19,6 @@ body {
 
 :root {
     --mainColor: #3a0247;
-    --secondColor: #D0AFF4;
     --mainGradient: linear-gradient(94.56deg, #6C429C 0%, #7D56AA 100%);
 }
 
@@ -50,6 +49,7 @@ hr {
 
 .grid-container-payments {
     margin-left: 240px;
+    transition: all 0.5s ease;
 }
 
 .gridHeader {
@@ -103,12 +103,14 @@ hr {
     gap: 10px;
     padding: 10px;
     padding-left: 20px;
+    transition: all 0.5s ease;
 }
 
 .main-body {
     margin-left: 240px;
     display: flex;
     justify-content: center;
+    transition: all 0.5s ease;
 }
 
 
@@ -127,16 +129,29 @@ th {
     color: white;
     padding: 1rem;
     text-align: center;
+    cursor: pointer;
 }
 
 th,
 td {
-    padding: 5px;
+    padding: 10px 5px;
     border-radius: .5rem;
+}
+
+tr {
+    cursor: pointer;
 }
 
 tr:nth-child(even) {
     background-color: #f2f2f2;
+}
+
+.ep-table tr:hover {
+    background-color: #DFCDF3;
+}
+
+.tCenter {
+    text-align: center;
 }
 
 /********* Search Section *********/
@@ -172,6 +187,7 @@ tr:nth-child(even) {
     font-size: 18px;
     font-weight: 900px;
     font-weight: 700;
+    color: #3a0247;
 }
 
 .icon {
@@ -435,4 +451,18 @@ label {
     text-align: center;
     padding: 1rem;
     width: 100%;
+}
+
+@media (max-width:1240px) {
+    .grid-container-payments {
+        margin-left: 60px;
+    }
+
+    .grid-container-profile {
+        margin-left: 60px;
+    }
+
+    .main-body {
+        margin-left: 60px;
+    }
 }

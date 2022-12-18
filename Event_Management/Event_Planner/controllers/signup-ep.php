@@ -30,7 +30,10 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     $nicPattern1 = "/^[0-9]{9}[vVxX]$/";
     $nicPattern2 = "/^[0-9]{12}$/";
     $contactPattern = "/^[0-9]{10}$/";
-    $passwordPattern = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/";
+    // $passwordPattern = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/";
+    // password can contain letters, numbers and special characters, and must be at least 8 characters long
+    // special characters: !@#$%^&*()_+
+    $passwordPattern = "/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.{8,})([a-zA-Z0-9!@#$%^&*()_+=-]*)$/";
 
     // Validate firstname
     if (empty($firstname)) {

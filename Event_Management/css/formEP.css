@@ -13,7 +13,7 @@
     box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
     border-radius: .5rem;
     padding: 20px 50px 50px;
-    width: 50%;
+    width: 70%;
 }
 
 .row {
@@ -173,7 +173,7 @@
 }
 
 .form-description {
-    margin-top: 20px;
+    margin-top: 8px;
     font-size: 12px;
     color: #8597a3;
     text-align: center;

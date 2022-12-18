@@ -3,6 +3,12 @@
     height: 90%;
 }
 
+@media (max-width:1240px) {
+    .container-profile {
+        margin-left: 60px;
+    }
+}
+
 .flex-container-profile {
     display: flex;
     flex-direction: row;

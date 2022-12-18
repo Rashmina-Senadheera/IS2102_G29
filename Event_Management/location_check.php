@@ -20,7 +20,7 @@ if (isset($_SESSION['role'])) {
         } else if (role === 'customer') {
             location.replace('landing_page.php');
         } else if (role === 'event_planner') {
-            location.replace('Event_Planner/Suppliers.php');
+            location.replace('Event_Planner/Requests.php');
         }
     </script>
 </body>
