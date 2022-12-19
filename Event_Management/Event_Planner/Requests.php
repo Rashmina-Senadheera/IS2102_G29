@@ -48,47 +48,47 @@ include('./controllers/commonFunctions.php');
                             <th onclick="sortTable(2)">Event Type</th>
                             <th>Participants</th>
                             <th onclick="sortTable(4)">Theme</th>
-                            <th onclick="sortTable(5)">Event Dates</th>
+                            <th onclick="sortTable(5)">Tentative Dates</th>
                             <th onclick="sortTable(6)">Budget</th>
                         </tr>
                     </thead>
                     <tr onclick="window.location='Request-view.php';">
                         <td>1</td>
-                        <td>2021-05-01</td>
+                        <td>2022-05-01</td>
                         <td>Wedding</td>
                         <td>170</td>
                         <td>Classic</td>
-                        <td>2021-05-15</td>
+                        <td>2022-07-15</td>
                         <td>Rs. 560,000</td>
                         <td class="tCenter">&#10247</td>
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td>2021-05-01</td>
+                        <td>2022-05-01</td>
                         <td>Exhibition</td>
                         <td>Not provided</td>
                         <td>Classic</td>
-                        <td>2021-05-15 to 2021-05-18</td>
+                        <td>2022-05-15 to 2022-05-18</td>
                         <td>Not provided</td>
                         <td class="tCenter">&#10247</td>
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td>2021-05-01</td>
+                        <td>2022-05-01</td>
                         <td>Birthday</td>
                         <td>30</td>
                         <td>Classic</td>
-                        <td>2021-05-15</td>
+                        <td>2022-05-15</td>
                         <td>Rs. 100,000</td>
                         <td class="tCenter">&#10247</td>
                     </tr>
                     <tr>
                         <td>4</td>
-                        <td>2021-05-01</td>
+                        <td>2022-05-01</td>
                         <td>Wedding</td>
                         <td>100</td>
                         <td>Classic</td>
-                        <td>2021-05-15</td>
+                        <td>2022-05-15</td>
                         <td>Rs. 220,000</td>
                         <td class="tCenter">&#10247</td>
                     </tr>
