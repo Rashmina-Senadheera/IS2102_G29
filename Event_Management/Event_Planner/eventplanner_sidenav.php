@@ -84,7 +84,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href=<?php echo SITEURL . 'event_planner/Reports.php'  ?>>
                     <i class='bx bxs-report'></i>
                     <span class="links_name">Reports</span>
                 </a>

@@ -8,7 +8,7 @@
         <?php if (isset($_SESSION['user_id'])) { ?>
             <nav class="requests-sum">
                 <i class='bx bx-bell'></i>
-                <a href=<?php echo SITEURL ?>>Pending Requests: 3</a>
+                <a href=<?php echo SITEURL . 'event_planner/Requests.php'  ?>>New Requests: 4</a>
             </nav>
         <?php } ?>
         <nav class="navbar" id="navbar">
@@ -17,7 +17,7 @@
         </nav>
         <!-- login/profile button -->
         <div class="icons">
-            <a id="profile-name" href=<?php echo SITEURL ?> class="btna">
+            <a id="profile-name" href="#" class="btna">
                 <?php
                 if (isset($_SESSION['user_name'])) {
                     echo $_SESSION['user_name'];
