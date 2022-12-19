@@ -137,6 +137,15 @@
     flex: 60%;
     text-align: justify;
 }
+.prof-feedback {
+    flex: 60%;
+    text-align: justify;
+    background-color: #f2f2f2;
+    border-radius: 0.5rem;
+    padding: 10px;
+    margin: 2px;
+    
+}
 
 .personal-info-heading {
     font-weight: bold;
@@ -224,4 +233,8 @@
     font-weight: bold;
     background: rgb(226, 226, 226);
     color: #490258;
+}
+
+.startChecked {
+    color: orange;
 }
