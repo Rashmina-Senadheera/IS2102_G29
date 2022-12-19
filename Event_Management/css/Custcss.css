@@ -1,0 +1,44 @@
+.flex-container-profile {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 95%;
+    padding-top: 25px;
+    padding-right: 10px;
+    padding-bottom: 50px;
+    padding-left: 300px;
+    font-size: 14px;
+}
+
+.about {
+    flex: 0.5;
+    margin: 1.3rem;
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
+    width: 100px;
+    border-radius: .5rem;
+}
+
+@media (max-width: 1000px) {
+    .container-profile {
+        margin-left: 60px;
+        height: 90%;
+        overflow-x: hidden;
+    }
+
+    .flex-container-profile {
+        display: flex;
+        flex-direction: column;
+        height: 1000px;
+    }
+
+    .about {
+        flex: 1;
+        width: 90%;
+        margin: auto;
+        margin-top: 6%;
+    }
+
+
+
+}
+
