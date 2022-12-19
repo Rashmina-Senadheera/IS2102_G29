@@ -129,6 +129,10 @@
     flex: 20%;
 }
 
+.prof-name-50 {
+    flex: 50%;
+}
+
 .prof-data {
     flex: 60%;
     text-align: justify;
@@ -137,14 +141,15 @@
 .personal-info-heading {
     font-weight: bold;
     font-size: 15px;
-    color: white;
-    background-color: #490258;
-    border-radius: 0.5rem;
+    color: #490258;
     margin: 10px;
-    width: 30%;
     padding: 4px;
     padding-left: 6px;
     text-align: center;
+    border-radius: .5rem;
+    background: rgb(226, 226, 226);
+    color: #490258;
+    width: 30%;
 }
 
 @media (max-width: 1200px) {

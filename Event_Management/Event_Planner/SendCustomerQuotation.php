@@ -120,7 +120,7 @@ include('controllers/commonFunctions.php');
         <div class="form-card scrollable">
             <form method="POST" action="controllers/addNewPackage.php" enctype="multipart/form-data">
                 <div class="form-title">Send Quotation</div>
-                <div class="form-description">You can create a package by including the services you provide. Please fill the form correctly.</div>
+                <!-- <div class="form-description"></div> -->
                 <div class="row">
                     <div class="input">
                         <label class="input-label">Event Planner's Cost</label>
@@ -143,7 +143,7 @@ include('controllers/commonFunctions.php');
                     </div>
                     <div class="row">
                         <div class="input">
-                            <label class="input-label">Remarks</label>
+                            <label class="input-label">Remarks <span class="desc">(You can specify other expenses or special notes here.)</span></label>
                             <textarea class="input-field" rows="5" name="description"></textarea>
                         </div>
                     </div>

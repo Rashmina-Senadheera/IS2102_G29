@@ -52,15 +52,30 @@ include('./controllers/commonFunctions.php');
                             <th onclick="sortTable(6)">Budget</th>
                         </tr>
                     </thead>
-                    <tr onclick="window.location='Request-view.php';">
-                        <td>1</td>
-                        <td>2022-05-01</td>
-                        <td>Wedding</td>
-                        <td>170</td>
-                        <td>Classic</td>
-                        <td>2022-07-15</td>
-                        <td>Rs. 560,000</td>
-                        <td class="tCenter">&#10247</td>
+                    <tr>
+                        <td onclick="window.location='Request-view.php';">1</td>
+                        <td onclick="window.location='Request-view.php';">2022-05-01</td>
+                        <td onclick="window.location='Request-view.php';">Wedding</td>
+                        <td onclick="window.location='Request-view.php';">170</td>
+                        <td onclick="window.location='Request-view.php';">Classic</td>
+                        <td onclick="window.location='Request-view.php';">2022-07-15</td>
+                        <td onclick="window.location='Request-view.php';">Rs. 560,000</td>
+                        <td class="tCenter menu">&#10247
+                            <ul>
+                                <li>
+                                    <a href="Request-view.php">View</a>
+                                </li>
+                                <li>
+                                    <a href="SendCustomerQuotation.php">Send Quotation</a>
+                                </li>
+                                <li>
+                                    <a href="#">Message Customer</a>
+                                </li>
+                                <li>
+                                    <button type="button" id="btnDecline" class="destructive">Decline</button>
+                                </li>
+                            </ul>
+                        </td>
                     </tr>
                     <tr>
                         <td>2</td>
@@ -70,7 +85,22 @@ include('./controllers/commonFunctions.php');
                         <td>Classic</td>
                         <td>2022-05-15 to 2022-05-18</td>
                         <td>Not provided</td>
-                        <td class="tCenter">&#10247</td>
+                        <td class="tCenter menu">&#10247
+                            <ul>
+                                <li>
+                                    <a href="#">View</a>
+                                </li>
+                                <li>
+                                    <a href="#">Send Quotation</a>
+                                </li>
+                                <li>
+                                    <a href="#">Message Customer</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="destructive">Decline</a>
+                                </li>
+                            </ul>
+                        </td>
                     </tr>
                     <tr>
                         <td>3</td>
@@ -80,7 +110,22 @@ include('./controllers/commonFunctions.php');
                         <td>Classic</td>
                         <td>2022-05-15</td>
                         <td>Rs. 100,000</td>
-                        <td class="tCenter">&#10247</td>
+                        <td class="tCenter menu">&#10247
+                            <ul>
+                                <li>
+                                    <a href="#">View</a>
+                                </li>
+                                <li>
+                                    <a href="#">Send Quotation</a>
+                                </li>
+                                <li>
+                                    <a href="#">Message Customer</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="destructive">Decline</a>
+                                </li>
+                            </ul>
+                        </td>
                     </tr>
                     <tr>
                         <td>4</td>
@@ -90,7 +135,22 @@ include('./controllers/commonFunctions.php');
                         <td>Classic</td>
                         <td>2022-05-15</td>
                         <td>Rs. 220,000</td>
-                        <td class="tCenter">&#10247</td>
+                        <td class="tCenter menu">&#10247
+                            <ul>
+                                <li>
+                                    <a href="#">View</a>
+                                </li>
+                                <li>
+                                    <a href="#">Send Quotation</a>
+                                </li>
+                                <li>
+                                    <a href="#">Message Customer</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="destructive">Decline</a>
+                                </li>
+                            </ul>
+                        </td>
                     </tr>
                 <?php
                     while ($row = mysqli_fetch_assoc($result)) {
@@ -113,7 +173,59 @@ include('./controllers/commonFunctions.php');
         </div>
     </div>
 
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-decline">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                Are you sure you want to decline this request?
+            </div>
+            <div class="modal-body">
+                <div class="actionBtn">
+                    <button type="button" class="rejected" style="margin-left: 0;">
+                        Cancel
+                    </button>
+                    <a href="SendCustomerQuotation.php">
+                        <button type="button" class="accepted" style="margin-left: 0;">
+                            Yes, Decline
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- </div> -->
+
 </body>
 <script src="../js/sortTable.js"></script>
+<script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal 
+    btnDecline.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
 
 </html>
