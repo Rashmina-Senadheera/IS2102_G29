@@ -77,7 +77,7 @@ if ($hasPackage) {
                             while ($image_row = $image_result->fetch_assoc()) {
                                 $image = $image_row['image'];
                                 $image = base64_encode($image);
-                                $image = 'data:image/jpeg;base64,' . $image;
+                                $image = 'data:' . $image_row['type'] . ';base64,' . $image;
                                 echo '<img src="' . $image . '" class="mySlides" alt="">';
                             }
                         } else {
@@ -100,13 +100,11 @@ if ($hasPackage) {
                     <div class="sm-all-p">
                         <div class="sm-name">
                             <div class="actionBtn">
-                                <form action="./request-quotation.php" method="POST">
-                                    <input type="hidden" name="ps-id" value="1">
-                                    <input type="hidden" name="ps-title" value="Bravo Event Productions Hall">
-                                    <button type="submit" name="quotation-type" value="Venue" class="accepted">
+                                <a href="PackagesServices-edit.php?packageId=<?php echo $packageId; ?>">
+                                    <button type="button" name="quotation-type" value="Venue" class="accepted">
                                         Edit Package
                                     </button>
-                                </form>
+                                </a>
                             </div>
                             <div class="actionBtn">
                                 <button type="button" class="rejected" style="margin-left: 0;">
@@ -155,27 +153,27 @@ if ($hasPackage) {
     </div>
     </div>
     <script>
-    var slideIndex = 1;
-    showDivs(slideIndex);
+        var slideIndex = 1;
+        showDivs(slideIndex);
 
-    function plusDivs(n) {
-        showDivs(slideIndex += n);
-    }
+        function plusDivs(n) {
+            showDivs(slideIndex += n);
+        }
 
-    function showDivs(n) {
-        var i;
-        var x = document.getElementsByClassName("mySlides");
-        if (n > x.length) {
-            slideIndex = 1
+        function showDivs(n) {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            if (n > x.length) {
+                slideIndex = 1
+            }
+            if (n < 1) {
+                slideIndex = x.length
+            }
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            x[slideIndex - 1].style.display = "block";
         }
-        if (n < 1) {
-            slideIndex = x.length
-        }
-        for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none";
-        }
-        x[slideIndex - 1].style.display = "block";
-    }
     </script>
 </body>
 
