@@ -40,7 +40,18 @@ include('eventplanner_header.php');
                 <div class="product-descript">
                     <div class="sm-all-p">
                         <div class="sm-name">
-                            Founded in 1987. Bravo Event Productions is an award winning, full-service event planning and production company specializing in designing and staging world-class coporate, association, government, military and non-profit functions nationwide.
+                            <div class="actionBtn">
+                                <form action="./request-quotation.php" method="POST">
+                                    <input type="hidden" name="ps-id" value="1">
+                                    <input type="hidden" name="ps-title" value="Bravo Event Productions Hall">
+                                    <button type="submit" name="quotation-type" value="Venue" class="accepted">Request a Quotation</button>
+                                </form>
+                            </div>
+                            <div class="actionBtn">
+                                <button type="button" class="rejected" style="margin-left: 0;">
+                                    Message Supplier
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -68,12 +79,30 @@ include('eventplanner_header.php');
                             <div class="prof-data">Rs. 99,000 - Rs. 580,000</div>
                         </div>
                         <div class="prof-all-p">
-                            <div class="prof-name-p">Other information</div>
+                            <div class="prof-name-p">Description</div>
+                            <div class="prof-data">Founded in 1987. Bravo Event Productions is an award winning, full-service event planning and production company specializing in designing and staging world-class coporate, association, government, military and non-profit functions nationwide.</div>
+                        </div>
+                        <div class="prof-all-p">
+                            <div class="prof-name-p">Other facilities</div>
                             <div class="prof-data">Parking spaces available</div>
                         </div>
                         <div class="prof-all-p">
                             <div class="prof-name-p">Reviews & Feedbacks</div>
-                            <div class="prof-data">Bravo Event Productions Hall is a fantastic choice for weddings and parties. Rating 9/10</div>
+                            <div class="prof-feedback">I just loved the experience. I'm so happy to share my review.have no second thought and doubt in terms of quality of food ,decor and staff behaviour and management.wonderfull place and services.
+                                <span class="fa fa-star startChecked"></span>
+                                <span class="fa fa-star startChecked"></span>
+                                <span class="fa fa-star startChecked"></span>
+                                <span class="fa fa-star startChecked"></span>
+                                <span class="fa fa-star startChecked"></span>
+                            </div>
+                            <div class="prof-feedback">Excellnt wedding hall.Good for raining days.Staff is polite and helpful.Price is very reasonable.reccommend forany function.
+                                <span class="fa fa-star startChecked"></span>
+                                <span class="fa fa-star startChecked"></span>
+                                <span class="fa fa-star startChecked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                            </div>
+                            <!-- <div class="prof-feedback">Nice Hall with 2 Floors. The Concerns are that there are No Lift and Less Parking Facility. Otherwise this is a great place to be.</div> -->
                         </div>
                         <!-- <div class="prof-all-p">
                             <div class="prof-name-p">Reviews & Feedbacks</div>

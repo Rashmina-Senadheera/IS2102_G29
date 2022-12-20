@@ -19,7 +19,6 @@ body {
 
 :root {
     --mainColor: #3a0247;
-    --secondColor: #D0AFF4;
     --mainGradient: linear-gradient(94.56deg, #6C429C 0%, #7D56AA 100%);
 }
 
@@ -50,6 +49,7 @@ hr {
 
 .grid-container-payments {
     margin-left: 240px;
+    transition: all 0.5s ease;
 }
 
 .gridHeader {
@@ -103,12 +103,14 @@ hr {
     gap: 10px;
     padding: 10px;
     padding-left: 20px;
+    transition: all 0.5s ease;
 }
 
 .main-body {
     margin-left: 240px;
     display: flex;
     justify-content: center;
+    transition: all 0.5s ease;
 }
 
 
@@ -127,16 +129,73 @@ th {
     color: white;
     padding: 1rem;
     text-align: center;
+    cursor: pointer;
 }
 
 th,
 td {
-    padding: 5px;
+    padding: 10px 5px;
     border-radius: .5rem;
+    position: relative;
+}
+
+tr {
+    cursor: pointer;
 }
 
 tr:nth-child(even) {
     background-color: #f2f2f2;
+}
+
+.ep-table tr:hover {
+    background-color: #DFCDF3;
+}
+
+.tCenter {
+    text-align: center;
+}
+
+table tr td ul {
+    position: absolute;
+    display: none;
+    width: 150px;
+    top: 20px;
+    right: 10px;
+    margin: 0;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    border-radius: .5rem;
+    z-index: 100;
+    list-style-type: none;
+}
+
+table tr td ul li a,
+table tr td ul li button {
+    padding: 7px;
+    display: block;
+    text-decoration: none;
+    border-radius: .5rem;
+    color: #555;
+    font-size: 12px;
+    background-color: #fff;
+    border: none;
+    width: 100%;
+}
+
+table tr td ul li a.destructive:hover,
+table tr td ul li button.destructive:hover {
+    background-color: #d92800;
+}
+
+table tr td ul li a:hover,
+table tr td ul li button:hover {
+    background-color: #3a0247;
+    color: white;
+}
+
+table tr td.menu:hover ul,
+table tr td.menu:focus ul {
+    display: block;
 }
 
 /********* Search Section *********/
@@ -172,6 +231,7 @@ tr:nth-child(even) {
     font-size: 18px;
     font-weight: 900px;
     font-weight: 700;
+    color: #3a0247;
 }
 
 .icon {
@@ -295,7 +355,7 @@ label {
     /* Hidden by default */
     position: fixed;
     /* Stay in place */
-    z-index: 1;
+    z-index: 100;
     /* Sit on top */
     padding-top: 10vh;
     /* Location of the box */
@@ -311,6 +371,21 @@ label {
     /* Fallback color */
     background-color: rgba(0, 0, 0, 0.4);
     /* Black w/ opacity */
+}
+
+.modal-decline {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 30%;
+    /* height: 20%; */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
 }
 
 /* Modal Content */
@@ -372,7 +447,7 @@ label {
 .modal-header {
     padding: .5rem 1rem;
     /* height: 5vh; */
-    background: var(--mainGradient);
+    background: var(--mainColor);
     color: white;
     font-size: 1.3rem;
     font-weight: bold;
@@ -392,6 +467,41 @@ label {
     padding: 2px 16px;
     background-color: var(--mainColor);
     color: white;
+}
+
+
+.actionBtn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 20px 10px;
+    gap: 20px;
+}
+
+.actionBtn .accepted {
+    background: #490258;
+    color: #fff;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: .5rem;
+    padding: 5px 2rem;
+}
+
+.actionBtn .accepted:hover,
+.actionBtn .rejected:hover {
+    opacity: 0.8;
+}
+
+.actionBtn .rejected {
+    background: #fff;
+    color: #490258;
+    border: 2px solid #490258;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: .5rem;
+    padding: 5px 2rem;
 }
 
 /********* Profile *********/
@@ -435,4 +545,18 @@ label {
     text-align: center;
     padding: 1rem;
     width: 100%;
+}
+
+@media (max-width:1240px) {
+    .grid-container-payments {
+        margin-left: 60px;
+    }
+
+    .grid-container-profile {
+        margin-left: 60px;
+    }
+
+    .main-body {
+        margin-left: 60px;
+    }
 }
