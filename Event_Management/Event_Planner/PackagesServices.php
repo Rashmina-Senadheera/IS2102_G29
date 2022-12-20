@@ -59,7 +59,7 @@ include('eventplanner_header.php');
                             // Display package with blob image
                             // echo $packageImage;
                             echo '<div class="card">
-                                    <div class="content">
+                                    <div class="content clickable" onclick="viewPackageDetails(' . $packageID . ')">
                                         <div class="imgBx">
                                             <img src="data:image/jpeg;base64,' . base64_encode($packageImage) . '">
                                         </div>
@@ -93,5 +93,6 @@ include('eventplanner_header.php');
     </div>
 
 </body>
+<script src="../js/eventPlannerMain.js"></script>
 
 </html>
