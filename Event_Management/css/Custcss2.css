@@ -215,3 +215,25 @@
     background: rgb(226, 226, 226);
     color: #490258;
 }
+
+.star-rating.disabled{
+    pointer-events: none;
+}
+.star-rating a {
+    font-size: 20px;
+    cursor: pointer;
+
+    
+}
+.star-rating:hover a{
+    color: orange;
+}
+.star-rating a:hover {
+    color: orange;
+}
+.star-rating a:hover ~ a{
+    color: #490258;
+}
+.star-rating a.active{
+    color: orange;
+}
