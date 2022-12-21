@@ -30,6 +30,61 @@ include('customer_header.php');
             });
         });
     </script>
+     <style>
+th,
+td {
+    padding: 10px 5px;
+    border-radius: .5rem;
+    position: relative;
+}
+
+tr {
+    cursor: pointer;
+}
+
+.tCenter {
+    text-align: center;
+}
+
+    table tr td ul {
+    position: absolute;
+    display: none;
+    width: 75px;
+    top: 20px;
+    right: 10px;
+    margin: 0;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    border-radius: .5rem;
+    z-index: 100;
+    list-style-type: none;
+}
+
+table tr td ul li a,
+table tr td ul li button {
+    padding: 5px;
+    display: block;
+    text-decoration: none;
+    border-radius: .5rem;
+    color: #555;
+    font-size: 12px;
+    background-color: #fff;
+    border: none;
+    width: 100%;
+}
+
+
+table tr td ul li a:hover,
+table tr td ul li button:hover {
+    background-color: #b6b4b8;
+    color: white;
+}
+
+table tr td.menu:hover ul,
+table tr td.menu:focus ul {
+    display: block;
+}
+</style>
 </head>
 
 <body>
@@ -83,7 +138,13 @@ include('customer_header.php');
                             <td><?php echo $row['email'] ?></td>
                             <td><?php echo $row['ammount'] ?></td>
 
-                            <td>&#10247</td>
+                            <td class="tCenter menu">&#10247
+                            <ul>
+                                <li>
+                                    <a href="#">Delete</a>
+                                </li>
+                            </ul>
+                        </td>
                         <?php
                     }
                         ?>
