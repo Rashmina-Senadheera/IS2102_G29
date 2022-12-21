@@ -50,7 +50,7 @@ include('customer_header.php');
                         <th>Date</th>
                         <th>Event Planner Name</th>
                         <th>Feedback</th>
-                        <th>Rate(out of 5)</th>
+                        <th>Rate</th>
                     </tr>
                 </thead>
                 <tbody>
