@@ -89,16 +89,16 @@ include('eventplanner_header.php');
                         <div class="prof-all-p">
                             <div class="prof-name-p">Reviews & Feedbacks</div>
                             <div class="prof-feedback">I just loved the experience. I'm so happy to share my review.have no second thought and doubt in terms of quality of food ,decor and staff behaviour and management.wonderfull place and services.
-                                <span class="fa fa-star startChecked"></span>
-                                <span class="fa fa-star startChecked"></span>
-                                <span class="fa fa-star startChecked"></span>
-                                <span class="fa fa-star startChecked"></span>
-                                <span class="fa fa-star startChecked"></span>
+                                <span class="fa fa-star starChecked"></span>
+                                <span class="fa fa-star starChecked"></span>
+                                <span class="fa fa-star starChecked"></span>
+                                <span class="fa fa-star starChecked"></span>
+                                <span class="fa fa-star starChecked"></span>
                             </div>
                             <div class="prof-feedback">Excellnt wedding hall.Good for raining days.Staff is polite and helpful.Price is very reasonable.reccommend forany function.
-                                <span class="fa fa-star startChecked"></span>
-                                <span class="fa fa-star startChecked"></span>
-                                <span class="fa fa-star startChecked"></span>
+                                <span class="fa fa-star starChecked"></span>
+                                <span class="fa fa-star starChecked"></span>
+                                <span class="fa fa-star starChecked"></span>
                                 <span class="fa fa-star"></span>
                                 <span class="fa fa-star"></span>
                             </div>

@@ -1,6 +1,7 @@
 <?php
 include('eventplanner_sidenav.php');
 include('eventplanner_header.php');
+include('./controllers/commonFunctions.php');
 ?>
 
 <!DOCTYPE html>
@@ -15,6 +16,10 @@ include('eventplanner_header.php');
 </head>
 
 <body>
+    <!-- Show success message -->
+    <div class="success-message">
+        <?php echo showSessionMessage('success'); ?>
+    </div>
     <div class="grid-container-payments">
         <div class="gridSearch">
             <div class="searchSec">
