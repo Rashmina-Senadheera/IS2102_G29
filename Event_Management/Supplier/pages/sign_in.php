@@ -1,12 +1,7 @@
 <?php
-    include('../constants.php');
-<<<<<<< Updated upstream
-  include('header.php');
-include('controllers/commonFunctions.php');
-=======
+    include('../../constants.php');
     include('supplier_header.php');
     include('controllers/commonFunctions.php');
->>>>>>> Stashed changes
 
 // define variables and set to empty values
 $email = $password = "";

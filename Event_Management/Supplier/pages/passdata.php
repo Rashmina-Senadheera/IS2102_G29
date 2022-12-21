@@ -1,5 +1,5 @@
 <?php
-    include('../constants.php');
+    include('../../constants.php');
     if(isset($_SESSION['user_name'])){
 
     function validate($data){

@@ -4,7 +4,7 @@ if (isset($_SESSION['role'])) {
     $role = $_SESSION['role'];
 } else { ?>
     <script>
-        location.replace('sign-up.php');
+        location.replace('sign_up.php');
     </script>
 <?php
 }
