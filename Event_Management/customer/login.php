@@ -261,12 +261,6 @@ input[type="checkbox"]:checked + label span::after {
                value="<?php echo (isset($_GET['uname']))?$_GET['uname']:"" ?>">
                 <span class="required" style="font-family:'Poppins'" ><b>Email</b></span>
               </label>
-            </div>
-            <input type="checkbox" name="show-password" class="show-password a11y-hidden" id="show-password" tabindex="3" />
-            <label class="label-show-password" for="show-password">
-              <span style="font-family:'Poppins'">Show Password</span>
-            </label>
-            <div>
               <label class="label-password">
               <input type="password" 
                class="form-control"
