@@ -1,7 +1,9 @@
 <?php
-    include('supplier_sidenav.php');
-    include('header.php');
-
+    include('../../constants.php');
+    include( 'supplier_sidenav.php' );
+    include( 'header.php' );
+    $id = $_GET['id'];
+    if(isset($_SESSION['user_name'])){
 ?>
 
 <!DOCTYPE html>
@@ -17,11 +19,21 @@
 </head>
 
 <body>
+    <?php
+        $sql = "SELECT *
+                FROM supplier_venue V , images I
+                where V.item_ID = I.item_ID
+                AND V.item_ID = $id";
+
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) { ?> 
+
     <div class="container-profile">
         <div class="flex-container-profile">
             <div class="about">
                 <div class="image">
-                    <img class="mySlides" src="../images/profile.jpg" alt="">
+                    <img class="mySlides" src="../images/<?php echo $row["file_name"];?>" alt="">
                     <img class="mySlides" src="../images/facebook.png" alt="">
                     <img class="mySlides" src="../images/instagram.png" alt="">
                     <button class="display-left" onclick="plusDivs(-1)">&#10094;</button>
@@ -29,16 +41,17 @@
                 </div>
                 <div class="product-title">
                     <div class="product-name">
-                        Eclairs for Cheap
+                        <?php echo $row["title"];?>
                     </div>    
                     <div class="product-cat">
-                        Catering
+                        <?php echo $row["title"];?>
                     </div> 
                 </div>
                 <div class="product-descript">
                     <div class="sm-all-p">
                         <div class="sm-name">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sollicitudin nisl velit, ut suscipit</div>
+                            <?php echo $row["descript"];?>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -50,32 +63,35 @@
                         </div> 
                         <div class="prof-all-p">
                             <div class="prof-name-p">Catered For</div>
-                            <div class="prof-data">Indoor Events</div>
+                            <div class="prof-data"><?php echo $row["venloc"];?></div>
                         </div>
                         <div class="prof-all-p">
-                            <div class="prof-name-p">Transport provided</div>
-                            <div class="prof-data">Provided</div>
+                            <div class="prof-name-p">Venue Location</div>
+                            <div class="prof-data"><?php echo $row["venlocation"];?></div>
                         </div>
                         <div class="prof-all-p">
-                            <div class="prof-name-p">Available as</div>
-                            <div class="prof-data">Packets</div>
+                            <div class="prof-name-p">Venue Type</div>
+                            <div class="prof-data"><?php echo $row["ventype"];?></div>
                         </div>
                         <div class="prof-all-p">
-                            <div class="prof-name-p">Available Provinces</div>
-                            <div class="prof-data">Western,Southern</div>
+                            <div class="prof-name-p">Maximum Capacity</div>
+                            <div class="prof-data"><?php echo $row["maxCap"];?></div>
                         </div>
                         <div class="prof-all-p">
-                            <div class="prof-name-p">Menu</div>
-                            <div class="prof-data">
-                                <div id="custom-button-me">Menu #1</div>
-                            </div>
+                            <div class="prof-name-p">Minimum Capacity</div>
+                            <div class="prof-data"><?php echo $row["minCap"];?></div>
                         </div>
+                       
 
                          <div class="prof-all-e">
-                                <button type="button" class="custom-button-e" id="ed">Edit</button>
+                                <a href="form-venue_edit.php?id=<?php echo $id;?>" id="btn">
+                                    <button type="button" class="custom-button-e" id="ed">Edit</button>
+                                </a>
                                 <button type="button" class="custom-button-e" id="del">Delete</button>
                             </div>
                         </div>
+                         <?php ;}
+                        }?>
                     </div>
                 </div>
             </div>
@@ -103,3 +119,9 @@
 </body>
 
 </html>
+<?php
+ }else{
+    header("Location:sign_in.php?");
+    exit();
+ }
+?>

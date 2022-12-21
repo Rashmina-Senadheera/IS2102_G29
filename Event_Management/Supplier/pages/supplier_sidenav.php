@@ -46,7 +46,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="addphotos.php">
                     <i class='bx bx-coin-stack'></i>
                     <span class="links_name">Order Requests</span>
                 </a>
@@ -83,9 +83,10 @@
                 </a>
             </li>-->
             <li class="log_out">
-                <a href="#">
+                <a href="logout.php">
                     <i class='bx bx-log-out'></i>
-                    <span class="links_name">Log out</span>
+                    <div class="logout">Log out</div>
+                    <!-- <span class="links_name">Log out</span> -->
                 </a>
             </li>
         </ul>

@@ -1,6 +1,5 @@
 <?php
 include('constants.php');
-session_start();
 if (isset($_SESSION['role'])) {
     $role = $_SESSION['role'];
 } else { ?>
@@ -21,6 +20,8 @@ if (isset($_SESSION['role'])) {
             location.replace('landing_page.php');
         } else if (role === 'event_planner') {
             location.replace('Event_Planner/Requests.php');
+        } else if (role === 'supplier') {
+            location.replace('Supplier/pages/ps-list.php');
         }
     </script>
 </body>
