@@ -564,3 +564,7 @@ label {
 .clickable {
     cursor: pointer;
 }
+
+.fa-solid {
+    color: orange;
+}
