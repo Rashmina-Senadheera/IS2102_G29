@@ -28,8 +28,8 @@ include('customer_header.php');
         <div class="other">
                 <div class="info">
                     <div class="personal-info">
-                        <img src="../images/event3.jpg" style="width:550px; height:300px;">
-                        The first initiative undertaken by DEVENT, an event management firm aiming to reach the pinnacle of the industry. After thorough market research, we figured out one critical attention grasping issue faced by the wider community, which is the mental instability emerging due to the hectic monotonous routines of a substantial proportion of the population, ultimately leading to the deterioration of their overall wellbeing.<br><br>
+                        <center><img src="../images/event3.jpg" style="width:550px; height:300px;"></center><br>
+                        <center>The first initiative undertaken by DEVENT, an event management firm aiming to reach the pinnacle of the industry. After thorough market research, we figured out one critical attention grasping issue faced by the wider community, which is the mental instability emerging due to the hectic monotonous routines of a substantial proportion of the population, ultimately leading to the deterioration of their overall wellbeing.</center><br><br>
                         <center><b>Event Planner:</b> Rashmina<br>
                                 <b>Event Type:</b> Outdoor Wedding<br>
                                 <b>Theme:</b> Modern<br>
