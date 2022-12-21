@@ -1,5 +1,5 @@
 <?php
-include('../constants.php');
+include('../../constants.php');
 include('header.php');
 include('controllers/commonFunctions.php');
 
