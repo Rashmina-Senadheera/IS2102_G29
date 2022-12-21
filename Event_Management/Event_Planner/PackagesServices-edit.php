@@ -1,7 +1,58 @@
 <?php
-include('eventplanner_sidenav.php');
-include('eventplanner_header.php');
-include('controllers/commonFunctions.php');
+
+// variable to check images and services
+$hasPackage = false;
+
+if (isset($_GET['packageId'])) {
+    // Start output buffering
+    ob_start();
+
+    include('eventplanner_sidenav.php');
+    include('eventplanner_header.php');
+    include('controllers/commonFunctions.php');
+
+    $packageId = $_GET['packageId'];
+    $sql = "SELECT * FROM packages WHERE package_id = $packageId";
+
+    // execute query and check if successful
+    if ($result = $conn->query($sql)) {
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+
+            // check if the user is the owner of the package
+            if ($row['ep_id'] == $_SESSION['user_id']) {
+                $hasPackage = true;
+                $packageName = $row['package_name'];
+                $packageType = $row['event_type'];
+                $packagePrice = $row['price_start'];
+                $packageDescription = $row['description'];
+            } else {
+                header("Location: ./403.php");
+                exit();
+            }
+        } else {
+            header("Location: ./404.php");
+            exit();
+        }
+    }
+
+    // Send the output buffer to the browser and turn off output buffering
+    ob_end_flush();
+} else {
+    header("Location: ./PackagesServices.php");
+    exit();
+}
+
+// avoid fetching images and services in the buffer
+if ($hasPackage) {
+    // get package image
+    $image_sql = "SELECT * FROM package_images WHERE package_id = $packageId";
+    $image_result = $conn->query($image_sql);
+
+    // get package services
+    $services_sql = "SELECT * FROM package_services WHERE package_id = $packageId";
+    $services_result = $conn->query($services_sql);
+}
 ?>
 
 <!DOCTYPE html>
@@ -18,19 +69,20 @@ include('controllers/commonFunctions.php');
 <body>
     <div class="main-body">
         <div class="form-card">
-            <form method="POST" action="controllers/addNewPackage.php" enctype="multipart/form-data">
-                <div class="form-title">Create New Package</div>
+            <form method="POST" action="controllers/editPackage.php" enctype="multipart/form-data">
+                <input type="hidden" name="packageId" value="<?php echo $packageId ?>" />
+                <div class="form-title">Edit Package</div>
                 <div class="form-description">You can create a package by including the services you provide. Please
                     fill the form correctly.</div>
                 <div class="row">
                     <div class="input">
                         <label class="input-label">Package Name <span>*</span></label>
-                        <input type="text" class="input-field" name="packageName" required />
+                        <input type="text" class="input-field" name="packageName" value="<?php echo $packageName ?>" required />
                         <div class="formInputError"><?php echo showSessionMessage('error-packageName') ?></div>
                     </div>
                     <div class="input">
                         <label class="input-label">Event Type <span>*</span></label>
-                        <select name="eventType" class="input-field">
+                        <select name="eventType" id="eventType" class="input-field">
                             <option value="" disabled selected>Select Event Type...</option>
                             <option value="Birthday">Birthday</option>
                             <option value="Company Party">Company Party</option>
@@ -48,26 +100,59 @@ include('controllers/commonFunctions.php');
                 <div class="row">
                     <div class="input">
                         <label class="input-label">Price Start From (Rs.) <span>*</span></label>
-                        <input type="number" min="0" class="input-field" name="priceFrom" required />
+                        <input type="number" min="0" class="input-field" name="priceFrom" value="<?php echo $packagePrice ?>" required />
                         <div class="formInputError"><?php echo showSessionMessage('error-priceFrom') ?></div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input">
                         <label class="input-label">Images <span class="desc">(Maximum 6 images)</span></label>
-                        <div class="formInputError"><?php echo showSessionMessage('error-lastname') ?></div>
+                        <div class="formInputError"><?php echo showSessionMessage('error-images') ?></div>
+
                         <div class="row">
-                            <input type="file" name="images[]" id="img0" class="inputfile" accept="image/*" onchange="imageSelect(this, 0)" />
+
+                            <?php
+                            for ($i = 0; $i < 6; $i++) {
+                                if ($image_row = $image_result->fetch_assoc()) {
+                                    if ($image_row['image_id'] == $i) {
+                                        echo '<input type="file" name="images[]" id="img' . $i . '" class="inputfile" accept="image/*" onchange="imageSelect(this, ' . $i . ')" />
+                                        <label for="img' . $i . '" id="labelImg' . $i . '" style="display: none;">+</label>
+                                        <img for="img' . $i . '" class="imgPreview" style="display: block;" id="prev' . $i . '" src="data:' . $image_row['type'] . ';base64,' . base64_encode($image_row['image']) . '" onclick="clickImage(' . $i . ')"></img>
+                                        <button type="button" id="removeImg' . $i . '" class="img-delete-btn">X</button>';
+                                    } else {
+                                        echo '<input type="file" name="images[]" id="img' . $i . '" class="inputfile" accept="image/*" onchange="imageSelect(this, ' . $i . ')" />
+                                        <label for="img' . $i . '" id="labelImg' . $i . '">+</label>
+                                        <img for="img' . $i . '" class="imgPreview" id="prev' . $i . '" src="" onclick="clickImage(' . $i . ')"></img>
+                                        <button type="button" id="removeImg" class="img-delete-btn">X</button>';
+                                    }
+                                } else {
+                                    echo '<input type="file" name="images[]" id="img' . $i . '" class="inputfile" accept="image/*" onchange="imageSelect(this, ' . $i . ')" />
+                                    <label for="img' . $i . '" id="labelImg' . $i . '">+</label>
+                                    <img for="img' . $i . '" class="imgPreview" id="prev' . $i . '" src="" onclick="clickImage(' . $i . ')"></img>
+                                    <button type="button" id="removeImg" class="img-delete-btn">X</button>';
+                                }
+                            }
+                            // while ($image_result && $image_row = $image_result->fetch_assoc()) {
+                            //     echo '<div class="image-container">
+                            //                 <img src="data:image/jpeg;base64,' . base64_encode($image_row['image']) . '" alt="Package Image" class="image-preview">
+                            //                 <div class="image-remove">
+                            //                     <a href="controllers/removePackageImage.php?packageId=' . $packageId . '&imageId=' . $image_row['image_id'] . '">
+                            //                         <img src="../images/remove.png" alt="Remove Image" class="image-remove-icon">
+                            //                     </a>
+                            //                 </div>
+                            //             </div>';
+                            // }
+                            ?>
+
+                            <!-- <input type="file" name="images[]" id="img0" class="inputfile" accept="image/*" onchange="imageSelect(this, 0)" />
                             <label for="img0" id="labelImg0">+</label>
                             <img for="img0" class="imgPreview" id="prev0" src="" onclick="clickImage(0)"></img>
                             <button type="button" id="removeImg0" class="img-delete-btn">X</button>
-
 
                             <input type="file" name="images[]" id="img1" class="inputfile" accept="image/*" onchange="imageSelect(this, 1)" />
                             <label for="img1" id="labelImg1">+</label>
                             <img class="imgPreview" id="prev1" src="" onclick="clickImage(1)"></img>
                             <button type="button" id="removeImg1" class="img-delete-btn">X</button>
-
 
                             <input type="file" name="images[]" id="img2" class="inputfile" accept="image/*" onchange="imageSelect(this, 2)" />
                             <label for="img2" id="labelImg2">+</label>
@@ -87,17 +172,29 @@ include('controllers/commonFunctions.php');
                             <input type="file" name="images[]" id="img5" class="inputfile" accept="image/*" onchange="imageSelect(this, 5)" />
                             <label for="img5" id="labelImg5">+</label>
                             <img class="imgPreview" id="prev5" src="" onclick="clickImage(5)"></img>
-                            <button type="button" id="removeImg5" class="img-delete-btn">X</button>
+                            <button type="button" id="removeImg5" class="img-delete-btn">X</button> -->
+
                         </div>
 
-                        <output id="imgResult"></output>
+                        <output id="imgResult">
+                            <?php
+                            if ($image_result->num_rows > 0) {
+                                while ($image_row = $image_result->fetch_assoc()) {
+                                    echo '<div>
+                                            <img src="data:image/jpeg;base64,' . base64_encode($image_row['image']) . '" alt="" class="thumbnail" />
+                                            <button type="button" class="img-delete-btn">X</button>
+                                        </div>';
+                                }
+                            }
+                            ?>
+                        </output>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input">
                         <label class="input-label">Description <span>*</span></label>
                         <!-- <input type="text" class="input-field" required /> -->
-                        <textarea class="input-field" rows="5" name="description"></textarea>
+                        <textarea class="input-field" rows="5" name="description"><?php echo $packageDescription ?></textarea>
                         <div class="formInputError"><?php echo showSessionMessage('error-description') ?></div>
                     </div>
                 </div>
@@ -106,7 +203,19 @@ include('controllers/commonFunctions.php');
                             with the package)</span></label>
                 </div>
                 <div class="formInputError"><?php echo showSessionMessage('error-services') ?></div>
-                <div id="container"></div>
+                <div id="container">
+                    <?php
+                    if ($services_result->num_rows > 0) {
+                        $i = 1;
+                        while ($service_row = $services_result->fetch_assoc()) {
+                            echo '<label class="service-label">Service ' . $i . '</label>
+                            <input type="text" name="services[]" class="input-field" value="' . $service_row['service'] . '"/>
+                            <br>';
+                            $i++;
+                        }
+                    }
+                    ?>
+                </div>
                 <button type="button" class="add-service-btn" id="btnAddService" onclick="addServiceFields()">Add
                     Service</button>
 
@@ -170,6 +279,13 @@ include('controllers/commonFunctions.php');
             if (numOfServices >= 10) {
                 btnAddService.style.display = "none";
             }
+        }
+
+        // select value of event type
+        var eventType = document.getElementById("eventType");
+        var eventTypeValue = "<?php echo $packageType ?>";
+        if (eventTypeValue != "") {
+            eventType.value = eventTypeValue;
         }
     </script>
 
