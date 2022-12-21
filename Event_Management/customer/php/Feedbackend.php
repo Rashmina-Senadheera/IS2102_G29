@@ -20,8 +20,15 @@ if (
     // Insert into Database
     $sql = "INSERT INTO Feedback(date, name, text, rate) VALUES(?,?,?,?)";
     $stmt = $conn->prepare($sql);
-    $stmt->execute([$date, $name, $text, $rate]);
+    $res = $stmt->execute([$date, $name, $text, $rate]);
+    if($res){
+        echo "Success";
+        
+    }
+    else{
+        
+    }
 
-    header("Location: ../Feedback.php");
+    
 }
 ?>

@@ -13,6 +13,13 @@ include('customer_header.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/eventPlannerMain.css">
     <link rel="stylesheet" href="../css/profileEP.css">
+<style>
+    .image:hover{
+        transform: scale(1.1);
+        z-index: 1;
+
+    }
+</style>
 </head>
 
 <body>
@@ -130,10 +137,8 @@ include('customer_header.php');
     </div>
 </div>
 </div>
-
 </div>
 </div>
-
     
 </body>
 <script>

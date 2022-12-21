@@ -34,7 +34,7 @@ include('customer_header.php');
        <div class="other">
                 <div class="info">
                     <div class="personal-info">           
-                    <form method="post" action="./php/Feedbackend.php">
+                    <form method="post" action="" class="feedback_form">
                         <?php if (isset($_GET['error'])) { ?>
                             <div class="alert alert-danger" role="alert">
                                 <?php echo $_GET['error']; ?>
@@ -50,41 +50,27 @@ include('customer_header.php');
                         <div >
                             </div>
                             <center>Date:&nbsp;&nbsp;<center>
-                            <div ><center><input type="date" class="form-control" placeholder=""  name="date" style="width:200px;" value="<?php echo (isset($_GET['date'])) ? $_GET['date'] : "" ?>" required></div>
+                            <div ><center><input type="date" class="form-control" placeholder=""  name="date"  min="2022-12-23" max="2025-12-31" style="width:300px;" value="<?php echo (isset($_GET['date'])) ? $_GET['date'] : "" ?>" required></div>
                         </div><br>
                         <div>
                         <center>Event Planner's Name:&nbsp;&nbsp;<center>
-                            <div ><center><input type="name" class="form-control" placeholder="Event Planner's Name" name="name" style="width:400px;" value="<?php echo (isset($_GET['name'])) ? $_GET['name'] : "" ?>" required></div>
+                            <div ><center><input type="name" class="form-control" placeholder="Event Planner's Name" name="name" style="width:300px;" min="5" max="25" value="<?php echo (isset($_GET['name'])) ? $_GET['name'] : "" ?>" required></div>
                         </div>
                     </div>
                 <div >
                         <center>Feedback:&nbsp;&nbsp;
-                <div ><center><textarea class="form-control" placeholder="Write Your Feedback Here.." name="text" style="width:400px;" value="<?php echo (isset($_GET['text'])) ? $_GET['text'] : "" ?>" required></textarea>
+                <div ><center><textarea class="form-control" placeholder="Write Your Feedback Here.." name="text" min="5" max="250" style="width:300px;" value="<?php echo (isset($_GET['text'])) ? $_GET['text'] : "" ?>" required></textarea>
                 </div>
             </div>
             <div ><br >
             <center>Rate:&nbsp;&nbsp;
             <div class="center">
               <span class="star-rating">
-              <!--RADIO 1-->
-               <input type='checkbox' class="radio_item" value="1" name="item" id="radio1">
-               <label class="label_item" for="radio1"> &#9734 </label>
-
-              <!--RADIO 2-->
-              <input type='checkbox' class="radio_item" value="2" name="item2" id="radio2">
-              <label class="label_item" for="radio2"> &#9734 </label>
-
-              <!--RADIO 3-->
-              <input type='checkbox' class="radio_item" value="3" name="item3" id="radio3">
-              <label class="label_item" for="radio3"> &#9734 </label>
-
-              <!--RADIO 4-->
-              <input type='checkbox' class="radio_item" value="4" name="item4" id="radio4">
-              <label class="label_item" for="radio4"> &#9734 </label>
-
-              <!--RADIO 5-->
-              <input type='checkbox' class="radio_item" value="5" name="item5" id="radio5">
-              <label class="label_item" for="radio5"> &#9734 </label>
+              <a>★</a>
+              <a>★</a>
+              <a>★</a>
+              <a>★</a>
+              <a>★</a>
               </span>
 			</div>
    </div>
@@ -92,12 +78,13 @@ include('customer_header.php');
             <br>
             <center><div><button type="submit" class="srcButton">Send Feedback</button></div><br >
             </form>
-             <a href=<?php echo  'http://localhost:8080/Event_Management002/customer/ViewFeedback.php'  ?>><button type="submit" class="srcButton" >View FeedBacks</button></a></center><br />
+             <a href="ViewFeedback.php"><button type="submit" class="srcButton" >View FeedBacks</button></a></center><br />
             </div>
         </div>
     </div>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="feedback.js"></script>
 </body>
 </html>

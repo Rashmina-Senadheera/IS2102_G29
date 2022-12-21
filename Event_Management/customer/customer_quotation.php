@@ -30,36 +30,39 @@ include('header.php');
 
                     <div class="input_box">
                         <label class="label">Number of Participants</label>
-                        <input type="number" name="no-pax">
+                        <input type="number" name="no-pax" min="25" max="1000">
                     </div>
                 </div>
                 <div class="input_box">
                     <label class="label">Theme</label>
-                    <input type="text" name="theme">
-                </div>
+                        <select name="theme" id="theme">
+                            <option value="Classic">Classic Theme</option>
+                            <option value="Bohemian">Bohemian Theme</option>
+                            <option value="Fairytale">Fairytale Theme</option>
+                            <option value="Garden">Garden Theme</option>
+                            <option value="Glamorous">Glamorous Theme</option>
+                            <option value="Modern">Modern Theme</option>
+                            <option value="Romantic">Romantic Theme</option>
+                            <option value="Rustic">Rustic Theme</option>   
+                        </select>
+               </div>
                 <div class="flex-row">
                     <div class="input_box">
-                        <label class="label">Tentative Date</label>
-                        
-                        
+                        <label class="label">Tentative Date</label>  
                         <div class="date">
                             <label>From</label>
-                            <input type="date" name="from-date">
+                            <input type="date" name="from-date" min="2022-12-23" max="2025-12-31">
                             <label>To</label>
-                            <input type="date" name="to-date">
+                            <input type="date" name="to-date" min="2022-12-23" max="2025-12-31">
                         </div>
-
                     </div>
-
-                    
-
                     <div class="input_box">
                         <label class="label">Budget</label>
                         <div class="date">
                             <label>Min</label>
-                            <input type="number" name="min-budget">
+                            <input type="number" name="min-budget" min="25000">
                             <label>Max</label>
-                            <input type="number" name="max-budget">
+                            <input type="number" name="max-budget" min="25000">
                         </div>
                     </div>
                 </div>
@@ -74,9 +77,7 @@ include('header.php');
                         <input type="time" name="to-time">
                     </div>
 
-                </div>
-
-                
+                </div> 
             </div>
             <h4>EVENT DETAILS</h4>
             <p>Please select the needed services</p>
@@ -96,9 +97,9 @@ include('header.php');
                             <div class="venue_details">
                                 <div class="venue-radiobtns">
                                     <input type="radio" id="indoor" name="venue_type" value="indoor" >
-                                    <label onclick="showVenue(0,'#ff0000')" for="indoor" class="indoor">Indoor</label>
+                                    <label onclick="showVenue(0,'#D0AFF4')" for="indoor" class="indoor">Indoor</label>
                                     <input type="radio" id="outdoor" name="venue_type" value="outdoor" >
-                                    <label onclick="showVenue(1,'#0000ff')" for="outdoor" class="outdoor">Outdoor</label>
+                                    <label onclick="showVenue(1,'#D0AFF4')" for="outdoor" class="outdoor">Outdoor</label>
                                 </div>
                                 <div class="venue_img">
                                     <div class="img flex-column">
