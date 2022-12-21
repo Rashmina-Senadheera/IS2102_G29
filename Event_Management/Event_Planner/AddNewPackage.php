@@ -55,7 +55,7 @@ include('controllers/commonFunctions.php');
                 <div class="row">
                     <div class="input">
                         <label class="input-label">Images <span class="desc">(Maximum 6 images)</span></label>
-                        <div class="formInputError"><?php echo showSessionMessage('error-lastname') ?></div>
+                        <div class="formInputError"><?php echo showSessionMessage('error-images') ?></div>
                         <div class="row">
                             <input type="file" name="images[]" id="img0" class="inputfile" accept="image/*" onchange="imageSelect(this, 0)" />
                             <label for="img0" id="labelImg0">+</label>

@@ -17,10 +17,10 @@
         </nav>
         <!-- login/profile button -->
         <div class="icons">
-            <a id="profile-name" href="#" class="btna">
+            <a id="profile-name" href="#" class="btna" style="display: flex; align-items: center;">
                 <?php
                 if (isset($_SESSION['user_name'])) {
-                    echo "<i class='bx bx-user-circle' style='color:#3a0247; height: 100%;'  ></i>" . $_SESSION['user_name'];
+                    echo "<i class='bx bx-user-circle' style='color:#3a0247; height: 100%; margin-right: 10px; font-size: 20px;'></i>" . $_SESSION['user_name'];
                 } else {
                     echo "Login";
                 }

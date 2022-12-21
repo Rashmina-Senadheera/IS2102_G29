@@ -17,9 +17,11 @@ include('./controllers/commonFunctions.php');
 
 <body>
     <!-- Show success message -->
-    <div class="success-message">
-        <?php echo showSessionMessage('success'); ?>
-    </div>
+    <?php
+    if (isset($_SESSION['success'])) {
+        echo '<div class="success-message">' . showSessionMessage("success") . '</div>';
+    }
+    ?>
     <div class="grid-container-payments">
         <div class="gridSearch">
             <div class="searchSec">
@@ -74,10 +76,10 @@ include('./controllers/commonFunctions.php');
                                     </div>
                                     <ul class="sci">
                                         <li>
-                                            <a href="./EditPackage.php?packageID=' . $packageID . '">Edit</a>
+                                            <a href="PackagesServices-edit.php?packageId=' . $packageID . '">Edit</a>
                                         </li>
                                         <li>
-                                            <a href="./DeletePackage.php?packageID=' . $packageID . '">Delete</a>
+                                            <a href="./DeletePackage.php?packageId=' . $packageID . '">Delete</a>
                                         </li>
                                     </ul>
                                 </div>';

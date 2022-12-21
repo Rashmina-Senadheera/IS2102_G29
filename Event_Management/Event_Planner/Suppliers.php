@@ -18,9 +18,11 @@ include('./controllers/commonFunctions.php');
 
 <body>
     <!-- Show success message -->
-    <div class="success-message">
-        <?php echo showSessionMessage('success'); ?>
-    </div>
+    <?php
+    if (isset($_SESSION['success'])) {
+        echo '<div class="success-message">' . showSessionMessage("success") . '</div>';
+    }
+    ?>
     <div class="grid-container-payments">
         <div class="gridSearch">
             <div class="searchSec">
