@@ -89,6 +89,9 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                 // Loop through the services array with count
                 for ($i = 0; $i < count($services); $i++) {
                     if ($stmt = $conn->prepare($sql)) {
+                        if ($services[$i] == "") {
+                            continue;
+                        }
                         // Bind variables to the prepared statement as parameters
                         $stmt->bind_param("iis", $param_packageId, $param_serviceId, $param_service);
 

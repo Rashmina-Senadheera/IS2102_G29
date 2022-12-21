@@ -20,7 +20,7 @@
             <a id="profile-name" href="#" class="btna">
                 <?php
                 if (isset($_SESSION['user_name'])) {
-                    echo $_SESSION['user_name'];
+                    echo "<i class='bx bx-user-circle' style='color:#3a0247; height: 100%;'  ></i>" . $_SESSION['user_name'];
                 } else {
                     echo "Login";
                 }

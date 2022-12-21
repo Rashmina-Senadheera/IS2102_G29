@@ -560,3 +560,7 @@ label {
         margin-left: 60px;
     }
 }
+
+.clickable {
+    cursor: pointer;
+}

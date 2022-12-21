@@ -20,7 +20,8 @@ include('controllers/commonFunctions.php');
         <div class="form-card">
             <form method="POST" action="controllers/addNewPackage.php" enctype="multipart/form-data">
                 <div class="form-title">Create New Package</div>
-                <div class="form-description">You can create a package by including the services you provide. Please fill the form correctly.</div>
+                <div class="form-description">You can create a package by including the services you provide. Please
+                    fill the form correctly.</div>
                 <div class="row">
                     <div class="input">
                         <label class="input-label">Package Name <span>*</span></label>
@@ -53,12 +54,42 @@ include('controllers/commonFunctions.php');
                 </div>
                 <div class="row">
                     <div class="input">
-                        <label class="input-label">Images <span class="desc">(Maximum 5 images)</span></label>
-                        <!-- <input type="file" id="img" name="img" accept="image/*" value="Choose Image" required> -->
-                        <input type="file" name="images[]" id="img" class="inputfile" accept="image/*" multiple required />
-                        <label for="img">Choose Image</label>
+                        <label class="input-label">Images <span class="desc">(Maximum 6 images)</span></label>
                         <div class="formInputError"><?php echo showSessionMessage('error-lastname') ?></div>
-                        <!-- <p id="testp"></p> -->
+                        <div class="row">
+                            <input type="file" name="images[]" id="img0" class="inputfile" accept="image/*" onchange="imageSelect(this, 0)" />
+                            <label for="img0" id="labelImg0">+</label>
+                            <img for="img0" class="imgPreview" id="prev0" src="" onclick="clickImage(0)"></img>
+                            <button type="button" id="removeImg0" class="img-delete-btn">X</button>
+
+
+                            <input type="file" name="images[]" id="img1" class="inputfile" accept="image/*" onchange="imageSelect(this, 1)" />
+                            <label for="img1" id="labelImg1">+</label>
+                            <img class="imgPreview" id="prev1" src="" onclick="clickImage(1)"></img>
+                            <button type="button" id="removeImg1" class="img-delete-btn">X</button>
+
+
+                            <input type="file" name="images[]" id="img2" class="inputfile" accept="image/*" onchange="imageSelect(this, 2)" />
+                            <label for="img2" id="labelImg2">+</label>
+                            <img class="imgPreview" id="prev2" src="" onclick="clickImage(2)"></img>
+                            <button type="button" id="removeImg2" class="img-delete-btn">X</button>
+
+                            <input type="file" name="images[]" id="img3" class="inputfile" accept="image/*" onchange="imageSelect(this, 3)" />
+                            <label for="img3" id="labelImg3">+</label>
+                            <img class="imgPreview" id="prev3" src="" onclick="clickImage(3)"></img>
+                            <button type="button" id="removeImg3" class="img-delete-btn">X</button>
+
+                            <input type="file" name="images[]" id="img4" class="inputfile" accept="image/*" onchange="imageSelect(this, 4)" />
+                            <label for="img4" id="labelImg4">+</label>
+                            <img class="imgPreview" id="prev4" src="" onclick="clickImage(4)"></img>
+                            <button type="button" id="removeImg4" class="img-delete-btn">X</button>
+
+                            <input type="file" name="images[]" id="img5" class="inputfile" accept="image/*" onchange="imageSelect(this, 5)" />
+                            <label for="img5" id="labelImg5">+</label>
+                            <img class="imgPreview" id="prev5" src="" onclick="clickImage(5)"></img>
+                            <button type="button" id="removeImg5" class="img-delete-btn">X</button>
+                        </div>
+
                         <output id="imgResult"></output>
                     </div>
                 </div>
@@ -71,11 +102,13 @@ include('controllers/commonFunctions.php');
                     </div>
                 </div>
                 <div class="row">
-                    <label class="input-label">Services <span>*</span> <span class="desc">(Add the services you offer with the package)</span></label>
+                    <label class="input-label">Services <span>*</span> <span class="desc">(Add the services you offer
+                            with the package)</span></label>
                 </div>
                 <div class="formInputError"><?php echo showSessionMessage('error-services') ?></div>
                 <div id="container"></div>
-                <button type="button" class="add-service-btn" id="btnAddService" onclick="addServiceFields()">Add Service</button>
+                <button type="button" class="add-service-btn" id="btnAddService" onclick="addServiceFields()">Add
+                    Service</button>
 
 
                 <div class="action">
@@ -87,46 +120,29 @@ include('controllers/commonFunctions.php');
 
     <script type='text/javascript'>
         var numOfServices = 0;
-        var img = document.getElementById("img");
         var btnAddService = document.getElementById("btnAddService");
 
-        img.onchange = e => {
-            if (window.File && window.FileList && window.FileReader && window.Blob) {
-                var files = e.target.files;
+        function imageSelect(input, id) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
 
-                // check number of images (max 5)
-                if (files.length > 5) {
-                    alert("Maximum 5 images are allowed");
-                    img.value = '';
-                    return;
-                }
+                reader.onload = function(e) {
+                    var img = document.getElementById("prev" + id);
+                    var label = document.getElementById("labelImg" + id);
+                    var removeBtn = document.getElementById("removeImg" + id);
+                    img.src = e.target.result;
+                    img.style.display = "block";
+                    // removeBtn.style.display = "block";
+                    label.style.display = "none";
+                };
 
-                for (var i = 0; i < files.length; i++) {
-                    var file = files[i];
-                    var fileReader = new FileReader();
-                    fileReader.onload = function(e) {
-                        // add imgage preview with delete button
-                        var div = document.createElement("div");
-                        var img = document.createElement("img");
-                        var btn = document.createElement("button");
-                        btn.innerHTML = "X";
-                        btn.className = "img-delete-btn";
-                        btn.addEventListener('click', () => {
-                            img.remove();
-                            btn.remove();
-                        });
-
-                        img.src = e.target.result;
-                        img.className = "thumbnail";
-                        div.appendChild(img);
-                        div.appendChild(btn);
-                        document.getElementById("imgResult").appendChild(div);
-                    }
-                    fileReader.readAsDataURL(file);
-                }
-            } else {
-                alert("Your browser doesn't support File API");
+                reader.readAsDataURL(input.files[0]);
             }
+        }
+
+        function clickImage(id) {
+            var img = document.getElementById("img" + id);
+            img.click();
         }
 
         function addServiceFields() {

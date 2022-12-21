@@ -9,7 +9,7 @@ form.onsubmit = (e)=>{
 
 submitBtn.onclick = ()=>{
     let xhr = new XMLHttpRequest(); //XML object
-    xhr.open("POST", "passdata.php", true);
+    xhr.open("POST", "../passdata.php", true);
     
     xhr.onload = ()=>{
         if(xhr.readyState === XMLHttpRequest.DONE){

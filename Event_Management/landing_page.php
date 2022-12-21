@@ -16,6 +16,7 @@ else{
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    
 </head>
 <body>
     <main  class="landing_page_main">
@@ -61,44 +62,16 @@ else{
             <label ><a href="event_planners.php"> View More</a> </label>
             </span>
             <span class="evt_planner_cards">
-                <span class="card">
-                    <img src="images/evt_planner.jfif" >
-                    <span class="name_rating">
-                    <h4>Lorem Ipsum</h4>
-                    <a>★★★★</a>
-                    </span>
-                    <a href="#" class="btn_contact btn">Contact </a>
-                </span>
-                <span class="card">
-                    <img src="images/evt_planner.jfif" >
-                    <span class="name_rating">
-                    <h4>Lorem Ipsum</h4>
-                    <a>★★★★</a>
-                    </span>
-                    <a href="#" class=" btn_contact btn">Contact </a>
-                </span>
-                <span class="card">
-                    <img src="images/evt_planner.jfif" >
-                    <span class="name_rating">
-                    <h4>Lorem Ipsum</h4>
-                    <a>★★★★</a>
-                    </span>
-                    <a href="#" class="btn_contact btn">Contact </a>
-                </span>
-                <span class="card">
-                    <img src="images/evt_planner.jfif" >
-                    <span class="name_rating">
-                    <h4>Lorem Ipsum</h4>
-                    <a>★★★★</a>
-                    </span>
-                    <a href="#" class="btn_contact btn">Contact </a>
-                    
-                </span>
+                
                 
                 
             </span>
         </div>
-
+    
     </main>
+    <script src="javascript/event_planners.js"></script>
 </body>
+<?php 
+    include("footer.php");
+?>
 </html>
