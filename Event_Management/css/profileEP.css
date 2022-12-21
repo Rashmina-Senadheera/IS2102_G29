@@ -3,6 +3,12 @@
     height: 90%;
 }
 
+@media (max-width:1240px) {
+    .container-profile {
+        margin-left: 60px;
+    }
+}
+
 .flex-container-profile {
     display: flex;
     flex-direction: row;
@@ -123,27 +129,41 @@
     flex: 20%;
 }
 
+.prof-name-50 {
+    flex: 50%;
+}
+
 .prof-data {
     flex: 60%;
     text-align: justify;
+}
+.prof-feedback {
+    flex: 60%;
+    text-align: justify;
+    background-color: #f2f2f2;
+    border-radius: 0.5rem;
+    padding: 10px;
+    margin: 2px;
+    
 }
 
 .personal-info-heading {
     font-weight: bold;
     font-size: 15px;
-    color: white;
-    background-color: #490258;
-    border-radius: 0.5rem;
+    color: #490258;
     margin: 10px;
-    width: 30%;
     padding: 4px;
     padding-left: 6px;
     text-align: center;
+    border-radius: .5rem;
+    background: rgb(226, 226, 226);
+    color: #490258;
+    width: 30%;
 }
 
 @media (max-width: 1200px) {
     .sm-name {
-        display: none;
+        /* display: none; */
     }
 }
 
@@ -161,7 +181,7 @@
     }
 
     .image {
-        height: 30%;
+        /* height: 30%; */
     }
 
     .about {
@@ -172,7 +192,7 @@
     }
 
     .sm-name {
-        display: none;
+        /* display: none; */
     }
 
     .info {
@@ -213,4 +233,8 @@
     font-weight: bold;
     background: rgb(226, 226, 226);
     color: #490258;
+}
+
+.startChecked {
+    color: orange;
 }

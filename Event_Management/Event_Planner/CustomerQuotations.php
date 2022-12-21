@@ -26,17 +26,17 @@ include('eventplanner_header.php');
             </div>
         </div>
         <div class="gridMain">
-            <table>
+            <table id="tableToSort">
                 <thead>
                     <tr>
-                        <th>Quotation ID</th>
-                        <th>Customer</th>
-                        <th>Event Type</th>
-                        <th>Date</th>
-                        <th>Services</th>
+                        <th onclick="sortTable(0)">Quotation ID</th>
+                        <th onclick="sortTable(1)">Customer</th>
+                        <th onclick="sortTable(2)">Event Type</th>
+                        <th onclick="sortTable(3)">Date</th>
+                        <th onclick="sortTable(4)">Services</th>
                         <!-- <th>Remarks</th> -->
-                        <th>Price</th>
-                        <th>Status</th>
+                        <th onclick="sortTable(5)">Price</th>
+                        <th onclick="sortTable(6)">Status</th>
                     </tr>
                 </thead>
                 <tr>
@@ -78,5 +78,6 @@ include('eventplanner_header.php');
     </div>
 
 </body>
+<script src="../js/sortTable.js"></script>
 
 </html>

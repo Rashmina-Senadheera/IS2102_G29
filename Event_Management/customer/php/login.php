@@ -49,7 +49,7 @@ if(isset($_POST['uname'])){
                  $_SESSION['username']=$uname;
                  $_SESSION['tel']=$tel;
 
-                 header("Location: ../profile.php");
+                 header("Location: ../customer_quotation.php");
                  exit;
              }else {
                $em = "Incorect User name or password";

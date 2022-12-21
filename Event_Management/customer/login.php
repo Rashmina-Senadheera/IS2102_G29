@@ -1,9 +1,9 @@
 <?php 
 session_start();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -22,15 +22,12 @@ session_start();
   <!-- Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
- <style>
-  
-
+ <style>  
   @media screen and (max-width: 768px) {
   .img_form_custom{
     display: none;
   }
 }
-
 
 form {
   --background: white;
@@ -236,14 +233,8 @@ input[type="checkbox"]:checked + label span::after {
 
  </style>
 </head>
-
 <body style="background: #f2f4f8;">
-
- <!-- ======= Include nav here ======= -->
  <?php include('Staticnavbar.php') ?>
-
- <!-- End nav -->
-
   <div class="container-fluid" style="margin-top: 100px;">
     <div class="container" >
       <div class="row shadow-lg " style="border-color:black; background-color: white;">
@@ -263,8 +254,6 @@ input[type="checkbox"]:checked + label span::after {
              <?php echo $_GET['error']; ?>
               </div>
             <?php } ?>
-
-            
               <label class="label-email">
               <input type="text" 
                class="form-control"
@@ -272,12 +261,6 @@ input[type="checkbox"]:checked + label span::after {
                value="<?php echo (isset($_GET['uname']))?$_GET['uname']:"" ?>">
                 <span class="required" style="font-family:'Poppins'" ><b>Email</b></span>
               </label>
-            </div>
-            <input type="checkbox" name="show-password" class="show-password a11y-hidden" id="show-password" tabindex="3" />
-            <label class="label-show-password" for="show-password">
-              <span style="font-family:'Poppins'">Show Password</span>
-            </label>
-            <div>
               <label class="label-password">
               <input type="password" 
                class="form-control"
@@ -293,9 +276,5 @@ input[type="checkbox"]:checked + label span::after {
       </div>
     </div>
   </div>
-
-
-
-
 </body>
 </html>

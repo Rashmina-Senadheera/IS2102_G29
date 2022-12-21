@@ -17,14 +17,12 @@
     overflow-x: hidden;
     text-decoration: none;
     background-color: #fff;
-
+    transition: all 0.5s ease;
     box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
 }
 
 :root {
     --mainColor: #490258;
-    --secondColor: #D0AFF4;
-    --mainGradient: linear-gradient(94.56deg, #6C429C 0%, #7D56AA 100%);
 
 }
 
@@ -48,7 +46,7 @@
     display: flex;
     flex-grow: 1;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
 }
 
 .header-2 .navbar a {
@@ -61,7 +59,20 @@
 }
 
 .header-2 .navbar a:hover {
-    border-bottom: #490258 2px solid;
+    border-bottom: var(--mainColor) 2px solid;
+}
+
+.header-2 .requests-sum  a{
+    text-decoration: none;
+    color: var(--mainColor);
+}
+
+.header-2 .icons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-left: 3rem;
+    padding-bottom: 3px;
 }
 
 .header-2 .icons a {
@@ -69,7 +80,6 @@
     padding-right: 1rem;
     text-decoration: none;
 }
-
 
 .header-2 .header-2-logo {
     width: 5rem;
@@ -91,7 +101,11 @@
 
 /* ----------------- media query start -----------------  */
 
-@media (max-width:1200px) {}
+@media (max-width:1240px) {
+    .headAll {
+        margin-left: 60px;
+    }
+}
 
 @media (max-width:991px) {}
 

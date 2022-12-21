@@ -2,26 +2,30 @@
 session_start();
 include('customer_sidenav.php');
 include('customer_header.php');
-
-// if (isset($_SESSION['fname'])){
-//     header("location:./home.php");
-//     }
-
-
-
 ?>
 
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/eventPlannerMain.css">
     <link rel="stylesheet" href="../css/eventPlannerMyevents.css">
-</head>
+<style>
+    .imgbx:hover{
+        transform: scale(1.1);
+        z-index: 1;
 
+    }
+
+    .sci:hover{
+        transform: scale(1.1);
+        z-index: 1;
+
+    }
+</style>
+</head>
 <body>
     <div class="grid-container-payments">
         <div class="gridSearch">
@@ -50,7 +54,7 @@ include('customer_header.php');
                     </div>
                     <ul class="sci">
                         <li>
-                            <a href="">Delete</a>
+                            <a href="Event1.php">View</a>
                         </li>
                     </ul>
                 </div>
@@ -67,7 +71,7 @@ include('customer_header.php');
                     </div>
                     <ul class="sci">
                         <li>
-                            <a href="">Delete</a>
+                            <a href="Event2.php">View</a>
                         </li>
                     </ul>
                 </div>
@@ -82,12 +86,10 @@ include('customer_header.php');
                     </div>
                     <ul class="sci">
                         <li>
-                            <a href="">Delete</a>
+                            <a href="Event3.php">View</a>
                         </li>
                     </ul>
                 </div>
-
-
                 <div class="card">
                     <div class="content">
                         <div class="imgBx">
@@ -101,7 +103,7 @@ include('customer_header.php');
                     </div>
                     <ul class="sci">
                         <li>
-                            <a href="">Delete</a>
+                            <a href="Event4.php">View</a>
                         </li>
                     </ul>
                 </div>
@@ -118,7 +120,7 @@ include('customer_header.php');
                     </div>
                     <ul class="sci">
                         <li>
-                            <a href="">Delete</a>
+                            <a href="Event1.php">View</a>
                         </li>
                     </ul>
                 </div>
@@ -135,7 +137,7 @@ include('customer_header.php');
                     </div>
                     <ul class="sci">
                         <li>
-                            <a href="">Delete</a>
+                            <a href="Event2.php">View</a>
                         </li>
                     </ul>
                 </div>
@@ -143,7 +145,6 @@ include('customer_header.php');
             </div>
         </div>
     </div>
-
 </body>
 
 </html>

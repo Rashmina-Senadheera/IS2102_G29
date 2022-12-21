@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2022 at 06:53 AM
+-- Generation Time: Dec 20, 2022 at 05:23 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -20,6 +20,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `auth_db`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `feedback`
+--
+
+CREATE TABLE `feedback` (
+  `id` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `text` varchar(255) NOT NULL,
+  `rate` int(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `feedback`
+--
+
+INSERT INTO `feedback` (`id`, `date`, `name`, `text`, `rate`) VALUES
+(12, '2022-12-22', 'Daweendri ', 'good', 2);
 
 -- --------------------------------------------------------
 
@@ -41,7 +62,8 @@ CREATE TABLE `payments` (
 --
 
 INSERT INTO `payments` (`id`, `name`, `email`, `account`, `date`, `ammount`) VALUES
-(11, 'Daweendri ', 'dawee@gmail.com', '4567265', '2022/07/22', '25000');
+(15, 'Daweendri ', 'daweendrihimasha98@gmail.com', '4567265', '2022-09-20', '5000'),
+(16, 'ucsc', 'daweendrihimasha98@gmail.com', '4567265', '2022-12-15', '5000');
 
 -- --------------------------------------------------------
 
@@ -65,11 +87,18 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `fname`, `username`, `password`, `pp`, `tel`) VALUES
 (1, 'alex', 'test4@gmail.com', '$2y$10$E3R4ItygPgAAeW8qmwa.dOJNgEPGvFrZkR17N4VJkxp69p.7fuxAG', 'test4@gmail.com6384ddb147c270.08859478.jpeg', '122345'),
 (2, 'sam', 'test@gmail.com', '$2y$10$lxf7PQu.S35WfLe.7xeuiuL2glShWaxHWwBqIBUpA2ACbtcypWKmq', 'test@gmail.com6384f8b8eac570.17289714.jpg', '76756782'),
-(3, 'daweendri thilakarathne', 'dawee@gmail.com', '$2y$10$LJsgtu80Htj4SO660HYiJuiI6Dg.i6rAt4pY446X8lwkgZR.ZeVBC', 'dawee@gmail.com6388439cb3e1b2.05953977.jpg', '76756782');
+(3, 'daweendri thilakarathne', 'dawee@gmail.com', '$2y$10$LJsgtu80Htj4SO660HYiJuiI6Dg.i6rAt4pY446X8lwkgZR.ZeVBC', 'dawee@gmail.com6388439cb3e1b2.05953977.jpg', '76756782'),
+(5, 'sam jacob', 'sam@gmail.com', '$2y$10$Y5ekr.jrvs9a68Dz8PuOtuzAUiqphrvg.Bjyf6TyPpG.M8J4tSQ7a', 'sam@gmail.com63a02069e045c6.46317993.jpg', '0711234251');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `feedback`
+--
+ALTER TABLE `feedback`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `payments`
@@ -88,16 +117,22 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `feedback`
+--
+ALTER TABLE `feedback`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

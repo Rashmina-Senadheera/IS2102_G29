@@ -2,11 +2,6 @@
 session_start();
 include('customer_sidenav.php');
 include('customer_header.php');
-// if (isset($_SESSION['fname'])){
-//     header("location:./home.php");
-//     }
-
-
 ?>
 
 
@@ -18,6 +13,17 @@ include('customer_header.php');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/eventPlannerMain.css">
+    <link rel="stylesheet" href="../css/Custcss2.css">
+<style>
+    .cards img{
+        width: 100px;
+    }
+    .cards:hover{
+        transform: scale(1.1);
+        z-index: ;
+
+    }
+</style>
 </head>
 
 <body>
@@ -29,10 +35,11 @@ include('customer_header.php');
                 </div>
             </div>
         </div>
-        <div class="gridMain">
-            <div class="row">
-
-                <div class="col-md-8">
+        <!--<div class="gridMain">-->
+        <div class="other">
+                <div class="info">
+                    <div class="personal-info">
+            
                     <form method="post" action="./php/paymentbackend.php">
                         <?php if (isset($_GET['error'])) { ?>
                             <div class="alert alert-danger" role="alert">
@@ -46,110 +53,58 @@ include('customer_header.php');
                             </div>
                         <?php } ?>
 
-                        <div class="p-3 py-5">
+                        <div >
 
-                            <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div >
 
                             </div>
-                            <br>
 
-                            Name:
-                            <div class="col-md-12"><input type="text" class="form-control" placeholder="Event Planner's name"  name="name" value="<?php echo (isset($_GET['uname'])) ? $_GET['uname'] : "" ?>" required></div>
-                        </div><br><br><br><br>
-                        <div class="row mt-2">
-                            Email Address:&nbsp;&nbsp;
-                            <div class="col-md-12"><input type="text" class="form-control" placeholder="Event Planner's email" name="email" value="<?php echo (isset($_GET['email'])) ? $_GET['email'] : "" ?>" required></div>
+                            <center>Name:&nbsp;&nbsp;<center>
+                            <div ><center><input type="name" class="form-control" placeholder="Event Planner's name"  name="name"  maxlength="30" style="width:300px;" value="<?php echo (isset($_GET['uname'])) ? $_GET['uname'] : "" ?>" required></div>
+                        </div><br>
+                        <div>
+                        <center>Email Address:&nbsp;&nbsp;<center>
+                            <div ><center><input type="email" class="form-control" placeholder="Event Planner's email" name="email" pattern=".+@globex\.com" size="30" style="width:300px;" value="<?php echo (isset($_GET['email'])) ? $_GET['email'] : "" ?>" required></div>
                         </div>
                 </div>
 
+                
+                <div >
+                <center> Account Number:&nbsp;&nbsp;
+                    <div ><center><input type="number" class="form-control" placeholder="Account Number" name="account" min="1000" max="1000000000" style="width:300px;" value="<?php echo (isset($_GET['account'])) ? $_GET['account'] : "" ?>" required></div>
+                </div>
+           <br>
+            <div >
+            <center>Date:&nbsp;&nbsp;
+                <div ><center><input type="date" class="form-control" placeholder="" name="date" min="2022-12-23" max="2025-12-31" style="width:300px;" value="<?php echo (isset($_GET['date'])) ? $_GET['date'] : "" ?>" required>
+                </div>
+            </div><br>
+            <div >
+            <center>Payment Methods:&nbsp;&nbsp;
+            <div class="cards">
+                <div>
+                    <img src="mc.png" alt="">
+                    <img src="vi.png" alt="">
+                    <img src="pp.png" alt="">
+                </div>
+                </div>
+                </center>
 
-                <div class="row mt-2">
-                    Account Number:&nbsp;&nbsp;
-                    <div class="col-md-12"><input type="text" class="form-control" placeholder="Account Number" name="account" value="<?php echo (isset($_GET['account'])) ? $_GET['account'] : "" ?>" required></div>
-                </div>
+            <center>Amount:&nbsp;&nbsp;
+                <div><center><input type="number" class="form-control" placeholder="Amount" name="ammount" min="5000" style="width:300px;" value="<?php echo (isset($_GET['ammount'])) ? $_GET['ammount'] : "" ?>" required>
+                </div></center>
             </div><br>
-            <div class="row mt-2">
-                Date:&nbsp;&nbsp;
-                <div class="col-md-12"><input type="text" class="form-control" placeholder="Date" name="date" value="<?php echo (isset($_GET['date'])) ? $_GET['date'] : "" ?>" required>
-                </div>
-            </div><br>
-            <div class="row mt-3">
-                Amount:&nbsp;&nbsp;
-                <div class="col-md-12"><input type="text" class="form-control" placeholder="Amount" name="ammount" value="<?php echo (isset($_GET['ammount'])) ? $_GET['ammount'] : "" ?>" required>
-                </div>
-            </div>
+            
             <br>
-            <div><button type="submit" class="srcButton">Pay Now</button></div><br>
+            <center><div><button type="submit" class="srcButton">Pay Now</button></div><br >
             </form>
+             <a href="ViewPayments.php"><button type="submit" class="srcButton" >View Payments</button></a></center><br />
         </div>
 
     </div>
     </div>
     </div>
 
-    <div class="grid-container-payments">
-        <div class="gridSearch">
-            <div class="searchSec">
-                <div class="page-title"> View Payments </div>
-                <div class="input-container">
-                    <input class="input-field" type="text" placeholder="Search payments" name="search">
-                    <i class="fa fa-search icon"></i>
-                </div>
-                <button type="submit" class="srcButton">Search</button>
-            </div>
-        </div>
-        <div class="gridMain">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Event Planner Name</th>
-                        <th>Event Planner Email</th>
-                        <th>Amount</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    <?php
-                    $sName = "localhost";
-                    $uName = "root";
-                    $pass = "";
-                    $db_name = "auth_db";
-
-                    // Create connection
-                    $conn = mysqli_connect($sName, $uName, $pass, $db_name);
-                    // Check connection
-                    if (!$conn) {
-                        die("Connection failed: " . mysqli_connect_error());
-                    }
-
-
-                    // include "./db_conn.php";
-                    $sql = "SELECT * FROM `payments`";
-                    $result = $conn->query($sql);
-
-                    $result = mysqli_query($conn, $sql);
-                    while ($row = mysqli_fetch_assoc($result)) {
-
-                    ?>
-                        <tr>
-                            <td><?php echo $row['date'] ?></td>
-                            <td><?php echo $row['name'] ?></td>
-                            <td><?php echo $row['email'] ?></td>
-                            <td><?php echo $row['ammount'] ?></td>
-
-                            <td>&#10247</td>
-                        <?php
-                    }
-                        ?>
-
-                        </tr>
-                </tbody>
-
-
-            </table>
-        </div>
-    </div>
 </body>
 
 </html>

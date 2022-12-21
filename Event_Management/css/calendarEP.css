@@ -4,3 +4,9 @@
     padding: 40px;
     margin-left: 240px;
 }
+
+@media (max-width:1240px) {
+    .calendar-body {
+        margin-left: 60px;
+    }
+}

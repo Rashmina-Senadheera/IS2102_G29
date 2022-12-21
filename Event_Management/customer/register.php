@@ -163,9 +163,6 @@
       <?php include('Staticnavbar.php') ?>           
 <?php    }?>
 <!--End include nav bar-->
-  
-
-
 
    
         <div class="inner ">

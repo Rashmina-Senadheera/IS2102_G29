@@ -1,4 +1,3 @@
-
 <head>
     <link rel="stylesheet" href="../css/sidenav.css">
     <!-- Boxicons CDN Link -->
@@ -6,8 +5,6 @@
 </head>
 
 <body>
-
-
     <!--navigation bar left-->
     <div class="sidebar">
         <div class="logo-details">
@@ -16,46 +13,39 @@
             <span class="logo_name">Eventra</span>
         </div>
         <ul class="nav-links">
+            
             <li>
-                <a href=<?php echo 'http://localhost/Event_Management/customer/Profile.php' ?>>
-                    <i class='bx bx-user'></i>
-                    <span class="links_name">Profile</span>
-                </a>
-            </li>
-            <li>
-                <a href=<?php echo  'http://localhost/Event_Management/customer/Password.php'  ?>>
-                    <i class='bx bx-package'></i>
-                    <span class="links_name">Password</span>
-                </a>
-            </li>
-            <li>
-                <a href=<?php echo  'http://localhost/Event_Management/customer/QuotationNw.php'  ?>>
+                <a href="customer_quotation.php">
                     <i class='bx bx-task'></i>
                     <span class="links_name">Quotations</span>
                 </a>
             </li>
             <li>
-                <a href=<?php echo  'http://localhost/Event_Management/customer/Events.php'  ?>>
+                <a href="Events.php">
                     <i class='bx bx-calendar-event'></i>
                     <span class="links_name">Events</span>
                 </a>
             </li>
             <li>
-                <a href=<?php echo  'http://localhost/Event_Management/customer/Payments.php'  ?>>
+                <a href="Payments.php">
                     <i class='bx bx-money'></i>
                     <span class="links_name">Payments</span>
                 </a>
-            </li>
-            
+            </li>      
             <li>
-                <a href=<?php echo  'http://localhost/Event_Management/customer/Feedback.php'  ?>>
+                <a href="Feedback.php">
                     <i class='bx bx-heart'></i>
                     <span class="links_name">Feedback</span>
                 </a>
             </li> 
-
+            <li>
+                <a href="Profile.php">
+                    <i class='bx bx-user'></i>
+                    <span class="links_name">Profile</span>
+                </a>
+            </li>
             <li class="log_out">
-               <a href=<?php echo 'http://localhost/Event_Management/customer/logout.php'  ?>>
+               <a href="logout.php">
                     <i class='bx bx-log-out'></i>
                     <span class="links_name">Log out</span>
                 </a>

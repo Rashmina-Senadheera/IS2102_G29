@@ -5,20 +5,26 @@
 <header class="headAll">
     <div id="menu-bar" class="fas fa-bars"></div>
     <div class="header-2" id="header-2">
+        <?php if (isset($_SESSION['user_id'])) { ?>
+            <nav class="requests-sum">
+                <i class='bx bx-bell'></i>
+                <a href=<?php echo SITEURL . 'event_planner/Requests.php'  ?>>New Requests: 4</a>
+            </nav>
+        <?php } ?>
         <nav class="navbar" id="navbar">
             <a href=<?php echo SITEURL ?>>About Us</a>
             <a href=<?php echo SITEURL ?>>Contact Us</a>
         </nav>
         <!-- login/profile button -->
         <div class="icons">
-            <a id="profile-name" href=<?php echo SITEURL ?> class="btna">
-                <?php 
-                    if(isset($_SESSION['user_name'])){
-                        echo $_SESSION['user_name'];
-                    } else {
-                        echo "Login";
-                    }
-                 ?>
+            <a id="profile-name" href="#" class="btna">
+                <?php
+                if (isset($_SESSION['user_name'])) {
+                    echo $_SESSION['user_name'];
+                } else {
+                    echo "Login";
+                }
+                ?>
             </a>
         </div>
     </div>

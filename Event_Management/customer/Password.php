@@ -2,11 +2,6 @@
 session_start();
 include('customer_sidenav.php');
 include('customer_header.php');
-
-// if (isset($_SESSION['fname'])){
-//     header("location:./home.php");
-//     }
-
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +12,8 @@ include('customer_header.php');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/eventPlannerMain.css">
+    <link rel="stylesheet" href="../css/Custcss.css">
+
 </head>
 
 <body>
@@ -24,16 +21,14 @@ include('customer_header.php');
         <div class="gridSearch">
             <div class="searchSec">
             <div class="page-title"> Change Passsword </div>
-                <div class="input-container">
-  
-
-                </div>
-
+                <div class="input-container"></div>
             </div>
         </div>
-<br ><br ><br >
-        <div class="gridMain"><br ><br >
-            <div class="form-box">
+
+        <!--<div class="gridMain">-->
+        <div class="flex-container-profile">
+            <div class="about">
+                <center><br >
                  Current Password:<br >
 		<input type="password" placeholder="Current Password" id="password" required><br ><br >
                  New Password:<br >
@@ -45,11 +40,9 @@ include('customer_header.php');
 			Agree with
 			<a href="#">Terms & Conditions</a>
 		</span><br ><br ><br >
-		<button type="submit" class="srcButton">Change Password</button><br >
-	</div><br >
+		<button type="submit" class="srcButton">Change Password</button><br ><br >
+	</div></center><br >
         </div>
     </div>
-
 </body>
-
 </html>

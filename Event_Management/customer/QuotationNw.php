@@ -2,11 +2,6 @@
 session_start();
 include('customer_sidenav.php');
 include('customer_header.php');
-
-// if (isset($_SESSION['fname'])){
-//     header("location:./home.php");
-//     }
-
 ?>
 
 <!DOCTYPE html>
@@ -17,22 +12,22 @@ include('customer_header.php');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/eventPlannerMain.css">
+    <link rel="stylesheet" href="../css/Custcss2.css">
 </head>
 
 <body>
  <div class="grid-container-payments">
         <div class="gridSearch">
             <div class="searchSec">
-                <div class="page-title"> Quotations </div>
-                <div class="input-container">
-                    
-                    
-                </div>
-                
+                <div class="page-title"> Quotation Request </div>
+                <div class="input-container">  
+                </div>      
             </div>
         </div>
-        <div class="gridMain">
-            <div class="form-group">
+        <!--<div class="gridMain">-->
+        <div class="other">
+                <div class="info">
+                    <div class="personal-info">
               <label class="control-label col-sm-4" for="email">Event Date:</label>
               <div class="col-sm-12">
                  <input type="date">
@@ -85,30 +80,21 @@ include('customer_header.php');
                     <select name="cars" id="catering" class="form-control">
                         <option value="0">Select the catering type</option>
                         <option value="9">Buffet</option>
-                        <option value="8">Set Meals</option>
-                        
-                      </select>
-                      
+                        <option value="8">Set Meals</option>  
+                    </select>      
                 </div>
               </div>
-              <br>
-              
-              
+              <br>   
             <div class="form-group">        
               <div class="col-sm-offset-2 col-sm-10">
              <br>
                 <div>
                   <button type="submit" class="srcButton">Submit</button>
-                </div><br >
-               
+                </div><br > 
                 </div>
             </div>
-             
-           
           </form>
         </div>
     </div>
-
 </body>
-
 </html>
