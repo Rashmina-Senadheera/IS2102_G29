@@ -80,7 +80,19 @@ include('customer_header.php');
                             <td><?php echo $row['date'] ?></td>
                             <td><?php echo $row['name'] ?></td>
                             <td><?php echo $row['text'] ?></td>
-                            <td><?php echo $row['rate'] ?></td>
+                            <td><?php $rate= $row['rate'];
+                                for($i =0 ; $i < $rate; $i++){
+                                    ?>
+                                    <i class="fa-solid fa-star"></i>
+                                    <?php
+                                    
+                                }  
+                                for($x=$rate; $x<5 ;$x++){
+                                    ?>
+                                    <i class="fa-regular fa-star"></i>
+                                    <?php
+                                } 
+                            ?></td>
                             <td>&#10247</td>
                         <?php
                     }
