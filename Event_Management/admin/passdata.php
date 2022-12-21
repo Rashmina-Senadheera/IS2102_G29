@@ -1,5 +1,8 @@
 <?php 
+    
+
     include('../constants.php');
+    include('email.php');
     /*include('../login_access.php');*/
     $name = mysqli_real_escape_string($conn,check($_POST['name']));
     $pwd = mysqli_real_escape_string($conn,check($_POST['pwd']));
@@ -34,27 +37,36 @@
                                 role = '$role'
                                 ";
 
-                        $res = mysqli_query($conn, $sql);
+                        $res = mysqli_query($conn, $sql);   
                         
                         $sql4 = "SELECT * from user WHERE email='$email'";
                         $res4 = mysqli_query($conn,$sql4);
-                        $row = mysqli_fetch_assoc($res4);
-                        $userId = $row['user_id'];
+                        if($res4){
+                            $row = mysqli_fetch_assoc($res4);
+                            $userId = $row['user_id'];
                         
                         
                         /* insert data into relevant table  */ 
-                        $sql3 = "INSERT INTO $role (`user_id`) VALUES ('$userId')";
-                        $res3 = mysqli_query($conn, $sql3);
+                            $sql3 = "INSERT INTO $role (`user_id`) VALUES ('$userId')";
                         
+                       
+                                smtpmailer($email,$name,$pwd);
                             
-                        if($res == TRUE && $res3 == TRUE ){
-                            echo "Success";
-                            $_SESSION['added'] = "Successfully Added";
-                                
+                                // $res = mysqli_query($conn, $sql);
+                                $res3 = mysqli_query($conn, $sql3);
+                                if($res == TRUE && $res3 == TRUE ){
+                                echo "Success";
+                                $_SESSION['added'] = "Successfully Added";
+                                }
+                                else{
+                                    echo "Something Went Wrong";
+                                }
                         }
                         else{
-                            echo "Something Went Wrong";
+                            echo "Error";
                         }
+                        
+
                             
                         }
                     }
