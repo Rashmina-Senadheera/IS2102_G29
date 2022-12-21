@@ -1,5 +1,5 @@
 <?php
-    include('../constants.php');
+    include('../../constants.php');
     include( 'supplier_sidenav.php' );
     include( 'header.php' );
     $id = $_GET['id'];
