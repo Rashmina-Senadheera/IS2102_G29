@@ -301,13 +301,8 @@ nav .profile-details i {
     width: 200px;
 }
 .logout{
-  color: #1f0027;
-  border: #1f0027 2px solid;
+  color: #ffffff;
   padding: 5px;
-  margin: auto;
-  border-radius: 10px;
-  margin-right: 20px;
-  float: right;
   height: 40px;
 }
 .logout a{

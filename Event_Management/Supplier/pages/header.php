@@ -1,3 +1,4 @@
+
 <!-- font awesome link  -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 <link rel="stylesheet" href="../css/navigationBar.css">
@@ -13,7 +14,7 @@
         </nav>
         <!-- login/profile button -->
         <div class="icons">
-            <a id="profile-name" href="" class="btna">Sachintha</a>
+            <a id="profile-name" href="" class="btna"><?php echo $_SESSION['user_name'] ?></a>
         </div>
     </div>
 </header>

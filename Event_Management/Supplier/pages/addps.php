@@ -1,7 +1,8 @@
 <?php
-    include('supplier_sidenav.php');
-    include('header.php');
-
+    session_start();
+    include( 'supplier_sidenav.php' );
+    include( 'header.php' );
+    if(isset($_SESSION['user_name'])){
 ?>
 
 <!DOCTYPE html>
@@ -37,10 +38,17 @@
                                     <i class='bx bx-package'></i>
                                     <div class="ps-cat-title">Add a Product</div>
                                 </div></li>
+                            <a href="form-venue.php" id="btn">
+                            <li class = "header" id="ps-item-add">
+                                <div class="ps-cat-desc" id='item'>
+                                    <div class="ps-cat-item">Venue</div>
+                                    <i class='bx bx-chevron-right' id="item"></i>
+                                </div>
+                            </li></a>
                             <a href="form-catering.php" id="btn">
                             <li class = "header" id="ps-item-add">
                                 <div class="ps-cat-desc" id='item'>
-                                    <div class="ps-cat-item">Catering</div>
+                                    <div class="ps-cat-item">Catering & Beverages</div>
                                     <i class='bx bx-chevron-right' id="item"></i>
                                 </div>
                             </li></a>
@@ -48,13 +56,6 @@
                             <li class = "header" id="ps-item-add">
                                 <div class="ps-cat-desc" id='item'>
                                     <div class="ps-cat-item">Transport</div>
-                                    <i class='bx bx-chevron-right' id="item"></i>
-                                </div>
-                            </li></a>
-                            <a href="form-beverage.php" id="btn">
-                            <li class = "header" id="ps-item-add">
-                                <div class="ps-cat-desc" id='item'>
-                                    <div class="ps-cat-item">Beverages</div>
                                     <i class='bx bx-chevron-right' id="item"></i>
                                 </div>
                             </li></a>
@@ -120,3 +121,10 @@
 </body>
 
 </html>
+
+<?php
+ }else{
+    header("Location:sign_in.php?");
+    exit();
+ }
+?>

@@ -1,9 +1,9 @@
 <?php
-    include('supplier_sidenav.php');
-    include('header.php');
-
+    session_start();
+    include( 'supplier_sidenav.php' );
+    include( 'header.php' );
+    if(isset($_SESSION['user_name'])){
 ?>
-
 <!DOCTYPE html>
 <html>
 
@@ -180,3 +180,9 @@
 </body>
 
 </html>
+<?php
+ }else{
+    header("Location:sign_in.php?");
+    exit();
+ }
+?>
