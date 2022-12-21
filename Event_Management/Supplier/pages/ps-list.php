@@ -1,6 +1,8 @@
 <?php
+    include('../constants.php');
     include( 'supplier_sidenav.php' );
     include( 'header.php' );
+    if(isset($_SESSION['user_name'])){
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +22,7 @@
             <div class = 'flex-container-main'>
                 <div class="title-search">
                     <div class = 'searchSec'>
-                        <div class = 'page-title'> Products & Services </div>
+                        <div class = 'page-title'> My Products & Services </div>
                         <div class="search" id='add'>
                             <button type = 'submit' class = 'srcButton' id='add'><i class='bx bx-plus-circle'></i>
                             <a href="addps.php" id="btn">
@@ -33,41 +35,26 @@
         <div class="ps-list">
             <div class ='grid-main' id='ps-list'>
                 <div class="cards">
-                    <a href="more-info.php" id="a-card">
-                    <div class="ps-card">
-                        <div class="ps-card-img">
-                            <img src="../images/profile.jpg" alt="">
-                        </div>
-                        <div class="ps-card-desc">
-                            <div class="ps-title">Eclairs for cheap</div>
-                            <div class="ps-type">Catering</div>
-                            <div class="ps-date">20/20/2022</div>
-                        </div>
-                    </div></a>
-                    <a href="more-info.php" id="a-card">
-                    <div class="ps-card">
-                        <div class="ps-card-img">
-                            <img src="../images/profile.jpg" alt="">
-                        </div>
-                        <div class="ps-card-desc">
-                            <div class="ps-title">Eclairs for cheap</div>
-                            <div class="ps-type">Catering</div>
-                            <div class="ps-date">20/20/2022</div>
-                        </div>
-                    </div></a>
-                    <a href="more-info.php" id="a-card">
-                    <div class="ps-card">
-                        <div class="ps-card-img">
-                            <img src="../images/profile.jpg" alt="">
-                        </div>
-                        <div class="ps-card-desc">
-                            <div class="ps-title">Eclairs for cheap</div>
-                            <div class="ps-type">Catering</div>
-                            <div class="ps-date">20/20/2022</div>
-                        </div>
-                    </div></a>
+          <?php
+              $sql = "SELECT V.item_ID,V.title,V.descript,I.file_name
+                      FROM supplier_venue V , images I
+                      where V.item_ID = I.item_ID";
 
-            
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {?>
+                    <a href='more-info.php?id=<?php echo $row["item_ID"];?>' id='a-card'>
+                            <div class='ps-card'>
+                                <div class='ps-card-img'>
+                                    <img src= "../images/<?php echo $row["file_name"];?>" alt="">
+                                </div>
+                                <div class='ps-card-desc'>
+                                    <div class='ps-title'><?php echo $row["title"];?></div>
+                                    <div class='ps-type'><?php echo $row["descript"];?></div>
+                                </div>
+                            </div></a> <?php ;}
+                    }
+                    ?> 
                 </div>
             </div>
             <div class="filter">
@@ -127,3 +114,10 @@
     </body>
 
 </html>
+
+<?php
+ }else{
+    header("Location:sign_in.php?");
+    exit();
+ }
+?>

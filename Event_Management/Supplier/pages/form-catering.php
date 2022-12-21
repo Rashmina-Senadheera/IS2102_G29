@@ -1,7 +1,8 @@
 <?php
-    include('supplier_sidenav.php');
-    include('header.php');
-
+    session_start();
+    include( 'supplier_sidenav.php' );
+    include( 'header.php' );
+    if(isset($_SESSION['user_name'])){
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +31,7 @@
       </div>
     <div class ='grid-main' id='ps'>
       <form class='add-ps'>
-        <h4 class='ps-form-title'>Add Catering & Food Items</h4>
+        <h4 class='ps-form-title'>Add Catering & Beverages</h4>
             <div class="row">
               <div class="input-ps">
                 <label for="" class="input-ps-label">Title</label>
@@ -78,7 +79,7 @@
                 <div class="check-bx">
                   <div class="check-bx-opt">
                     <input type="checkbox" id="type-venue" name="type-venue" value="Car">
-                    <label for="" class="input-ps-label-opt">Packets</label>
+                    <label for="" class="input-ps-label-opt">Packets/Cups</label>
                   </div>
                   <div class="check-bx-opt">
                     <input type="checkbox" id="type-venue" name="type-venue" value="Car">
@@ -203,3 +204,9 @@
 </body>
 
 </html>
+<?php
+ }else{
+    header("Location:sign_in.php?");
+    exit();
+ }
+?>
