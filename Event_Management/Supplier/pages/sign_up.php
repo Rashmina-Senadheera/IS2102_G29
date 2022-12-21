@@ -1,15 +1,11 @@
 <?php
-include('../constants.php');
+include('../../constants.php');
 include('controllers/commonFunctions.php');
-<<<<<<< Updated upstream
-include('header.php');
-=======
 include('supplier_header.php');
->>>>>>> Stashed changes
 
 // check user already logged in
 if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
-    header("location: ../location_check.php");
+    header("location: ../../location_check.php");
 } else {
     unset($_SESSION['role']);
     unset($_SESSION['user_id']);
