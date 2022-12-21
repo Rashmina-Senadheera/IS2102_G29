@@ -28,8 +28,8 @@ include('customer_header.php');
         <div class="other">
                 <div class="info">
                     <div class="personal-info">
-                        <img src="../images/event2.jpg" style="width:550px; height:300px;">
-                        Ten little fingers, ten little toes, two little eyes and one little nose, boy or a girl, no-one knows! Pink or blue, our dream came true! Blue or pink, what do you think? We're tickled pink and happy to say, a little princess is on her way!<br><br>
+                        <center><img src="../images/event2.jpg" style="width:550px; height:300px;"></center><br>
+                        <center>Ten little fingers, ten little toes, two little eyes and one little nose, boy or a girl, no-one knows! Pink or blue, our dream came true! Blue or pink, what do you think? We're tickled pink and happy to say, a little princess is on her way!</center><br><br>
                         <center><b>Event Planner:</b> Shamin<br>
                                 <b>Event Type:</b> Gender Reveal<br>
                                 <b>Theme:</b> Classic<br>
