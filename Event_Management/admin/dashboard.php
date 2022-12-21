@@ -16,7 +16,7 @@
     array_splice($amount,0,1);
     $sum = array_sum($amount);
 
-   
+
 ?>
 
 <body>
