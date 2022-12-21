@@ -28,8 +28,8 @@ include('customer_header.php');
         <div class="other">
                 <div class="info">
                     <div class="personal-info">
-                        <img src="../images/event2.jpg" style="width:550px; height:300px;">
-                        The lovely Sewwandi was on cloud nine when she was pleasantly surprised by her loved ones and friends on her birthday!! The atmosphere and decorum created by DEVENT, truly set the tone to create a memorable experience for her. Do not hesitate to contact us in making your dream event a reality.
+                        <center><img src="../images/event2.jpg" style="width:550px; height:300px;"><center><br>
+                        <center>The lovely Sandali was on cloud nine when she was pleasantly surprised by her loved ones and friends on her birthday!! The atmosphere and decorum created by DEVENT, truly set the tone to create a memorable experience for her. Do not hesitate to contact us in making your dream event a reality.</center>
                                 </span></h3><br><br>
                         <center><b>Event Planner:</b> Daweendri<br>
                                 <b>Event Type:</b> Birthday<br>
