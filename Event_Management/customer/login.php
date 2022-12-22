@@ -277,4 +277,5 @@ input[type="checkbox"]:checked + label span::after {
     </div>
   </div>
 </body>
+
 </html>
