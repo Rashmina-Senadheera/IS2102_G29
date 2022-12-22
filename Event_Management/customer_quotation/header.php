@@ -40,7 +40,7 @@ include('../constants.php');
                 
                 </span>
 
-                <img src="images/user.png" class="admin_user_logo">
+                <img src="../images/user.png" class="admin_user_logo">
                 
 
                 </div>
