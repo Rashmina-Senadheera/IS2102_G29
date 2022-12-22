@@ -23,7 +23,7 @@
     
     if($emailerr=="" & $pwderr==""){
     
-        $sql = "SELECT * FROM tbl_user WHERE email='$email' AND password='$password'";
+        $sql = "SELECT * FROM user WHERE email='$email' AND password='$password'";
         $res = mysqli_query($conn,$sql);
         $count = mysqli_num_rows($res);
         if($count == 1){

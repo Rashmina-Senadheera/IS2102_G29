@@ -24,14 +24,16 @@
   
   <div class="container-profile">
     <div class="flex-container-addps">
-      <div class="title-search">
+      <!-- <div class="title-search">
         <div class = 'searchSec'>
           <div class = 'page-title'> Add New Products & Services </div>
         </div>
-      </div>
+      </div> -->
     <div class ='grid-main' id='ps'>
       <form class='add-ps' action="passdata.php" method="POST" enctype="multipart/form-data">
         <h4 class='ps-form-title'>Add Venue</h4>
+        <div class="form-description">You can create a package by including the services you provide. Please
+                    fill the form correctly.</div>
             <div class="row">
               <?php if (isset($_GET['errors'])) { ?>
      		          <p class="error"><?php echo $_GET['errors']; ?></p>
@@ -44,33 +46,33 @@
 
             <div class="row">
               <div class="input-ps">
-                <label for="" class="input-ps-label">Title</label>
-                <input type="text" placeholder="Full Name" name="title" class="input-ps-in"/>
+                <label for="" class="input-ps-label"  >Title <span>*</span></label>
+                <input type="text" placeholder="Full Name" name="title" class="input-ps-in" required/>
               </div>
             </div>
             <div class="row">
               <div class="input-ps">
-                <label for="" class="input-ps-label">Description</label>
-                <textarea  name="descript" class="input-ps-in" id='txt-area'>
+                <label for="" class="input-ps-label">Description <span>*</span></label>
+                <textarea  name="descript" class="input-ps-in" id='txt-area' required spellcheck="true">
                 </textarea>
               </div>
             </div>
             <div class="row">
-              <label for="" class="input-ps-label">Venue in </label>
-              <select name="venueIn" id="type">
+              <label for="" class="input-ps-label">Venue in <span>*</span></label>
+              <select name="venueIn" id="type" required>
                 <option value="indoor">Indoor</option>
                 <option value="outdo">Outdoor</option>
               </select>
             </div>
             <div class="row">
-              <div class="input-ps">
-                <label for="" class="input-ps-label">Location</label>
-                <input type="text" placeholder="Full Name" name="location" class="input-ps-in"/>
+              <div class="input-ps" >
+                <label for="" class="input-ps-label">Location <span>*</span> </label>
+                <input type="text" placeholder="Full Name" name="location" class="input-ps-in" required/>
               </div>
             </div>
             <div class="row">
-              <label for="" class="input-ps-label">Type</label>
-              <select name="type" id="type">
+              <label for="" class="input-ps-label" >Type <span>*</span></label>
+              <select name="type" id="type" required>
                 <option value="Banquet Halls">Banquet Halls</option>
                 <option value="Conference Halls">Conference Halls</option>
                 <option value="Stadium">Stadium</option>
@@ -82,14 +84,14 @@
               </select>
             </div>
             <div class="row">
-              <label for="" class="input-ps-label">Capacity</label>
+              <label for="" class="input-ps-label" >Capacity </label>
             </div>
             <div class="row" id='check'>
               
               <div class="input-ps" id='check' style="padding-left:15px;">
                 <div class="input-ps">
-                  <label for="" class="input-ps-label"> Maximum </label>
-                  <input type="text" placeholder="Full Name" name="maxCap" class="input-ps-in"/>
+                  <label for="" class="input-ps-label"> Maximum <span>*</span></label>
+                  <input type="text" placeholder="Full Name" name="maxCap" class="input-ps-in" required/>
                 </div>
               </div>
               <div class="input-ps" id='check'style="padding-left:15px;">
@@ -119,7 +121,9 @@
                   </div>
                 </div>
                 <div class="row">
+                  <div class="action">
                   <button class=submit name="send" value="create" >Submit</button>
+                  </div>
                 </div>                    
           </div>
         </form>

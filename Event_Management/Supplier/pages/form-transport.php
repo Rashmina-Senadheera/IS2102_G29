@@ -24,14 +24,11 @@
   
   <div class="container-profile">
     <div class="flex-container-addps">
-      <div class="title-search">
-        <div class = 'searchSec'>
-          <div class = 'page-title'> Add New Products & Services </div>
-        </div>
-      </div>
     <div class ='grid-main' id='ps'>
       <form class='add-ps'>
         <h4 class='ps-form-title'>Add Transport</h4>
+        <div class="form-description">You can create a package by including the services you provide. Please
+                    fill the form correctly.</div>
             <div class="row">
               <div class="input-ps">
                 <label for="" class="input-ps-label">Title</label>

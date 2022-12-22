@@ -21,15 +21,15 @@
 <body>
     <div class="container-profile">
         <div class="flex-container-addps">
-			<div class="title-search">
+			<!-- <div class="title-search">
                 <div class = 'searchSec'>
                     <div class = 'page-title'> Add New Products & Services </div>
                 </div>
-            </div>
+            </div> -->
             <div class ='grid-main' id='ps'>
                 <div class="ps-title">
-                     <div class="ps-title-head">Let's add new Products & Services.</div>
-                     <div class="ps-title-sub">Choose any option below</div>
+                     <div class="ps-title-head">Add new Products & Services.</div>
+                     <div class="ps-title-sub">Choose the product or services category you want to add</div>
                 </div>
                 <div class="ps-categories">
                     <div class="products">

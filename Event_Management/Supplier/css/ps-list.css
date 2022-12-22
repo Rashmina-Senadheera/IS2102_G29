@@ -8,6 +8,7 @@
 .ps-card-img{
    flex: 10%;
 }
+
 a#btn{
     text-decoration: none;
     color: white;
@@ -26,12 +27,22 @@ a#btn{
     width: 150px;
     height: 100px;
 }
+.rs-card-img img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
 .ps-list{
     display: flex;
     flex-direction: row;
 }
 .grid-main#ps-list{
     flex: 75%;
+}
+.grid-main#rs-list{
+    flex: 75%;
+    display: flex;
+    flex-direction: row;
 }
 .filter{
     flex: 25%;
@@ -100,7 +111,9 @@ a#btn{
 .category-list input{
     margin-right: 10px;
 }
-
+.rs-card-img {
+    width: 8%;
+}
 .sort-list ul{
     list-style: none;
     margin: 10px;
@@ -112,15 +125,50 @@ select#date-sort{
 .ps-title{
     font-weight: bold;
 }
+.rs-title{
+    font-size: 13px;
+    font-weight: bold;
+    padding: 0px 20px 0px 20px;
+    min-width: 30%;
+    max-width: 30%;
+}
+.rs-title#tit{
+    min-width: 25%;
+    max-width: 25%;   
+}
 .ps-type{
-    color: rgb(182, 182, 182);
+    color: rgb(53, 52, 52);
     font-size: 15px;
+}
+.rs-type{
+    color: rgb(53, 52, 52);
+    font-size: 12px;
+    padding: 0px 20px 0px 20px;
+    min-width: 25%;
+    max-width: 25%;
+}
+.rs-type#urg{
+    color: rgb(255, 100, 100);
+    font-size: 12px;
 }
 .ps-date{
     color: rgb(148, 148, 148);
     font-size: 13px;
 }
-
+.cards#rs{
+    flex: 1;
+}
+.ps-card-desc#rs{
+    display: flex;
+    flex-direction: row;
+}
+.ps-card-title{
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px rgb(182, 182, 182) solid;
+}
 .btn{
     width: 50%;
     margin: 10px;

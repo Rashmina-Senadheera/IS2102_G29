@@ -17,6 +17,32 @@ body {
 hr {
   border: 0.5px solid var(--mainColor);
 }
+.actionBtn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 20px 10px;
+    gap: 20px;
+}
+.actionBtn .rejected {
+    background: #fff;
+    color: #490258;
+    border: 2px solid #490258;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    padding: 5px 2rem;
+}
+.actionBtn .accepted {
+    background: #490258;
+    color: #fff;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    padding: 5px 2rem;
+}
 
 /********* For grid view *********/
 

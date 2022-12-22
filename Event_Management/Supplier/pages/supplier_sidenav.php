@@ -34,7 +34,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="rs-list.php">
                     <i class='bx bx-list-ul'></i>
                     <span class="links_name">Quotations</span>
                 </a>

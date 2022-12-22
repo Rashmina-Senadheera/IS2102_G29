@@ -33,14 +33,9 @@
                     while($row = $result->fetch_assoc()) {?>
   <div class="container-profile">
     <div class="flex-container-addps">
-      <div class="title-search">
-        <div class = 'searchSec'>
-          <div class = 'page-title'> Add New Products & Services </div>
-        </div>
-      </div>
     <div class ='grid-main' id='ps'>
       <form class='add-ps' action="passdata.php" method="POST" enctype="multipart/form-data">
-        <h4 class='ps-form-title'>Add Venue</h4>
+        <h4 class='ps-form-title'>Edit Venue</h4>
             <div class="row">
               <?php if (isset($_GET['errors'])) { ?>
      		          <p class="error"><?php echo $_GET['errors']; ?></p>
@@ -50,11 +45,11 @@
                   <p class="success"><?php echo $_GET['successs']; ?></p>
               <?php } ?>
             </div>
-
+            <input type="hidden" name="item_ID" id="item_ID" value = '<?php echo $id;?>'></td>
             <div class="row">
               <div class="input-ps">
                 <label for="" class="input-ps-label">Title</label>
-                <input type="text" placeholder="Full Name" name="title" class="input-ps-in" value = <?php echo $row["title"];?>/>
+                <input type="text" placeholder="Full Name" name="title" class="input-ps-in" value = '<?php echo $row["title"];?>'/>
               </div>
             </div>
             <div class="row">
@@ -74,7 +69,7 @@
             <div class="row">
               <div class="input-ps">
                 <label for="" class="input-ps-label">Location</label>
-                <input type="text" placeholder="Full Name" name="location" class="input-ps-in"value = <?php echo $row["venlocation"];?>/>
+                <input type="text" placeholder="Full Name" name="location" class="input-ps-in"value = '<?php echo $row["venlocation"];?>'/>
               </div>
             </div>
             <div class="row">
@@ -98,17 +93,17 @@
               <div class="input-ps" id='check' style="padding-left:15px;">
                 <div class="input-ps">
                   <label for="" class="input-ps-label"> Maximum </label>
-                  <input type="text" placeholder="Full Name" name="maxCap" class="input-ps-in" value = <?php echo $row["maxCap"];?>/>
+                  <input type="text" placeholder="Full Name" name="maxCap" class="input-ps-in" value = '<?php echo $row["maxCap"];?>'/>
                 </div>
               </div>
               <div class="input-ps" id='check'style="padding-left:15px;">
                 <div class="input-ps">
                   <label for="" class="input-ps-label"> Minimum </label>
-                  <input type="text" placeholder="Full Name" name="minCap" class="input-ps-in" value = <?php echo $row["minCap"];?>/>
+                  <input type="text" placeholder="Full Name" name="minCap" class="input-ps-in" value = '<?php echo $row["minCap"];?>'/>
                 </div>
               </div>
           </div>
-              <div class="row">
+              <!-- <div class="row">
                   <div class="card" id="upload">
                     <label for="" class="input-ps-label" id='check'>Upload Pictures </label>
                     <div class="drop_box">
@@ -123,14 +118,14 @@
                           </label>
                         </div>
                         <div class="upload__img-wrap">
-                          <!-- <img src="../images/<?php echo $row["file_name"];?>" alt=""> -->
+                          <img src="../images/<?php echo $row["file_name"];?>" alt="">
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> -->
                 <div class="row">
-                  <button class=submit name="send" value="create" >Submit</button>
+                  <button class=submit name="send" value="Edit">Edit</button>
                 </div>                    
           </div>
         </form>
