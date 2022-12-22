@@ -199,12 +199,12 @@ include('header.php');
                 <div class="sound_light">
                     <div class="flex-row-sb s_l">
                         <label class="label">Sound & Lighting</label>
-                        <!-- <div class="radio-btns">
+                        <div class="radio-btns">
                             <input type="radio" id="s&l_needed" name="s&l" value="s&l_needed">
                             <label onclick="s_l_check(0)" for="s&l_needed">Needed</label>
                             <input type="radio" id="s&l_not_needed" name="s&l" value="s&l_not_needed">
                             <label onclick="s_l_check(1)" for="s&l_not_needed">Not Needed</label>
-                        </div>  -->
+                        </div> 
                     </div>
 
                     <div class="s_l_info">
@@ -266,12 +266,12 @@ include('header.php');
                 <div class="photo_video">
                     <div class="flex-row-sb p_v">
                         <label class="label">Photography & Videography</label>
-                        <!-- <div class="radio-btns">
+                        <div class="radio-btns">
                             <input type="radio" id="p&v_needed" name="pv" value="p&v_needed">
                             <label onclick="p_v_check(0)" for="p&v_needed">Needed</label>
                             <input type="radio" id="p&v_not_needed" name="pv" value="p&v_not_needed">
                             <label onclick="p_v_check(1)" for="p&v_not_needed">Not Needed</label>
-                        </div>  -->
+                        </div> 
                     </div>
                     <div class="p_v_info">
                         <div class="photo">

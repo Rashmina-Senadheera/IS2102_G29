@@ -88,50 +88,50 @@ function food_check(Index){
     
 }
 
-//sound and lighting
+// sound and lighting
 
-// var s_l_Needed = document.querySelectorAll(".s_l .radio-btns label");
-// var s_l_Info = document.querySelector(".sound_light .s_l_info");
-// var selectedOption2 = document.getElementsByName('s&l');
+var s_l_Needed = document.querySelectorAll(".s_l .radio-btns label");
+var s_l_Info = document.querySelector(".sound_light .s_l_info");
+var selectedOption2 = document.getElementsByName('s&l');
 
 
-// function s_l_check(Index){
+function s_l_check(Index){
     
     
-//     s_l_Needed.forEach(function(node){
-//         node.classList.remove('needed');
-//     });
-//     if(Index == 0){       
+    s_l_Needed.forEach(function(node){
+        node.classList.remove('needed');
+    });
+    if(Index == 0){       
 
-//         s_l_Needed[0].classList.add('needed');
-//         s_l_Info.style.display="flex";
-//         // venueInputbox[Index].classList.add('show');
-//         v = selectedOption2[Index].value;
-//         console.log(v);
+        s_l_Needed[0].classList.add('needed');
+        s_l_Info.style.display="flex";
+        // venueInputbox[Index].classList.add('show');
+        v = selectedOption2[Index].value;
+        console.log(v);
 
-//     }
-//     else if(Index == 1){       
+    }
+    else if(Index == 1){       
 
-//         s_l_Needed[1].classList.add('needed');  
-//         s_l_Info.style.display="none";
-//         v = selectedOption2[Index].value;
-//         console.log(v);
+        s_l_Needed[1].classList.add('needed');  
+        s_l_Info.style.display="none";
+        v = selectedOption2[Index].value;
+        console.log(v);
       
-//         sound_check(1);
-//         light_check(1);
-//         s_Needed.forEach(function(node){
-//             node.classList.remove('needed');
-//         });
-//         l_Needed.forEach(function(node){
-//             node.classList.remove('needed');
-//         });
-//         clearRadioButtons(selectedOption3);
-//         clearRadioButtons(selectedOption4);
+        sound_check(1);
+        light_check(1);
+        s_Needed.forEach(function(node){
+            node.classList.remove('needed');
+        });
+        l_Needed.forEach(function(node){
+            node.classList.remove('needed');
+        });
+        clearRadioButtons(selectedOption3);
+        clearRadioButtons(selectedOption4);
 
-//     }
+    }
     
     
-// }
+}
 //sound 
 var s_Needed = document.querySelectorAll(".sound .radio-btns label");
 var s_Info = document.querySelector(".s_l_info .sound .input_box");
@@ -198,47 +198,47 @@ function light_check(Index){
 
 
 //photo and video
-// var p_v_Needed = document.querySelectorAll(".photo_video .radio-btns label");
-// var p_v_Info = document.querySelector(".photo_video .p_v_info");
-// var selectedOption5 = document.getElementsByName('pv');
+var p_v_Needed = document.querySelectorAll(".photo_video .radio-btns label");
+var p_v_Info = document.querySelector(".photo_video .p_v_info");
+var selectedOption5 = document.getElementsByName('pv');
 
-// function p_v_check(Index){
+function p_v_check(Index){
     
     
-//     p_v_Needed.forEach(function(node){
-//         node.classList.remove('needed');
-//     });
-//     if(Index == 0){       
+    p_v_Needed.forEach(function(node){
+        node.classList.remove('needed');
+    });
+    if(Index == 0){       
 
-//         p_v_Needed[0].classList.add('needed');
-//         p_v_Info.style.display="flex";
-//         // venueInputbox[Index].classList.add('show');
-//         v = selectedOption5[Index].value;
-//         console.log(v);
+        p_v_Needed[0].classList.add('needed');
+        p_v_Info.style.display="flex";
+        // venueInputbox[Index].classList.add('show');
+        v = selectedOption5[Index].value;
+        console.log(v);
 
-//     }
-//     else if(Index ==1){       
+    }
+    else if(Index ==1){       
 
-//         p_v_Needed[1].classList.add('needed');  
-//         p_v_Info.style.display="none";      
-//         v = selectedOption5[Index].value;
-//         console.log(v);
+        p_v_Needed[1].classList.add('needed');  
+        p_v_Info.style.display="none";      
+        v = selectedOption5[Index].value;
+        console.log(v);
 
-//         photo_check(1);
-//         video_check(1);
-//         p_Needed.forEach(function(node){
-//             node.classList.remove('needed');
-//         });
-//         v_Needed.forEach(function(node){
-//             node.classList.remove('needed');
-//         });
-//         clearRadioButtons(selectedOption6);
-//         clearRadioButtons(selectedOption7);
+        photo_check(1);
+        video_check(1);
+        p_Needed.forEach(function(node){
+            node.classList.remove('needed');
+        });
+        v_Needed.forEach(function(node){
+            node.classList.remove('needed');
+        });
+        clearRadioButtons(selectedOption6);
+        clearRadioButtons(selectedOption7);
 
-//     }
+    }
     
     
-// }
+}
 //photo
 var p_Needed = document.querySelectorAll(".photo .radio-btns label");
 var p_Info = document.querySelector(".photo .input_box");

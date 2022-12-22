@@ -369,7 +369,7 @@ main {
 .s_l_info,
 .p_v_info {
     width: 100%;
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
 }
