@@ -17,7 +17,7 @@
         </span>
         <span>
             <a href="sign_in.php" class="btn">Sign In</a>
-            <a href="sign_up.php" class="btn">Sign Up</a>
+            <a href="sign_up_list.php" class="btn">Sign Up</a>
         </span>
 
         </div>

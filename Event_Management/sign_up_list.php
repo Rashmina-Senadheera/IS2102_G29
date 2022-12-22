@@ -1,6 +1,6 @@
 <?php
 include('constants.php');
-include('Event_Planner/eventplanner_header.php');
+include('header-sign.php');
 include('Event_Planner/controllers/commonFunctions.php');
 
 // define variables and set to empty values
@@ -79,43 +79,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
     <!-- Show success message -->
-    <?php
-        if (isset($_SESSION['success'])) {
-            echo '<div class="success-message">' . showSessionMessage("success") . '</div>';
-    }
-    ?>
     <div class="loginbody">
-        <div class="box">
+        <div class="box" id='sign-up-s'>
             <div class="image-box">
-                <img src="images/Login-2.svg" class="sign_in_logo" />
+                <img src="images/Events.png" class="sign_in_logo" />
             </div>
             <div class="white-box">
-                <p class="heading">Sign In</p>
+                <p class="heading">Sign Up</p>
                 <!-- Show errors -->
                 <div class="signinTopError"><?php echo showSessionMessage('error') ?></div>
-                <form class="login-form" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-                    <div class="input">
-                        <input type="text" value="<?php
-                                                    if (isset($_SESSION['email'])) {
-                                                        echo $_SESSION['email'];
-                                                    }
-                                                    ?>" name="email" class="input-field" required />
-                        <label class="input-label">Email</label>
-                        <div class="signinError"><?php echo showSessionMessage('error-email') ?></div>
-                    </div>
-                    <div class="input">
-                        <input type="password" name="password" class="input-field" required />
-                        <label class="input-label">Password</label>
-                        <div class="signinError"><?php echo showSessionMessage('error-password') ?></div>
-                    </div>
-                    <div class="action">
-                        <button class="action-button">Sign In</button>
-                    </div>
-                    <div class="login-card-info">
-                        Don't have an account?
-                        <a href="sign_up_list.php">Sign Up</a>
-                    </div>
-                </form>
+                
+                <div class="select_register">
+                    <span class="register_as">
+                        Register as,
+                    </span>
+                    <span class="btn btn_register select_customer">
+                        <img src="images/customer.png">
+                        <a href="customer/register.php">Customer</a>
+                    </span>
+                    <span class="btn btn_register select_event_planner">
+                        <img src="images/event_planner.png">
+                        <a href="event_planner/sign_up_form.php">Event Planner</a>
+                    </span>
+                    <span class="btn btn_register select_supplier">
+                        <img src="images/supplier.png">
+                        <a href="supplier/pages/sign_up.php">Supplier</a>
+                    </span>
+                    <span class="sign_in_txt">
+                    Already have an account?
+                    <a href="sign_in.php">Sign In</a>
+                    </span>
+                 </div>
             </div>
         </div>
     </div>

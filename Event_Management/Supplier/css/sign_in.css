@@ -28,7 +28,6 @@ body {
     height: 75vh;
     margin-top: 5vh;
     border-radius: 30px;
-    box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 50px 2px;
 }
 .box#signup{
     border: none;

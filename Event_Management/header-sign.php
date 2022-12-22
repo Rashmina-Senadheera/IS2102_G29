@@ -6,8 +6,12 @@
     <div id="menu-bar" class="fas fa-bars"></div>
     <div class="header-2" id="header-2">
         <nav class="navbar" id="navbar">
+            <a href="contactUs.php">Home</a>
+            <a href=>Event Planner</a>
             <a href=>About Us</a>
             <a href="contactUs.php">Contact Us</a>
+            
+            
         </nav>
         <!-- login/profile button -->
     </div>
