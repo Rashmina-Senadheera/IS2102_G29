@@ -9,6 +9,7 @@ if (isset($_GET['packageId'])) {
 
     include('eventplanner_sidenav.php');
     include('eventplanner_header.php');
+    include('./controllers/commonFunctions.php');
 
     $packageId = $_GET['packageId'];
     $sql = "SELECT * FROM packages WHERE package_id = $packageId";
@@ -67,6 +68,12 @@ if ($hasPackage) {
 </head>
 
 <body>
+    <!-- Show success message -->
+    <?php
+    if (isset($_SESSION['success'])) {
+        echo '<div class="success-message">' . showSessionMessage("success") . '</div>';
+    }
+    ?>
     <div class="container-profile">
         <div class="flex-container-profile">
             <div class="about">

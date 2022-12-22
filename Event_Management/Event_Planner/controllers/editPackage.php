@@ -123,42 +123,34 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                     }
                 }
 
-                // Prepare an delete statement
-                // $sql = "DELETE FROM package_images WHERE package_id = ?";
-                // if ($stmt = $conn->prepare($sql)) {
-                //     // Bind variables to the prepared statement as parameters
-                //     $stmt->bind_param("i", $param_packageId);
+                // Loop through the images array with count
+                foreach ($images['tmp_name'] as $index => $tmp_name) {
+                    $name = mysqli_real_escape_string($conn, $images['name'][$index]);
+                    $type = mysqli_real_escape_string($conn, $images['type'][$index]);
+                    if (file_exists($tmp_name)) {
+                        $image = file_get_contents($tmp_name);
+                    } else {
+                        $image = null;
+                        continue;
+                    }
+                    $image = mysqli_real_escape_string($conn, $image);
 
-                //     // Set parameters
-                //     $param_packageId = $packageId;
+                    $sqlSelect = "SELECT image_id FROM package_images WHERE package_id = '$packageId' AND image_id = '$index'";
+                    $sqlUpdate = "UPDATE package_images SET image='$image', name='$name', type='$type' WHERE package_id = '$packageId' AND image_id = '$index'";
+                    $sqlInsert = "INSERT INTO package_images (package_id, image_id, image, name, type) VALUES ('$packageId', '$index', '$image', '$name', '$type')";
 
-                //     // Execute the prepared statement
-                //     if ($stmt->execute()) {
-                //         // Loop through the images array with count
-                //         foreach ($images['tmp_name'] as $index => $tmp_name) {
-                //             $name = mysqli_real_escape_string($conn, $images['name'][$index]);
-                //             $type = mysqli_real_escape_string($conn, $images['type'][$index]);
-                //             if (file_exists($tmp_name)) {
-                //                 $image = file_get_contents($tmp_name);
-                //             } else {
-                //                 $image = null;
-                //                 continue;
-                //             }
-                //             $image = mysqli_real_escape_string($conn, $image);
-
-                //             $sql = "INSERT INTO package_images (package_id, image_id, image, name, type) VALUES ('$packageId', '$index', '$image', '$name', '$type')";
-
-                //             mysqli_query($conn, $sql);
-                //             echo mysqli_error($conn);
-                //         }
-                //     } else {
-                //         echo "Something went wrong.";
-                //     }
-                // }
+                    if (mysqli_num_rows(mysqli_query($conn, $sqlSelect)) > 0) {
+                        $sql = $sqlUpdate;
+                    } else {
+                        $sql = $sqlInsert;
+                    }
+                    mysqli_query($conn, $sql);
+                    echo mysqli_error($conn);
+                }
 
                 // Redirect package services page
-                $_SESSION['success'] = "Package added updated";
-                header("location: ../PackagesServices.php");
+                $_SESSION['success'] = "Package successfully updated";
+                header("location: ../PackagesServices-more.php?packageId=$packageId");
             } else {
                 $_SESSION['error'] =  "Something went wrong. Please try again later.";
             }

@@ -17,9 +17,11 @@ include('./controllers/commonFunctions.php');
 
 <body>
     <!-- Show success message -->
-    <div class="success-message">
-        <?php echo showSessionMessage('success'); ?>
-    </div>
+    <?php
+    if (isset($_SESSION['success'])) {
+        echo '<div class="success-message">' . showSessionMessage("success") . '</div>';
+    }
+    ?>
     <div class="grid-container-payments">
         <div class="gridSearch">
             <div class="searchSec">
@@ -74,10 +76,12 @@ include('./controllers/commonFunctions.php');
                                     </div>
                                     <ul class="sci">
                                         <li>
-                                            <a href="./EditPackage.php?packageID=' . $packageID . '">Edit</a>
+                                            <a href="PackagesServices-edit.php?packageId=' . $packageID . '">Edit</a>
                                         </li>
                                         <li>
-                                            <a href="./DeletePackage.php?packageID=' . $packageID . '">Delete</a>
+                                            <button type="button" id="btnDelete" onclick="declineRequest()">
+                                                Delete
+                                            </button>
                                         </li>
                                     </ul>
                                 </div>';
@@ -97,7 +101,40 @@ include('./controllers/commonFunctions.php');
         </div>
     </div>
 
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-decline">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                Are you sure you want to decline this request?
+            </div>
+            <div class="modal-body">
+                <div class="actionBtn">
+                    <button type="button" class="rejected" style="margin-left: 0;">
+                        Cancel
+                    </button>
+                    <a href="SendCustomerQuotation.php">
+                        <button type="button" class="accepted" style="margin-left: 0;">
+                            Yes, Decline
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- </div> -->
+
 </body>
 <script src="../js/eventPlannerMain.js"></script>
+<script>
+    var modal = document.getElementById("myModal");
+    var btnDelete = document.getElementById("btnDelete");
+
+    btnDelete.onclick = function() {
+        modal.style.display = "block";
+    }
+</script>
 
 </html>
