@@ -87,7 +87,7 @@
                     Email Address: <br />
                     <input type="email" name="email" placeholder="Enter your email" required>
                     
-                    <br><br>
+                    <br>
                     </span>
                     
                     Password: <br>
@@ -96,8 +96,7 @@
                     <img src="images/eye.png" id="show_password_icon" class="password_icon" >
                     <img src="images/hidden.png" id="hide_password_icon"  class="password_icon">
                     </span>
-                    
-                    <br><br>
+    
                     
                     
                     <br>
