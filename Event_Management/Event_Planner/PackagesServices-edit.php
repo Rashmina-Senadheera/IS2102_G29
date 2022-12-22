@@ -189,7 +189,7 @@ if ($hasPackage) {
     </div>
 
     <script type='text/javascript'>
-        var numOfServices = 0;
+        var numOfServices = <?php echo $services_result->num_rows ?>;
         var btnAddService = document.getElementById("btnAddService");
 
         function imageSelect(input, id) {
