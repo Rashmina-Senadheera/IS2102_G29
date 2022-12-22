@@ -8,7 +8,6 @@ include('./db_conn.php');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="header_nav.css">
     <link rel="stylesheet" href="customer_quotation.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
@@ -32,8 +31,8 @@ include('./db_conn.php');
                 <span class="admin_name">
                    
                 <?php
-                if(isset($_SESSION['user'])){
-                    echo $_SESSION['user'];
+                if(isset($_SESSION['user_name'])){
+                    echo $_SESSION['user_name'];
                     
                 }
                 ?>

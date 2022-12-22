@@ -13,7 +13,7 @@
     <header class="lp_header">
         <div class="unreg_top_head">
         <span>
-        <img src="images/logo.png" class="unreg_header_logo">
+        <img src="images/logo-white.svg" class="unreg_header_logo">
         </span>
         <span>
             <a href="index.php" class="btn">Sign In</a>

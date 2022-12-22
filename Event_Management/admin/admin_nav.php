@@ -12,7 +12,7 @@
 
 <div class="sidebar">
         <div class="logo-details">
-            <img src="../images/enova.png" class="logo">
+            <img src="../images/logo-white.svg" class="logo">
             <span class="logo_name">Eventra</span>
         </div>
         <ul class="nav-links">
@@ -48,7 +48,7 @@
             </li>
         
             <li>
-                <a href="profile.php">
+                <a href="customer_info.php">
                     <i class='bx bx-user'></i>
                     <span class="links_name">Profile</span>
                 </a>

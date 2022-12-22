@@ -35,7 +35,8 @@ include('customer_header.php');
                                 <b>Event Type:</b> Birthday<br>
                                 <b>Theme:</b> Bohemian<br>
                                 <b>Date:</b> 2022-04-06<br><br>
-                        <a href="Events.php"><button type="submit" class="srcButton" >Back</button></a></center>
+                                <a href="Events.php"><button type="submit" class="srcButton"  data-inline="true">Back</button></a>
+                        <a href="Feedback.php"><button type="submit" class="srcButton"  data-inline="true">Give FeedBack</button></a></center>
                     </div>
                 </div>
             </div>

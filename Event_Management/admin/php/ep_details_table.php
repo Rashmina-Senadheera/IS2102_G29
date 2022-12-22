@@ -23,7 +23,7 @@
                             <td class="action_buttons">
                             <span class="btn btn_more">
                                 <img src="../images/more.png" class="more_icon">
-                                    <a class="btn_info" href='.SITEURL.'admin/php/customer_info.php" >More Info</a>
+                                    <a class="btn_info" href="'.SITEURL.'admin/customer_info.php" >More Info</a>
                             </span>
                             <span class="btn btn_update">
                             <img src="../images/update.png" class="update_icon">

@@ -1,53 +1,7 @@
 
     <?php
     include('constants.php');
-    $emailerr =$pwderr="";
-    $email = $password=$error="";
-    if($_SERVER["REQUEST_METHOD"]=="POST"){
-   
-    if(empty($_POST['email']))
-    {
-        $emailerr = "Email is required";
-    }
-    else{
-        $email = mysqli_real_escape_string($conn,$_POST['email']);
-    }
-    if(empty($_POST['pwd'])){
-        $pwderr = "Password is required";
-    }
-    else{
-        $password = mysqli_real_escape_string($conn,$_POST['pwd']);
-    }
-        
-
     
-    if($emailerr=="" & $pwderr==""){
-    
-        $sql = "SELECT * FROM tbl_user WHERE email='$email' AND password='$password'";
-        $res = mysqli_query($conn,$sql);
-        $count = mysqli_num_rows($res);
-        if($count == 1){
-            $rows = mysqli_fetch_assoc($res);
-            $_SESSION['user'] = $rows['username'];
-            $_SESSION['role'] = $rows['role'];
-            $role = $_SESSION['role'];
-            if($role== 'admin'){
-                header('location:'.SITEURL.'admin/dashboard.php');
-            }
-            else if($role == 'customer'){
-                header('location:'.SITEURL.'landing_page.php');
-            }
-            
-            
-            
-        }
-        else {
-            $error = "Username or Password is incorrect";
-        }
-    }
-
-    }
-
 
     $_SESSION['page_name'] = "LogIn";
     if( isset($_SESSION['user']) & $_SESSION['page_name'] == 'LogIn'){
@@ -78,9 +32,7 @@
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 
     <script>
-          
-        
-        
+             
         function show_password() {
             
             var pwd = document.getElementById('pwd');
@@ -122,33 +74,33 @@
                    <p class="heading">Sign In</p> 
                    <hr class="hr1">
                    <div class = "error margin-left-60">
-                <?php 
-                 if(isset($_SESSION['no-login-message'])){
-                    echo $_SESSION['no-login-message'];
-                    unset($_SESSION['no-login-message']);
-                 }
-                ?>
+                    <?php 
+                    if(isset($_SESSION['no-login-message'])){
+                        echo $_SESSION['no-login-message'];
+                        unset($_SESSION['no-login-message']);
+                    }
+                    ?>
                 </div>
+                <div class="error-text margin-left-60"></div>
                 <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id="login-form" class="login-form">
                     <span class="email">
                     Email Address: <br />
-                    <input type="text" name="email" placeholder="Enter your email" >
-                    <span class="error"> <?php echo $emailerr; ?></span> 
-                    <br><br>
+                    <input type="email" name="email" placeholder="Enter your email" required>
+                    
+                    <br>
                     </span>
                     
                     Password: <br>
-                    <input type="password"  name="pwd" class="pwd" id="pwd" placeholder="Enter your password">
+                    <input type="password"  name="pwd" class="pwd" id="pwd" placeholder="Enter your password" required>
                     <span class="password" onclick="show_password()">
                     <img src="images/eye.png" id="show_password_icon" class="password_icon" >
                     <img src="images/hidden.png" id="hide_password_icon"  class="password_icon">
                     </span>
-                    <span class="error"><?php echo $pwderr; ?></span>
-                    <br><br>
+    
                     
-                    <span class="error"> <?php echo $error; ?> </span>
+                    
                     <br>
-                    <input type="submit" name="login" value="Login" >
+                    <input type="submit" class="login" value="Login" >
                     <br>
                     <span class="sign_up_link">
                     Don't have an account?
@@ -159,7 +111,7 @@
             </div>
         </div>
     </div>
-
+    <script src="login.js"></script>
 </body>
 </html>
 <?php

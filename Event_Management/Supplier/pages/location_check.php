@@ -1,5 +1,5 @@
 <?php
-include('../constants.php');
+include('../../constants.php');
 if (isset($_SESSION['role'])) {
     $role = $_SESSION['role'];
 } else { ?>

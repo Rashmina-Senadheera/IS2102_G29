@@ -10,6 +10,11 @@
 .grid-main#ps{
     display: flex;
     flex-direction: column;
+    width: 50%;
+    margin: auto;
+    margin-top: 30px;
+    padding-top: 40px;
+
 }
 .ps-title{
     flex: 1;
@@ -60,7 +65,6 @@ a#btn{
 .ps-categories ul li#ps-item-add:hover{
     background-color: #731a8a;
     color: white;
-    font-size: 15px;
 }
 .ps-categories i.bx{
     font-size: 40px;
