@@ -1,4 +1,4 @@
-<?php include('../constants.php'); 
+<?php include('../constants.php');
 
 // check user already logged in
 if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && !isset($_SESSION['userStatus'])) {
@@ -44,6 +44,12 @@ if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['
                 </a>
             </li>
             <li>
+                <a href=<?php echo SITEURL . 'event_planner/Messages.php'  ?>>
+                    <i class='bx bx-chat'></i>
+                    <span class="links_name">Messages</span>
+                </a>
+            </li>
+            <li>
                 <a href=<?php echo SITEURL . 'event_planner/Suppliers.php'  ?>>
                     <i class='bx bx-package'></i>
                     <span class="links_name">Suppliers</span>
@@ -73,12 +79,6 @@ if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['
                     <span class="links_name">Packages & Services</span>
                 </a>
             </li>
-            <!-- <li>
-                <a href=<?php echo SITEURL . 'event_planner/MyEvents.php'  ?>>
-                    <i class='bx bx-calendar-event'></i>
-                    <span class="links_name">My Events</span>
-                </a>
-            </li> -->
             <li>
                 <a href=<?php echo SITEURL . 'event_planner/Calendar.php'  ?>>
                     <i class='bx bx-calendar'></i>
@@ -103,19 +103,8 @@ if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['
                     <span class="links_name">Profile</span>
                 </a>
             </li>
+            <li></li>
 
-            <!-- <li>
-                <a href="#">
-                    <i class='bx bx-heart'></i>
-                    <span class="links_name">Feedback</span>
-                </a>
-            </li> -->
-            <!-- <li>
-                <a href="#">
-                    <i class='bx bx-cog'></i>
-                    <span class="links_name">Setting</span>
-                </a>
-            </li> -->
             <li class="log_out">
                 <a href="../logout.php">
                     <i class='bx bx-log-out'></i>
