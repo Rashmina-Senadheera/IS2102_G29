@@ -93,11 +93,9 @@
                     <div class="status-list">
                         <ul>
                             <li><a href="#">
-                                <div class="status-list-icon" id="in"><i class='bx bx-play-circle'></i></div>
                                 <div class="li-heading" id="out">Urgent</div>
                             </a></li>
                             <li><a href="#">
-                                <div class="status-list-icon" id="out"><i class='bx bx-pause-circle'></i></i></div>
                                 <div class="li-heading" id="in">Not Urgent</div>
                             </a></li>
                         </ul>

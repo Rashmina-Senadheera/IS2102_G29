@@ -32,7 +32,7 @@ body::-webkit-scrollbar{
 .box {
     
     width: 95%;
-    height: 600px;
+    height: 530px;
     border-radius: 30px;
     background: linear-gradient(135deg, rgba(247,97,161,1),rgba(140,27,171,1));
     box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 50px 2px;
@@ -43,7 +43,7 @@ body::-webkit-scrollbar{
 }
 
 .off-white-box {
-    height: 600px;
+    height: 530px;
     border-radius: 30px;
     background: rgba(255, 255, 255, 0.4);
 
@@ -52,7 +52,7 @@ body::-webkit-scrollbar{
     position: absolute;
     right: 30px;
     width: 40%;
-    height: 600px;
+    height: 530px;
     border-radius: 0px 30px 30px 0px;
     background: rgba(255, 255, 255, 1);
 
@@ -73,7 +73,7 @@ body::-webkit-scrollbar{
 }
 .heading {
     font-family: 'Poppins';
-    font-size: 60px;
+    font-size: 40px;
     font-weight: 900;
     margin-left: 60px;
     margin-top: 70px;
