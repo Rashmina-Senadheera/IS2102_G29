@@ -114,17 +114,17 @@ if ($hasPackage) {
                             <?php
                             for ($i = 0; $i < 6; $i++) {
                                 if ($image_row = $image_result->fetch_assoc()) {
-                                    if ($image_row['image_id'] == $i) {
-                                        echo '<input type="file" name="images[]" id="img' . $i . '" class="inputfile" accept="image/*" onchange="imageSelect(this, ' . $i . ')" />
-                                        <label for="img' . $i . '" id="labelImg' . $i . '" style="display: none;">+</label>
-                                        <img for="img' . $i . '" class="imgPreview" style="display: block;" id="prev' . $i . '" src="data:' . $image_row['type'] . ';base64,' . base64_encode($image_row['image']) . '" onclick="clickImage(' . $i . ')"></img>
-                                        <button type="button" id="removeImg' . $i . '" class="img-delete-btn">X</button>';
-                                    } else {
+                                    while ($image_row['image_id'] != $i) {
                                         echo '<input type="file" name="images[]" id="img' . $i . '" class="inputfile" accept="image/*" onchange="imageSelect(this, ' . $i . ')" />
                                         <label for="img' . $i . '" id="labelImg' . $i . '">+</label>
                                         <img for="img' . $i . '" class="imgPreview" id="prev' . $i . '" src="" onclick="clickImage(' . $i . ')"></img>
                                         <button type="button" id="removeImg" class="img-delete-btn">X</button>';
+                                        $i++;
                                     }
+                                    echo '<input type="file" name="images[]" id="img' . $i . '" class="inputfile" accept="image/*" onchange="imageSelect(this, ' . $i . ')" />
+                                        <label for="img' . $i . '" id="labelImg' . $i . '" style="display: none;">+</label>
+                                        <img for="img' . $i . '" class="imgPreview" style="display: block;" id="prev' . $i . '" src="data:' . $image_row['type'] . ';base64,' . base64_encode($image_row['image']) . '" onclick="clickImage(' . $i . ')"></img>
+                                        <button type="button" id="removeImg' . $i . '" class="img-delete-btn">X</button>';
                                 } else {
                                     echo '<input type="file" name="images[]" id="img' . $i . '" class="inputfile" accept="image/*" onchange="imageSelect(this, ' . $i . ')" />
                                     <label for="img' . $i . '" id="labelImg' . $i . '">+</label>
@@ -132,47 +132,8 @@ if ($hasPackage) {
                                     <button type="button" id="removeImg" class="img-delete-btn">X</button>';
                                 }
                             }
-                            // while ($image_result && $image_row = $image_result->fetch_assoc()) {
-                            //     echo '<div class="image-container">
-                            //                 <img src="data:image/jpeg;base64,' . base64_encode($image_row['image']) . '" alt="Package Image" class="image-preview">
-                            //                 <div class="image-remove">
-                            //                     <a href="controllers/removePackageImage.php?packageId=' . $packageId . '&imageId=' . $image_row['image_id'] . '">
-                            //                         <img src="../images/remove.png" alt="Remove Image" class="image-remove-icon">
-                            //                     </a>
-                            //                 </div>
-                            //             </div>';
-                            // }
+
                             ?>
-
-                            <!-- <input type="file" name="images[]" id="img0" class="inputfile" accept="image/*" onchange="imageSelect(this, 0)" />
-                            <label for="img0" id="labelImg0">+</label>
-                            <img for="img0" class="imgPreview" id="prev0" src="" onclick="clickImage(0)"></img>
-                            <button type="button" id="removeImg0" class="img-delete-btn">X</button>
-
-                            <input type="file" name="images[]" id="img1" class="inputfile" accept="image/*" onchange="imageSelect(this, 1)" />
-                            <label for="img1" id="labelImg1">+</label>
-                            <img class="imgPreview" id="prev1" src="" onclick="clickImage(1)"></img>
-                            <button type="button" id="removeImg1" class="img-delete-btn">X</button>
-
-                            <input type="file" name="images[]" id="img2" class="inputfile" accept="image/*" onchange="imageSelect(this, 2)" />
-                            <label for="img2" id="labelImg2">+</label>
-                            <img class="imgPreview" id="prev2" src="" onclick="clickImage(2)"></img>
-                            <button type="button" id="removeImg2" class="img-delete-btn">X</button>
-
-                            <input type="file" name="images[]" id="img3" class="inputfile" accept="image/*" onchange="imageSelect(this, 3)" />
-                            <label for="img3" id="labelImg3">+</label>
-                            <img class="imgPreview" id="prev3" src="" onclick="clickImage(3)"></img>
-                            <button type="button" id="removeImg3" class="img-delete-btn">X</button>
-
-                            <input type="file" name="images[]" id="img4" class="inputfile" accept="image/*" onchange="imageSelect(this, 4)" />
-                            <label for="img4" id="labelImg4">+</label>
-                            <img class="imgPreview" id="prev4" src="" onclick="clickImage(4)"></img>
-                            <button type="button" id="removeImg4" class="img-delete-btn">X</button>
-
-                            <input type="file" name="images[]" id="img5" class="inputfile" accept="image/*" onchange="imageSelect(this, 5)" />
-                            <label for="img5" id="labelImg5">+</label>
-                            <img class="imgPreview" id="prev5" src="" onclick="clickImage(5)"></img>
-                            <button type="button" id="removeImg5" class="img-delete-btn">X</button> -->
 
                         </div>
 
@@ -221,14 +182,14 @@ if ($hasPackage) {
 
 
                 <div class="action">
-                    <input type="submit" value="Create" class="action-button" />
+                    <input type="submit" value="Update" class="action-button" />
                 </div>
             </form>
         </div>
     </div>
 
     <script type='text/javascript'>
-        var numOfServices = 0;
+        var numOfServices = <?php echo $services_result->num_rows ?>;
         var btnAddService = document.getElementById("btnAddService");
 
         function imageSelect(input, id) {

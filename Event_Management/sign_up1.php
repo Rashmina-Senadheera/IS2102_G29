@@ -79,9 +79,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
     <!-- Show success message -->
-    <div class="success-message">
-        <?php echo showSessionMessage('success'); ?>
-    </div>
+    <?php
+    if (isset($_SESSION['success'])) {
+        echo '<div class="success-message">' . $_SESSION['success'] . '</div>';
+        unset($_SESSION['success']);
+    }
+    ?>
     <div class="loginbody">
         <div class="box">
             <div class="image-box">

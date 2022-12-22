@@ -217,6 +217,7 @@ body {
 .success-message {
     font-size: 14px;
     font-weight: 500;
+    padding: 15px;
     color: #fff;
     background-color: green;
     text-align: center;
