@@ -28,19 +28,19 @@
                 <div class="fields">
                     <div class="input-group">
                         <label for="name">Name</label>
-                        <input type="text" value="Rashmina Senadheera" name="name">
+                        <input type="text" value="Rashmina Senadheera" name="name" disabled>
                     </div>
                     <div class="input-group">
                         <label for="email">Email</label>
-                        <input type="text" value="rashminalasith@gmail.com" name="email">
+                        <input type="text" value="rashminalasith@gmail.com" name="email" disabled>
                     </div>
                     <div class="input-group">
                         <label for="number1">Contact Number 1</label>
-                        <input type="text" value="0774550849" name="number1">
+                        <input type="text" value="0774550849" name="number1" disabled>
                     </div>
                     <div class="input-group">
                         <label for="number2">Contact Number 2</label>
-                        <input type="text" value="0112257155" name="number2">
+                        <input type="text" value="0112257155" name="number2" disabled>
                     </div>
                 </div>
             </div>
