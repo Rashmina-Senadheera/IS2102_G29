@@ -3,7 +3,7 @@ session_start();
 include('customer_sidenav.php');
 include('customer_header.php');
 include('db_conn.php');
-$sql = "SELECT * FROM events WHERE id=?";
+$sql = "SELECT * FROM events_c WHERE id=?";
 // $sql = "SELECT * FROM users WHERE username = ?";
     	$stmt = $conn->prepare($sql);
     	$stmt->execute([4]);
