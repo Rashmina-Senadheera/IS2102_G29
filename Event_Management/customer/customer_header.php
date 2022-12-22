@@ -16,7 +16,7 @@ include "./db_conn.php";
         </nav>
         <!-- login/profile button -->
         <div class="icons">
-            <a id="profile-name" href="#" class="btna"><?=$_SESSION['fname']?></a>
+            <a id="profile-name" href="#" class="btna"><?=$_SESSION['user_name']?></a>
         </div>
     </div>
 </header>

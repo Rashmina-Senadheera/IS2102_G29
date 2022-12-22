@@ -31,8 +31,8 @@ include('./db_conn.php');
                 <span class="admin_name">
                    
                 <?php
-                if(isset($_SESSION['user'])){
-                    echo $_SESSION['user'];
+                if(isset($_SESSION['user_name'])){
+                    echo $_SESSION['user_name'];
                     
                 }
                 ?>

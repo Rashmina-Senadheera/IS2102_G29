@@ -17,7 +17,7 @@ if (isset($_SESSION['role'])) {
         if (role === 'admin') {
             location.replace('admin/dashboard.php');
         } else if (role === 'customer') {
-            location.replace('landing_page.php');
+            location.replace('customer/customer_quotation.php');
         } else if (role === 'event_planner') {
             location.replace('Event_Planner/Requests.php');
         } else if (role === 'supplier') {

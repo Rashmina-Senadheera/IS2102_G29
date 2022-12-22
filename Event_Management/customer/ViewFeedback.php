@@ -113,7 +113,7 @@ table tr td.menu:focus ul {
                     $sName = "localhost";
                     $uName = "root";
                     $pass = "";
-                    $db_name = "auth_db";
+                    $db_name = "eventra";
 
                     // Create connection
                     $conn = mysqli_connect($sName, $uName, $pass, $db_name);
