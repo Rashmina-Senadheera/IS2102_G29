@@ -873,4 +873,18 @@ html {
     font-weight: 500;
     padding-bottom: 5px;
 }
-
+.about{
+    margin: auto;
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+}
+.about-image img{
+    width: 20% ;
+    margin: 30px;
+}
+.about-descrip{
+    width: 90%;
+    padding: 20px;
+    text-align: justify;
+}

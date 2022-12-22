@@ -1,6 +1,6 @@
 <?php
 include('constants.php');
-include('Event_Planner/eventplanner_header.php');
+include('header-sign.php');
 include('Event_Planner/controllers/commonFunctions.php');
 
 // define variables and set to empty values

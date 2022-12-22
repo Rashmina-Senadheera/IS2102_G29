@@ -31,10 +31,10 @@
             </span>
             <span>
             <ul class="menu_items">
-                <li class="menu_link"><a href="landing_page.php">Home</a></li>
+                <li class="menu_link"><a href="index.php">Home</a></li>
                 <li class="menu_link"><a href="event_planners.php">Event Planners</a></li>
-                <li class="menu_link"><a>About us</a></li>
-                <li class="menu_link"><a>Contact Us</a></li>
+                <li class="menu_link"><a href="aboutUs.php">About us</a></li>
+                <li class="menu_link"><a href="contactUs.php">Contact Us</a></li>
             </ul>
             </span>
            
