@@ -1,3 +1,7 @@
+*{
+    font-family: 'Poppins' ;
+}
+
 .sign_body {
     background-color: #6C429C;
     overflow:hidden;
@@ -9,7 +13,11 @@
 body{
     background-color: #FFFFFF;
     margin: 0;
+    
 
+}
+body::-webkit-scrollbar{
+    width: 0px;
 }
 .sign_in_header {
     display: flex;
@@ -17,15 +25,16 @@ body{
     width: 100%;
     height: 60px;
     position: absolute;
-    background-image: linear-gradient(45deg, rgba(247,97,161,1),rgba(140,27,171,1));
+    background-image: linear-gradient(45deg, #460057, #8c1bab, #460057);
     box-shadow: 0px 1px 2px grey;
     background-size: cover;
 }
 .box {
-    background-image: linear-gradient(135deg, rgba(247,97,161,1),rgba(140,27,171,1));
+    
     width: 95%;
-    height: 600px;
+    height: 530px;
     border-radius: 30px;
+    background: linear-gradient(135deg, rgba(247,97,161,1),rgba(140,27,171,1));
     box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 50px 2px;
 
 }
@@ -34,7 +43,7 @@ body{
 }
 
 .off-white-box {
-    height: 600px;
+    height: 530px;
     border-radius: 30px;
     background: rgba(255, 255, 255, 0.4);
 
@@ -43,7 +52,7 @@ body{
     position: absolute;
     right: 30px;
     width: 40%;
-    height: 600px;
+    height: 530px;
     border-radius: 0px 30px 30px 0px;
     background: rgba(255, 255, 255, 1);
 
@@ -64,7 +73,7 @@ body{
 }
 .heading {
     font-family: 'Poppins';
-    font-size: 60px;
+    font-size: 40px;
     font-weight: 900;
     margin-left: 60px;
     margin-top: 70px;
@@ -113,10 +122,15 @@ input {
 }
 .error {
     color: red;
-    font-family: 'Poppins' ;
     font-size: 15px;
     font-weight: bold;
     
+}
+.error-text{
+    color: red;
+    font-size: 15px;
+    font-weight: bold;
+    display: none;
 }
 .margin-left-60 {
     margin-left: 60px;
@@ -171,14 +185,16 @@ input {
     justify-content: center;
     align-items: center;
     gap: 25px;
+    /* border: 1px solid black; */
+
 
 }
 .register_as {
     font-size: 20px;
     font-weight: 600;
     justify-content: start;
-    width: 100%;
-    margin-left: 110px;
+    width: 80%;
+    /* border: 1px solid black; */
 
 }
 .select_register img {
@@ -223,7 +239,7 @@ input {
     flex-direction: column;
     font-family: 'Poppins';
     height: 50%;
-    background: linear-gradient(45deg, rgba(247,97,161,1) 0%, rgba(173,17,129,1) 48%, rgba(178,41,215,1) 100%);
+    background: linear-gradient(45deg, #460057, #8c1bab, #460057);
     background-size: cover;
     box-shadow: 0px 1px 5px black;
 
@@ -582,9 +598,17 @@ input {
     
 
 }
-.event_planners .evt_planner_cards .card h4 ,p {
+
+.event_planners .evt_planner_cards .card h4,p {
     margin-top: 1px;
     margin-bottom: 2px;
+    
+}
+.event_planners .evt_planner_cards .card .rating{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .btn_view {
@@ -598,14 +622,10 @@ input {
     text-decoration: none;
     font-size: 15px;
 }
-.name_rating {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
+
 .name_rating a {
     color: #6C429C;
-    margin-left: 50px;
+    
 }
 .event_planner_main {
     display: flex;
@@ -640,12 +660,30 @@ input {
 .flex-column{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+
 }
 .flex-row {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
+    
+}
+.flex-row-center{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.flex-row-gap {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.flex-column-center{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 }
 .event_planner_info .details   {
     margin-top: 1%;
@@ -706,7 +744,7 @@ html {
 .btn_contact {
     color: #FFFFFF;
     width: 65px;
-    margin-left: 140px;
+
 }
 .a-txt-deco-none{
     text-decoration: none;
@@ -734,3 +772,104 @@ html {
     
 
 }
+.contact-main {
+    /* border: 1px solid black; */
+    padding-top: 15px;
+}
+.contact-main h2{
+    /* border-bottom: 2px solid black; */
+    width: 40%;
+    text-align: center;
+    color: #460057;
+    /* border: 1px solid black; */
+}
+.contact-form-div{
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid black; */
+    width: 40%;
+    margin-top: 15px;
+    margin-bottom: 35px;
+    padding: 15px;
+    padding-bottom: 5px;
+
+    border: 1px solid rgba(0,0,0, 0.2);
+    border-radius: 10px;
+    box-shadow: 0px 0.5px 3px grey;
+
+    
+    
+    
+}
+
+.contact-form {
+    border: 1px solid blacks;
+    color: #460057;
+
+}
+/* .form-in {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    /* border: 1px solid black; 
+
+} */
+.row-start{
+    display: flex;
+    flex-direction: row;
+    /* border: 1px solid black; */
+    width: 100%;
+
+}
+
+.single-row {
+    width: 100%;
+    /* border: 1px solid black; */
+}
+.contact-form .input-group input{
+    /* border: 1px solid #460057; */
+    border: 1px solid rgb(102, 102, 102);
+    font-size: 14px;
+    width: 95%;
+    height: 20px;
+    padding: 5px;
+    border-radius: 8px;
+    
+    
+}
+.contact-form .input-group textarea{
+    border: 1px solid #460057;
+    padding: 5px;
+    border-radius: 8px;
+    resize: none;
+    /* border: 1px solid black; */
+
+}
+.single-row .input-group input,
+.single-row .input-group textarea {
+    width: 96.5%;
+}
+.input-group{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    /* border: 1px solid black; */
+    /* padding: 5px; */
+    padding: 0;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+
+}
+.single-row .input-group {
+    width: 100%;
+    /* border: 1px solid black; */
+}
+.contact-form .input-group label {
+    font-size: 15px;
+    font-weight: 500;
+    padding-bottom: 5px;
+}
+

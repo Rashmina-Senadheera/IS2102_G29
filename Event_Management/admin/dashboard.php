@@ -76,7 +76,7 @@
             
             </div>
         </div>
-        <div class="charts_area">
+        <!-- <div class="charts_area">
             <div class="pie">
             <canvas id="pieChart"></canvas>
             </div>
@@ -91,10 +91,10 @@
             new Chart(ctx, {
                 type: 'pie',
                 data: {
-                labels: <?php echo json_encode($roles)?>,
+                labels: <?php //echo json_encode($roles)?>,
                 datasets: [{
                     label: ' ',
-                    data: <?php echo json_encode($amount)?>,
+                    data: <?php //echo json_encode($amount)?>,
                     borderWidth: 1,
                     
                 }]
@@ -111,10 +111,10 @@
             new Chart(bar, {
                 type: 'bar',
                 data: {
-                labels: <?php echo json_encode($roles)?>,
+                labels: <?php //echo json_encode($roles)?>,
                 datasets: [{
                     label: ' ',
-                    data: <?php echo json_encode($amount)?>,
+                    data: <?php //echo json_encode($amount)?>,
                     borderWidth: 1,
                     
                 }]
@@ -128,7 +128,7 @@
                 }
             });
             </script>
-            
+             -->
     </main>
 
 </body>

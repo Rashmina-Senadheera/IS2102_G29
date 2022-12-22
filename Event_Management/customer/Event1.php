@@ -28,18 +28,18 @@ include('customer_header.php');
         <div class="other">
                 <div class="info">
                     <div class="personal-info">
-                        <img src="../images/event.jpg" style="width:550px; height:300px;">
-                        We don’t want you to wait for information, to compromise your dream, to apologise to family and friends for the quality of ceremony music or the food not being delicious.<br><br>
+                        <center><img src="../images/event.jpg" style="width:550px; height:300px;"></center><br>
+                        <center>We don’t want you to wait for information, to compromise your dream, to apologise to family and friends for the quality of ceremony music or the food not being delicious.</center><br><br>
                         <center><b>Event Planner:</b> Sachintha<br>
                                 <b>Event Type:</b> Wedding<br>
                                 <b>Theme:</b> Garden<br>
                                 <b>Date:</b> 2022-01-01<br><br>
-                        <a href="Events.php"><button type="submit" class="srcButton" >Back</button></a></center>
+                        <a href="Events.php"><button type="submit" class="srcButton"  data-inline="true">Back</button></a>
+                        <a href="Feedback.php"><button type="submit" class="srcButton"  data-inline="true">Give FeedBack</button></a></center>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
-
 </html>
