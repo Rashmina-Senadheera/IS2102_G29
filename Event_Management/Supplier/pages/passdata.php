@@ -1,4 +1,5 @@
 <?php
+
     include('../../constants.php');
     if(isset($_SESSION['user_name'])){
 
@@ -8,6 +9,8 @@
         $data = htmlspecialchars($data);
         return $data;
     }
+    $filename = "";
+    $item_ID =validate($_POST['item_ID']); 
     $title = validate($_POST['title']);
     $descript = validate($_POST['descript']);
     $venueIn = validate($_POST['venueIn']);
@@ -16,9 +19,8 @@
     $maxCap = validate($_POST['maxCap']);
     $minCap = validate($_POST['minCap']);
     $sup_ID = $_SESSION['user_id'];
-    $filename = $_FILES["choosefile"]["name"];
-    $tempname = $_FILES["choosefile"]["tmp_name"];  
-    $folder = '../images/'.$filename;    
+
+
     // $targetDir = '../images/'; 
     // $allowTypes = array('jpg','png','jpeg','gif'); 
      
@@ -27,25 +29,28 @@
 
    
     if($_POST['send'] == 'create'){
+    $filename = $_FILES["choosefile"]["name"];
+    $tempname = $_FILES["choosefile"]["tmp_name"];  
+    $folder = '../images/'.$filename; 
         $sql = "INSERT INTO  supplier_venue( supplier_ID,title,descript,venloc,venlocation,ventype,maxCap,minCap) 
         VALUES('$sup_ID','$title','$descript','$venueIn','$location','$type','$maxCap','$minCap')";
         $result = mysqli_query($conn,$sql);
         
         if($result){
-                    // Upload file to server
-                    if(move_uploaded_file($tempname, $folder)){
-                        // Insert image file name into database
-                        mysqli_query($conn, "SELECT @item_id:=MAX(item_ID) FROM supplier_venue;");
-                        $sql = "INSERT INTO images (file_name,item_ID) VALUES ('$filename',@item_id)";
-                        $insert = mysqli_query($conn, $sql);  
-                        if($insert){
-                            $statusMsg = "The file ".$fileName. " has been uploaded successfully.";
-                        }else{
-                            $statusMsg = "File upload failed, please try again.";
-                        } 
-                    }else{
-                        $statusMsg = "Sorry, there was an error uploading your file.";
-                    }
+            // Upload file to server
+            if(move_uploaded_file($tempname, $folder)){
+            // Insert image file name into database
+                mysqli_query($conn, "SELECT @item_id:=MAX(item_ID) FROM supplier_venue;");
+                $sql = "INSERT INTO images (file_name,item_ID) VALUES ('$filename',@item_id)";
+                $insert = mysqli_query($conn, $sql);  
+                if($insert){
+                    $statusMsg = "The file ".$fileName. " has been uploaded successfully.";
+                }else{
+                    $statusMsg = "File upload failed, please try again.";
+                } 
+            }else{
+                $statusMsg = "Sorry, there was an error uploading your file.";
+            }
             // Display status message
             echo $statusMsg;
     //         if(!empty($fileNames)){ 
@@ -91,7 +96,19 @@
     // }else{ 
     //     $statusMsg = 'Please select a file to upload.'; 
     // 
-        } 
+            header("Location: form-venue.php?successs= successfull");
+            exit();
+        }else {
+            header("Location:  form-venue.php?errors=Try again");
+            exit();
+        }
+    }
+
+    if($_POST['send'] == 'Edit'){
+
+        $sql = "UPDATE supplier_venue SET title='$title',descript='$descript', venloc='$venueIn',venlocation='$location',ventype='$type',maxCap='$maxCap',minCap='$minCap' WHERE item_ID = '$item_ID'";
+        $result = mysqli_query($conn,$sql);
+        if($result){
             header("Location: form-venue.php?successs= successfull");
             exit();
         }else {
@@ -104,4 +121,5 @@
     session_destroy();
     exit();
  }
+}
 ?>

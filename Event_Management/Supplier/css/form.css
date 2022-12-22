@@ -19,20 +19,36 @@
     margin-top: 0px;
     padding: 1vw;
     box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
+    width: 50%;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 0.5rem;
+    padding: 20px 50px 50px;
 }
 .add-ps{
   margin: auto;
-  width: 70%;
 }
 .ps-form-title{
   margin: 10px;
   margin-left: 0px;
   font-size: 20px;
+  text-align: center;
+}
+.input-ps-label span {
+    color: #f00;
+}
+.form-description {
+    margin: 20px;
+    margin-top: 8px;
+    font-size: 12px;
+    color: #8597a3;
+    text-align: center;
 }
 .input-ps-label{
   margin: 20px;
   margin-left:0px;
   color: black;
+  font-weight: 500;
 }
 .input-ps-label-opt{
   margin: 20px;
@@ -50,18 +66,24 @@
 
 }
 button.submit{
-    width: 100%;
+    width: 40%;
     padding: 10px;
+    margin-top: 20px;
     color: white;
-    background-color: #1f0027;
-    border: 1px solid #1f0027;
+    background-color: #3a0247;
+    border: 1px solid #3a0247;
     border-radius: 5px;
     cursor: pointer;
 }
+button.submit:hover{
+    background-color: #000000;
+    border: 1px solid #000000;
+    transition: 0.5s;
+}
 textarea.input-ps-in{
   height: 100px;
-  color: rgb(196, 194, 194);
   margin-bottom: 0px;
+  
 }
 .title-search{
     flex: 90%;
@@ -160,8 +182,11 @@ label.input-ps-label-opt{
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  border: 1px dotted #a3a3a3;
+  border: 1px solid rgb(230, 230, 230);
   border-radius: 5px;
+}
+.action{
+  text-align: center;
 }
 
 .drop_box h4 {
