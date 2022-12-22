@@ -2,6 +2,15 @@
 session_start();
 include('customer_sidenav.php');
 include('customer_header.php');
+include('db_conn.php');
+$sql = "SELECT * FROM events_c WHERE id=?";
+// $sql = "SELECT * FROM users WHERE username = ?";
+    	$stmt = $conn->prepare($sql);
+    	$stmt->execute([1]);
+        if($stmt->rowCount() == 1){
+            $row = $stmt->fetch();
+        }
+?>
 ?>
 
 <!DOCTYPE html>
@@ -30,12 +39,12 @@ include('customer_header.php');
                     <div class="personal-info">
                         <center><img src="../images/event.jpg" style="width:550px; height:300px;"></center><br>
                         <center>We don’t want you to wait for information, to compromise your dream, to apologise to family and friends for the quality of ceremony music or the food not being delicious.</center><br><br>
-                        <center><b>Event Planner:</b> Sachintha<br>
+                        <center><b>Event Planner:</b> <?php echo $row['name']; ?><br>
                                 <b>Event Type:</b> Wedding<br>
                                 <b>Theme:</b> Garden<br>
                                 <b>Date:</b> 2022-01-01<br><br>
                         <a href="Events.php"><button type="submit" class="srcButton"  data-inline="true">Back</button></a>
-                        <a href="Feedback.php"><button type="submit" class="srcButton"  data-inline="true">Give FeedBack</button></a></center>
+                        <a href="Feedback.php?name= <?php echo $row['name'] ?>"><button type="submit" class="srcButton"  data-inline="true">Give FeedBack</button></a></center>
                     </div>
                 </div>
             </div>

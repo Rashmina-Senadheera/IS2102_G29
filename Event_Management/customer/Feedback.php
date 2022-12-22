@@ -39,7 +39,10 @@ include('customer_header.php');
                             <div class="alert alert-danger" role="alert">
                                 <?php echo $_GET['error']; ?>
                             </div>
-                        <?php } ?>
+                         <?php } 
+                            date_default_timezone_set("Asia/Colombo");
+                            $date = date("d/m/Y");                       
+                        ?>
 
                         <?php if (isset($_GET['success'])) { ?>
                             <div class="alert alert-success" role="alert">
