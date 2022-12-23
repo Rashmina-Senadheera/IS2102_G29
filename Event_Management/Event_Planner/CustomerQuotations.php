@@ -26,7 +26,7 @@ include('eventplanner_header.php');
             </div>
         </div>
         <div class="gridMain">
-            <table id="tableToSort">
+            <table id="tableToSort" class="ep-table">
                 <thead>
                     <tr>
                         <th onclick="sortTable(0)">Quotation ID</th>
@@ -40,15 +40,15 @@ include('eventplanner_header.php');
                     </tr>
                 </thead>
                 <tr>
-                    <td>Q001</td>
-                    <td>Shamin</td>
-                    <td>Wedding</td>
-                    <td>2021-09-01</td>
-                    <td>Full package</td>
-                    <!-- <td>This is the description about quotaion 01.</td> -->
-                    <td>Rs. 10000.00</td>
-                    <td>Approved</td>
-                    <td>&#10247</td>
+                    <td onclick="window.location='ViewCustomerQuotation.php';">Q001</td>
+                    <td onclick="window.location='ViewCustomerQuotation.php';">Shamin</td>
+                    <td onclick="window.location='ViewCustomerQuotation.php';">Wedding</td>
+                    <td onclick="window.location='ViewCustomerQuotation.php';">2021-09-01</td>
+                    <td onclick="window.location='ViewCustomerQuotation.php';">Full package</td>
+                    <!-- <td onclick="window.location='ViewCustomerQuotation.php';">This is the description about quotaion 01.</td> -->
+                    <td onclick="window.location='ViewCustomerQuotation.php';">Rs. 10000.00</td>
+                    <td onclick="window.location='ViewCustomerQuotation.php';">Approved</td>
+                    <!-- <td>&#10247</td> -->
                 </tr>
                 <tr>
                     <td>Q002</td>
@@ -59,7 +59,7 @@ include('eventplanner_header.php');
                     <!-- <td>This is the description about quotaion 02.</td> -->
                     <td>Rs. 20000.00</td>
                     <td>Approved</td>
-                    <td>&#10247</td>
+                    <!-- <td>&#10247</td> -->
                 </tr>
                 <tr>
                     <td>Q003</td>
@@ -70,7 +70,7 @@ include('eventplanner_header.php');
                     <!-- <td>This is the description about quotaion 03.</td> -->
                     <td>Rs. 30000.00</td>
                     <td>Pending</td>
-                    <td>&#10247</td>
+                    <!-- <td>&#10247</td> -->
                 </tr>
 
             </table>

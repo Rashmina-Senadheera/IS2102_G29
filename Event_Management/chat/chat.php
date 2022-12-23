@@ -24,6 +24,52 @@
 <body>
     <main>
     <div class="wrapper">
+        <section class="users">
+            <div class="search">
+                <span class="text">Select an user to start chat</span>
+                <input type="text" placeholder="Enter name to search">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            <div class="users-list">
+                    <!-- <a href="chat.php?user_id='.$row['unique_id'].'"> -->
+                    <div class="users-area">
+                    <div class="content">
+                        <img src="../images/customer.png" alt="">
+                        <div class="details">
+                            <span>Shamin Fernando</span>
+                            <p>Hello</p>
+                        </div>
+                    </div>
+                    <div class="status-dot"><i class="fas fa-circle"></i></div>
+                    
+                    <!-- </a> -->
+                    </div>
+                    <div class="users-area">
+                    <div class="content">
+                        <img src="../images/supplier.png" alt="">
+                        <div class="details">
+                            <span>Sachintha Gunaratne</span>
+                            <p>Hi</p>
+                        </div>
+                    </div>
+                    <div class="status-dot"><i class="fas fa-circle"></i></div>
+                    
+                    <!-- </a> -->
+                    </div>
+                    <div class="users-area">
+                    <div class="content">
+                        <img src="../images/d_supplier.png" alt="">
+                        <div class="details">
+                            <span>Rashmina Senadheera</span>
+                            <p>Hi</p>
+                        </div>
+                    </div>
+                    <div class="status-dot"><i class="fas fa-circle"></i></div>
+                    
+                    <!-- </a> -->
+                    </div>
+            </div>
+        </section>
         <section class="chat-area">
             <header>
             <?php 
