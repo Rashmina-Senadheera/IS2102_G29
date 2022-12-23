@@ -444,3 +444,7 @@ tr:nth-child(even) {
     width: 300px;
     border-radius: 10px;
 }
+.reset_pwd {
+margin-top: 30%;
+    width: 50%;
+}
