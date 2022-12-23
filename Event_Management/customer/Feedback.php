@@ -39,7 +39,10 @@ include('customer_header.php');
                             <div class="alert alert-danger" role="alert">
                                 <?php echo $_GET['error']; ?>
                             </div>
-                        <?php } ?>
+                        <?php } 
+                            date_default_timezone_set("Asia/Colombo");
+                            $date = date("d/m/Y");                       
+                        ?>
 
                         <?php if (isset($_GET['success'])) { ?>
                             <div class="alert alert-success" role="alert">
@@ -50,11 +53,11 @@ include('customer_header.php');
                         <div >
                             </div>
                             <center>Date:&nbsp;&nbsp;<center>
-                            <div ><center><input type="date" class="form-control" placeholder=""  name="date"  min="2022-12-23" max="2025-12-31" style="width:300px;" value="<?php echo (isset($_GET['date'])) ? $_GET['date'] : "" ?>" required></div>
+                            <div ><center><input type="text" class="form-control" placeholder=""  name="date"  min="2022-12-23" max="2025-12-31" style="width:300px;" value="<?php echo $date; ?> " readonly></div>
                         </div><br>
                         <div>
                         <center>Event Planner's Name:&nbsp;&nbsp;<center>
-                            <div ><center><input type="name" class="form-control" placeholder="Event Planner's Name" name="name" style="width:300px;" min="5" max="25" value="<?php echo (isset($_GET['name'])) ? $_GET['name'] : "" ?>" required></div>
+                            <div ><center><input type="name" class="form-control" placeholder="Event Planner's Name" name="name" style="width:300px;" min="5" max="25" value="<?php echo (isset($_GET['name'])) ? $_GET['name'] : "" ?>" readonly ></div>
                         </div>
                     </div>
                 <div >
