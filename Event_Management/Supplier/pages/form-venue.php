@@ -40,7 +40,8 @@
      	        <?php } ?>
 
      	        <?php if (isset($_GET['successs'])) { ?>
-                  <p class="success"><?php echo $_GET['successs']; ?></p>
+                  
+                  <p class="success"><i class="fa-solid fa-check"></i><?php echo $_GET['successs']; ?></p>
               <?php } ?>
             </div>
 

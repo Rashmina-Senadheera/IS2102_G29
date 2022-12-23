@@ -35,21 +35,21 @@
                             <img src="images/world-wide-web.png" alt="">
                         </div>
                         <div class="sm-name">Website</div>
-                        <div class="sm-link">patrick.star</div>
+                        <div class="sm-link">udarisevents.com</div>
                     </div>
                     <div class="sm-all">
                         <div class="sm-logo">
                             <img src="images/instagram.png" alt="">
                         </div>
                         <div class="sm-name">Instagram</div>
-                        <div class="sm-link">patrick.star</div>
+                        <div class="sm-link">udari_event</div>
                     </div>
                     <div class="sm-all">
                         <div class="sm-logo">
                             <img src="images/facebook.png" alt="">
                         </div>
                         <div class="sm-name">Facebook</div>
-                        <div class="sm-link">patrick.star</div>
+                        <div class="sm-link">udari_event</div>
                     </div>
                 </div>
             </div>
@@ -61,35 +61,36 @@
                         </div> 
                         <div class="prof-all">
                             <div class="prof-name">Full Name</div>
-                            <div class="prof-data">patrick.star</div>
+                            <div class="prof-data">Shamin Fernando</div>
                         </div>
                         <div class="prof-all">
                             <div class="prof-name">Email</div>
-                            <div class="prof-data">patrick.star</div>
+                            <div class="prof-data">hhshaminf@gmail.com</div>
                         </div>
                         <div class="prof-all">
                             <div class="prof-name">Phone</div>
-                            <div class="prof-data">patrick.star</div>
+                            <div class="prof-data">0762008919</div>
                         </div>
                         <div class="prof-all">
                             <div class="prof-name">Mobile</div>
-                            <div class="prof-data">patrick.star</div>
+                            <div class="prof-data">0777931062</div>
                         </div>
                         <div class="prof-all">
                             <div class="prof-name">Address</div>
-                            <div class="prof-data">patrick.star</div>
+                            <div class="prof-data">38 B wewala Horana</div>
                         </div>
                         <div class="prof-all">
                             <div class="prof-name">Based In</div>
-                            <div class="prof-data">patrick.star</div>
+                            <div class="prof-data">Colombo 7</div>
                         </div>
                         <div class="prof-all">
                             <div class="prof-name">Experience</div>
-                            <div class="prof-data">patrick.star</div>
+                            <div class="prof-data">4 Years</div>
                         </div>
                         <div class="prof-all">
                             <div class="prof-name">Bio</div>
-                            <div class="prof-data">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sollicitudin nisl velit, ut suscipit </div>
+                            <div class="prof-data">We are committed in providing our customers with an exceptional service
+while offering our employees the best training.</div>
                         </div>
                     </div>
                 </div>
@@ -98,14 +99,12 @@
                         <div class="personal-info-heading">
                             Products & Services
                         </div> 
-                        <a href="/tags/javascript/"><span class="tag tag-javascript tag-lg">#javascript</span></a>
-                        <a href="/tags/security/"><span class="tag tag-security tag-lg">#security</span></a>
-                        <a href="/tags/firebase/"><span class="tag tag-firebase tag-lg">#firebase</span></a>
-                        <a href="/tags/firestore/"><span class="tag tag-firestore tag-lg">#firestore</span></a>
-                        <a href="/tags/auth/"><span class="tag tag-auth tag-lg">#auth</span></a>
-                        <a href="/tags/firebase/"><span class="tag tag-firebase tag-lg">#firebase</span></a>
-                        <a href="/tags/firestore/"><span class="tag tag-firestore tag-lg">#firestore</span></a>
-                        <a href="/tags/auth/"><span class="tag tag-auth tag-lg">#auth</span></a>
+                        <a href="/tags/javascript/"><span class="tag tag-javascript tag-lg">#wedding</span></a>
+                        <a href="/tags/security/"><span class="tag tag-security tag-lg">#anniversary</span></a>
+                        <a href="/tags/firebase/"><span class="tag tag-firebase tag-lg">#birthday</span></a>
+                        <a href="/tags/firestore/"><span class="tag tag-firestore tag-lg">#corporate events</span></a>
+                        <a href="/tags/auth/"><span class="tag tag-auth tag-lg">#surprise parties</span></a>
+                        <a href="/tags/firebase/"><span class="tag tag-firebase tag-lg">#farewells</span></a>
                     </main>       
                 </div>
             </div>

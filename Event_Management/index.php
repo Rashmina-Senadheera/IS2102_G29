@@ -27,31 +27,27 @@ else{
             </span>
             <span class="latest_cards">
                 <span class="card">
-                    <img src="images/event.jpg" >
-                    <h4>Lorem Ipsum</h4>
-                    <p>Lorem ipsum dolor sitamet, consectetur
+                    <img src="images/event-about.jpg" >
+                    <h4 style="text-align:center">Outdoor Wedding Reception</h4>
+                    <p style="text-align:center; font-size:14px">This stunning event was organized for an outdoor wedding reception held during the evening
                     </p>
                 </span>
                 <span class="card">
-                    <img src="images/event.jpg" >
-                    <h4>Lorem Ipsum</h4>
-                    <p>Lorem ipsum dolor sitamet, consectetur
+                    <img src="images/event-about4.jpg" >
+                    <h4 style="text-align:center">Colorful 1st Birthday Celebration </h4>
+                    <p style="text-align:center; font-size:14px">This stunning event was organized for a 1st birthday celebration
                     </p>
                 </span>
                 <span class="card">
-                    <img src="images/event.jpg" >
-                    <h4>Lorem Ipsum</h4>
-                    <p>
-                    Lorem ipsum dolor sit
-                    amet, consectetur
+                    <img src="images/event-about2.jpg" >
+                    <h4 style="text-align:center">Outdoor garden party for anniversary </h4>
+                    <p style="text-align:center; font-size:14px">This stunning event was organized for an anniversary celebration
                     </p>
                 </span>
                 <span class="card">
-                    <img src="images/event.jpg" >
-                    <h4>Lorem Ipsum</h4>
-                    <p>
-                    Lorem ipsum dolor sit
-                    amet, consectetur
+                    <img src="images/event-about3.jpg" >
+                    <h4 style="text-align:center">Colorful Proposal Party & Reception </h4>
+                    <p style="text-align:center; font-size:14px">This stunning event was organized for a proposal and resception after
                     </p>
                 </span>
             </span>
