@@ -50,6 +50,12 @@ if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['
                 </a>
             </li>
             <li>
+                <a href=<?php echo SITEURL . 'event_planner/os-list.php'  ?>>
+                    <i class='bx bx-coin-stack'></i>
+                    <span class="links_name">Order Requests</span>
+                </a>
+            </li>
+            <li>
                 <a href=<?php echo SITEURL . 'event_planner/Suppliers.php'  ?>>
                     <i class='bx bx-package'></i>
                     <span class="links_name">Suppliers</span>

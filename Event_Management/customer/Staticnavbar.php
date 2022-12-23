@@ -10,8 +10,7 @@
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav>
-      <a href="login.php" class="get-started-btn" style="font-family:'Poppins'">Login as a Customer</a>
-      <a href="register.php" class="get-started-btn" style="font-family:'Poppins'">Register as a Customer</a>
-    </div>
+      <a href="../sign_in.php" class="get-started-btn" style="font-family:'Poppins'">Login </a>
+      </div>
   </header>
 

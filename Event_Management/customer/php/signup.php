@@ -56,10 +56,10 @@ if(isset($_POST['fname']) &&
                move_uploaded_file($tmp_name, $img_upload_path);
 
                // Insert into Database
-               $sql = "INSERT INTO users(fname, username,password, pp,tel) 
+               $sql = "INSERT INTO user(name, email,password,address,role) 
                  VALUES(?,?,?,?,?)";
                $stmt = $conn->prepare($sql);
-               $stmt->execute([$fname, $uname, $pass,$new_img_name,$tel]);
+               $stmt->execute([$fname, $uname, $pass,$tel,"customer"]);
 
                header("Location: ../login.php?success=Your account has been created successfully");
                 exit;
@@ -76,12 +76,12 @@ if(isset($_POST['fname']) &&
 
         
       }else {
-       	$sql = "INSERT INTO users(fname, username, password,pp,tel) 
-       	        VALUES(?,?,?,?)";
+       	$sql = "INSERT INTO user(name, email,password,address,role)  
+       	        VALUES(?,?,?,?,?)";
        	$stmt = $conn->prepare($sql);
-       	$stmt->execute([$fname, $uname, $pass,$tel,]);
+       	$stmt->execute([$fname, $uname, $pass,$tel,"customer"]);
 
-       	header("Location: ../register.phpsuccess=Your account has been created successfully");
+       	header("Location: ../register.php?success=Your account has been created successfully");
    	    exit;
       }
     }

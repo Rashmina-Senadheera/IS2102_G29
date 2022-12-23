@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 
 // Check the method of the request
 // If request methot is not POST redirect to the register page

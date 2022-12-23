@@ -11,17 +11,17 @@ if (isset($_SESSION['email']) && isset($_SESSION['user_name']) && isset($_SESSIO
             $sendOTP = true;
         } else {
             session_destroy();
-            header("location: ../sign_in2.php");
+            header("location: ../sign_in.php");
         }
     } else if ($_SESSION['from_page'] == 'register') {
         $sendOTP = true;
     } else {
         session_destroy();
-        header("location: ../sign_in2.php");
+        header("location: ../sign_in.php");
     }
 } else {
     session_destroy();
-    header("location: ../sign_in2.php");
+    header("location: ../sign_in.php");
 }
 
 if ($sendOTP && !isset($_SESSION['otp'])) {

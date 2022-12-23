@@ -48,9 +48,9 @@ if ($sendOTP && !isset($_SESSION['otp'])) {
 
 <body>
     <div class="register-body">
-        <form class="register-form" method="POST" action="./controllers/verify-otp.php">
+        <form class="register-form" id="em" method="POST" action="./controllers/verify-otp.php">
 
-            <p class="heading">Email Verification</p>
+            <p class="heading" >Email Verification</p>
             <div class="form-description">
                 OTP has been sent to <?php echo $_SESSION['email'] ?>. Please enter the OTP to verify your email.
                 (Please check your spam folder if you do not see the email in your inbox.)

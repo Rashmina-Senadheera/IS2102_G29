@@ -34,7 +34,8 @@
                                 email = '$email',
                                 name = '$name',
                                 password = '$hash_pwd',
-                                role = '$role'
+                                role = '$role',
+                                email_verified = 1
                                 ";
 
                         $res = mysqli_query($conn, $sql);   

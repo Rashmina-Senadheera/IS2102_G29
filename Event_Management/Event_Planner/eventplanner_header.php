@@ -8,7 +8,7 @@
         <?php if (isset($_SESSION['user_id'])) { ?>
             <nav class="requests-sum">
                 <i class='bx bx-bell'></i>
-                <a href=<?php echo SITEURL . 'event_planner/Requests.php'  ?>>New Requests: 4</a>
+                <a href=<?php echo SITEURL . 'event_planner/Requests.php'  ?>></a>
             </nav>
         <?php } ?>
         <nav class="navbar" id="navbar">

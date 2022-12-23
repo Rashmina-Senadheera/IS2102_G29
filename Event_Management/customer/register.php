@@ -234,12 +234,6 @@
             </div>
   
             <div class="col-md-12">
-              <label class="form-label" style="font-family:'Poppins'">Profile Picture</label>
-              <input type="file" 
-                     class="form-control"
-                     name="pp">
-            </div>
-            <div class="col-md-12">
               <label class="form-label" style="font-family:'Poppins'">Telephone</label>
               <input type="text" 
                      class="form-control"
