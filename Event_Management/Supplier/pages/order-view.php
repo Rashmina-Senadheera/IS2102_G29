@@ -115,7 +115,7 @@
                         <div class="contact">
                             <i class="fa-solid fa-envelope"  id="qu-con"></i>hhshaminf@gmail.com
                             <i class="fa-solid fa-phone" id="qu-conm"></i>0777931062
-                            <i class="fa-brands fa-rocketchat" id="qu-conme"></i> <b>Message</b>
+                            <i class="fa-brands fa-rocketchat" id="qu-conme"></i> <a href = "Messages.php"> <b>Message</b> <a>
                         </div>
                     </div>
                 </div>

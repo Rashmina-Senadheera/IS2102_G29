@@ -58,6 +58,12 @@
                     <span class="links_name">Payments</span>
                 </a>
             </li>
+             <li>
+                <a href="Messages.php" >
+                    <i class='bx bx-chat'></i>
+                    <span class="links_name">Messages</span>
+                </a>
+            </li>
             <li>
                 <a href="profile.php">
                     <i class='bx bx-user'></i>

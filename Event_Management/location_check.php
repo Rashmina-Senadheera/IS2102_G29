@@ -21,7 +21,7 @@ if (isset($_SESSION['role'])) {
         } else if (role === 'event_planner') {
             location.replace('Event_Planner/Requests.php');
         } else if (role === 'supplier') {
-            location.replace('Supplier/pages/ps-list.php');
+            location.replace('Supplier/pages/dashboard.php');
         }
     </script>
 </body>
