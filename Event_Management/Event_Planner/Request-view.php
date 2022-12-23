@@ -73,7 +73,7 @@ include('eventplanner_header.php');
                         <div class="prof-data">0742514385</div>
                     </div>
                     <div class="actionBtn">
-                        <button type="button" class="rejected" style="margin-left: 0;">
+                        <button type="button" class="rejected" style="margin-left: 0;" onclick="window.location='Messages.php';">
                             Message
                         </button>
                     </div>
