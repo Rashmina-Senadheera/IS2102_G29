@@ -53,7 +53,7 @@ include('customer_header.php');
                         <div >
                             </div>
                             <center>Date:&nbsp;&nbsp;<center>
-                            <div ><center><input type="date" class="form-control" placeholder=""  name="date"  min="2022-12-23" max="2025-12-31" style="width:300px;" value="<?php echo (isset($_GET['date'])) ? $_GET['date'] : "" ?>" required></div>
+                            <div ><center><input type="date" class="form-control" placeholder=""  name="date"  min="2022-12-23" max="2025-12-31" style="width:300px;" value="<?php echo $date; ?>" required></div>
                         </div><br>
                         <div>
                         <center>Event Planner's Name:&nbsp;&nbsp;<center>
