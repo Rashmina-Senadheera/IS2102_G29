@@ -238,3 +238,62 @@
 .starChecked {
     color: orange;
 }
+img#about-img{
+    width: 250px;
+    height: 150px;
+}
+.personal-info-heading-avail {
+    font-weight: bold;
+    font-size: 15px;
+    margin: 10px;
+    padding: 4px;
+    padding-left: 6px;
+    text-align: center;
+    width: 30%;
+}
+.available {
+    color: #ffffff;
+    background-color: #024b18;
+    border: none;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    padding: 5px 2rem;
+}
+.actionBtn#avail{
+    margin-top: 0px;
+    margin: 0px;
+}
+.other#quote {
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
+}
+.personal-info#quote{
+    margin-bottom: 0px;
+}
+.personal-info#quoteb{
+    margin-top: 0px;
+}
+i#qu-con{
+    margin-right: 10px;
+}
+i#qu-conm{
+    margin-left: 20px;
+    margin-right: 10px;
+}
+i#qu-conme{
+    margin-left: 20px;
+    margin-right: 1px;
+}
+.prof-name-20{
+    flex: 20%;
+}
+.contact{
+    flex: 80%;
+}
+.prof-data-80{
+    flex: 80%;
+}
+.prof-data#urg{
+    color: rgb(255, 0, 0);
+}

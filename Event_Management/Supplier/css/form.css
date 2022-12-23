@@ -336,3 +336,28 @@ select#type{
   font-family: sans-serif;
   color: #aaa;
 }
+p.error{
+    margin-bottom: 20px;
+    background: rgb(245, 170, 170);
+    color: rgb(7, 7, 7);
+    padding: 10px 10px 10px 10px;
+    width: 95%;
+    height: 3.rem;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 5px;
+}
+p.success{
+        margin-bottom: 20px;
+        background-color: rgb(10, 245, 10);
+        color: rgb(255, 255, 255);
+        padding: 5px;
+        width: 95%;
+        border-radius: 8px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 1rem;
+        padding-bottom: 5px;
+        align-self: center;
+    }

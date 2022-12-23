@@ -99,7 +99,9 @@
     border: none;
     font-weight: 500;
 }
-
+.input-value#acc {
+    font-weight: normal;
+}
 .add-service-btn {
     padding: 5px 15px;
     background-color: #fff;

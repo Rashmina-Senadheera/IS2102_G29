@@ -22,7 +22,7 @@
         <div class = 'flex-container-main'>
                 <div class="title-search">
                     <div class = 'searchSec'>
-                        <div class = 'page-title'>Quotation for Bravo Event Productions Hall</div>
+                        <div class = 'page-title'>Order for Bravo Event Productions Hall</div>
                     </div>
                 </div>
             </div>
@@ -83,21 +83,21 @@
                         <div class="prof-name-50">Tentative Date:</div>
                         <div class="prof-data">2022-07-15</div>
                     </div>
+                    <div class="prof-all">
+                        <div class="prof-name-50">Quotation:</div>
+                        <div class="prof-data">#Q0010</div>
+                    </div>
                      <div class="prof-all">
                         <div class="prof-name-50">Remarks:</div>
                         <div class="prof-data">Need the quotation to be submitted as soon as possible with the necessary details</div>
-                    </div>
-                    <div class="prof-all">
-                        <div class="prof-name-50">Urgency:</div>
-                        <div class="prof-data" id="urg">Urgent</div>
                     </div>
                     <div class="actionBtn">
                         <button type="button" id="btnDecline" class="rejected" style="margin-left: 0;">
                             Decline
                         </button>
-                        <a href="SendEventPlannerQuote.php">
+                        <a href="SendEventPlannerAccept.php">
                             <button type="button" class="accepted" style="margin-left: 0;">
-                                Send Quotation
+                                Accept Order
                             </button>
                         </a>
                     </div>
