@@ -53,6 +53,7 @@
                     <span class="links_name">Profile</span>
                 </a>
             </li>
+ 
            
             <li class="log_out">
                 <a onclick="logout_check()" href="../logout.php">
