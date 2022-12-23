@@ -32,12 +32,12 @@
                     <span class="links_name">Payments</span>
                 </a>
             </li>      
-            <li>
+            <!--<li>
                 <a href="Feedback.php">
                     <i class='bx bx-heart'></i>
                     <span class="links_name">Feedback</span>
                 </a>
-            </li> 
+            </li>-->
             <li>
                 <a href="Messages.php">
                     <i class='bx bx-message rounded detail'></i>

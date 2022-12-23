@@ -48,7 +48,7 @@ include('eventplanner_header.php');
                                 </form>
                             </div>
                             <div class="actionBtn">
-                                <button type="button" class="rejected" style="margin-left: 0;">
+                                <button type="button" class="rejected" style="margin-left: 0;"  onclick="window.location='Messages.php';">
                                     Message Supplier
                                 </button>
                             </div>

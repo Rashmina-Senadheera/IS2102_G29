@@ -106,7 +106,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['
             </div>
             <div class="login-card-info">
                 Have an account?
-                <a href="../sign_in2.php">Sign In</a>
+                <a href="../sign_in.php">Sign In</a>
             </div>
         </form>
     </div>
