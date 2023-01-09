@@ -1,6 +1,6 @@
 
 <?php
-    include('../../constants.php');
+    include('../constants.php');
 $msg = ""; 
 
 // check if the user has clicked the button "UPLOAD" 
