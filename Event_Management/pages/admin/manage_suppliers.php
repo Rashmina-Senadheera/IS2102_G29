@@ -80,10 +80,10 @@
                 </table>
                 
                 
-            </main>
-            <script src="javascript/form_visiblity.js"></script>
-            <script src="javascript/add-form.js"></script>
-            <script src="javascript/supplier_info_table.js"></script>
+            
+            <script src="../../js/form_visiblity.js"></script>
+            <script src="../../js/add-form.js"></script>
+            <script src="../../js/supplier_info_table.js"></script>
             </main>
 
 </body>

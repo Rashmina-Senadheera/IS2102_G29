@@ -28,7 +28,7 @@
                 <label class="customers_num">
                     <?php echo $sum;?>
                     <div class="d_icon">
-                    <img src="../images/d_customer.png">
+                    <img src="../../images/d_customer.png">
                 </div>
                     
                 </label>
@@ -39,7 +39,7 @@
                 <label class="customers_num">
                     <?php echo $amount[0]; ?>
                     <div class="d_icon">
-                    <img src="../images/d_supplier.png">
+                    <img src="../../images/d_supplier.png">
                     </div>
                     
                 </label>
@@ -52,7 +52,7 @@
                 <label class="customers_num">
                     <?php echo $amount[1]; ?>
                     <div class="d_icon">
-                    <img src="../images/d_event_planner.png" class="d_event_planner">
+                    <img src="../../images/d_event_planner.png" class="d_event_planner">
                     </div>
                     
                 </label>
@@ -65,7 +65,7 @@
                 <label class="customers_num">
                     <?php echo $amount[2]; ?>
                     <div class="d_icon">
-                    <img src="../images/d_supplier.png">
+                    <img src="../../images/d_supplier.png">
                     </div>
                     
                 </label>

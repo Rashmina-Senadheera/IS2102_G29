@@ -4,7 +4,7 @@
     include('admin_nav.php');
 
 ?>
-<link rel="stylesheet" href="css/reports.css">
+<link rel="stylesheet" href="../../css/reports.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <main class="reports_main">
