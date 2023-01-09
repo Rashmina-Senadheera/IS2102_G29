@@ -1,10 +1,10 @@
 <?php 
-include('constants.php');
+include('pages/constants.php');
 if(isset($_SESSION['user'])){
-    include('reg_header.php');
+    include('pages/reg_header.php');
 }
 else{
-    include('unreg_header.php');
+    include('pages/unreg_header.php');
 }
 
 ?>
@@ -14,7 +14,7 @@ else{
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="pages/style.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     
 </head>
@@ -55,7 +55,7 @@ else{
         <div class="event_planners">
             <span class="lbl_evt_planners">
             <label>Event Planners</label>
-            <label ><a href="event_planners.php"> View More</a> </label>
+            <label ><a href="pages/event_planners.php"> View More</a> </label>
             </span>
             <span class="evt_planner_cards">
                 
@@ -65,9 +65,9 @@ else{
         </div>
     
     </main>
-    <script src="javascript/event_planners.js"></script>
+    <script src="js/event_planners.js"></script>
 </body>
 <?php 
-    include("footer.php");
+    include("pages/footer.php");
 ?>
 </html>

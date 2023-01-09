@@ -1,7 +1,7 @@
 <?php
 include('constants.php');
 include('header-sign.php');
-include('Event_Planner/controllers/commonFunctions.php');
+include('pages/Event_Planner/controllers/commonFunctions.php');
 
 // define variables and set to empty values
 $email = $password = "";

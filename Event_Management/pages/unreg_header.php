@@ -16,8 +16,8 @@
         <img src="images/logo-white.svg" class="unreg_header_logo">
         </span>
         <span>
-            <a href="sign_in.php" class="btn">Sign In</a>
-            <a href="sign_up_list.php" class="btn">Sign Up</a>
+            <a href="pages/sign_in.php" class="btn">Sign In</a>
+            <a href="pages/sign_up_list.php" class="btn">Sign Up</a>
         </span>
 
         </div>

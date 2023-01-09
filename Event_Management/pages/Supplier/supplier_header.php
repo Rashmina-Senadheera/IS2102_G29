@@ -1,7 +1,7 @@
 
 <!-- font awesome link  -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
-<link rel="stylesheet" href="../css/navigationBar.css">
+<link rel="stylesheet" href="../../css/navigationBar.css">
 
 <header class="headAll">
     <div id="menu-bar" class="fas fa-bars"></div>

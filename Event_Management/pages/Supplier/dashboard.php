@@ -1,5 +1,5 @@
 <?php
-    include('../../constants.php');
+    include('../constants.php');
     include( 'supplier_sidenav.php' );
     include( 'header.php' );
     $id = $_SESSION['user_id'];
@@ -14,9 +14,9 @@
         <meta http-equiv = 'X-UA-Compatible' content = 'IE=edge'>
         <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0'>
         <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-        <link rel = 'stylesheet' href = '../css/eventPlannerMain.css'>
-        <link rel = 'stylesheet' href = '../css/ps-list.css'>
-        <link rel = 'stylesheet' href="../css/calendar.css">
+        <link rel = 'stylesheet' href = '../../css/supplierMain.css'>
+        <link rel = 'stylesheet' href = '../../css/ps-list.css'>
+        <link rel = 'stylesheet' href="../../css/calendar.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     </head>
         
@@ -141,7 +141,7 @@ new Chart("myChart", {
 			        </div>
 		        </div>
 	        </div>
-        <script src="../js/main.js"></script>
+        <script src="../../js/main.js"></script>
     </body>
 
 </html>
