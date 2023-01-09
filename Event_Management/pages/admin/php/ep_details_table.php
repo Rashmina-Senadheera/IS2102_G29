@@ -22,15 +22,15 @@
                             <td>'.$email .'</td>
                             <td class="action_buttons">
                             <span class="btn btn_more">
-                                <img src="../images/more.png" class="more_icon">
+                                <img src="../../images/more.png" class="more_icon">
                                     <a class="btn_info" href="'.SITEURL.'admin/customer_info.php" >More Info</a>
                             </span>
                             <span class="btn btn_update">
-                            <img src="../images/update.png" class="update_icon">
+                            <img src="../../images/update.png" class="update_icon">
                             <a href="'.SITEURL.'admin/php/customer_update.php?id='.$id.'" >Update</a>
                             </span>                                                                             
                             <span class="btn btn_delete">
-                            <img src="../images/delete.png" class="delete_icon">
+                            <img src="../../images/delete.png" class="delete_icon">
                             <a  href="'.SITEURL.'admin/php/customer_delete.php?id='.$id.'" >Delete</a>                                        
                             </span>                                                                                                                                 
                             </td>

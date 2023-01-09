@@ -72,9 +72,10 @@
                     </tbody>
                 </table>
             </main>
-            <script src="javascript/form_visiblity.js"></script>
-            <script src="javascript/add-form.js"></script>
-            <script src="javascript/ep_info_table.js"></script>
+            <script src="../../js/form_visiblity.js"></script>
+            <script src="../../js/add-form.js"></script>
+            <script src="../../js/ep_info_table.js"></script>
+
 
 </body>
 </html>

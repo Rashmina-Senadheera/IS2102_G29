@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="../../css/admin_nav.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <script defer src="javascript/activeNav.js"></script>    
+    <script defer src="../../js/activeNav.js"></script>    
 </head>
 <body>
 
 <div class="sidebar">
         <div class="logo-details">
-            <img src="../images/logo-white.svg" class="logo">
+            <img src="../../images/logo-white.svg" class="logo">
             <span class="logo_name">Eventra</span>
         </div>
         <ul class="nav-links">
@@ -63,7 +63,7 @@
             </li>
         </ul>
 </div>  
-    <script src= "javascript/logout_check.js"></script>
+    <script src= "../../js/logout_check.js"></script>
 </body>
 </html>
 
