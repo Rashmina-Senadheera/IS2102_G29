@@ -102,7 +102,17 @@
     color: grey
 }
 
-.my-packages-container .card:hover .sci li a {
+.my-packages-container .card .sci li button {
+    text-decoration: none;
+    color: grey;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.my-packages-container .card:hover .sci li a,
+.my-packages-container .card:hover .sci li button {
     color: black
 }
 

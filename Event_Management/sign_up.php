@@ -85,7 +85,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
                     </span>
                     <span class="btn btn_register select_supplier">
                         <img src="images/supplier.png">
-                        <a href="#">Supplier</a>
+                        <a href="supplier/pages/sign_up.php">Supplier</a>
                     </span>
                     <span class="sign_in_txt">
                     Already have an account?

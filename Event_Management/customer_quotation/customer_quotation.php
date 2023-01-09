@@ -13,7 +13,7 @@ include("nav.php");
             <div class="general">
                 <div class="flex-row">
                     <div class="input_box">
-                        <label class="label">Event Type</label>
+                        <label class="label flex-row">Event Type<div class="error">&nbsp;*</div></label>
                         <select name="event-type" id="event-type">
                             <option value="Birthday">Birthday</option>
                             <option value="Wedding">Wedding</option>
@@ -27,24 +27,24 @@ include("nav.php");
                     </div>
 
                     <div class="input_box">
-                        <label class="label">Number of Participants</label>
-                        <input type="number" name="no-pax">
+                        <label class="label flex-row">Number of Participants<div class="error">&nbsp;*</div></label>
+                        <input type="number" name="no-pax" required>
                     </div>
                 </div>
                 <div class="input_box">
-                    <label class="label">Theme</label>
-                    <input type="text" name="theme">
+                    <label class="label flex-row">Theme <div class="error">&nbsp;*</div></label>
+                    <input type="text" name="theme" required>
                 </div>
                 <div class="flex-row">
                     <div class="input_box">
-                        <label class="label">Tentative Date</label>
+                        <label class="label flex-row">Tentative Date<div class="error">&nbsp;*</div></label>
                         
                         
                         <div class="date">
                             <label>From</label>
-                            <input type="date" name="from-date">
+                            <input type="date" name="from-date" required>
                             <label>To</label>
-                            <input type="date" name="to-date">
+                            <input type="date" name="to-date" required>
                         </div>
 
                     </div>
@@ -52,24 +52,24 @@ include("nav.php");
                     
 
                     <div class="input_box">
-                        <label class="label">Budget</label>
+                        <label class="label flex-row">Budget<div class="error">&nbsp;*</div></label>
                         <div class="date">
                             <label>Min</label>
-                            <input type="number" name="min-budget">
+                            <input type="number" name="min-budget" required>
                             <label>Max</label>
-                            <input type="number" name="max-budget">
+                            <input type="number" name="max-budget" required>
                         </div>
                     </div>
                 </div>
                 <div class="input_box">
-                    <label class="label">Time</label>
+                    <label class="label flex-row">Time<div class="error">&nbsp;*</div></label>
                     
                     
                     <div class="time">
                         <label>From</label>
-                        <input type="time" name="from-time">
+                        <input type="time" name="from-time" required>
                         <label>To</label>
-                        <input type="time" name="to-time">
+                        <input type="time" name="to-time" required>
                     </div>
 
                 </div>
@@ -94,21 +94,21 @@ include("nav.php");
                             <div class="venue_details">
                                 <div class="venue-radiobtns">
                                     <input type="radio" id="indoor" name="venue_type" value="indoor" >
-                                    <label onclick="showVenue(0,'#ff0000')" for="indoor" class="indoor">Indoor</label>
+                                    <label onclick="showVenue(0)" for="indoor" class="indoor">Indoor</label>
                                     <input type="radio" id="outdoor" name="venue_type" value="outdoor" >
-                                    <label onclick="showVenue(1,'#0000ff')" for="outdoor" class="outdoor">Outdoor</label>
+                                    <label onclick="showVenue(1)" for="outdoor" class="outdoor">Outdoor</label>
                                 </div>
                                 <div class="venue_img">
                                     <div class="img flex-column">
                                         <div class="flex-row-sb">
                                             <input type="radio" value="auditorium" name="indoor" id="auditorium" >
-                                            <label for="auditorium" class="flex-column"><img src="images/customer_quote/indoor/auditorium.jfif">Auditorium</label>
+                                            <label for="auditorium" class="flex-column"><img src="../images/customer_quote/indoor/auditorium.jfif">Auditorium</label>
                                             <input type="radio" value="conference" name="indoor" id="conference" >
-                                            <label for="conference" class="flex-column"><img src="images/customer_quote/indoor/conference.jpg">Conference Room</label> 
+                                            <label for="conference" class="flex-column"><img src="../images/customer_quote/indoor/conference.jpg">Conference Room</label> 
                                             <input type="radio" value="banquet" name="indoor" id="banquet" >
-                                            <label for="banquet" class="flex-column"><img src="images/customer_quote/indoor/banquet.jpg">Banquet Hall</label>
+                                            <label for="banquet" class="flex-column"><img src="../images/customer_quote/indoor/banquet.jpg">Banquet Hall</label>
                                             <input type="radio" value="stadium" name="indoor" id="stadium" >
-                                            <label for="stadium" class="flex-column"><img src="images/customer_quote/indoor/indoor_stadium.png">Indoor Stadium</label>                                   
+                                            <label for="stadium" class="flex-column"><img src="../images/customer_quote/indoor/indoor_stadium.png">Indoor Stadium</label>                                   
                                         </div>
                                         <div class="venue_remarks flex-column">
                                             <label class="label">Remarks</label>
@@ -119,13 +119,13 @@ include("nav.php");
                                     <div class="img flex-column">
                                         <div class="flex-row-sb">
                                             <input type="radio" value="ground" name="outdoor" id="ground" >
-                                            <label for="ground" class="flex-column"><img src="images/customer_quote/outdoor/ground.jpeg">Ground</label>
+                                            <label for="ground" class="flex-column"><img src="../images/customer_quote/outdoor/ground.jpeg">Ground</label>
                                             <input type="radio" value="beach" name="outdoor" id="beach" >
-                                            <label for="beach" class="flex-column"><img src="images/customer_quote/outdoor/beach.jpg">Open Beach</label> 
+                                            <label for="beach" class="flex-column"><img src="../images/customer_quote/outdoor/beach.jpg">Open Beach</label> 
                                             <input type="radio" value="beach_tent" name="outdoor" id="beach_tent" >
-                                            <label for="beach_tent" class="flex-column"><img src="images/customer_quote/outdoor/tented_beach.jpg">Tented Beach</label>
+                                            <label for="beach_tent" class="flex-column"><img src="../images/customer_quote/outdoor/tented_beach.jpg">Tented Beach</label>
                                             <input type="radio" value="tented" name="outdoor" id="tented" >
-                                            <label for="tented" class="flex-column"><img src="images/customer_quote/outdoor/tenetd_ground.jpg">Tented Ground</label>                                   
+                                            <label for="tented" class="flex-column"><img src="../images/customer_quote/outdoor/tenetd_ground.jpg">Tented Ground</label>                                   
                                         </div>
                                         <div class="venue_remarks flex-column">
                                             <label class="label">Remarks</label>
@@ -198,12 +198,12 @@ include("nav.php");
                     <div class="sound_light">
                         <div class="flex-row-sb s_l">
                             <label class="label">Sound & Lighting</label>
-                            <div class="radio-btns">
+                            <!-- <div class="radio-btns">
                                 <input type="radio" id="s&l_needed" name="s&l" value="s&l_needed">
                                 <label onclick="s_l_check(0)" for="s&l_needed">Needed</label>
                                 <input type="radio" id="s&l_not_needed" name="s&l" value="s&l_not_needed">
                                 <label onclick="s_l_check(1)" for="s&l_not_needed">Not Needed</label>
-                            </div>
+                            </div> -->
                         </div>
 
                         <div class="s_l_info">
@@ -265,12 +265,12 @@ include("nav.php");
                     <div class="photo_video">
                         <div class="flex-row-sb p_v">
                             <label class="label">Photography & Videography</label>
-                            <div class="radio-btns">
+                            <!-- <div class="radio-btns">
                                 <input type="radio" id="p&v_needed" name="pv" value="p&v_needed">
                                 <label onclick="p_v_check(0)" for="p&v_needed">Needed</label>
                                 <input type="radio" id="p&v_not_needed" name="pv" value="p&v_not_needed">
                                 <label onclick="p_v_check(1)" for="p&v_not_needed">Not Needed</label>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="p_v_info">
                             <div class="photo">
@@ -312,7 +312,7 @@ include("nav.php");
                 </div>
                 
             <div class="submit-btn">
-            <input type="submit" value="Submit">
+            <input type="submit" value="Submit" class="btn-submit">
             </div>
 
 

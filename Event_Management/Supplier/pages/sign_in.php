@@ -85,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="loginbody">
         <div class="box">
             <div class="image-box">
-                <img src="images/Login-2.svg" class="sign_in_logo" />
+                <img src="../images/Login-2.svg" class="sign_in_logo" />
             </div>
             <div class="white-box">
                 <p class="heading">Sign In</p>

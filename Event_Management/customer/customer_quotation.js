@@ -40,13 +40,13 @@ function venue_check(Index){
     
     
 }
-function showVenue(panelIndex, colorCode){
+function showVenue(panelIndex){
     venueBtns.forEach(function(node){
-        node.style.color="";
+        // node.style.color="";
         node.style.backgroundColor="";
     });
-    venueBtns[panelIndex].style.color=colorCode;
-    venueBtns[panelIndex].style.backgroundColor=colorCode;
+    // venueBtns[panelIndex].style.color=colorCode;
+    venueBtns[panelIndex].style.backgroundColor='#D0AFF4';
 
     contents.forEach(function(node){
         node.style.display="none";
@@ -88,7 +88,7 @@ function food_check(Index){
     
 }
 
-//sound and lighting
+// sound and lighting
 
 var s_l_Needed = document.querySelectorAll(".s_l .radio-btns label");
 var s_l_Info = document.querySelector(".sound_light .s_l_info");
@@ -314,4 +314,39 @@ function clearRadioButtons(array){
         var radioButton = array[i];
         radioButton.checked = false;
     }
+}
+
+const form = document.querySelector(".add"),
+submitBtn = document.querySelector(".submit-form"),
+errorText = document.querySelector(".error-text");
+
+
+form.onsubmit = (e)=>{
+    e.preventDefault();
+}
+
+submitBtn.onclick = ()=>{
+    let xhr = new XMLHttpRequest(); //XML object
+    xhr.open("POST", "../admin/passdata.php", true);
+    
+    xhr.onload = ()=>{
+        if(xhr.readyState === XMLHttpRequest.DONE){
+            if(xhr.status === 200){
+                let data = xhr.response;
+                if(data == "Success"){
+                    hide_form();
+                    form.reset();
+                    errorText.style.display = "none";
+                }else{
+                    errorText.textContent = data;
+                    errorText.style.display = "block";
+                    
+                }
+            }
+        }
+    }
+    //sending form data to php 
+    let formData = new FormData(form);
+    xhr.send(formData);
+
 }

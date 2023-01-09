@@ -4,10 +4,10 @@ session_start();
 // Check the method of the request
 // If request methot is not POST redirect to the register page
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
-    header("location: ../sign_in.php");
+    header("location: ../../../sign_in.php");
 } else {
     // include the database config file
-    include_once '../../constants.php';
+    include_once '../../../constants.php';
     include_once './commonFunctions.php';
 
     // get entered otp
@@ -32,11 +32,11 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
             if ($_SESSION['from_page'] == 'signin') {
                 unset($_SESSION['from_page']);
                 $_SESSION['success'] = "Your account has been verified successfully!";
-                header("location: ../../location_check.php");
+                header("location: ../../../location_check.php");
             } else if ($_SESSION['from_page'] == 'register') {
                 unset($_SESSION['from_page']);
                 $_SESSION['success'] = "Your account has been created successfully! Please login to continue.";
-                header("location: ../sign_in.php");
+                header("location: ../../../sign_in.php");
             }
         } else {
             $_SESSION['error'] = "Something went wrong! Please try again!";

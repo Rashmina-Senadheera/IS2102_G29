@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     header("location: ../sign_up.php");
 } else {
     // include the database config file
-    include_once '../../constants.php';
+    include_once '../../../constants.php';
     include_once './commonFunctions.php';
 
     // define variables and set to empty values

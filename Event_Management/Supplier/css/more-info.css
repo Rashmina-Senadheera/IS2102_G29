@@ -69,27 +69,44 @@ img.mySlides {
     flex: 1;
     
 }
-.custom-button-e{
-  padding: 5px;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 13px;
-  border: none;
-  margin: 5px;
+.custom-button-e#del{
+    width: 50%;
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 13px;
+    border: none;
+    margin: 5px;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border: #490258 solid 1px;
+    text-decoration: none;
 }
-#ed{
-  background-color: #490258;
+a#ed {
+    width: 50%;
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 13px;
+    border: none;
+    margin: 5px;
+    background-color: #490258;
+    color: white;
+    text-decoration: none;
 }
-#del{
-  border: #490258 solid 1px;
-  color: #490258;
+.custom-button-e#ed{
+
+    border: none;
+    background-color: none;
 }
-.custom-button-e#ed:hover{
+
+a#ed:hover{
     background-color: #0a0a0a;
 }
 .custom-button-e#del:hover{
     background-color: #050505;
     border: #050505 solid 1px;
-     color: white;
+    color: white;
 }

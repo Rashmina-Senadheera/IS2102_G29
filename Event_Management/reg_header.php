@@ -13,7 +13,7 @@
     <header class="lp_header">
         <div class="reg_top_head">
         <span>
-        <img src="images/logo.png" class="reg_header_logo">
+        <img src="images/logo-white.svg" class="reg_header_logo">
         </span>
         <span>
         <div class="user_details">

@@ -84,8 +84,8 @@
                        
 
                          <div class="prof-all-e">
-                                <a href="form-venue_edit.php?id=<?php echo $id;?>" id="btn">
-                                    <button type="button" class="custom-button-e" id="ed">Edit</button>
+                                <a href="form-venue_edit.php?id=<?php echo $id;?>" id="ed">
+                                    Edit
                                 </a>
                                 <button type="button" class="custom-button-e" id="del">Delete</button>
                             </div>

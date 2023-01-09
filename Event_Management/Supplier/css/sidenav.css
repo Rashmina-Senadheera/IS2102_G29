@@ -304,6 +304,7 @@ nav .profile-details i {
   color: #ffffff;
   padding: 5px;
   height: 40px;
+  font-size: 17px;
 }
 .logout a{
   color: #1f0027;
@@ -386,3 +387,24 @@ nav .profile-details i {
     }
 }
 
+button#btnlogOut {
+    width: 100%;
+    background: #1f0027;
+    color: white;
+    padding: 5px;
+    display: flex;
+    border: none;
+    font-size: 17px;
+}
+i.bx.bx-log-out {
+    padding: 5px;
+    font-size: 17px;
+}
+li.log_out button#btnlogOut:hover{
+    background: #490258;
+}
+.sidebar .logo-details img {
+    width: 60px;
+    text-align: center;
+    padding: 15px;
+}

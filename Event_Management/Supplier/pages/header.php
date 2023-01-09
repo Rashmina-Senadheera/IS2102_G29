@@ -8,7 +8,6 @@
     <div class="header-2" id="header-2">
         <nav class="navbar" id="navbar">
             <a href=>Home</a>
-            <a href=>Suppliers</a>
             <a href=>About Us</a>
             <a href=>Contact Us</a>
         </nav>

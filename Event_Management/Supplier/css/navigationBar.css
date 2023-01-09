@@ -33,7 +33,6 @@
     justify-content: space-between;
     padding: 1vh 2vw;
     box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 10%);
-    position: relative;
     z-index: 99;
 }
 
@@ -41,7 +40,8 @@
     display: flex;
     flex-grow: 1;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
+    
 }
 
 .header-2 .navbar a {
@@ -124,3 +124,11 @@
 @media (max-width:768px) {}
 
 @media(max-width:450px) {}
+a#profile-name {
+    background-color: #490258;
+    color: white;
+    padding: 10px;
+    border-radius: 0.5rem;
+    margin-left: 40px;
+
+}

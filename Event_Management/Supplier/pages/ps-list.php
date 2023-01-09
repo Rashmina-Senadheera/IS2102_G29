@@ -2,6 +2,7 @@
     include('../../constants.php');
     include( 'supplier_sidenav.php' );
     include( 'header.php' );
+    $id = $_SESSION['user_id'];
     if(isset($_SESSION['user_name'])){
 ?>
 
@@ -38,7 +39,8 @@
           <?php
               $sql = "SELECT V.item_ID,V.title,V.descript,I.file_name
                       FROM supplier_venue V , images I
-                      where V.item_ID = I.item_ID";
+                      where V.item_ID = I.item_ID 
+                      AND V.supplier_ID = $id";
 
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {

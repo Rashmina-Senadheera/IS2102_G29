@@ -1,7 +1,7 @@
 <?php
 include('../../constants.php');
 include('controllers/commonFunctions.php');
-include('supplier_header.php');
+include('../../header-sign.php');
 
 // check user already logged in
 if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
@@ -19,7 +19,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/sign_in.css">
-    <link rel="stylesheet" href="./css/navigationBar.css">
+    <!-- <link rel="stylesheet" href="./css/navigationBar.css"> -->
 	<link rel="stylesheet" href="../css/sign_up.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link rel="stylesheet" href="../css/forms.css">
@@ -29,7 +29,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['
     <div class="loginbody" id="signup">
         <div class="box" id="signup">
             <div class="image-box" id="signup">
-                <p class="heading" id="sp">Create an Account</p>
+                <p class="heading" id="sp">Supplier Registration</p>
                 <img src="../images/Login-2.svg" id="sp" class="sign_in_logo" />
             </div>
             <div class="white-box" id="signup">
@@ -101,7 +101,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['
                     </div>
                     <div class="login-card-info">
                         Have an account?
-                        <a href="#">Sign In</a>
+                        <a href="../../sign_in.php">Sign In</a>
                     </div>
                 </form>
 			</div>

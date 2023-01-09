@@ -1,5 +1,5 @@
-<?php include('../constants.php'); ?>
-<?php
+<?php include('../constants.php');
+
 // check user already logged in
 if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && !isset($_SESSION['userStatus'])) {
     // check user role
@@ -8,6 +8,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['
     } else {
         // redirect to unauthorized page
         header('location: ' . SITEURL . 'Event_Planner/unauthorized.php');
+        exit();
     }
 } else {
     unset($_SESSION['role']);
@@ -15,6 +16,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['
     unset($_SESSION['user_name']);
     // redirect to unauthorized page
     header('location: ' . SITEURL . 'Event_Planner/unauthorized.php');
+    exit();
 }
 ?>
 
@@ -39,6 +41,18 @@ if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['
                 <a href=<?php echo SITEURL . 'event_planner/Requests.php'  ?>>
                     <i class='bx bx-list-ul'></i>
                     <span class="links_name">Requests</span>
+                </a>
+            </li>
+            <li>
+                <a href=<?php echo SITEURL . 'event_planner/Messages.php'  ?>>
+                    <i class='bx bx-chat'></i>
+                    <span class="links_name">Messages</span>
+                </a>
+            </li>
+            <li>
+                <a href=<?php echo SITEURL . 'event_planner/os-list.php'  ?>>
+                    <i class='bx bx-coin-stack'></i>
+                    <span class="links_name">Order Requests</span>
                 </a>
             </li>
             <li>
@@ -71,12 +85,6 @@ if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['
                     <span class="links_name">Packages & Services</span>
                 </a>
             </li>
-            <!-- <li>
-                <a href=<?php echo SITEURL . 'event_planner/MyEvents.php'  ?>>
-                    <i class='bx bx-calendar-event'></i>
-                    <span class="links_name">My Events</span>
-                </a>
-            </li> -->
             <li>
                 <a href=<?php echo SITEURL . 'event_planner/Calendar.php'  ?>>
                     <i class='bx bx-calendar'></i>
@@ -90,7 +98,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href=<?php echo SITEURL . 'event_planner/Feedback.php'  ?>>
                     <i class='bx bx-message'></i>
                     <span class="links_name">Feedback</span>
                 </a>
@@ -101,19 +109,8 @@ if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['
                     <span class="links_name">Profile</span>
                 </a>
             </li>
+            <li></li>
 
-            <!-- <li>
-                <a href="#">
-                    <i class='bx bx-heart'></i>
-                    <span class="links_name">Feedback</span>
-                </a>
-            </li> -->
-            <!-- <li>
-                <a href="#">
-                    <i class='bx bx-cog'></i>
-                    <span class="links_name">Setting</span>
-                </a>
-            </li> -->
             <li class="log_out">
                 <a href="../logout.php">
                     <i class='bx bx-log-out'></i>

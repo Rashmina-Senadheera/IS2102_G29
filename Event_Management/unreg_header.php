@@ -13,11 +13,11 @@
     <header class="lp_header">
         <div class="unreg_top_head">
         <span>
-        <img src="images/logo.png" class="unreg_header_logo">
+        <img src="images/logo-white.svg" class="unreg_header_logo">
         </span>
         <span>
-            <a href="index.php" class="btn">Sign In</a>
-            <a href="sign_up.php" class="btn">Sign Up</a>
+            <a href="sign_in.php" class="btn">Sign In</a>
+            <a href="sign_up_list.php" class="btn">Sign Up</a>
         </span>
 
         </div>
@@ -31,10 +31,10 @@
             </span>
             <span>
             <ul class="menu_items">
-                <li class="menu_link"><a href="landing_page.php">Home</a></li>
+                <li class="menu_link"><a href="index.php">Home</a></li>
                 <li class="menu_link"><a href="event_planners.php">Event Planners</a></li>
-                <li class="menu_link"><a>About us</a></li>
-                <li class="menu_link"><a>Contact Us</a></li>
+                <li class="menu_link"><a href="aboutUs.php">About us</a></li>
+                <li class="menu_link"><a href="contactUs.php">Contact Us</a></li>
             </ul>
             </span>
            

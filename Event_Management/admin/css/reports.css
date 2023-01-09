@@ -1,0 +1,39 @@
+.reports_main{
+    margin-left: 242px;
+    position: absolute;
+    background-color: #FFFFFF;
+    width: 84%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    top: 100px;
+    /* border: 1px solid black; */
+    padding: 15px;
+    
+
+}
+.chart{
+    width: 70%;
+    /* border: 1px solid black; */
+
+}
+.filter {
+    width: 30%;
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+
+}
+.users {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    padding: 5px;
+    /* border: 1px solid black; */
+
+
+}
+label {
+    margin: 2px;
+}
