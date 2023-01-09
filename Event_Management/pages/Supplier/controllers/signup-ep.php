@@ -129,12 +129,12 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
             mysqli_query($conn, "SET autocommit = 0");
             mysqli_query($conn, "START TRANSACTION");
 
-            $insertUser = mysqli_query($conn, "insert into user (name, email, password, address, role) values ('$firstname', '$email', '$password', '$address', 'supplier')");
+            $insertUser = mysqli_query($conn, "insert into user (name, email, password, address, role,nic) values ('$firstname', '$email', '$password', '$address', 'supplier','$nic')");
 
             // select the user id of the user who is just inserted
             mysqli_query($conn, "SELECT @user_id:=MAX(user_id) FROM user;");
 
-            $insertEventPlanner = mysqli_query($conn, "insert into supplier (user_id, firstname, lastname, nic) values (@user_id, '$firstname', '$lastname', '$nic')");
+            $insertEventPlanner = mysqli_query($conn, "insert into supplier (user_id, firstname, lastname) values (@user_id, '$firstname', '$lastname')");
             $insertUserPhone = mysqli_query($conn, "insert into user_phone (user_id, phone_number) values (@user_id, '$contact')");
 
             if (!$insertUser || !$insertEventPlanner || !$insertUserPhone) {

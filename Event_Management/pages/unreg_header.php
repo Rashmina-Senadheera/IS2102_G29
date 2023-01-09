@@ -13,11 +13,11 @@
     <header class="lp_header">
         <div class="unreg_top_head">
         <span>
-        <img src="images/logo-white.svg" class="unreg_header_logo">
+        <img src="http://localhost/e/IS2102_G29/Event_Management/images/logo-white.svg" class="unreg_header_logo">
         </span>
         <span>
-            <a href="pages/sign_in.php" class="btn">Sign In</a>
-            <a href="pages/sign_up_list.php" class="btn">Sign Up</a>
+            <a href=<?php echo SITEURL . 'pages/sign_in.php'?> class="btn">Sign In</a>
+            <a href=<?php echo SITEURL . 'pages/sign_up_list.php'?> class="btn">Sign Up</a>
         </span>
 
         </div>
@@ -31,10 +31,10 @@
             </span>
             <span>
             <ul class="menu_items">
-                <li class="menu_link"><a href="index.php">Home</a></li>
-                <li class="menu_link"><a href="event_planners.php">Event Planners</a></li>
-                <li class="menu_link"><a href="aboutUs.php">About us</a></li>
-                <li class="menu_link"><a href="contactUs.php">Contact Us</a></li>
+                <li class="menu_link"><a href=<?php echo SITEURL . 'index.php'?>>Home</a></li>
+                <li class="menu_link"><a href=<?php echo SITEURL . 'pages/event_planners.php'?>>Event Planners</a></li>
+                <li class="menu_link"><a href=<?php echo SITEURL . 'pages/aboutUs.php'?>>About us</a></li>
+                <li class="menu_link"><a href=<?php echo SITEURL . 'pages/contactUs.php'?>>Contact Us</a></li>
             </ul>
             </span>
            

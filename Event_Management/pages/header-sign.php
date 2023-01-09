@@ -6,10 +6,10 @@
     <div id="menu-bar" class="fas fa-bars"></div>
     <div class="header-2" id="header-2">
         <nav class="navbar" id="navbar">
-            <a href="index.php">Home</a>
-            <a href="event_planners.php">Event Planner</a>
-            <a href=>About Us</a>
-            <a href="contactUs.php">Contact Us</a>
+            <a href=<?php echo SITEURL . 'index.php'?>>Home</a>
+            <a href=<?php echo SITEURL . 'pages/event_planners.php'?>>Event Planner</a>
+            <a href=<?php echo SITEURL . 'pages/aboutUs.php'?>>About Us</a>
+            <a href=<?php echo SITEURL . 'pages/contactUs.php'?>>Contact Us</a>
             
             
         </nav>

@@ -1,7 +1,7 @@
 <?php
 include('constants.php');
 include('header-sign.php');
-include('Event_Planner/controllers/commonFunctions.php');
+include('controllers/commonFunctions.php');
 
 // define variables and set to empty values
 $email = $password = "";
@@ -72,8 +72,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/sign_in2.css">
-    <link rel="stylesheet" href="./css/navigationBar.css">
+    <link rel="stylesheet" href="../css/sign_in2.css">
+    <link rel="stylesheet" href="../css/navigationBar.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 </head>
 
@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="loginbody">
         <div class="box" id='sign-up-s'>
             <div class="image-box">
-                <img src="images/Events.png" class="sign_in_logo" />
+                <img src="../images/Events.png" class="sign_in_logo" />
             </div>
             <div class="white-box">
                 <p class="heading">Sign Up</p>
@@ -94,16 +94,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         Register as,
                     </span>
                     <span class="btn btn_register select_customer">
-                        <img src="images/customer.png">
+                        <img src="../images/customer.png">
                         <a href="customer/register.php">Customer</a>
                     </span>
                     <span class="btn btn_register select_event_planner">
-                        <img src="images/event_planner.png">
-                        <a href="event_planner/sign_up_form.php">Event Planner</a>
+                        <img src="../images/event_planner.png">
+                        <a href=<?php echo SITEURL . 'pages/event_planner/sign_up_form.php'?>>Event Planner</a>
                     </span>
                     <span class="btn btn_register select_supplier">
-                        <img src="images/supplier.png">
-                        <a href="supplier/pages/sign_up.php">Supplier</a>
+                        <img src="../images/supplier.png">
+                        <a href=<?php echo SITEURL . 'pages/supplier/sign_up.php'?>>Supplier</a>
                     </span>
                     <span class="sign_in_txt">
                     Already have an account?
