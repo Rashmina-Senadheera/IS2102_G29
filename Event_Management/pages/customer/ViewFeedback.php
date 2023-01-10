@@ -12,6 +12,7 @@ include('customer_header.php');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/eventPlannerMain.css">
+    <link rel="stylesheet" href="../css/Custcss3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -30,62 +31,6 @@ include('customer_header.php');
             });
         });
     </script>
-<style>
-th,
-td {
-    padding: 10px 5px;
-    border-radius: .5rem;
-    position: relative;
-}
-
-tr {
-    cursor: pointer;
-}
-
-.tCenter {
-    text-align: center;
-}
-
-    table tr td ul {
-    position: absolute;
-    display: none;
-    width: 75px;
-    top: 20px;
-    right: 10px;
-    margin: 0;
-    background-color: #fff;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    border-radius: .5rem;
-    z-index: 100;
-    list-style-type: none;
-}
-
-table tr td ul li a,
-table tr td ul li button {
-    padding: 5px;
-    display: block;
-    text-decoration: none;
-    border-radius: .5rem;
-    color: #555;
-    font-size: 12px;
-    background-color: #fff;
-    border: none;
-    width: 100%;
-}
-
-
-table tr td ul li a:hover,
-table tr td ul li button:hover {
-    background-color: #b6b4b8;
-    color: white;
-}
-
-table tr td.menu:hover ul,
-table tr td.menu:focus ul {
-    display: block;
-}
-
-</style>
 </head>
 
 <body>
