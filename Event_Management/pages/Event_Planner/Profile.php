@@ -10,8 +10,8 @@ include('eventplanner_header.php');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/eventPlannerMain.css">
-    <link rel="stylesheet" href="../css/profileEP.css">
+    <link rel="stylesheet" href="../../css/eventPlannerMain.css">
+    <link rel="stylesheet" href="../../css/profileEP.css">
 </head>
 
 <body>
@@ -20,7 +20,7 @@ include('eventplanner_header.php');
         <div class="flex-container-profile">
             <div class="about">
                 <div class="image">
-                    <img src="../images/EP1.jpg" alt="Profile Picture">
+                    <img src="../../images/EP1.jpg" alt="Profile Picture">
                 </div>
                 <div class="profile-bio">
                     <div class="profile-name">
@@ -33,21 +33,21 @@ include('eventplanner_header.php');
                 <div class="social-media">
                     <div class="sm-all">
                         <div class="sm-logo">
-                            <img src="../images/icons/web.png" alt="">
+                            <img src="../../images/icons/web.png" alt="">
                         </div>
                         <div class="sm-name">Website</div>
                         <div class="sm-link">Not set</div>
                     </div>
                     <div class="sm-all">
                         <div class="sm-logo">
-                            <img src="../images/icons/instagram.png" alt="">
+                            <img src="../../images/icons/instagram.png" alt="">
                         </div>
                         <div class="sm-name">Instagram</div>
                         <div class="sm-link">sxchintha</div>
                     </div>
                     <div class="sm-all">
                         <div class="sm-logo">
-                            <img src="../images/icons/facebook.png" alt="">
+                            <img src="../../images/icons/facebook.png" alt="">
                         </div>
                         <div class="sm-name">Facebook</div>
                         <div class="sm-link">sxchintha</div>

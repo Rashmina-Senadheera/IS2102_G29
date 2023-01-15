@@ -11,9 +11,9 @@ include('eventplanner_header.php');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/eventPlannerMain.css">
-    <link rel="stylesheet" href="../css/profileEP.css">
-    <link rel="stylesheet" href="../css/more-info.css">
+    <link rel="stylesheet" href="../../css/eventPlannerMain.css">
+    <link rel="stylesheet" href="../../css/profileEP.css">
+    <link rel="stylesheet" href="../../css/more-info.css">
 </head>
 
 <body>
@@ -22,9 +22,9 @@ include('eventplanner_header.php');
             <div class="about">
                 <div class="ps-images">
                     <div class="image">
-                        <img class="mySlides" src="../images/Suppliers/supplier01.jpg" alt="">
-                        <img class="mySlides" src="../images/Suppliers/supplier01a.jpg" alt="">
-                        <img class="mySlides" src="../images/Suppliers/supplier01b.jpg" alt="">
+                        <img class="mySlides" src="../../images/Suppliers/supplier01.jpg" alt="">
+                        <img class="mySlides" src="../../images/Suppliers/supplier01a.jpg" alt="">
+                        <img class="mySlides" src="../../images/Suppliers/supplier01b.jpg" alt="">
                     </div>
                     <button class="display-left" onclick="plusDivs(-1)">&#10094;</button>
                     <button class="display-right" onclick="plusDivs(1)">&#10095;</button>

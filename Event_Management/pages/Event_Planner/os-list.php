@@ -1,48 +1,46 @@
 <?php
 include('eventplanner_sidenav.php');
 include('eventplanner_header.php');
-include('./controllers/commonFunctions.php');
+include('../controllers/commonFunctions.php');
 ?>
 
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <meta charset = 'UTF-8'>
-        <meta http-equiv = 'X-UA-Compatible' content = 'IE=edge'>
-        <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0'>
-        <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-        <link rel = 'stylesheet' href = '../supplier/css/eventPlannerMain.css'>
-        <link rel = 'stylesheet' href = '../supplier/css/ps-list.css'>
-    </head>
-        
-    <body>
-        <div class = 'container-main'>
-            <div class = 'flex-container-main'>
-                <div class="title-search">
-                    <div class = 'searchSec'>
-                        <div class = 'page-title'>Order Request</div>
-                    </div>
-                </div>
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel='stylesheet' href='../../css/eventPlannerMain.css'>
+    <link rel='stylesheet' href='../../css/ps-list.css'>
+</head>
+
+<body>
+    <div class='grid-container-payments'>
+        <div class='gridSearch'>
+            <div class='searchSec'>
+                <div class='page-title'>Order Request</div>
             </div>
+        </div>
         <div class="ps-list">
-            <div class ='grid-main' id='rs-list'>
-                <div class="cards" >
+            <div class='grid-main' id='rs-list'>
+                <div class="cards">
                     <div class='ps-card-title' id='title'>
-                            <div class='rs-card-img'>
-                            </div>
-                            <div class='ps-card-desc' id="rs">
-                                <div class='rs-title'>Order Request</div>
-                                <div class='rs-title' id = 'tit'>Quotation Number</div>
-                                <div class='rs-title' id = 'tit'>Event Type </div>
-                                <div class='rs-title' id = 'tit'>Requested </div>
-                            </div>
+                        <div class='rs-card-img'>
                         </div>
-                        
+                        <div class='ps-card-desc' id="rs">
+                            <div class='rs-title'>Order Request</div>
+                            <div class='rs-title' id='tit'>Quotation Number</div>
+                            <div class='rs-title' id='tit'>Event Type </div>
+                            <div class='rs-title' id='tit'>Requested </div>
+                        </div>
+                    </div>
+
                     <a href='order-view.php' id='a-card'>
                         <div class='ps-card'>
                             <div class='rs-card-img'>
-                                <img src= "../supplier/images/RashmikaFernando.jpeg" alt="">
+                                <img src="../../images/cs1.jpg" alt="">
                             </div>
                             <div class='ps-card-desc' id="rs">
                                 <div class='rs-title'>Order for anniversary Night part planning</div>
@@ -51,15 +49,15 @@ include('./controllers/commonFunctions.php');
                                 <div class='rs-type' id="urg">2 weeks ago</div>
                             </div>
                         </div>
-                    </a> 
-                    
-                </div>         
+                    </a>
+
+                </div>
             </div>
             <div class="filter">
                 <div class="search">
-                    <div class = 'input-container'>
-                        <input class = 'input-field-filter' type = 'text' placeholder = 'Search payments' name = 'search'>
-                        <i class = 'fa fa-search icon'></i>
+                    <div class='input-container'>
+                        <input class='input-field-filter' type='text' placeholder='Search payments' name='search'>
+                        <i class='fa fa-search icon'></i>
                     </div>
                 </div>
                 <div class="status">
@@ -67,11 +65,11 @@ include('./controllers/commonFunctions.php');
                     <div class="status-list">
                         <ul>
                             <li><a href="#">
-                                <div class="li-heading" id="out">Urgent</div>
-                            </a></li>
+                                    <div class="li-heading" id="out">Urgent</div>
+                                </a></li>
                             <li><a href="#">
-                                <div class="li-heading" id="in">Not Urgent</div>
-                            </a></li>
+                                    <div class="li-heading" id="in">Not Urgent</div>
+                                </a></li>
                         </ul>
                     </div>
                 </div>
@@ -93,22 +91,20 @@ include('./controllers/commonFunctions.php');
                         </ul>
                     </div>
                     <div class="sort">
-                    <div class="filter-heading">Filter by Date</div>
-                    <div class="sort-list">
-                        <ul>
-                            <li>
-                                <select name="date" id="date-sort">
-                                    <option value="oldest">Oldest on Top</option>
-                                    <option value="newest">Newest on Top</option>
-                                </select>
-                            </li>
-                        </ul>
+                        <div class="filter-heading">Filter by Date</div>
+                        <div class="sort-list">
+                            <ul>
+                                <li>
+                                    <select name="date" id="date-sort">
+                                        <option value="oldest">Oldest on Top</option>
+                                        <option value="newest">Newest on Top</option>
+                                    </select>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </body>
+</body>
 
 </html>
-
-
