@@ -91,7 +91,7 @@ include('customer_header.php');
                 </center>
 
             <center>Amount:&nbsp;&nbsp;
-                <div><center><input type="number" class="form-control" placeholder="Amount" name="ammount" min="5000" style="width:300px;" value="<?php echo (isset($_GET['ammount'])) ? $_GET['ammount'] : "" ?>" required>
+                <div><center><input type="number" class="form-control" placeholder="Amount" name="amount" min="5000" style="width:300px;" value="<?php echo (isset($_GET['amount'])) ? $_GET['amount'] : "" ?>" required>
                 </div></center>
             </div><br>
             
