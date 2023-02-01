@@ -103,13 +103,13 @@ include('header.php');
                                 <div class="img flex-column">
                                     <div class="flex-row-sb">
                                         <input type="radio" value="auditorium" name="indoor" id="auditorium" >
-                                        <label for="auditorium" class="flex-column"><img src="../images/customer_quote/indoor/auditorium.jfif">Auditorium</label>
+                                        <label for="auditorium" class="flex-column"><img src="../../images/customer_quote/indoor/auditorium.jfif">Auditorium</label>
                                         <input type="radio" value="conference" name="indoor" id="conference" >
-                                        <label for="conference" class="flex-column"><img src="../images/customer_quote/indoor/conference.jpg">Conference Room</label> 
+                                        <label for="conference" class="flex-column"><img src="../../images/customer_quote/indoor/conference.jpg">Conference Room</label> 
                                         <input type="radio" value="banquet" name="indoor" id="banquet" >
-                                        <label for="banquet" class="flex-column"><img src="../images/customer_quote/indoor/banquet.jpg">Banquet Hall</label>
+                                        <label for="banquet" class="flex-column"><img src="../../images/customer_quote/indoor/banquet.jpg">Banquet Hall</label>
                                         <input type="radio" value="stadium" name="indoor" id="stadium" >
-                                        <label for="stadium" class="flex-column"><img src="../images/customer_quote/indoor/indoor_stadium.png">Indoor Stadium</label>                                   
+                                        <label for="stadium" class="flex-column"><img src="../../images/customer_quote/indoor/indoor_stadium.png">Indoor Stadium</label>                                   
                                     </div>
                                     <div class="venue_remarks flex-column">
                                         <label class="label">Remarks</label>
@@ -120,13 +120,13 @@ include('header.php');
                                 <div class="img flex-column">
                                     <div class="flex-row-sb">
                                         <input type="radio" value="ground" name="outdoor" id="ground" >
-                                        <label for="ground" class="flex-column"><img src="../images/customer_quote/outdoor/ground.jpeg">Ground</label>
+                                        <label for="ground" class="flex-column"><img src="../../images/customer_quote/outdoor/ground.jpeg">Ground</label>
                                         <input type="radio" value="beach" name="outdoor" id="beach" >
-                                        <label for="beach" class="flex-column"><img src="../images/customer_quote/outdoor/beach.jpg">Open Beach</label> 
+                                        <label for="beach" class="flex-column"><img src="../../images/customer_quote/outdoor/beach.jpg">Open Beach</label> 
                                         <input type="radio" value="beach_tent" name="outdoor" id="beach_tent" >
-                                        <label for="beach_tent" class="flex-column"><img src="../images/customer_quote/outdoor/tented_beach.jpg">Tented Beach</label>
+                                        <label for="beach_tent" class="flex-column"><img src="../../images/customer_quote/outdoor/tented_beach.jpg">Tented Beach</label>
                                         <input type="radio" value="tented" name="outdoor" id="tented" >
-                                        <label for="tented" class="flex-column"><img src="../images/customer_quote/outdoor/tenetd_ground.jpg">Tented Ground</label>                                   
+                                        <label for="tented" class="flex-column"><img src="../../images/customer_quote/outdoor/tenetd_ground.jpg">Tented Ground</label>                                   
                                     </div>
                                     <div class="venue_remarks flex-column">
                                         <label class="label">Remarks</label>
