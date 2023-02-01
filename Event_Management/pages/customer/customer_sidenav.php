@@ -1,5 +1,5 @@
 <head>
-    <link rel="stylesheet" href="../css/sidenav.css">
+    <link rel="stylesheet" href="../../css/sidenav.css">
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -9,7 +9,7 @@
     <div class="sidebar">
         <div class="logo-details">
             <!-- <i class='bx bxl-c-plus-plus'></i> -->
-            <img src="../images/logo-white.svg" alt="logo" />
+            <img src="../../images/logo-white.svg" alt="logo" />
             <span class="logo_name">Eventra</span>
         </div>
         <ul class="nav-links">
