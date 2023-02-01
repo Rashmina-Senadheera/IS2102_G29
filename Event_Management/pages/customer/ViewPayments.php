@@ -11,8 +11,8 @@ include('customer_header.php');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/eventPlannerMain.css">
-    <link rel="stylesheet" href="../css/Custcss3.css">
+    <link rel="stylesheet" href="../../css/eventPlannerMain.css">
+    <link rel="stylesheet" href="../../css/Custcss3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -61,7 +61,7 @@ include('customer_header.php');
                     $sName = "localhost";
                     $uName = "root";
                     $pass = "";
-                    $db_name = "auth_db";
+                    $db_name = "eventra";
 
                     // Create connection
                     $conn = mysqli_connect($sName, $uName, $pass, $db_name);
@@ -82,7 +82,7 @@ include('customer_header.php');
                             <td><?php echo $row['date'] ?></td>
                             <td><?php echo $row['name'] ?></td>
                             <td><?php echo $row['email'] ?></td>
-                            <td><?php echo $row['ammount'] ?></td>
+                            <td><?php echo $row['amount'] ?></td>
 
                             <td class="tCenter menu">&#10247
                             <ul>
