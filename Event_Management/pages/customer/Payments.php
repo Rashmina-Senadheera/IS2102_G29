@@ -83,9 +83,9 @@ include('customer_header.php');
             <center>Payment Methods:&nbsp;&nbsp;
             <div class="cards">
                 <div>
-                    <img src="mc.png" alt="">
-                    <img src="vi.png" alt="">
-                    <img src="pp.png" alt="">
+                    <img src="../../images/mc.png" alt="">
+                    <img src="../../images/vi.png" alt="">
+                    <img src="../../images/pp.png" alt="">
                 </div>
                 </div>
                 </center>
