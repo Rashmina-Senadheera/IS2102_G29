@@ -319,5 +319,5 @@ include('header.php');
 
     </form>
 </div>
-<script src="customer_quotation.js"></script>
+<script src="../../customer_quotation.js"></script>
 </main>
