@@ -63,7 +63,7 @@ include('customer_header.php');
    else{
     $.ajax({
                 type: "POST",
-                url: "php/ProfileController.php?method=updatePW",
+                url: "php/ProfileBackend.php?method=updatePW",
                 data: { "NEW_PASSWORD": password1,"OLD_PASSWORD": oldPassword},
                 success: function(response){
                     console.log(response);
