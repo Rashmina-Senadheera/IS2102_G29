@@ -44,7 +44,7 @@ include('customer_header.php');
                 <div class="card">
                     <div class="content">
                         <div class="imgBx">
-                            <img src="../images/event.jpg">
+                            <img src="../../images/event.jpg">
                         </div>
                         <div class="contentBx">
                             <h3>Gihani's Wedding Day<br><span>
@@ -61,7 +61,7 @@ include('customer_header.php');
                 <div class="card">
                     <div class="content">
                         <div class="imgBx">
-                            <img src="../images/event2.jpg">
+                            <img src="../../images/event2.jpg">
                         </div>
                         <div class="contentBx">
                             <h3>Chathu's Gender Reveal<br><span>
@@ -78,7 +78,7 @@ include('customer_header.php');
                 <div class="card">
                     <div class="content">
                         <div class="imgBx">
-                            <img src="../images/event3.jpg">
+                            <img src="../../images/event3.jpg">
                         </div>
                         <div class="contentBx">
                             <h3>Outdoor Wedding<br><span>The first initiative undertaken by DEVENT, an event management firm aiming to reach the pinnacle of the industry. After thorough market research, we figured out one critical attention grasping issue faced by the wider community, which is the mental instability emerging due to the hectic monotonous routines of a substantial proportion of the population, ultimately leading to the deterioration of their overall wellbeing.</span></h3>
@@ -93,11 +93,11 @@ include('customer_header.php');
                 <div class="card">
                     <div class="content">
                         <div class="imgBx">
-                            <img src="../images/event4.jpg">
+                            <img src="../../images/event4.jpg">
                         </div>
                         <div class="contentBx">
                             <h3>Sandali's Birthday<br><span>
-                                    The lovely Sewwandi was on cloud nine when she was pleasantly surprised by her loved ones and friends on her birthday!! The atmosphere and decorum created by DEVENT, truly set the tone to create a memorable experience for her. Do not hesitate to contact us in making your dream event a reality.
+                                    The lovely Sandali was on cloud nine when she was pleasantly surprised by her loved ones and friends on her birthday!! The atmosphere and decorum created by DEVENT, truly set the tone to create a memorable experience for her. Do not hesitate to contact us in making your dream event a reality.
                                 </span></h3>
                         </div>
                     </div>
@@ -110,7 +110,7 @@ include('customer_header.php');
                 <div class="card">
                     <div class="content">
                         <div class="imgBx">
-                            <img src="../images/event.jpg">
+                            <img src="../../images/event.jpg">
                         </div>
                         <div class="contentBx">
                             <h3>Gihani's Wedding Day<br><span>
@@ -127,7 +127,7 @@ include('customer_header.php');
                 <div class="card">
                     <div class="content">
                         <div class="imgBx">
-                            <img src="../images/event2.jpg">
+                            <img src="../../images/event2.jpg">
                         </div>
                         <div class="contentBx">
                             <h3>Chathu's Gender Reveal<br><span>
