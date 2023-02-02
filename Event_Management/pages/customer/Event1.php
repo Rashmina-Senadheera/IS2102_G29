@@ -37,7 +37,7 @@ $sql = "SELECT * FROM events_c WHERE id=?";
         <div class="other">
                 <div class="info">
                     <div class="personal-info">
-                        <center><img src="../images/event.jpg" style="width:550px; height:300px;"></center><br>
+                        <center><img src="../../images/event.jpg" style="width:550px; height:300px;"></center><br>
                         <center>We don’t want you to wait for information, to compromise your dream, to apologise to family and friends for the quality of ceremony music or the food not being delicious.</center><br><br>
                         <center><b>Event Planner:</b> <?php echo $row['name']; ?><br>
                                 <b>Event Type:</b> Wedding<br>
