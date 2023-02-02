@@ -13,9 +13,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../css/eventPlannerMain.css">
     <link rel="stylesheet" href="../../css/calendarEP.css">
-    <link rel="stylesheet" href="../css/eventPlannerMain.css">
-    <link href='../../lib/fullcalendar/main.css' rel='stylesheet' />
-    <script src='../../lib/fullcalendar/main.js'></script>
+    <link rel="stylesheet" href="../../css/supplierMain.css">
+    <link href='../../vendor/fullcalendar/main.css' rel='stylesheet' />
+    <script src='../../vendor/fullcalendar/main.js'></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');

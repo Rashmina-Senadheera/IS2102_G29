@@ -2,6 +2,7 @@
     session_start();
     include( 'supplier_sidenav.php' );
     include( 'header.php' );
+    $pid = $_GET['product_type'];
     if(isset($_SESSION['user_name'])){
 ?>
 
@@ -14,9 +15,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link rel="stylesheet" href="eventPlannerMain.css">
     <link rel="stylesheet" href="profile.css"> -->
-    <link rel="stylesheet" href="../css/form.css">
+    <link rel="stylesheet" href="../../css/form.css">
+    <link rel="stylesheet" href="../../css/modal.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="../js/form.js"></script>
+    <script src="../../js/form.js"></script>
     
 </head>
 
@@ -40,7 +42,6 @@
      	        <?php } ?>
 
      	        <?php if (isset($_GET['successs'])) { ?>
-                  
                   <p class="success"><i class="fa-solid fa-check"></i><?php echo $_GET['successs']; ?></p>
               <?php } ?>
             </div>
@@ -58,6 +59,8 @@
                 </textarea>
               </div>
             </div>
+
+            <?php if($pid == 'venue') {?>
             <div class="row">
               <label for="" class="input-ps-label">Venue in <span>*</span></label>
               <select name="venueIn" id="type" required>
@@ -101,7 +104,191 @@
                   <input type="text" placeholder="Full Name" name="minCap" class="input-ps-in"/>
                 </div>
               </div>
+              </div>
+              <?php } ?>
+
+              <?php if($pid == 'transport') {?>
+                
+              <div class="row">
+                <label for="" class="input-ps-label">Type</label>
+                <select name="type" id="type">
+                  <option value="">Car</option>
+                  <option value="">Motorbike</option>
+                  <option value="">Bicycle</option>
+                  <option value="">Van</option>
+                  <option value="">Lorry</option>
+                  <option value="">Bus</option>
+                  <option value="">Jeep</option>
+                </select>
+              </div>
+              <div class="row">
+                <div class="input-ps">
+                  <label for="" class="input-ps-label">Brand</label>
+                  <input type="text" placeholder="Brand" class="input-ps-in"/>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-ps">
+                  <label for="" class="input-ps-label">Model</label>
+                  <input type="text" placeholder="Brand" class="input-ps-in"/>
+                </div>
+              </div>
+              <?php } ?>
+
+              <?php if($pid == 'cb') {?>
+
+              <div class="checkbox-dropdown">
+  Choose city
+  <ul class="checkbox-dropdown-list">
+    <li>
+      <label>
+        <input type="checkbox" value="Vejle" name="city" />Milwaukee</label>
+    </li>
+    <li>
+      <label>
+        <input type="checkbox" value="Horsens" name="city" />Denver</label>
+    </li>
+    <li>
+      <label>
+        <input type="checkbox" value="Kolding" name="city" />Boston</label>
+    </li>
+    <li>
+      <label>
+        <input type="checkbox" value="Kolding" name="city" />LA</label>
+    </li>
+    
+  </ul>
+</div>
+              <div class="row" id='check'>
+              <div class="input-ps" id='check'>
+                <label for="" class="input-ps-label" id='check'>Catered for</label>
+                <div class="check-bx">
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                    <label for="" class="input-ps-label-opt">Indoor Catering</label>
+                  </div>
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                    <label for="" class="input-ps-label-opt">Outdoor Catering</label>
+                  </div>
+                </div>
+              </div>
+              <div class="input-ps" id='check'>
+                <label for="" class="input-ps-label" id='check'>Transport provided</label>
+                <div class="check-bx">
+                  <div class="check-bx-opt">
+                    <input type="radio" id="type-venue" name="type-venue" value="Car">
+                    <label for="" class="input-ps-label-opt">provided</label>
+                  </div>
+                  <div class="check-bx-opt">
+                    <input type="radio" id="type-venue" name="type-venue" value="Car">
+                    <label for="" class="input-ps-label-opt">not provided</label>
+                  </div>
+                </div>
+              </div>
           </div>
+          <div class="row" id='check'>
+              <div class="input-ps" id='check'>
+                <label for="" class="input-ps-label" id='check'>Available as </label>
+                <div class="check-bx">
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                    <label for="" class="input-ps-label-opt">Packets/Cups</label>
+                  </div>
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                    <label for="" class="input-ps-label-opt">Buffet</label>
+                  </div>
+                </div>
+              </div>
+              <div class="input-ps" id='check'>
+                <label for="" class="input-ps-label" id='check'>Available For </label>
+                <div class="check-bx">
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                    <label for="" class="input-ps-label-opt">Breakfast</label>
+                  </div>
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                    <label for="" class="input-ps-label-opt">Lunch</label>
+                  </div>
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                    <label for="" class="input-ps-label-opt">Dinner</label>
+                  </div>
+                </div>
+                <div class="check-bx">
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                    <label for="" class="input-ps-label-opt">Brunch</label>
+                  </div>
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                    <label for="" class="input-ps-label-opt">High-Tea</label>
+                  </div>
+                </div>
+                </div>
+              </div>
+              <div class="row" id='check'>
+              <div class="input-ps" id='check'>
+                <label for="" class="input-ps-label" id='check'>Available Provinces </label>
+                <div class="check-bx">
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                    <label for="" class="input-ps-label-opt">Western </label>
+                  </div>
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                    <label for="" class="input-ps-label-opt">Eastern</label>
+                  </div>
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                    <label for="" class="input-ps-label-opt">Central</label>
+                  </div>
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                    <label for="" class="input-ps-label-opt">Northern</label>
+                  </div>
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                    <label for="" class="input-ps-label-opt">Southern</label>
+                  </div>
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                    <label for="" class="input-ps-label-opt">North Western</label>
+                  </div>
+                </div>
+                <div class="check-bx">
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                    <label for="" class="input-ps-label-opt">Sabaragamuwa </label>
+                  </div>
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                    <label for="" class="input-ps-label-opt">Uva</label>
+                  </div>
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                    <label for="" class="input-ps-label-opt">North Central</label>
+                  </div>
+                </div>
+              </div>
+              </div>
+              <div class="row">
+                  <div class="card">
+                    <label for="" class="input-ps-label" id='check'>Upload Menu </label>
+                    <div class="drop_box">
+                      <header>
+                        <h4>Select File here</h4>
+                      </header>
+                      <p>Files Supported: PDF, TEXT, DOC , DOCX</p>
+                      <input type="file" id="real-file" hidden="hidden" />
+                      <button type="button" class="btn" id="custom-button">CHOOSE A FILE</button>
+                      <span id="custom-text">No file chosen, yet.</span>
+                    </div>
+                  </div>
+                </div> 
+              <?php } ?>
               <div class="row">
                   <div class="card" id="upload">
                     <label for="" class="input-ps-label" id='check'>Upload Pictures </label>

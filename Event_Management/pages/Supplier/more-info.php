@@ -1,5 +1,5 @@
 <?php
-    include('../../constants.php');
+    include('../constants.php');
     include( 'supplier_sidenav.php' );
     include( 'header.php' );
     $id = $_GET['id'];
@@ -13,9 +13,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/eventPlannerMain.css">
-    <link rel="stylesheet" href="../css/profile.css">
-    <link rel="stylesheet" href="../css/more-info.css">
+    <link rel = 'stylesheet' href = '../../css/supplierMain.css'>
+    <link rel="stylesheet" href="../../css/profile.css">
+    <link rel="stylesheet" href="../../css/more-info.css">
 </head>
 
 <body>

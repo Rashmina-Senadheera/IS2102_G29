@@ -14,8 +14,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link rel="stylesheet" href="eventPlannerMain.css">
     <link rel="stylesheet" href="profile.css"> -->
-    <link rel="stylesheet" href="../css/eventPlannerMain.css">
-    <link rel="stylesheet" href="../css/addps.css">
+    <link rel="stylesheet" href="../../css/supplierMain.css">
+    <link rel="stylesheet" href="../../css/addps.css">
+    <link rel="stylesheet" href="../../js/addps.css">
 </head>
 
 <body>
@@ -38,42 +39,42 @@
                                     <i class='bx bx-package'></i>
                                     <div class="ps-cat-title">Add a Product</div>
                                 </div></li>
-                            <a href="form-venue.php" id="btn">
+                            <a href="form-venue.php?product_type=venue" id="btn">
                             <li class = "header" id="ps-item-add">
                                 <div class="ps-cat-desc" id='item'>
                                     <div class="ps-cat-item">Venue</div>
                                     <i class='bx bx-chevron-right' id="item"></i>
                                 </div>
                             </li></a>
-                            <a href="form-catering.php" id="btn">
+                            <a href="form-venue.php?product_type=cb" id="btn">
                             <li class = "header" id="ps-item-add">
                                 <div class="ps-cat-desc" id='item'>
                                     <div class="ps-cat-item">Catering & Beverages</div>
                                     <i class='bx bx-chevron-right' id="item"></i>
                                 </div>
                             </li></a>
-                            <a href="form-transport.php" id="btn">
+                            <a href="form-venue.php?product_type=transport" id="btn">
                             <li class = "header" id="ps-item-add">
                                 <div class="ps-cat-desc" id='item'>
                                     <div class="ps-cat-item">Transport</div>
                                     <i class='bx bx-chevron-right' id="item"></i>
                                 </div>
                             </li></a>
-                            <a href="form-florist.php" id="btn">
+                            <a href="form-venue.php?product_type=venue" id="btn">
                             <li class = "header" id="ps-item-add">
                                 <div class="ps-cat-desc" id='item'>
                                     <div class="ps-cat-item">Florists</div>
                                     <i class='bx bx-chevron-right' id="item"></i>
                                 </div>
                             </li></a>
-                            <a href="form-deco.php" id="btn">
+                            <a href="form-venue.php?product_type=venue" id="btn">
                             <li class = "header" id="ps-item-add" >
                                 <div class="ps-cat-desc" id='item'>
                                     <div class="ps-cat-item">Decoration</div>
                                     <i class='bx bx-chevron-right' id="item"></i>
                                 </div>
                             </li></a>
-                            <a href="form-other.php" id="btn">
+                            <a href="form-venue.php?product_type=venue" id="btn">
                             <li id="ps-item-add">
                                 <div class="ps-cat-desc" id='item'>
                                     <div class="ps-cat-item">Other</div>

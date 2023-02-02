@@ -1,5 +1,5 @@
 <?php
-    include('../../constants.php');
+    include('../constants.php');
     include( 'supplier_sidenav.php' );
     include( 'header.php' );
 ?>
@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../css/viewSuppliersEP.css">
     <link rel="stylesheet" href="../../css/filterEP.css">
-    <link rel="stylesheet" href="../../css/eventPlannerMain.css">
+    <link rel="stylesheet" href="../../css/supplierMain.css">
         <link rel="stylesheet" href="../css/eventPlannerMain.css">
     <link rel="stylesheet" href="../../css/chat.css">
     <script src="https://kit.fontawesome.com/bf10032598.js" crossorigin="anonymous"></script>
