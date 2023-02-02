@@ -8,7 +8,7 @@
     <!--navigation bar left-->
     <div class="sidebar">-->
         <div class="logo-details">
-            <img src="../images/logo-white.svg" alt="logo" />
+            <img src="../../images/logo-white.svg" alt="logo" />
             <span class="logo_name">Eventra</span>
         </div>
         <ul class="nav-links">
