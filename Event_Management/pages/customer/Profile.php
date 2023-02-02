@@ -255,7 +255,7 @@ include('customer_header.php');
         $.ajax({
                 type: "POST",
                 url: "php/ProfileBackend.php?method=update",
-                data: { "NAME": name, "EMAIL": email, "NIC": nic, "PHONE_NUMER": contact, "ADDRESS": address, "BIO": bio},
+                data: { "NAME": name, "EMAIL": email, "NIC": nic, "PHONE_NUMBER": contact, "ADDRESS": address, "BIO": bio},
                 success: function(response){
                     console.log(response);
                     callPHPFunction();
