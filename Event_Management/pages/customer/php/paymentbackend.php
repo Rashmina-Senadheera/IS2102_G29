@@ -5,7 +5,7 @@ if (
     isset($_POST['email']) &&
     isset($_POST['account'])  &&
     isset($_POST['date'])  &&
-    isset($_POST['ammount'])
+    isset($_POST['amount'])
 ) {
 
     include "../db_conn.php";
@@ -14,15 +14,15 @@ if (
     $email = $_POST['email'];
     $account = $_POST['account'];
     $date = $_POST['date'];
-    $ammount = $_POST['ammount'];
+    $amount = $_POST['amount'];
 
-    $data = "name=" . $name . "&email=" . $email . "&account=" . $account . "&ammount=" . $ammount;
+    $data = "name=" . $name . "&email=" . $email . "&account=" . $account . "&amount=" . $amount;
 
 
     // Insert into Database
-    $sql = "INSERT INTO payments(name, email,account,date,ammount) VALUES(?,?,?,?,?)";
+    $sql = "INSERT INTO payments(name, email,account,date,amount) VALUES(?,?,?,?,?)";
     $stmt = $conn->prepare($sql);
-    $stmt->execute([$name, $email, $account, $date, $ammount]);
+    $stmt->execute([$name, $email, $account, $date, $amount]);
 
     header("Location: ../payments.php");
 }

@@ -12,7 +12,7 @@
 
 <div class="sidebar">
         <div class="logo-details">
-            <img src="../images/enova.png" class="logo">
+            <img src="../../images/enova.png" class="logo">
             <span class="logo_name">Eventra</span>
         </div>
         <ul class="nav-links">

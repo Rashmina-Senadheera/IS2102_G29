@@ -1,7 +1,7 @@
 <?php
 include('eventplanner_sidenav.php');
 include('eventplanner_header.php');
-include('./controllers/commonFunctions.php');
+include('../controllers/commonFunctions.php');
 ?>
 
 <!DOCTYPE html>
@@ -11,10 +11,10 @@ include('./controllers/commonFunctions.php');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/viewSuppliersEP.css">
-    <link rel="stylesheet" href="../css/filterEP.css">
-    <link rel="stylesheet" href="../css/eventPlannerMain.css">
-    <link rel="stylesheet" href="../css/chat.css">
+    <link rel="stylesheet" href="../../css/viewSuppliersEP.css">
+    <link rel="stylesheet" href="../../css/filterEP.css">
+    <link rel="stylesheet" href="../../css/eventPlannerMain.css">
+    <link rel="stylesheet" href="../../css/chat.css">
     <script src="https://kit.fontawesome.com/bf10032598.js" crossorigin="anonymous"></script>
 </head>
 
@@ -37,7 +37,7 @@ include('./controllers/commonFunctions.php');
                     <!-- <a href="chat.php?user_id='.$row['unique_id'].'"> -->
                     <div class="users-area">
                         <div class="content">
-                            <img src="../images/customer.png" alt="">
+                            <img src="../../images/customer.png" alt="">
                             <div class="details">
                                 <span>Shamin Fernando</span>
                                 <p>Hello</p>
@@ -49,7 +49,7 @@ include('./controllers/commonFunctions.php');
                     </div>
                     <div class="users-area">
                         <div class="content">
-                            <img src="../images/supplier.png" alt="">
+                            <img src="../../images/supplier.png" alt="">
                             <div class="details">
                                 <span>Sachintha Gunaratne</span>
                                 <p>Hi</p>
@@ -61,7 +61,7 @@ include('./controllers/commonFunctions.php');
                     </div>
                     <div class="users-area">
                         <div class="content">
-                            <img src="../images/d_supplier.png" alt="">
+                            <img src="../../images/d_supplier.png" alt="">
                             <div class="details">
                                 <span>Rashmina Senadheera</span>
                                 <p>Hi</p>
@@ -85,7 +85,7 @@ include('./controllers/commonFunctions.php');
 
                     ?>
                     <a href="users.php" class="back-icon"><i class="fas fa-arrow-left"></i></a>
-                    <img src="../images/evt_planner.jfif" alt="">
+                    <img src="../../images/evt_planner.jfif" alt="">
                     <div class="details">
                         <span>Rashmina Senadheera</span>
                         <p>Active Now</p>
@@ -98,7 +98,7 @@ include('./controllers/commonFunctions.php');
                         </div>
                     </div>
                     <div class="chat incoming">
-                        <img src="../images/evt_planner.jfif" alt="">
+                        <img src="../../images/evt_planner.jfif" alt="">
                         <div class="details">
                             <p>Hello</p>
                         </div>

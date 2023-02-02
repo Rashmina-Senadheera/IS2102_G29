@@ -11,17 +11,11 @@ include('customer_header.php');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/eventPlannerMain.css">
-    <link rel="stylesheet" href="../css/Custcss2.css">
+    <link rel="stylesheet" href="../../css/eventPlannerMain.css">
+    <link rel="stylesheet" href="../../css/Custcss2.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-
-</style>
-
 </head>
-
 <body>
-
  <div class="grid-container-payments">
         <div class="gridSearch">
             <div class="searchSec">
@@ -75,7 +69,7 @@ include('customer_header.php');
               <a>★</a>
               <a>★</a>
               </span>
-			</div>
+	    </div>
    </div>
 </center>        
             <br>
@@ -88,6 +82,6 @@ include('customer_header.php');
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="feedback.js"></script>
+<script src="../../feedback.js"></script>
 </body>
 </html>

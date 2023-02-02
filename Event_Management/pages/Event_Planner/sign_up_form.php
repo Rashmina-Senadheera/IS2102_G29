@@ -1,7 +1,7 @@
 <?php
 include('../constants.php');
 include('eventplanner_header.php');
-include('controllers/commonFunctions.php');
+include('../controllers/commonFunctions.php');
 
 // check user already logged in
 if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
@@ -19,9 +19,9 @@ if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/navigationBar.css">
-    <link rel="stylesheet" href="../css/sidenav.css">
-    <link rel="stylesheet" href="../css/signupEP.css">
+    <link rel="stylesheet" href="../../css/navigationBar.css">
+    <link rel="stylesheet" href="../../css/sidenav.css">
+    <link rel="stylesheet" href="../../css/signupEP.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 </head>
 

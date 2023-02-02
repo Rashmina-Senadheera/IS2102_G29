@@ -21,7 +21,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['
 ?>
 
 <head>
-    <link rel="stylesheet" href="../css/sidenav.css">
+    <link rel="stylesheet" href="../../css/sidenav.css">
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -33,78 +33,78 @@ if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['
     <div class="sidebar">
         <div class="logo-details">
             <!-- <i class='bx bxl-c-plus-plus'></i> -->
-            <img src="../images/logo-white.svg" alt="logo" />
+            <img src="../../images/logo-white.svg" alt="logo" />
             <span class="logo_name">Eventra</span>
         </div>
         <ul class="nav-links">
             <li>
-                <a href=<?php echo SITEURL . 'event_planner/Requests.php'  ?>>
+                <a href=<?php echo SITEURL . 'pages/event_planner/Requests.php'  ?>>
                     <i class='bx bx-list-ul'></i>
                     <span class="links_name">Requests</span>
                 </a>
             </li>
             <li>
-                <a href=<?php echo SITEURL . 'event_planner/Messages.php'  ?>>
+                <a href=<?php echo SITEURL . 'pages/event_planner/Messages.php'  ?>>
                     <i class='bx bx-chat'></i>
                     <span class="links_name">Messages</span>
                 </a>
             </li>
             <li>
-                <a href=<?php echo SITEURL . 'event_planner/os-list.php'  ?>>
+                <a href=<?php echo SITEURL . 'pages/event_planner/os-list.php'  ?>>
                     <i class='bx bx-coin-stack'></i>
                     <span class="links_name">Order Requests</span>
                 </a>
             </li>
             <li>
-                <a href=<?php echo SITEURL . 'event_planner/Suppliers.php'  ?>>
+                <a href=<?php echo SITEURL . 'pages/event_planner/Suppliers.php'  ?>>
                     <i class='bx bx-package'></i>
                     <span class="links_name">Suppliers</span>
                 </a>
             </li>
             <li>
-                <a href=<?php echo SITEURL . 'event_planner/CustomerQuotations.php'  ?>>
+                <a href=<?php echo SITEURL . 'pages/event_planner/CustomerQuotations.php'  ?>>
                     <i class='bx bx-task'></i>
                     <span class="links_name">Customer Quotations</span>
                 </a>
             </li>
             <li>
-                <a href=<?php echo SITEURL . 'event_planner/SupplierQuotations.php'  ?>>
+                <a href=<?php echo SITEURL . 'pages/event_planner/SupplierQuotations.php'  ?>>
                     <i class='bx bx-task'></i>
                     <span class="links_name">Supplier Quotations</span>
                 </a>
             </li>
             <li>
-                <a href=<?php echo SITEURL . 'event_planner/Payments.php'  ?>>
+                <a href=<?php echo SITEURL . 'pages/event_planner/Payments.php'  ?>>
                     <i class='bx bx-money'></i>
                     <span class="links_name">Payments</span>
                 </a>
             </li>
             <li>
-                <a href=<?php echo SITEURL . 'event_planner/PackagesServices.php'  ?>>
+                <a href=<?php echo SITEURL . 'pages/event_planner/PackagesServices.php'  ?>>
                     <i class='bx bx-package'></i>
                     <span class="links_name">Packages & Services</span>
                 </a>
             </li>
             <li>
-                <a href=<?php echo SITEURL . 'event_planner/Calendar.php'  ?>>
+                <a href=<?php echo SITEURL . 'pages/event_planner/Calendar.php'  ?>>
                     <i class='bx bx-calendar'></i>
                     <span class="links_name">Calendar</span>
                 </a>
             </li>
             <li>
-                <a href=<?php echo SITEURL . 'event_planner/Reports.php'  ?>>
+                <a href=<?php echo SITEURL . 'pages/event_planner/Reports.php'  ?>>
                     <i class='bx bxs-report'></i>
                     <span class="links_name">Reports</span>
                 </a>
             </li>
             <li>
-                <a href=<?php echo SITEURL . 'event_planner/Feedback.php'  ?>>
+                <a href=<?php echo SITEURL . 'pages/event_planner/Feedback.php'  ?>>
                     <i class='bx bx-message'></i>
                     <span class="links_name">Feedback</span>
                 </a>
             </li>
             <li>
-                <a href=<?php echo SITEURL . 'event_planner/Profile.php' ?>>
+                <a href=<?php echo SITEURL . 'pages/event_planner/Profile.php' ?>>
                     <i class='bx bx-user'></i>
                     <span class="links_name">Profile</span>
                 </a>

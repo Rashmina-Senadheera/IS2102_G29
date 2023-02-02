@@ -19,8 +19,8 @@ $sql = "SELECT * FROM events_c WHERE id=?";
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/eventPlannerMain.css">
-    <link rel="stylesheet" href="../css/Custcss2.css">
+    <link rel="stylesheet" href="../../css/eventPlannerMain.css">
+    <link rel="stylesheet" href="../../css/Custcss2.css">
 <style>
 
 </style>
@@ -37,7 +37,7 @@ $sql = "SELECT * FROM events_c WHERE id=?";
         <div class="other">
                 <div class="info">
                     <div class="personal-info">
-                        <center><img src="../images/event.jpg" style="width:550px; height:300px;"></center><br>
+                        <center><img src="../../images/event.jpg" style="width:550px; height:300px;"></center><br>
                         <center>We don’t want you to wait for information, to compromise your dream, to apologise to family and friends for the quality of ceremony music or the food not being delicious.</center><br><br>
                         <center><b>Event Planner:</b> <?php echo $row['name']; ?><br>
                                 <b>Event Type:</b> Wedding<br>

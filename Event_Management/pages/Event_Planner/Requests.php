@@ -1,7 +1,7 @@
 <?php
 include('eventplanner_sidenav.php');
 include('eventplanner_header.php');
-include('./controllers/commonFunctions.php');
+include('../controllers/commonFunctions.php');
 ?>
 
 <!DOCTYPE html>
@@ -11,9 +11,9 @@ include('./controllers/commonFunctions.php');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/viewSuppliersEP.css">
-    <link rel="stylesheet" href="../css/filterEP.css">
-    <link rel="stylesheet" href="../css/eventPlannerMain.css">
+    <link rel="stylesheet" href="../../css/viewSuppliersEP.css">
+    <link rel="stylesheet" href="../../css/filterEP.css">
+    <link rel="stylesheet" href="../../css/eventPlannerMain.css">
 </head>
 
 <body>
@@ -54,7 +54,7 @@ include('./controllers/commonFunctions.php');
                             <th onclick="sortTable(6)">Budget</th>
                         </tr>
                     </thead>
-                    <tr>
+                    <!-- <tr>
                         <td onclick="window.location='Request-view.php';">1</td>
                         <td onclick="window.location='Request-view.php';">2022-05-01</td>
                         <td onclick="window.location='Request-view.php';">Wedding</td>
@@ -78,93 +78,42 @@ include('./controllers/commonFunctions.php');
                                 </li>
                             </ul>
                         </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>2022-05-01</td>
-                        <td>Exhibition</td>
-                        <td>Not provided</td>
-                        <td>Classic</td>
-                        <td>2022-05-15 to 2022-05-18</td>
-                        <td>Not provided</td>
-                        <td class="tCenter menu">&#10247
-                            <ul>
-                                <li>
-                                    <a href="#">View</a>
-                                </li>
-                                <li>
-                                    <a href="#">Send Quotation</a>
-                                </li>
-                                <li>
-                                    <a href="#">Message Customer</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="destructive">Decline</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>2022-05-01</td>
-                        <td>Birthday</td>
-                        <td>30</td>
-                        <td>Classic</td>
-                        <td>2022-05-15</td>
-                        <td>Rs. 100,000</td>
-                        <td class="tCenter menu">&#10247
-                            <ul>
-                                <li>
-                                    <a href="#">View</a>
-                                </li>
-                                <li>
-                                    <a href="#">Send Quotation</a>
-                                </li>
-                                <li>
-                                    <a href="#">Message Customer</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="destructive">Decline</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>2022-05-01</td>
-                        <td>Wedding</td>
-                        <td>100</td>
-                        <td>Classic</td>
-                        <td>2022-05-15</td>
-                        <td>Rs. 220,000</td>
-                        <td class="tCenter menu">&#10247
-                            <ul>
-                                <li>
-                                    <a href="#">View</a>
-                                </li>
-                                <li>
-                                    <a href="#">Send Quotation</a>
-                                </li>
-                                <li>
-                                    <a href="#">Message Customer</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="destructive">Decline</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
+                    </tr> -->
                 <?php
                     while ($row = mysqli_fetch_assoc($result)) {
+                        $request_id = !empty($row['request_id']) ? $row['request_id'] : "Not Set";
+                        $date = !empty($row['date']) ? $row['date'] : "Not Set";
+                        $event_type = !empty($row['event_type']) ? $row['event_type'] : "Not Set";
+                        $no_of_guests = !empty($row['no_of_guests']) ? $row['no_of_guests'] : "Not Set";
+                        $theme = !empty($row['theme']) ? $row['theme'] : "Not Set";
+                        $customer_id = $row['customer_id'];
+
                         echo "<tr>";
-                        echo "<td>" . $row['request_id'] . "</td>";
-                        echo "<td>" . $row['event_type'] . "</td>";
-                        echo "<td>" . $row['event_date'] . "</td>";
-                        echo "<td>" . $row['event_time'] . "</td>";
-                        echo "<td>" . $row['theme '] . "</td>";
-                        echo "<td>" . $row['event_budget'] . "</td>";
-                        echo "<td>" . $row['event_description'] . "</td>";
-                        echo "<td><a href='viewQuotation.php?id=" . $row['id'] . "'><button class='view-button'>View</button></a></td>";
+                        echo "<td onclick='requestView($request_id)'>$request_id</td>";
+                        echo "<td onclick='requestView($request_id)'>$date</td>";
+                        echo "<td onclick='requestView($request_id)'>$event_type</td>";
+                        echo "<td onclick='requestView($request_id)'>$no_of_guests</td>";
+                        echo "<td onclick='requestView($request_id)'>$theme</td>";
+                        echo "<td onclick='requestView($request_id)'>Not Set</td>";
+                        echo "<td onclick='requestView($request_id)'>Not Set</td>";
+
+
+                        echo '<td class="tCenter menu">&#10247
+                                <ul>
+                                        <li>
+                                            <a href="Request-view.php?reqID=' . $request_id . '">View</a>
+                                        </li>
+                                        <li>
+                                            <a href="SendCustomerQuotation.php?reqID=' . $request_id . '">Send Quotation</a>
+                                        </li>
+                                        <li>
+                                            <a href="Messages.php">Message Customer</a>
+                                        </li>
+                                        <li>
+                                        <button type="button" onclick="declineRequest(' . $request_id . ')" class="destructive">Decline</button>
+                                        </li>
+                                    </ul>
+                                </td>';
                         echo "</tr>";
                     }
                 } else {
@@ -189,11 +138,9 @@ include('./controllers/commonFunctions.php');
                     <button type="button" class="rejected" style="margin-left: 0;">
                         Cancel
                     </button>
-                    <a href="SendCustomerQuotation.php">
-                        <button type="button" class="accepted" style="margin-left: 0;">
-                            Yes, Decline
-                        </button>
-                    </a>
+                    <button type="button" class="accepted" style="margin-left: 0;">
+                        Yes, Decline
+                    </button>
                 </div>
             </div>
         </div>
@@ -206,16 +153,8 @@ include('./controllers/commonFunctions.php');
     // Get the modal
     var modal = document.getElementById("myModal");
 
-    // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
-
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks the button, open the modal 
-    btnDecline.onclick = function() {
-        modal.style.display = "block";
-    }
 
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
@@ -227,6 +166,16 @@ include('./controllers/commonFunctions.php');
         if (event.target == modal) {
             modal.style.display = "none";
         }
+    }
+
+    // Request view
+    requestView = (requestID) => {
+        window.location = "Request-view.php?reqID=" + requestID
+    }
+
+    // Decline request
+    declineRequest = (requestID) => {
+        modal.style.display = "block";
     }
 </script>
 

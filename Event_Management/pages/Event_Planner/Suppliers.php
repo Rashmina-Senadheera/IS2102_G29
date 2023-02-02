@@ -1,7 +1,7 @@
 <?php
 include('eventplanner_sidenav.php');
 include('eventplanner_header.php');
-include('./controllers/commonFunctions.php');
+include('../controllers/commonFunctions.php');
 ?>
 
 <!DOCTYPE html>
@@ -11,9 +11,9 @@ include('./controllers/commonFunctions.php');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/eventPlannerMain.css">
-    <link rel="stylesheet" href="../css/viewSuppliersEP.css">
-    <link rel="stylesheet" href="../css/filterEP.css">
+    <link rel="stylesheet" href="../../css/eventPlannerMain.css">
+    <link rel="stylesheet" href="../../css/viewSuppliersEP.css">
+    <link rel="stylesheet" href="../../css/filterEP.css">
 </head>
 
 <body>
@@ -40,7 +40,7 @@ include('./controllers/commonFunctions.php');
                 <div class="card">
                     <div class="content">
                         <div class="imgBx">
-                            <img src="../images/Suppliers/supplier01.jpg">
+                            <img src="../../images/Suppliers/supplier01.jpg">
                         </div>
                         <div class="contentBx">
                             <h3>Bravo Event Productions Hall</h3>
@@ -67,7 +67,7 @@ include('./controllers/commonFunctions.php');
                 <div class="card">
                     <div class="content">
                         <div class="imgBx">
-                            <img src="../images/Suppliers/supplier02.jpg">
+                            <img src="../../images/Suppliers/supplier02.jpg">
                         </div>
                         <div class="contentBx">
                             <h3>Fruit & Chocolate sensations</h3>
@@ -94,7 +94,7 @@ include('./controllers/commonFunctions.php');
                 <div class="card">
                     <div class="content">
                         <div class="imgBx">
-                            <img src="../images/Suppliers/supplier03.jpg">
+                            <img src="../../images/Suppliers/supplier03.jpg">
                         </div>
                         <div class="contentBx">
                             <h3>Decorento Party Supplies</h3>
@@ -123,7 +123,7 @@ include('./controllers/commonFunctions.php');
                 <div class="card">
                     <div class="content">
                         <div class="imgBx">
-                            <img src="../images/Suppliers/supplier01.jpg">
+                            <img src="../../images/Suppliers/supplier01.jpg">
                         </div>
                         <div class="contentBx">
                             <h3>Bravo Event Productions Hall</h3>
@@ -144,7 +144,7 @@ include('./controllers/commonFunctions.php');
                 <div class="card">
                     <div class="content">
                         <div class="imgBx">
-                            <img src="../images/Suppliers/supplier02.jpg">
+                            <img src="../../images/Suppliers/supplier02.jpg">
                         </div>
                         <div class="contentBx">
                             <h3>Fruit & Chocolate sensations</h3>
@@ -165,7 +165,7 @@ include('./controllers/commonFunctions.php');
                 <div class="card">
                     <div class="content">
                         <div class="imgBx">
-                            <img src="../images/Suppliers/supplier03.jpg">
+                            <img src="../../images/Suppliers/supplier03.jpg">
                         </div>
                         <div class="contentBx">
                             <h3>Decorento Party Supplies</h3>
@@ -188,7 +188,7 @@ include('./controllers/commonFunctions.php');
                 <div class="card">
                     <div class="content">
                         <div class="imgBx">
-                            <img src="../images/Suppliers/supplier01.jpg">
+                            <img src="../../images/Suppliers/supplier01.jpg">
                         </div>
                         <div class="contentBx">
                             <h3>Bravo Event Productions Hall</h3>
@@ -209,7 +209,7 @@ include('./controllers/commonFunctions.php');
                 <div class="card">
                     <div class="content">
                         <div class="imgBx">
-                            <img src="../images/Suppliers/supplier02.jpg">
+                            <img src="../../images/Suppliers/supplier02.jpg">
                         </div>
                         <div class="contentBx">
                             <h3>Fruit & Chocolate sensations</h3>
@@ -230,7 +230,7 @@ include('./controllers/commonFunctions.php');
                 <div class="card">
                     <div class="content">
                         <div class="imgBx">
-                            <img src="../images/Suppliers/supplier03.jpg">
+                            <img src="../../images/Suppliers/supplier03.jpg">
                         </div>
                         <div class="contentBx">
                             <h3>Decorento Party Supplies</h3>
