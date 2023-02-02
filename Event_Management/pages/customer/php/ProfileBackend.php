@@ -16,7 +16,7 @@ if(isset($_GET['method'])){
         $PHONE_NUMBER = $_POST['PHONE_NUMBER'];
         $ADDRESS = $_POST['ADDRESS'];
         $BIO = $_POST['BIO'];
-        UpdateStudent($NAME,$EMAIL,$NIC,$PHONE_NUMBER,$ADDRESS,$BIO,$USERNAME);
+        UpdateCustomer($NAME,$EMAIL,$NIC,$PHONE_NUMBER,$ADDRESS,$BIO,$USERNAME);
     }
 
     if($method =="updatePW"){
@@ -43,7 +43,7 @@ function LoadData($USERNAME) {
    echo json_encode($data);
 }
 
-function UpdateStudent($NAME,$EMAIL,$NIC,$PHONE_NUMER,$ADDRESS,$BIO,$USERNAME){
+function UpdateCustomer($NAME,$EMAIL,$NIC,$PHONE_NUMBER,$ADDRESS,$BIO,$USERNAME){
                $conn = mysqli_connect("localhost", "root", "", "eventra");
                // Insert into Database
 
@@ -86,12 +86,12 @@ function ChangePassword($NEW_PASSWORD,$OLD_PASSWORD,$USERNAME){
             } 
             mysqli_close($conn);
         }else{
-            echo "Incorect Password";
+            echo "Incorrect Password";
         }
 
 
       }else {
-        echo "Incorect Password";  
+        echo "Incorrect Password";  
      }
 }
 
