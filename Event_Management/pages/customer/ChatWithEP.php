@@ -35,7 +35,7 @@
                 
                 ?>
                 <a href="users.php" class="back-icon"><i class="fas fa-arrow-left"></i></a>
-                <img src="../images/evt_planner.jfif" alt="">
+                <img src="../../images/evt_planner.jfif" alt="">
                     <div class="details">
                         <span>Rashmina Senadheera</span>
                         <p>Active Now</p>
@@ -48,7 +48,7 @@
                      </div>
                 </div>
                 <div class="chat incoming">
-                        <img src="../images/evt_planner.jfif" alt="">
+                        <img src="../../images/evt_planner.jfif" alt="">
                         <div class="details">
                             <p>Hello</p>
                         </div>
