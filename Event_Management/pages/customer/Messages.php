@@ -5,7 +5,6 @@
     //     header('location:login.php');
     // }
     include('customer_sidenav.php');
-    //include('customer_header.php');
     include('header.php');
     include('customer_header.php');
 
