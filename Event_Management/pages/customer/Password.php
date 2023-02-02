@@ -30,19 +30,51 @@ include('customer_header.php');
             <div class="about">
                 <center><br >
                  Current Password:<br >
-		<input type="password" placeholder="Current Password" id="password" required><br ><br >
+		<input type="password" placeholder="Current Password" id="txtOldPassword" required><br ><br >
                  New Password:<br >
-		<input type="password" placeholder="New Password" id="password" required><br ><br >
+		<input type="password" placeholder="New Password" id="password1" required><br ><br >
                  Confirm Password:<br >
-		<input type="password" placeholder="Confirm Password" id="confirm_password" required><br ><br >
+		<input type="password" placeholder="Confirm Password" id="password2" required><br ><br >
 		<input id="terms" type="checkbox"> <label for="terms"></label>
 		<span>
 			Agree with
 			<a href="#">Terms & Conditions</a>
 		</span><br ><br ><br >
-		<button type="submit" class="srcButton">Change Password</button><br ><br >
+		<input type="button" id="btnChangePW" class="srcButton" value="Change Password"><br ><br >
 	</div></center><br >
         </div>
     </div>
 </body>
+<script>
+
+    $("#btnChangePW").click(function(){
+        UpdatePW();
+    });
+
+    function UpdatePW(){
+
+    var password1=$('#password1').val();
+    var password2=$('#password2').val();
+    var oldPassword=$('#txtOldPassword').val();
+
+    if(password1 !=password2){
+        swal("Fail!", "The password does not match!", "warning");
+    }
+   else{
+    $.ajax({
+                type: "POST",
+                url: "php/ProfileController.php?method=updatePW",
+                data: { "NEW_PASSWORD": password1,"OLD_PASSWORD": oldPassword},
+                success: function(response){
+                    console.log(response);
+                    swal("Good job!", "Password Updated!", "success");
+                },
+                error: function (xhr, status, error) {
+                    console.log(error);
+                }
+        });
+    }
+        
+    }
+</script>
 </html>
