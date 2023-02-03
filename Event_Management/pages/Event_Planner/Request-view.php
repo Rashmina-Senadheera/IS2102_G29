@@ -1,6 +1,72 @@
 <?php
-include('eventplanner_sidenav.php');
-include('eventplanner_header.php');
+if (isset($_GET['reqID'])) {
+    // Start output buffering
+    ob_start();
+
+    include('eventplanner_sidenav.php');
+    include('eventplanner_header.php');
+
+    $reqID = $_GET['reqID'];
+    $sql = "SELECT * FROM request_ep_quotation WHERE request_id = $reqID";
+
+    // execute query and check if successful
+    if ($result = $conn->query($sql)) {
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+
+            // check if the user is the owner of the package
+            if ($row['EP_id'] == $_SESSION['user_id']) {
+                $date = !empty($row['date']) ? $row['date'] : "Not Set";
+                $description = !empty($row['description']) ? $row['description'] : "Not Set";
+                $theme = !empty($row['theme']) ? $row['theme'] : "Not Set";
+                $catering_type = !empty($row['catering_type']) ? $row['catering_type'] : "Not Set";
+                $event_type = !empty($row['event_type']) ? $row['event_type'] : "Not Set";
+                $vanue_type = !empty($row['vanue_type']) ? $row['vanue_type'] : "Not Set";
+                $no_of_guests = !empty($row['no_of_guests']) ? $row['no_of_guests'] : "Not Set";
+                $status = !empty($row['status']) ? $row['status'] : "Not Set";
+                $time_from = !empty($row['time_from']) ? $row['time_from'] : "Not Set";
+                $time_to = !empty($row['time_to']) ? $row['time_to'] : "Not Set";
+                $budget1 = !empty($row['budget_min']) ? $row['budget_min'] : "0";
+                $budget2 = !empty($row['budget_max']) ? "- " . $row['budget_max'] : " ";
+                $requested_on = $row['requested_on'];
+
+                $getUser_sql = "SELECT `name`, `email` FROM user WHERE user_id = " . $row['customer_id'];
+                $getPhone_sql = "SELECT phone_number FROM user_phone WHERE user_id = " . $row['customer_id'];
+
+                $getUser_result = $conn->query($getUser_sql);
+                $getPhone_result = $conn->query($getPhone_sql);
+
+                if ($getUser_result->num_rows > 0) {
+                    $user_row = $getUser_result->fetch_assoc();
+                    $name = $user_row['name'];
+                    $email = $user_row['email'];
+                } else {
+                    $name = "Undefined";
+                    $email = "Undefined";
+                }
+
+                if ($getPhone_result->num_rows > 0) {
+                    $phone_row = $getPhone_result->fetch_assoc();
+                    $phone = $phone_row['phone_number'];
+                } else {
+                    $phone = "Undefined";
+                }
+            } else {
+                header("Location: ./403.php");
+                exit();
+            }
+        } else {
+            header("Location: ./404.php");
+            exit();
+        }
+    }
+
+    // Send the output buffer to the browser and turn off output buffering
+    ob_end_flush();
+} else {
+    header("Location: Requests.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +81,12 @@ include('eventplanner_header.php');
 </head>
 
 <body>
-    <!-- <div class="gridMain"> -->
+    <!-- Show success message -->
+    <?php
+    if (isset($_SESSION['success'])) {
+        echo '<div class="success-message">' . showSessionMessage("success") . '</div>';
+    }
+    ?>
     <div class="container-profile" style="padding-left: 20px;">
         <div class="gridSearch" style="margin-top: 10px;">
             <div class="searchSec">
@@ -30,31 +101,31 @@ include('eventplanner_header.php');
                     </div>
                     <div class="prof-all">
                         <div class="prof-name-50">Requested On:</div>
-                        <div class="prof-data">2022-05-01</div>
+                        <div class="prof-data"><?php echo $requested_on ?></div>
                     </div>
                     <div class="prof-all">
                         <div class="prof-name-50">Event Type:</div>
-                        <div class="prof-data">Wedding</div>
+                        <div class="prof-data"><?php echo $event_type ?></div>
                     </div>
                     <div class="prof-all">
                         <div class="prof-name-50">Participants:</div>
-                        <div class="prof-data">170</div>
+                        <div class="prof-data"><?php echo $no_of_guests ?></div>
                     </div>
                     <div class="prof-all">
                         <div class="prof-name-50">Theme:</div>
-                        <div class="prof-data">Classic</div>
+                        <div class="prof-data"><?php echo $theme ?></div>
                     </div>
                     <div class="prof-all">
                         <div class="prof-name-50">Tentative Date:</div>
-                        <div class="prof-data">2022-07-15</div>
-                    </div>
-                    <div class="prof-all">
-                        <div class="prof-name-50">Budget:</div>
-                        <div class="prof-data">Rs. 560,000</div>
+                        <div class="prof-data"><?php echo $date ?></div>
                     </div>
                     <div class="prof-all">
                         <div class="prof-name-50">Time:</div>
-                        <div class="prof-data">10:00 AM</div>
+                        <div class="prof-data"><?php echo "$time_from - $time_to" ?></div>
+                    </div>
+                    <div class="prof-all">
+                        <div class="prof-name-50">Budget (Rs.):</div>
+                        <div class="prof-data"><?php echo "$budget1 $budget2" ?></div>
                     </div>
 
                     <div class="personal-info-heading" style="width: 50%; margin-top: 40px;">
@@ -62,15 +133,15 @@ include('eventplanner_header.php');
                     </div>
                     <div class="prof-all">
                         <div class="prof-name-50">Name:</div>
-                        <div class="prof-data">Chandana Sooriyabandara</div>
+                        <div class="prof-data"><?php echo "$name" ?></div>
                     </div>
                     <div class="prof-all">
                         <div class="prof-name-50">Email:</div>
-                        <div class="prof-data">chandanaS@gmail.com</div>
+                        <div class="prof-data"><?php echo "$email" ?></div>
                     </div>
                     <div class="prof-all">
                         <div class="prof-name-50">Contact:</div>
-                        <div class="prof-data">0742514385</div>
+                        <div class="prof-data"><?php echo "$phone" ?></div>
                     </div>
                     <div class="actionBtn">
                         <button type="button" class="rejected" style="margin-left: 0;" onclick="window.location='Messages.php';">
