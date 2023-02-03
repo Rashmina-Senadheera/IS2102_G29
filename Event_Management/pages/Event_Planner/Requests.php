@@ -86,6 +86,9 @@ include('../controllers/commonFunctions.php');
                         $event_type = !empty($row['event_type']) ? $row['event_type'] : "Not Set";
                         $no_of_guests = !empty($row['no_of_guests']) ? $row['no_of_guests'] : "Not Set";
                         $theme = !empty($row['theme']) ? $row['theme'] : "Not Set";
+                        $date = !empty($row['date']) ? $row['date'] : "Not Set";
+                        $budget1 = !empty($row['budget_min']) ? $row['budget_min'] : "0";
+                        $budget2 = !empty($row['budget_max']) ? "- " . $row['budget_max'] : " ";
                         $customer_id = $row['customer_id'];
 
                         echo "<tr>";
@@ -94,8 +97,8 @@ include('../controllers/commonFunctions.php');
                         echo "<td onclick='requestView($request_id)'>$event_type</td>";
                         echo "<td onclick='requestView($request_id)'>$no_of_guests</td>";
                         echo "<td onclick='requestView($request_id)'>$theme</td>";
-                        echo "<td onclick='requestView($request_id)'>Not Set</td>";
-                        echo "<td onclick='requestView($request_id)'>Not Set</td>";
+                        echo "<td onclick='requestView($request_id)'>$date</td>";
+                        echo "<td onclick='requestView($request_id)'>$budget1 $budget2</td>";
 
 
                         echo '<td class="tCenter menu">&#10247

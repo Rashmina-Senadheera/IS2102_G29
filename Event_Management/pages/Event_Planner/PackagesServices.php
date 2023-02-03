@@ -1,7 +1,7 @@
 <?php
 include('eventplanner_sidenav.php');
 include('eventplanner_header.php');
-include('../controllers/commonFunctions.php');
+require('../controllers/commonFunctions.php');
 ?>
 
 <!DOCTYPE html>
@@ -135,6 +135,11 @@ include('../controllers/commonFunctions.php');
     btnDelete.onclick = function() {
         modal.style.display = "block";
     }
+
+    function viewPackageDetails(packageID) {
+        window.location.href = "PackagesServices-more.php?packageId=" + packageID;
+    }
+
 </script>
 
 </html>

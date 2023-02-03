@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
 } else {
     // include the database config file
     require_once '../../constants.php';
-    require_once './commonFunctions.php';
+    require_once '../../controllers/commonFunctions.php';
 
     // define variables and set to empty values
     $description = $eventType = $priceFrom = $packageName = "";
