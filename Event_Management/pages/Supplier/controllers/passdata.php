@@ -25,6 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     $type = validate($_POST['type']);
     $maxCap = validate($_POST['maxCap']);
     $minCap = validate($_POST['minCap']);
+    $other = validate($_POST['other']);
     $sup_ID = $_SESSION['user_id'];
     $images = $_FILES['images'];
 
@@ -64,47 +65,60 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         echo "<script> history.back(); </script>";
     } else {
         // Prepare an insert statement
-        $sql = "INSERT INTO  supplier_venue( supplier_ID,title,descript,venloc,venlocation,ventype,maxCap,minCap) 
-        VALUES(?,?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO  sup_product_general( supplier_ID,title,description,other_details) 
+        VALUES(?,?,?,?)";
+
+        //,venloc,venlocation,ventype,maxCap,minCap,?,?,?,?,?
 
         if ($stmt = $conn->prepare($sql)) {
 
 
             // Bind variables to the prepared statement as parameters
-            $stmt->bind_param('isssssii',$sup_ID, $param_title, $param_descript, $params_venueIn, $param_location, $param_type,$param_maxCap,$param_minCap);
-
+            $stmt->bind_param('isss',$sup_ID, $param_title, $param_descript,$param_other);
             // Set parameters
             $param_title = $title;
             $param_descript = $descript ;
-            $param_venueIn = $venueIn ;
-            $param_location = $location;
-            $param_type = $type;
-            $param_maxCap = $maxCap ;
-            $param_minCap = $minCap;
+            $param_other = $other ;
+            
 
             // Attempt to execute the prepared statement
             if ($stmt->execute()) {
                 // Get the last inserted id
                 $product_id  = $conn->insert_id;
 
-                // Loop through the images array with count
-                foreach ($images['tmp_name'] as $index => $tmp_name) {
-                    $name = mysqli_real_escape_string($conn, $images['name'][$index]);
-                    $type = mysqli_real_escape_string($conn, $images['type'][$index]);
-                    if (file_exists($tmp_name)) {
-                        $image = file_get_contents($tmp_name);
-                    } else {
-                        $image = null;
-                        continue;
+                $sql1 = "INSERT INTO  supplier_venue( product_id,venloc,venlocation,ventype,maxCap,minCap) 
+                VALUES(?,?,?,?,?,?)";
+
+                if ($stmt1 = $conn->prepare($sql1)) {
+
+                    $stmt1->bind_param('isssii',$product_id, $param_venueIn, $param_location, $param_type,$param_maxCap,$param_minCap);
+                    
+                    $param_venueIn = $venueIn ;
+                    $param_location = $location;
+                    $param_type = $type;
+                    $param_maxCap = $maxCap ;
+                    $param_minCap = $minCap;
+
+                    if ($stmt1->execute()) {
+                        // Loop through the images array with count
+                        foreach ($images['tmp_name'] as $index => $tmp_name) {
+                            $name = mysqli_real_escape_string($conn, $images['name'][$index]);
+                            $type = mysqli_real_escape_string($conn, $images['type'][$index]);
+                            if (file_exists($tmp_name)) {
+                                $image = file_get_contents($tmp_name);
+                            } else {
+                                $image = null;
+                                continue;
+                            }
+                            $image = mysqli_real_escape_string($conn, $image);
+
+                            $sql = "INSERT INTO supplier_product_images (product_id, image_id, image, name, type) VALUES ('$product_id', '$index', '$image', '$name', '$type')";
+
+                            mysqli_query($conn, $sql);
+                            echo mysqli_error($conn);
+                        }
                     }
-                    $image = mysqli_real_escape_string($conn, $image);
-
-                    $sql = "INSERT INTO supplier_product_images (product_id, image_id, image, name, type) VALUES ('$product_id', '$index', '$image', '$name', '$type')";
-
-                    mysqli_query($conn, $sql);
-                    echo mysqli_error($conn);
                 }
-
                 // Redirect package services page
                 $_SESSION['success'] = "Package added successfully".$package_id;
                 header("location: ../form-venue.php?product_type=venue");

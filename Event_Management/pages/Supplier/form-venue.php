@@ -34,13 +34,14 @@
         <form class='add-ps' action="controllers/passdata.php" method="POST" enctype="multipart/form-data">
 
           <h4 class='ps-form-title'>Add Venue</h4>
+
           <div class="form-description">
             You can create a package by including the services you provide. Please fill the form correctly.
           </div>
           
           <div class="row">
             <?php if (isset($_SESSION['success'])) { 
-                 echo '<p class="error">' . showSessionMessage("success") . '</p>';
+                 echo '<p class="success">' . showSessionMessage("success") . '</p>';
             }?>
             <?php if (isset($_GET['successs'])) { ?>
                 <p class="success"><i class="fa-solid fa-check"></i><?php echo $_GET['successs']; ?></p>
@@ -52,8 +53,8 @@
               <label for="" class="input-ps-label"  >Title <span>*</span></label>
               <input type="text" placeholder="Full Name" name="title" class="input-ps-in" required/>
             </div>
-
           </div>
+
           <div class="row">
             <div class="input-ps">
               <label for="" class="input-ps-label">Description <span>*</span></label>
@@ -63,20 +64,18 @@
           </div>
           
           <!-- Venue Optional Parameters -->
-
-          
+          <?php if($pid == 'venue') {?>
 
             <div class="row">
               <div class="input-ps">
                 <label for="" class="input-ps-label">Venue in <span>*</span></label>
                 <select name="venueIn" id="type" required>
                   <option value="indoor">Indoor</option>
-                  <option value="outdo">Outdoor</option>
+                  <option value="outdoor">Outdoor</option>
                 </select>
               </div>
             </div>
 
-          <?php if($pid == 'venue') {?>
             <div class="row">
               <div class="input-ps" >
                 <label for="" class="input-ps-label">Location <span>*</span> </label>
@@ -105,23 +104,6 @@
                 <label for="" class="input-ps-label" >Capacity </label>
               </div>
             </div>
-
-            <!--  <div class="row" id='check'>
-              <div class="input-ps" id='check' style="padding-left:15px;">
-                <div class="input-ps">
-                  <label for="" class="input-ps-label"> Maximum <span>*</span></label>
-                  <input type="text" placeholder="Full Name" name="maxCap" class="input-ps-in" required/>
-                </div>
-              </div>
-
-              <div class="input-ps" id='check'style="padding-left:15px;">
-                <div class="input-ps">
-                  <label for="" class="input-ps-label"> Minimum </label>
-                  <input type="text" placeholder="Full Name" name="minCap" class="input-ps-in"/>
-                </div>
-              </div>
-            </div> -->
-
             <div class= "row">
               <div class="input-ps">    
                 <div class="wrapper">
@@ -147,39 +129,45 @@
                   </div>
                 </div>
               </div>
-
             </div>
 
           <?php } ?>
+          <!-- Venue Optional Parameters end -->
 
-                <?php if($pid == 'transport') {?>
-                <div class="row">
-                  <div class="input-ps">
-                  <label for="" class="input-ps-label">Type</label>
-                  <select name="type" id="type">
-                    <option value="">Car</option>
-                    <option value="">Motorbike</option>
-                    <option value="">Bicycle</option>
-                    <option value="">Van</option>
-                    <option value="">Lorry</option>
-                    <option value="">Bus</option>
-                    <option value="">Jeep</option>
-                  </select>
-                </div>
-                </div>
-                <div class="row">
-                  <div class="input-ps">
-                    <label for="" class="input-ps-label">Brand</label>
-                    <input type="text" placeholder="Brand" class="input-ps-in"/>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="input-ps">
-                    <label for="" class="input-ps-label">Model</label>
-                    <input type="text" placeholder="Brand" class="input-ps-in"/>
-                  </div>
-                </div>
-                <?php } ?>
+          <!-- Transport Optional Parameters -->
+          <?php if($pid == 'transport') {?>
+
+            <div class="row">
+              <div class="input-ps">
+                <label for="" class="input-ps-label">Type</label>
+                <select name="type" id="type">
+                  <option value="">Car</option>
+                  <option value="">Motorbike</option>
+                  <option value="">Bicycle</option>
+                  <option value="">Van</option>
+                  <option value="">Lorry</option>
+                  <option value="">Bus</option>
+                  <option value="">Jeep</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-ps">
+                <label for="" class="input-ps-label">Brand</label>
+                <input type="text" placeholder="Brand" class="input-ps-in"/>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-ps">
+                <label for="" class="input-ps-label">Model</label>
+                <input type="text" placeholder="Brand" class="input-ps-in"/>
+              </div>
+            </div>
+
+            <?php } ?>
+            <!-- Transport Optional Parameters end -->
 
                 <?php if($pid == 'cb') {?>
                 <div class="row" id='check'>
@@ -488,10 +476,22 @@
 
                 </div>
               </div>
+              
+              <div class="row">
+              <div class="input-ps">
+                <label for="" class="input-ps-label">Other Details <span>*</span></label>
+                <textarea  name="other" class="input-ps-in" id='other' required spellcheck="true">
+                </textarea>
+              </div>
+            </div>
 
+            <?php if($pid == 'venue') {?> 
             <div class="action">
-              <input type="submit" value="Create" class="action-button" />
-            </div>   
+              
+                <input type="submit" value="Add" class="action-button" />
+              
+            </div>
+            <?php } ?>   
 
             </div>
           </form>

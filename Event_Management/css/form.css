@@ -85,6 +85,10 @@ textarea.input-ps-in{
   margin-bottom: 0px;
   
 }
+textarea#other{
+  height: 40px;
+  margin-bottom: 0px;
+}
 .title-search{
     flex: 90%;
     border-radius: 0.5rem;
