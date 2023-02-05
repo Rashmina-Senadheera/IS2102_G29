@@ -3,15 +3,24 @@ include('eventplanner_sidenav.php');
 include('eventplanner_header.php');
 
 // check method is post
-if ($_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST['quotation-type']) || !isset($_POST['ps-id'])) {
+if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {
     // show error message
     echo "<script>alert('No product or service selected!')</script>";
-    // redirect to event planner main page
+    // redirect to suppliers page
     echo "<script>window.location.href = 'Suppliers.php'</script>";
 } else {
-    // $psType = 'Entertainment';
-    $psType = $_POST['quotation-type'];
-    $psId = $_POST['ps-id'];
+    $psId = $_GET['id'];
+    $sql = "SELECT `title`, `type` FROM sup_product_general WHERE `product_id` = " . $psId;
+    $result = mysqli_query($conn, $sql);
+    
+    if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $psTitle = $row['title'];
+        $psType = $row['type'];
+    } else {
+        echo "<script>alert('Product or Service cannot be found!')</script>";
+        echo "<script>window.location.href = 'Suppliers.php'</script>";
+    }
 ?>
     <!DOCTYPE html>
     <html>
@@ -29,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST['quotation-type']) || 
         <div class="main-body">
             <div class="form-card2">
                 <div class="searchSec">
-                    <div class="page-title">Request Quotation for <?php echo $_POST['ps-title'] ?></div>
+                    <div class="page-title">Request Quotation for <?php echo $psTitle ?></div>
                 </div>
                 <form>
                     <div class="form-description"></div>
@@ -55,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST['quotation-type']) || 
                         </div>
                     </div>
 
-                    <?php if ($psType == "Beverage" || $psType == "Catering") { ?>
+                    <?php if ($psType == "foodbev") { ?>
                         <div class="row">
                             <div class="input width-50" id="noOfParticipants">
                                 <label class="input-label">Number of Participants <span>*</span></label>
@@ -98,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST['quotation-type']) || 
                         <div class="row" id='check'>
                             <div class="input-ps" id='check'>
                                 <label for="" class="input-label" id='check'>Need as <span>*</span></label>
-                                <?php if ($psType == "Beverage") { ?>
+                                <?php if ($psType == "foodbev") { ?>
                                     <div class="check-bx">
                                         <div class="check-bx-opt">
                                             <input type="checkbox" id="type-venue" name="type-venue" value="Car">
@@ -113,7 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST['quotation-type']) || 
                                             <label for="" class="input-ps-label-opt">Cups/Packets</label>
                                         </div>
                                     </div>
-                                <?php } else if ($psType == "Catering") { ?>
+                                <?php } else if ($psType == "foodbev") { ?>
                                     <div class="check-bx">
                                         <div class="check-bx-opt">
                                             <input type="checkbox" id="type-venue" name="type-venue" value="Car">
@@ -153,7 +162,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST['quotation-type']) || 
                             </div>
                         </div>
 
-                    <?php } else if ($psType == "Transport") { ?>
+                    <?php } else if ($psType == "transport") { ?>
                         <div class="row">
                             <div class="input width-50" id="noOfParticipants">
                                 <label class="input-label">Location (From) <span>*</span></label>
@@ -175,7 +184,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST['quotation-type']) || 
                             </div>
                         </div>
 
-                    <?php } else if ($psType == "Venue") { ?>
+                    <?php } else if ($psType == "venue") { ?>
                         <div class="row">
                             <div class="input width-50" id="noOfParticipants">
                                 <label class="input-label">Number of Participants <span>*</span></label>
@@ -187,7 +196,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST['quotation-type']) || 
                             </div>
                         </div>
 
-                    <?php } else if ($psType == "Florist" || $psType == "Decoration") { ?>
+                    <?php } else if ($psType == "florist" || $psType == "deco") { ?>
                         <div class="row">
                             <div class="input width-50" id="theme">
                                 <label class="input-label">Theme <span>*</span></label>
@@ -223,7 +232,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST['quotation-type']) || 
                             </div>
                         </div>
 
-                    <?php } else if ($psType == "Photography") { ?>
+                    <?php } else if ($psType == "photo") { ?>
                         <div class="row">
                             <div class="input width-50" id="hours">
                                 <label class="input-label">Hours</label>
@@ -267,7 +276,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST['quotation-type']) || 
                             </div>
                         </div>
 
-                    <?php } else if ($psType == "Entertainment") { ?>
+                    <?php } else if ($psType == "ent") { ?>
                         <div class="row">
                             <div class="input width-50" id="hours">
                                 <label class="input-label">Hours</label>
@@ -309,7 +318,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST['quotation-type']) || 
 
                     <?php } ?>
 
-                    <div class="row" id='check'>
+                    <!-- <div class="row" id='check'>
                         <div class="input-ps" id='check'>
                             <label for="" class="input-label" id='check'>Province <span>*</span></label>
 
@@ -352,7 +361,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST['quotation-type']) || 
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="row">
                         <div class="input">

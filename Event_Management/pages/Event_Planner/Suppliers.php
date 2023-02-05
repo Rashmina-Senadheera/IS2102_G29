@@ -67,12 +67,7 @@ include('../controllers/commonFunctions.php');
                                     <a href="./Supplier-more-info.php?id=' . $productID . '" class="view-supplier">View</a>
                                 </li>
                                 <li>
-                                    <form action="./request-quotation.php" method="POST">
-                                        <input type="hidden" name="ps-id" value=' . $productID . '">
-                                        <input type="hidden" name="ps-title" value="' . $title . '">
-                                        <button type="submit" name="quotation-type" value="' . $type . '" class="request">Request a Quotation</button>
-                                    </form>
-                                    <!-- <a href="./request-quotation-venue.php" class="request">Request a Quotation</a> -->
+                                    <a href="./request-quotation.php?id=' . $productID . '" class="request">Request a Quotation</a>
                                 </li>
                             </ul>
                         </div>';

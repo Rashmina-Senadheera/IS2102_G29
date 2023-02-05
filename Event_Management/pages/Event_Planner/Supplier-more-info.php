@@ -105,11 +105,9 @@ if (isset($_GET['id'])) {
                     <div class="sm-all-p">
                         <div class="sm-name">
                             <div class="actionBtn">
-                                <form action="./request-quotation.php" method="POST">
-                                    <input type="hidden" name="ps-id" value=<?php echo $id ?>>
-                                    <input type="hidden" name="ps-title" value=<?php echo $title ?>>
-                                    <button type="submit" name="quotation-type" value="Venue" class="accepted">Request a Quotation</button>
-                                </form>
+                                <button type="button" class="accepted" style="margin-left: 0;" onclick="window.location='./request-quotation.php?id=<?php echo $id ?>';">
+                                    Request a Quotation
+                                </button>
                             </div>
                             <div class="actionBtn">
                                 <button type="button" class="rejected" style="margin-left: 0;" onclick="window.location='Messages.php';">
