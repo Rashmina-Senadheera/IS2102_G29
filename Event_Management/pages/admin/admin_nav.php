@@ -48,7 +48,7 @@
             </li>
         
             <li>
-                <a href="customer_info.php">
+                <a href="profile.php">
                     <i class='bx bx-user'></i>
                     <span class="links_name">Profile</span>
                 </a>
