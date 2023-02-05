@@ -2,12 +2,12 @@
     
     include("admin_header.php");
     include("admin_nav.php");
-     
+
     $_SESSION["page_name"] = "More Information";
     $id = mysqli_real_escape_string($conn,$_GET['id']);
     $rows = get_details($id);
-?>
 
+?>
 
 <body>
 <main class="admin_main">
@@ -17,23 +17,33 @@
                 <img src="../../images/evt_planner.jfif">
                 </div>
                 <div class="fields">
-                    <h3><?php echo $rows['name'];?></h3>
+                    <h3><?php echo $rows['name']; ?></h3>
+                    <div class="input-group-row">
+                    <?php 
+                        for($x = 0; $x <3 ;$x++){
+                           echo '</i> <i class="fa-solid fa-star"></i>';
+                        }
+                        for($x = 3; $x <5 ;$x++){
+                            echo '<i class="fa-regular fa-star"></i>';
+                         }
+                    ?>
+                    </div>
                     
                     <div class="input-group-row">
                         <label for="name">Email</label>
-                        <input type="text" value="<?php echo $rows['email']; ?>" name="email" >
+                        <input type="text" value="<?php echo $rows['email']; ?>" name="email" readonly>
                     </div>
                     <div class="input-group-row">
                         <label for="name">Contact Number 1</label>
-                        <input type="text" value="0774550849" name="num1" >
+                        <input type="text" value="0774550849" name="num1" readonly >
                     </div>
                     <div class="input-group-row">
                         <label for="name">Contact Number 2</label>
-                        <input type="text" value="0774550849" name="num1" >
+                        <input type="text" value="0774550849" name="num1" readonly >
                     </div>
                     <div class="input-group-row">
                         <label for="name">Address</label>
-                        <input type="text" value="L-207 , Lankalands , Peellawatta, Andiambalama" name="address" >
+                        <input type="text" value="L-207 , Lankalands , Peellawatta, Andiambalama" name="address" readonly>
                     </div>
         
                 </div>
