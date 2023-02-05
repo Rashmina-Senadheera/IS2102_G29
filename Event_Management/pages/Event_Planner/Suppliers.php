@@ -47,7 +47,7 @@ include('../controllers/commonFunctions.php');
                         $title = $row['title'];
                         $description = $row['description'];
                         $type = $row['type'];
-                        $img_sql = "SELECT `image` FROM sup_product_images WHERE `product_id` = " . $row['product_id'] . " LIMIT 1";
+                        $img_sql = "SELECT `image` FROM supplier_product_images WHERE `product_id` = " . $row['product_id'] . " LIMIT 1";
                         $img_result = mysqli_query($conn, $img_sql);
                         $img_row = mysqli_fetch_assoc($img_result);
                         $img = $img_row['image'];

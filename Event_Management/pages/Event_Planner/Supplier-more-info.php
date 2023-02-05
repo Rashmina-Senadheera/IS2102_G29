@@ -1,6 +1,60 @@
 <?php
 include('eventplanner_sidenav.php');
 include('eventplanner_header.php');
+include('../controllers/commonFunctions.php');
+
+//check if there is a id in the url
+if (isset($_GET['id'])) {
+    $id = checkInput($_GET['id']);
+    $sql = "SELECT * FROM sup_product_general WHERE product_id = $id";
+    $result = mysqli_query($conn, $sql);
+
+    // check if the id is valid
+    if (mysqli_num_rows($result) > 0) {
+        $general_details = mysqli_fetch_assoc($result);
+        $title = $general_details['title'];
+        $description = $general_details['description'];
+        $other_details = $general_details['other_details'];
+        $budget_min = $general_details['budget_min'];
+        $budget_max = $general_details['budget_max'];
+        $type = $general_details['type'];
+        $img_sql = "SELECT `image` FROM supplier_product_images WHERE `product_id` = $id";
+        $img_result = mysqli_query($conn, $img_sql);
+
+        // get other details according to the type
+        $more_details = "SELECT * FROM supplier_" . $type . "  WHERE product_id = $id";
+
+        // check if the query is successful
+        if ($more_result = mysqli_query($conn, $more_details)) {
+            $more_details = mysqli_fetch_assoc($more_result);
+
+            $suitable_for = !empty($more_details['suitable_for']) ? $more_details['suitable_for'] : "";
+            $locations = !empty($more_details['locations']) ? $more_details['locations'] : "";
+            $provide = !empty($more_details['provide']) ? $more_details['provide'] : "";
+            $type_of_flowers = !empty($more_details['type_of_flowers']) ? $more_details['type_of_flowers'] : "";
+            $height = !empty($more_details['height']) ? $more_details['height'] : "";
+            $quantity = !empty($more_details['quantity']) ? $more_details['quantity'] : "";
+            $catered_for = !empty($more_details['catered_for']) ? $more_details['catered_for'] : "";
+            $transport = !empty($more_details['transport']) ? $more_details['transport'] : "";
+            $available_as = !empty($more_details['available_as']) ? $more_details['available_as'] : "";
+            $available_for = !empty($more_details['available_for']) ? $more_details['available_for'] : "";
+            $transport_type = !empty($more_details['type']) ? $more_details['type'] : "";
+            $brand = !empty($more_details['brand']) ? $more_details['brand'] : "";
+            $model = !empty($more_details['model']) ? $more_details['model'] : "";
+            $venloc = !empty($more_details['venloc']) ? $more_details['venloc'] : "";
+            $venlocation = !empty($more_details['venlocation']) ? $more_details['venlocation'] : "";
+            $ventype = !empty($more_details['ventype']) ? $more_details['ventype'] : "";
+            $maxCap = !empty($more_details['maxCap']) ? $more_details['maxCap'] : "";
+            $minCap = !empty($more_details['minCap']) ? $more_details['minCap'] : "";
+        } else {
+            echo "Error: " . $more_details . "<br>" . mysqli_error($conn);
+        }
+    } else {
+        header("Location: 404.php");
+    }
+} else {
+    header("Location: 404.php");
+}
 
 ?>
 
@@ -22,19 +76,29 @@ include('eventplanner_header.php');
             <div class="about">
                 <div class="ps-images">
                     <div class="image">
-                        <img class="mySlides" src="../../images/Suppliers/supplier01.jpg" alt="">
-                        <img class="mySlides" src="../../images/Suppliers/supplier01a.jpg" alt="">
-                        <img class="mySlides" src="../../images/Suppliers/supplier01b.jpg" alt="">
+                        <?php
+                        if ($img_result->num_rows > 0) {
+                            while ($image_row = $img_result->fetch_assoc()) {
+                                $image = $image_row['image'];
+                                $image = base64_encode($image);
+                                // $image = 'data:' . $image_row['type'] . ';base64,' . $image;
+                                $image = 'data:image/jpeg;base64,' . $image;
+                                echo '<img src="' . $image . '" class="mySlides" alt="">';
+                            }
+                        } else {
+                            echo '<img src="../../images/Suppliers/supplier_default.jpg" class="mySlides" alt="">';
+                        }
+                        ?>
                     </div>
                     <button class="display-left" onclick="plusDivs(-1)">&#10094;</button>
                     <button class="display-right" onclick="plusDivs(1)">&#10095;</button>
                 </div>
                 <div class="product-title">
                     <div class="product-name">
-                        Bravo Event Productions Hall
+                        <?php echo $title; ?>
                     </div>
                     <div class="product-cat">
-                        Venue
+                        <?php echo ucwords($type); ?>
                     </div>
                 </div>
                 <div class="product-descript">
@@ -42,13 +106,13 @@ include('eventplanner_header.php');
                         <div class="sm-name">
                             <div class="actionBtn">
                                 <form action="./request-quotation.php" method="POST">
-                                    <input type="hidden" name="ps-id" value="1">
-                                    <input type="hidden" name="ps-title" value="Bravo Event Productions Hall">
+                                    <input type="hidden" name="ps-id" value=<?php echo $id ?>>
+                                    <input type="hidden" name="ps-title" value=<?php echo $title ?>>
                                     <button type="submit" name="quotation-type" value="Venue" class="accepted">Request a Quotation</button>
                                 </form>
                             </div>
                             <div class="actionBtn">
-                                <button type="button" class="rejected" style="margin-left: 0;"  onclick="window.location='Messages.php';">
+                                <button type="button" class="rejected" style="margin-left: 0;" onclick="window.location='Messages.php';">
                                     Message Supplier
                                 </button>
                             </div>
@@ -62,30 +126,133 @@ include('eventplanner_header.php');
                         <div class="product-info-heading">
                             Product / Service Description
                         </div>
-                        <div class="prof-all-p">
-                            <div class="prof-name-p">Location</div>
-                            <div class="prof-data">No 35, Wijesekara road, Gampaha.</div>
-                        </div>
-                        <div class="prof-all-p">
-                            <div class="prof-name-p">Suitable for</div>
-                            <div class="prof-data">Weddings, Birthday Parties, Company Parties </div>
-                        </div>
-                        <div class="prof-all-p">
-                            <div class="prof-name-p">Maximum Capacity</div>
-                            <div class="prof-data">280 people</div>
-                        </div>
+                        <?php
+                        if (!empty($suitable_for)) {
+                            echo '<div class="prof-all-p">
+                                    <div class="prof-name-p">Suitable for</div>
+                                    <div class="prof-data">' . $suitable_for . '</div>
+                                </div>';
+                        }
+                        if (!empty($locations)) {
+                            echo '<div class="prof-all-p">
+                                    <div class="prof-name-p">Available Locations</div>
+                                    <div class="prof-data">' . $locations . '</div>
+                                </div>';
+                        }
+                        if (!empty($provide)) {
+                            echo '<div class="prof-all-p">
+                                    <div class="prof-name-p">Provide</div>
+                                    <div class="prof-data">' . $provide . '</div>
+                                </div>';
+                        }
+                        if (!empty($type_of_flowers)) {
+                            echo '<div class="prof-all-p">
+                                    <div class="prof-name-p">Type of Flowers</div>
+                                    <div class="prof-data">' . $type_of_flowers . '</div>
+                                </div>';
+                        }
+                        if (!empty($height)) {
+                            echo '<div class="prof-all-p">
+                                    <div class="prof-name-p">Height</div>
+                                    <div class="prof-data">' . $height . '</div>
+                                </div>';
+                        }
+                        if (!empty($quantity)) {
+                            echo '<div class="prof-all-p">
+                                    <div class="prof-name-p">Quantity</div>
+                                    <div class="prof-data">' . $quantity . '</div>
+                                </div>';
+                        }
+                        if (!empty($catered_for)) {
+                            echo '<div class="prof-all-p">
+                                    <div class="prof-name-p">Catered for</div>
+                                    <div class="prof-data">' . $catered_for . '</div>
+                                </div>';
+                        }
+                        if (!empty($transport)) {
+                            echo '<div class="prof-all-p">
+                                    <div class="prof-name-p">Transport Provide</div>
+                                    <div class="prof-data">' . $transport . '</div>
+                                </div>';
+                        }
+                        if (!empty($available_as)) {
+                            echo '<div class="prof-all-p">
+                                    <div class="prof-name-p">Available as</div>
+                                    <div class="prof-data">' . $available_as . '</div>
+                                </div>';
+                        }
+                        if (!empty($available_for)) {
+                            echo '<div class="prof-all-p">
+                                    <div class="prof-name-p">Available as</div>
+                                    <div class="prof-data">' . $available_for . '</div>
+                                </div>';
+                        }
+                        if (!empty($transport_type)) {
+                            echo '<div class="prof-all-p">
+                                    <div class="prof-name-p">Transport type</div>
+                                    <div class="prof-data">' . $transport_type . '</div>
+                                </div>';
+                        }
+                        if (!empty($brand)) {
+                            echo '<div class="prof-all-p">
+                                    <div class="prof-name-p">Brand</div>
+                                    <div class="prof-data">' . $brand . '</div>
+                                </div>';
+                        }
+                        if (!empty($model)) {
+                            echo '<div class="prof-all-p">
+                                    <div class="prof-name-p">Model</div>
+                                    <div class="prof-data">' . $model . '</div>
+                                </div>';
+                        }
+                        if (!empty($venloc)) {
+                            echo '<div class="prof-all-p">
+                                    <div class="prof-name-p">Indoor/Outdoor</div>
+                                    <div class="prof-data">' . $venloc . '</div>
+                                </div>';
+                        }
+                        if (!empty($venlocation)) {
+                            echo '<div class="prof-all-p">
+                                    <div class="prof-name-p">Location address</div>
+                                    <div class="prof-data">' . $venlocation . '</div>
+                                </div>';
+                        }
+                        if (!empty($ventype)) {
+                            echo '<div class="prof-all-p">
+                                    <div class="prof-name-p">Venue type</div>
+                                    <div class="prof-data">' . $ventype . '</div>
+                                </div>';
+                        }
+                        if (!empty($maxCap)) {
+                            echo '<div class="prof-all-p">
+                                    <div class="prof-name-p">Maximum Capacity</div>
+                                    <div class="prof-data">' . $maxCap . ' people</div>
+                                </div>';
+                        }
+                        if (!empty($minCap)) {
+                            echo '<div class="prof-all-p">
+                                    <div class="prof-name-p">Minimum Capacity</div>
+                                    <div class="prof-data">' . $minCap . 'people</div>
+                                </div>';
+                        }
+
+                        ?>
                         <div class="prof-all-p">
                             <div class="prof-name-p">Budget Range</div>
-                            <div class="prof-data">Rs. 99,000 - Rs. 580,000</div>
+                            <div class="prof-data"><?php echo "Rs. $budget_min - Rs. $budget_max" ?></div>
                         </div>
                         <div class="prof-all-p">
                             <div class="prof-name-p">Description</div>
-                            <div class="prof-data">Founded in 1987. Bravo Event Productions is an award winning, full-service event planning and production company specializing in designing and staging world-class coporate, association, government, military and non-profit functions nationwide.</div>
+                            <div class="prof-data"><?php echo $description ?></div>
                         </div>
-                        <div class="prof-all-p">
-                            <div class="prof-name-p">Other facilities</div>
-                            <div class="prof-data">Parking spaces available</div>
-                        </div>
+                        <?php
+                        if (!empty($other_details)) {
+                            echo '<div class="prof-all-p">
+                                    <div class="prof-name-p">Other details</div>
+                                    <div class="prof-data">' . $other_details . '</div>
+                                </div>';
+                        }
+                        ?>
                         <div class="prof-all-p">
                             <div class="prof-name-p">Reviews & Feedbacks</div>
                             <div class="prof-feedback">I just loved the experience. I'm so happy to share my review.have no second thought and doubt in terms of quality of food ,decor and staff behaviour and management.wonderfull place and services.
@@ -104,12 +271,6 @@ include('eventplanner_header.php');
                             </div>
                             <!-- <div class="prof-feedback">Nice Hall with 2 Floors. The Concerns are that there are No Lift and Less Parking Facility. Otherwise this is a great place to be.</div> -->
                         </div>
-                        <!-- <div class="prof-all-p">
-                            <div class="prof-name-p">Reviews & Feedbacks</div>
-                            <div class="prof-data">
-                                <div id="custom-button-me">Menu #1</div>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
             </div>

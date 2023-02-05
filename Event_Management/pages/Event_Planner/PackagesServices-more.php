@@ -88,7 +88,7 @@ if ($hasPackage) {
                                 echo '<img src="' . $image . '" class="mySlides" alt="">';
                             }
                         } else {
-                            echo '<img src="../images/Suppliers/supplier01.jpg" alt="">';
+                            echo '<img src="../../images/Suppliers/supplier_default.jpg" alt="">';
                         }
                         ?>
                     </div>
