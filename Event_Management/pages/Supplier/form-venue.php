@@ -108,7 +108,6 @@
               <?php } ?>
 
               <?php if($pid == 'transport') {?>
-                
               <div class="row">
                 <label for="" class="input-ps-label">Type</label>
                 <select name="type" id="type">
@@ -136,29 +135,6 @@
               <?php } ?>
 
               <?php if($pid == 'cb') {?>
-
-              <div class="checkbox-dropdown">
-  Choose city
-  <ul class="checkbox-dropdown-list">
-    <li>
-      <label>
-        <input type="checkbox" value="Vejle" name="city" />Milwaukee</label>
-    </li>
-    <li>
-      <label>
-        <input type="checkbox" value="Horsens" name="city" />Denver</label>
-    </li>
-    <li>
-      <label>
-        <input type="checkbox" value="Kolding" name="city" />Boston</label>
-    </li>
-    <li>
-      <label>
-        <input type="checkbox" value="Kolding" name="city" />LA</label>
-    </li>
-    
-  </ul>
-</div>
               <div class="row" id='check'>
               <div class="input-ps" id='check'>
                 <label for="" class="input-ps-label" id='check'>Catered for</label>
@@ -229,6 +205,130 @@
                 </div>
                 </div>
               </div>
+              <div class="row">
+                  <div class="card">
+                    <label for="" class="input-ps-label" id='check'>Upload Menu </label>
+                    <div class="drop_box">
+                      <header>
+                        <h4>Select File here</h4>
+                      </header>
+                      <p>Files Supported: PDF, TEXT, DOC , DOCX</p>
+                      <input type="file" id="real-file" hidden="hidden" />
+                      <button type="button" class="btn" id="custom-button">CHOOSE A FILE</button>
+                      <span id="custom-text">No file chosen, yet.</span>
+                    </div>
+                  </div>
+                </div> 
+              <?php } ?>
+              <?php if($pid == 'florist') {?>
+              <div class="row">
+              <div class="input-ps">
+                <label for="" class="input-ps-label">Type of Flowers</label>
+                <input type="text" placeholder="type" class="input-ps-in"/>
+              </div>
+            </div>
+            <div class="row" id='check'>
+              <div class="input-ps">
+                <label for="" class="input-ps-label">Height</label>
+                <input type="text" placeholder="type" class="input-ps-in"/>
+              </div>
+            </div>
+            <div class="row" id='check'>
+              <div class="input-ps">
+                <label for="" class="input-ps-label">Quantity of Flowers</label>
+                <input type="text" placeholder="type" class="input-ps-in"/>
+              </div>
+            </div>
+          <div class="row" id='check'>
+              <div class="input-ps" id='check'>
+                <label for="" class="input-ps-label" id='check'>Suitablefor</label>
+                <div class="check-bx">
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                    <label for="" class="input-ps-label-opt">Indoor Events</label>
+                  </div>
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                    <label for="" class="input-ps-label-opt">Outdoor Events</label>
+                  </div>
+                </div>
+              </div>
+              <div class="input-ps" id='check'>
+                <label for="" class="input-ps-label" id='check'>Transport provided</label>
+                <div class="check-bx">
+                  <div class="check-bx-opt">
+                    <input type="radio" id="type-venue" name="type-venue" value="Car">
+                    <label for="" class="input-ps-label-opt">provided</label>
+                  </div>
+                  <div class="check-bx-opt">
+                    <input type="radio" id="type-venue" name="type-venue" value="Car">
+                    <label for="" class="input-ps-label-opt">not provided</label>
+                  </div>
+                </div>
+              </div>
+          </div>
+              <div class="row">
+                  <div class="card">
+                    <label for="" class="input-ps-label" id='check'>Upload Catalog </label>
+                    <div class="drop_box">
+                      <header>
+                        <h4>Select File here</h4>
+                      </header>
+                      <p>Files Supported: PDF, TEXT, DOC , DOCX</p>
+                      <input type="file" id="real-file" hidden="hidden" />
+                      <button type="button" class="btn" id="custom-button">CHOOSE A FILE</button>
+                      <span id="custom-text">No file chosen, yet.</span>
+                    </div>
+                  </div>
+                </div> 
+                <?php } ?>
+                <?php if($pid == 'deco') {?>
+
+                  <div class="row" id='check'>
+              <div class="input-ps" id='check'>
+                <label for="" class="input-ps-label" id='check'>Suitablefor</label>
+                <div class="check-bx">
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                    <label for="" class="input-ps-label-opt">Indoor Events</label>
+                  </div>
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                    <label for="" class="input-ps-label-opt">Outdoor Events</label>
+                  </div>
+                </div>
+              </div>
+              <div class="input-ps" id='check'>
+                <label for="" class="input-ps-label" id='check'>Transport provided</label>
+                <div class="check-bx">
+                  <div class="check-bx-opt">
+                    <input type="radio" id="type-venue" name="type-venue" value="Car">
+                    <label for="" class="input-ps-label-opt">provided</label>
+                  </div>
+                  <div class="check-bx-opt">
+                    <input type="radio" id="type-venue" name="type-venue" value="Car">
+                    <label for="" class="input-ps-label-opt">not provided</label>
+                  </div>
+                </div>
+              </div>
+          </div>
+
+              <div class="row">
+                  <div class="card">
+                    <label for="" class="input-ps-label" id='check'>Upload Catalog </label>
+                    <div class="drop_box">
+                      <header>
+                        <h4>Select File here</h4>
+                      </header>
+                      <p>Files Supported: PDF, TEXT, DOC , DOCX</p>
+                      <input type="file" id="real-file" hidden="hidden" />
+                      <button type="button" class="btn" id="custom-button">CHOOSE A FILE</button>
+                      <span id="custom-text">No file chosen, yet.</span>
+                    </div>
+                  </div>
+                </div> 
+                <?php } ?>
+              <?php if($pid == 'florist' || $pid == 'deco' || $pid == 'cb' ) {?>
               <div class="row" id='check'>
               <div class="input-ps" id='check'>
                 <label for="" class="input-ps-label" id='check'>Available Provinces </label>
@@ -273,22 +373,8 @@
                   </div>
                 </div>
               </div>
-              </div>
-              <div class="row">
-                  <div class="card">
-                    <label for="" class="input-ps-label" id='check'>Upload Menu </label>
-                    <div class="drop_box">
-                      <header>
-                        <h4>Select File here</h4>
-                      </header>
-                      <p>Files Supported: PDF, TEXT, DOC , DOCX</p>
-                      <input type="file" id="real-file" hidden="hidden" />
-                      <button type="button" class="btn" id="custom-button">CHOOSE A FILE</button>
-                      <span id="custom-text">No file chosen, yet.</span>
-                    </div>
-                  </div>
-                </div> 
-              <?php } ?>
+            </div>
+            <?php } ?>
               <div class="row">
                   <div class="card" id="upload">
                     <label for="" class="input-ps-label" id='check'>Upload Pictures </label>
