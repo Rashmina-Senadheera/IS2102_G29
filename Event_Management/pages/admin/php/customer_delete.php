@@ -6,7 +6,7 @@
     $res = mysqli_query($conn,$sql);
 
     if($res == TRUE){
-        header('location:'.SITEURL.'admin/manage_customers.php');
+        header('location:'.SITEURL.'pages/admin/manage_customers.php');
     }
     
 

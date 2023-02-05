@@ -60,21 +60,21 @@
                                     <i class='bx bx-chevron-right' id="item"></i>
                                 </div>
                             </li></a>
-                            <a href="form-venue.php?product_type=venue" id="btn">
+                            <a href="form-venue.php?product_type=florist" id="btn">
                             <li class = "header" id="ps-item-add">
                                 <div class="ps-cat-desc" id='item'>
                                     <div class="ps-cat-item">Florists</div>
                                     <i class='bx bx-chevron-right' id="item"></i>
                                 </div>
                             </li></a>
-                            <a href="form-venue.php?product_type=venue" id="btn">
+                            <a href="form-venue.php?product_type=deco" id="btn">
                             <li class = "header" id="ps-item-add" >
                                 <div class="ps-cat-desc" id='item'>
                                     <div class="ps-cat-item">Decoration</div>
                                     <i class='bx bx-chevron-right' id="item"></i>
                                 </div>
                             </li></a>
-                            <a href="form-venue.php?product_type=venue" id="btn">
+                            <a href="form-venue.php?product_type=other" id="btn">
                             <li id="ps-item-add">
                                 <div class="ps-cat-desc" id='item'>
                                     <div class="ps-cat-item">Other</div>
@@ -91,21 +91,21 @@
                                     <div class="ps-cat-title">Add a Service</div>
                                 </div>
                             </li>
-                            <a href="form-photo.php" id="btn">
+                            <a href="form-venue.php?product_type=photo" id="btn">
                             <li class = "header" id="ps-item-add">
                                 <div class="ps-cat-desc" id='item'>
                                     <div class="ps-cat-item">Photography</div>
                                     <i class='bx bx-chevron-right' id="item"></i>
                                 </div>
                             </li></a>
-                            <a href="form-ent.php" id="btn">
+                            <a href="form-venue.php?product_type=ent" id="btn">
                             <li class = "header" id="ps-item-add">
                                 <div class="ps-cat-desc" id='item'>
                                     <div class="ps-cat-item">Entertainment</div>
                                     <i class='bx bx-chevron-right' id="item"></i>
                                 </div>
                             </li></a>
-                            <a href="form-other.php" id="btn">
+                            <a href="form-venue.php?product_type=other" id="btn">
                             <li id="ps-item-add">
                                 <div class="ps-cat-desc" id='item'>
                                     <div class="ps-cat-item">Other</div>

@@ -129,6 +129,20 @@
             });
             </script>
              -->
+             <table class="details_table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th >Name</th>
+                        <th >Email</th>
+                        <th>Actions </th>
+                    </tr>
+                    </thead>
+                    <tbody class="table_body">
+                    
+                    </tbody>
+                    
+                </table>
     </main>
 
 </body>
