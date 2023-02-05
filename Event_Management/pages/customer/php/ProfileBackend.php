@@ -129,12 +129,12 @@ if (isset($_FILES['pp']['name']) AND !empty($_FILES['pp']['name'])) {
             exit;
         }else {
             $em = "You can't upload files of this type";
-            header("Location: ../register.php?error=$em&$data");
+            header("Location: ../sign_up.php?error=$em&$data");
             exit;
         }
     }else {
         $em = "unknown error occurred!";
-        header("Location: ../register.php?error=$em&$data");
+        header("Location: ../sign_up.php?error=$em&$data");
         exit;
     }
 

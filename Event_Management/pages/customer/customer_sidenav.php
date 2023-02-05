@@ -6,9 +6,8 @@
 
 <body>
     <!--navigation bar left-->
-    <div class="sidebar">
+    <div class="sidebar">-->
         <div class="logo-details">
-            <!-- <i class='bx bxl-c-plus-plus'></i> -->
             <img src="../../images/logo-white.svg" alt="logo" />
             <span class="logo_name">Eventra</span>
         </div>
@@ -21,9 +20,27 @@
                 </a>
             </li>
             <li>
-                <a href="Events.php">
-                    <i class='bx bx-calendar-event'></i>
-                    <span class="links_name">Events</span>
+                <a href="CompletedEvents.php">
+                    <i class="fa-solid fa-calendar"></i>
+                    <span class="links_name">Completed Events</span>
+                </a>
+            </li>
+            <li>
+                <a href="OngoingEvents.php">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span class="links_name">Ongoing Events</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa-solid fa-person"></i>
+                    <span class="links_name">Event Planners</span>
+                </a>
+            </li>
+            <li>
+                <a href="order.php">
+                    <i class='bx bx-list-ul'></i>
+                    <span class="links_name">Orders</span>
                 </a>
             </li>
             <li>
@@ -32,14 +49,8 @@
                     <span class="links_name">Payments</span>
                 </a>
             </li>      
-            <!--<li>
-                <a href="Feedback.php">
-                    <i class='bx bx-heart'></i>
-                    <span class="links_name">Feedback</span>
-                </a>
-            </li>-->
             <li>
-                <a href="Messages.php">
+                <a href="ChatWithEP.php">
                     <i class='bx bx-message rounded detail'></i>
                     <span class="links_name">Messages</span>
                 </a>

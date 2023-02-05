@@ -40,7 +40,7 @@ include('customer_header.php');
                     </div>
                 </div>
                 <div><br >
-                <form action="php/profileController.php"  method="POST" enctype="multipart/form-data">
+                <form action="php/profileBackend.php"  method="POST" enctype="multipart/form-data">
                     <div class="sm-all">
                         <div class="center" style="color:white;">Change Picture</div>
                         <div>&nbsp;&nbsp;<input type="file" id="myFile"  name="pp" ></div>
