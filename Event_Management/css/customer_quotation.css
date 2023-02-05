@@ -177,7 +177,8 @@ main {
     color: #560a69;
 }
 
-.date, 
+.date,
+.budget, 
 .time {
     width: 100%;
     display: flex;
@@ -186,6 +187,7 @@ main {
     /* border: 1px solid black; */
 }
 .input_box .date input,
+.input_box .budget input,
 .input_box .time input {
     border-radius: 5px;
     border: 1px solid black;
@@ -450,7 +452,19 @@ p {
     margin-top: 2px;
 }
 
-.error {
+.error,
+.error_txt {
     color: red;
     font-size: 15px;
+}
+.fields_error,
+.no_pax_error,
+.event_type_error,
+.theme_error,
+.date_error,
+.from_date_error,
+.to_date_error,
+.budget_error,
+.time_error{
+    display: none;
 }

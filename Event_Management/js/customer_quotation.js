@@ -316,37 +316,137 @@ function clearRadioButtons(array){
     }
 }
 
-const form = document.querySelector(".add"),
-submitBtn = document.querySelector(".submit-form"),
-errorText = document.querySelector(".error-text");
+const quote_form = document.querySelector(".quote_form"),
+submit_btn = document.querySelector(".btn-submit"),
+error_txt = document.querySelector(".error_txt"),
+fields_error = document.querySelector(".fields_error"),
+event_type_error = document.querySelector(".event_type_error"),
+no_pax_error = document.querySelector(".no_pax_error"),
+theme_error = document.querySelector(".theme_error"),
+date_error = document.querySelector(".date_error"),
+budget_error = document.querySelector(".budget_error"),
+time_error = document.querySelector(".time_error"),
+from_date_error = document.querySelector(".from_date_error"),
+to_date_error = document.querySelector(".to_date_error");
 
 
-form.onsubmit = (e)=>{
+quote_form.onsubmit = (e)=>{
     e.preventDefault();
 }
 
-submitBtn.onclick = ()=>{
+submit_btn.onclick = ()=>{
     let xhr = new XMLHttpRequest(); //XML object
-    xhr.open("POST", "../admin/passdata.php", true);
+    xhr.open("POST", "../customer/php/quotation_data.php", true);
     
     xhr.onload = ()=>{
         if(xhr.readyState === XMLHttpRequest.DONE){
             if(xhr.status === 200){
                 let data = xhr.response;
                 if(data == "Success"){
-                    hide_form();
-                    form.reset();
-                    errorText.style.display = "none";
-                }else{
-                    errorText.textContent = data;
-                    errorText.style.display = "block";
+                    alert("Success");
+                    quote_form.reset();
+                    error_txt.style.display = "none";
+                }else {
+                    // alert(data);
+                    // fields_error.textContent = data;
                     
+                    if(data == "fields_error"){
+                        fields_error.style.display = "block";
+                        
+                    }else{
+                        fields_error.style.display = "none";
+
+                        
+                        if(data == "event_type_error"){
+                            // alert(data);
+                            event_type_error.style.display = "block";
+                            no_pax_error.style.display = "none";
+                            theme_error.style.display = "none";
+                            date_error.style.display = "none";
+                            budget_error.style.display="none";
+                            time_error.style.display = "none";
+                            from_date_error.style.display = "none";
+                            to_date_error.style.display = "none";
+                        }
+                        else{
+                            event_type_error.style.display = "none";
+
+                            if(data == "no_pax_error"){
+                                no_pax_error.style.display = "block";
+                                theme_error.style.display = "none";
+                                date_error.style.display = "none";
+                                budget_error.style.display="none";
+                                time_error.style.display = "none";
+                                from_date_error.style.display = "none";
+                                to_date_error.style.display = "none";
+                            }
+                            else{
+                                no_pax_error.style.display = "none";
+
+                                if(data == "theme_error"){
+                                    theme_error.style.display = "block";
+                                    date_error.style.display = "none";
+                                    budget_error.style.display="none";
+                                    time_error.style.display = "none";
+                                    from_date_error.style.display = "none";
+                                    to_date_error.style.display = "none";
+                                }
+                                else{
+                                    theme_error.style.display = "none";
+                                    alert(data);
+                                    if(data == "date_error"){
+                                        date_error.style.display = "block";
+                                        budget_error.style.display="none";
+                                        time_error.style.display = "none";
+                                        from_date_error.style.display = "none";
+                                        to_date_error.style.display = "none";
+                                    }
+                                    else{
+                                        date_error.style.display = "none";
+                                        if(data == "from_date_error"){
+                                            from_date_error.style.display = "block";
+                                            to_date_error.style.display = "none";
+
+                                        }
+                                        else{
+                                            from_date_error.style.display = "none";
+                                            if(data == "to_date_error"){
+                                                to_date_error.style.display = "block";
+                                            }
+                                            else{
+                                                to_date_error.style.display = "none";
+
+                                                if(data == "budget_error"){
+                                                    budget_error.style.display="block";
+                                                    time_error.style.display = "none";
+                                                }
+                                                else{
+                                                    budget_error.style.display = "none";
+                                                    if(data == "time_error"){
+                                                        time_error.style.display = "block";
+                                                    }
+                                                    else{
+                                                        time_error.style.display = "none";
+                                                    }
+                                                }  
+                                            }
+                                            
+
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
     }
     //sending form data to php 
-    let formData = new FormData(form);
+    let formData = new FormData(quote_form);
     xhr.send(formData);
 
 }
+
+                                        

@@ -3,6 +3,10 @@ session_start();
 include('customer_sidenav.php');
 include('customer_header.php');
 include('header.php');
+include('../controllers/commonFunctions.php');
+
+
+
 ?>
 <main>
 
@@ -12,10 +16,12 @@ include('header.php');
         
         <h4>GENERAL</h4>
         <div class="general">
+            <div class="error_txt fields_error">All fields are required</div>
             <div class="flex-row">
                 <div class="input_box">
                     <label class="label flex-row">Event Type<div class="error">&nbsp;*</div></label>
                     <select name="event-type" id="event-type">
+                        <option> </option>
                         <option value="Birthday">Birthday</option>
                         <option value="Wedding">Wedding</option>
                         <option value="Anniversary">Anniversary</option>
@@ -25,20 +31,23 @@ include('header.php');
                         <option value="Exhibition">Exhibition</option>
                         <option value="Other">Other</option>   
                     </select>
+                    <div class="error_txt event_type_error">Event Type is Required</div>
                 </div>
 
                 <div class="input_box">
                     <label class="label flex-row">Number of Participants<div class="error">&nbsp;*</div></label>
                     <input type="number" name="no-pax" required>
+                    <div class="error_txt no_pax_error">Number of participants is required</div>
                 </div>
             </div>
             <div class="input_box">
                 <label class="label flex-row">Theme <div class="error">&nbsp;*</div></label>
                 <input type="text" name="theme" required>
+                <div class="error_txt theme_error">Theme is Required</div>
             </div>
             <div class="flex-row">
                 <div class="input_box">
-                    <label class="label flex-row">Tentative Date<div class="error">&nbsp;*</div></label>
+                    <label class="label flex-row">Tentative Date<div class="error_txt">&nbsp;*</div></label>
                     
                     
                     <div class="date">
@@ -47,21 +56,25 @@ include('header.php');
                         <label>To</label>
                         <input type="date" name="to-date" required>
                     </div>
-
+                    <div class="error_txt date_error">Date is Required</div>
+                    <div class="error_txt from_date_error">Invalid From Date</div>
+                    <div class="error_txt to_date_error">Invalid To Date</div>
                 </div>
 
                 
 
                 <div class="input_box">
                     <label class="label flex-row">Budget<div class="error">&nbsp;*</div></label>
-                    <div class="date">
+                    <div class="budget">
                         <label>Min</label>
                         <input type="number" name="min-budget" required>
                         <label>Max</label>
                         <input type="number" name="max-budget" required>
                     </div>
+                    <div class="error_txt budget_error">Budget is Required</div>
                 </div>
             </div>
+
             <div class="input_box">
                 <label class="label flex-row">Time<div class="error">&nbsp;*</div></label>
                 
@@ -72,7 +85,8 @@ include('header.php');
                     <label>To</label>
                     <input type="time" name="to-time" required>
                 </div>
-
+                <div class="error_txt time_error">Time is Required</div>
+                
             </div>
 
             
@@ -155,6 +169,7 @@ include('header.php');
                             <div class="input_box">
                                 <label class="label">Available In</label>
                                 <select name="food-availability" id="food-availability">
+                                <option> </option>
                                 <option value="Buffet">Buffet</option>
                                 <option value="Packets">Packets</option>
                                 <option value="Other">Other</option>   
@@ -163,6 +178,7 @@ include('header.php');
                             <div class="input_box">
                                 <label class="label">Available At</label>
                                 <select name="food-type" id="food-type">
+                                <option> </option>
                                 <option value="Breakfast">Breakfast</option>
                                 <option value="Lunch">Lunch</option>
                                 <option value="Dinner">Dinner</option>
@@ -183,6 +199,7 @@ include('header.php');
                         <div class="input_box">
                             <label class="label">Preferences</label>
                             <select name="food-pref" id="food-pref">
+                            <option> </option>
                             <option value="Veg">Veg</option>
                             <option value="Non-Veg">Non-Veg</option>
                             <option value="Non-Veg">Veg & Non-Veg</option>
@@ -319,5 +336,5 @@ include('header.php');
 
     </form>
 </div>
-<script src="../../customer_quotation.js"></script>
+<script src="../../js/customer_quotation.js"></script>
 </main>
