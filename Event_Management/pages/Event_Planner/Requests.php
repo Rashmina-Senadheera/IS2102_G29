@@ -40,8 +40,8 @@ include('../controllers/commonFunctions.php');
                 <?php
                 $sql = "SELECT * FROM request_ep_quotation";
                 $result = mysqli_query($conn, $sql);
-                if (true) {
-                    // if (mysqli_num_rows($result) > 0) {
+                // if (true) {
+                if (mysqli_num_rows($result) > 0) {
                 ?>
                     <thead>
                         <tr>
@@ -51,7 +51,7 @@ include('../controllers/commonFunctions.php');
                             <th>Participants</th>
                             <th onclick="sortTable(4)">Theme</th>
                             <th onclick="sortTable(5)">Tentative Dates</th>
-                            <th onclick="sortTable(6)">Budget</th>
+                            <th onclick="sortTable(6)">Budget (Rs.)</th>
                         </tr>
                     </thead>
                     <!-- <tr>
@@ -82,7 +82,7 @@ include('../controllers/commonFunctions.php');
                 <?php
                     while ($row = mysqli_fetch_assoc($result)) {
                         $request_id = !empty($row['request_id']) ? $row['request_id'] : "Not Set";
-                        $date = !empty($row['date']) ? $row['date'] : "Not Set";
+                        $reqdate = !empty($row['requested_on']) ? $row['requested_on'] : "Not Set";
                         $event_type = !empty($row['event_type']) ? $row['event_type'] : "Not Set";
                         $no_of_guests = !empty($row['no_of_guests']) ? $row['no_of_guests'] : "Not Set";
                         $theme = !empty($row['theme']) ? $row['theme'] : "Not Set";
@@ -93,7 +93,7 @@ include('../controllers/commonFunctions.php');
 
                         echo "<tr>";
                         echo "<td onclick='requestView($request_id)'>$request_id</td>";
-                        echo "<td onclick='requestView($request_id)'>$date</td>";
+                        echo "<td onclick='requestView($request_id)'>$reqdate</td>";
                         echo "<td onclick='requestView($request_id)'>$event_type</td>";
                         echo "<td onclick='requestView($request_id)'>$no_of_guests</td>";
                         echo "<td onclick='requestView($request_id)'>$theme</td>";

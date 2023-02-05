@@ -37,217 +37,50 @@ include('../controllers/commonFunctions.php');
         <div class="gridMain">
             <div class="suppliers-cards-container">
 
-                <div class="card">
-                    <div class="content">
-                        <div class="imgBx">
-                            <img src="../../images/Suppliers/supplier01.jpg">
-                        </div>
-                        <div class="contentBx">
-                            <h3>Bravo Event Productions Hall</h3>
-                            <span>
-                                Founded in 1987. Bravo Event Productions is an award winning, full-service event planning and production company specializing in designing and staging world-class coporate, association, government, military and non-profit functions nationwide.
-                            </span>
-                        </div>
-                    </div>
-                    <ul class="sci">
-                        <li>
-                            <!-- <a href="" class="view-supplier">View</a> -->
-                            <a href="./Supplier-more-info.php" class="view-supplier">View</a>
-                        </li>
-                        <li>
-                            <form action="./request-quotation.php" method="POST">
-                                <input type="hidden" name="ps-id" value="1">
-                                <input type="hidden" name="ps-title" value="Bravo Event Productions Hall">
-                                <button type="submit" name="quotation-type" value="Venue" class="request">Request a Quotation</button>
-                            </form>
-                            <!-- <a href="./request-quotation-venue.php" class="request">Request a Quotation</a> -->
-                        </li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <div class="content">
-                        <div class="imgBx">
-                            <img src="../../images/Suppliers/supplier02.jpg">
-                        </div>
-                        <div class="contentBx">
-                            <h3>Fruit & Chocolate sensations</h3>
-                            <span>
-                                Our Company was the first in years to start Chocolate Fountains when nobody knew what it was? Year later we are skill here today for all types of events. We cater from 25 guests 800 guests we can make it happend.
-                            </span>
-                        </div>
-                    </div>
-                    <ul class="sci">
-                        <li>
-                            <a href="" class="view-supplier">View</a>
-                            <!-- <a href="./Supplier-more-info.php" class="view-supplier">View</a> -->
-                        </li>
-                        <li>
-                            <form action="./request-quotation.php" method="POST">
-                                <input type="hidden" name="ps-id" value="1">
-                                <input type="hidden" name="ps-title" value="Fruit & Chocolate sensations">
-                                <button type="submit" name="quotation-type" value="Catering" class="request">Request a Quotation</button>
-                            </form>
-                            <!-- <a href="./request-quotation-catering.php" class="request">Request a Quotation</a> -->
-                        </li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <div class="content">
-                        <div class="imgBx">
-                            <img src="../../images/Suppliers/supplier03.jpg">
-                        </div>
-                        <div class="contentBx">
-                            <h3>Decorento Party Supplies</h3>
-                            <span>
-                                Decorento Party Supplies is a leading party supplies company in Sri Lanka. We are the pioneers in the party supplies industry in Sri Lanka. We have been in the industry for over 20 years and have been providing our services to the public for over 10 years.
-                            </span>
-                        </div>
-                    </div>
-                    <ul class="sci">
-                        <li>
-                            <a href="" class="view-supplier">View</a>
-                            <!-- <a href="./Supplier-more-info.php" class="view-supplier">View</a> -->
-                        </li>
-                        <li>
-                            <form action="./request-quotation.php" method="POST">
-                                <input type="hidden" name="ps-id" value="1">
-                                <input type="hidden" name="ps-title" value="Decorento Party Supplies">
-                                <button type="submit" name="quotation-type" value="Decoration" class="request">Request a Quotation</button>
-                            </form>
-                            <!-- <a href="./request-quotation-decoration.php" class="request">Request a Quotation</a> -->
-                        </li>
-                    </ul>
-                </div>
+                <?php
+                $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general";
+                $result = mysqli_query($conn, $sql);
 
-
-                <div class="card">
-                    <div class="content">
-                        <div class="imgBx">
-                            <img src="../../images/Suppliers/supplier01.jpg">
-                        </div>
-                        <div class="contentBx">
-                            <h3>Bravo Event Productions Hall</h3>
-                            <span>
-                                Founded in 1987. Bravo Event Productions is an award winning, full-service event planning and production company specializing in designing and staging world-class coporate, association, government, military and non-profit functions nationwide.
-                            </span>
-                        </div>
-                    </div>
-                    <ul class="sci">
-                        <li>
-                            <a href="" class="view-supplier">View</a>
-                        </li>
-                        <li>
-                            <a href="" class="request">Request a Quotation</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <div class="content">
-                        <div class="imgBx">
-                            <img src="../../images/Suppliers/supplier02.jpg">
-                        </div>
-                        <div class="contentBx">
-                            <h3>Fruit & Chocolate sensations</h3>
-                            <span>
-                                Our Company was the first in years to start Chocolate Fountains when nobody knew what it was? Year later we are skill here today for all types of events. We cater from 25 guests 800 guests we can make it happend.
-                            </span>
-                        </div>
-                    </div>
-                    <ul class="sci">
-                        <li>
-                            <a href="" class="view-supplier">View</a>
-                        </li>
-                        <li>
-                            <a href="" class="request">Request a Quotation</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <div class="content">
-                        <div class="imgBx">
-                            <img src="../../images/Suppliers/supplier03.jpg">
-                        </div>
-                        <div class="contentBx">
-                            <h3>Decorento Party Supplies</h3>
-                            <span>
-                                Decorento Party Supplies is a leading party supplies company in Sri Lanka. We are the pioneers in the party supplies industry in Sri Lanka. We have been in the industry for over 20 years and have been providing our services to the public for over 10 years.
-                            </span>
-                        </div>
-                    </div>
-                    <ul class="sci">
-                        <li>
-                            <a href="" class="view-supplier">View</a>
-                        </li>
-                        <li>
-                            <a href="" class="request">Request a Quotation</a>
-                        </li>
-                    </ul>
-                </div>
-
-
-                <div class="card">
-                    <div class="content">
-                        <div class="imgBx">
-                            <img src="../../images/Suppliers/supplier01.jpg">
-                        </div>
-                        <div class="contentBx">
-                            <h3>Bravo Event Productions Hall</h3>
-                            <span>
-                                Founded in 1987. Bravo Event Productions is an award winning, full-service event planning and production company specializing in designing and staging world-class coporate, association, government, military and non-profit functions nationwide.
-                            </span>
-                        </div>
-                    </div>
-                    <ul class="sci">
-                        <li>
-                            <a href="" class="view-supplier">View</a>
-                        </li>
-                        <li>
-                            <a href="" class="request">Request a Quotation</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <div class="content">
-                        <div class="imgBx">
-                            <img src="../../images/Suppliers/supplier02.jpg">
-                        </div>
-                        <div class="contentBx">
-                            <h3>Fruit & Chocolate sensations</h3>
-                            <span>
-                                Our Company was the first in years to start Chocolate Fountains when nobody knew what it was? Year later we are skill here today for all types of events. We cater from 25 guests 800 guests we can make it happend.
-                            </span>
-                        </div>
-                    </div>
-                    <ul class="sci">
-                        <li>
-                            <a href="" class="view-supplier">View</a>
-                        </li>
-                        <li>
-                            <a href="" class="request">Request a Quotation</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <div class="content">
-                        <div class="imgBx">
-                            <img src="../../images/Suppliers/supplier03.jpg">
-                        </div>
-                        <div class="contentBx">
-                            <h3>Decorento Party Supplies</h3>
-                            <span>
-                                Decorento Party Supplies is a leading party supplies company in Sri Lanka. We are the pioneers in the party supplies industry in Sri Lanka. We have been in the industry for over 20 years and have been providing our services to the public for over 10 years.
-                            </span>
-                        </div>
-                    </div>
-                    <ul class="sci">
-                        <li>
-                            <a href="" class="view-supplier">View</a>
-                        </li>
-                        <li>
-                            <a href="" class="request">Request a Quotation</a>
-                        </li>
-                    </ul>
-                </div>
+                if (mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $productID = $row['product_id'];
+                        $title = $row['title'];
+                        $description = $row['description'];
+                        $type = $row['type'];
+                        $img_sql = "SELECT `image` FROM sup_product_images WHERE `product_id` = " . $row['product_id'] . " LIMIT 1";
+                        $img_result = mysqli_query($conn, $img_sql);
+                        $img_row = mysqli_fetch_assoc($img_result);
+                        $img = $img_row['image'];
+                        echo '<div class="card">
+                            <div class="content">
+                                <div class="imgBx">
+                                    <img src="data:image/jpeg;base64,' . base64_encode($img) . '">
+                                </div>
+                                <div class="contentBx">
+                                    <h3>' . $title . '</h3>
+                                    <span>' . $description . '</span>
+                                </div>
+                            </div>
+                            <ul class="sci">
+                                <li>
+                                    <!-- <a href="" class="view-supplier">View</a> -->
+                                    <a href="./Supplier-more-info.php?id=' . $productID . '" class="view-supplier">View</a>
+                                </li>
+                                <li>
+                                    <form action="./request-quotation.php" method="POST">
+                                        <input type="hidden" name="ps-id" value=' . $productID . '">
+                                        <input type="hidden" name="ps-title" value="' . $title . '">
+                                        <button type="submit" name="quotation-type" value="' . $type . '" class="request">Request a Quotation</button>
+                                    </form>
+                                    <!-- <a href="./request-quotation-venue.php" class="request">Request a Quotation</a> -->
+                                </li>
+                            </ul>
+                        </div>';
+                    }
+                } else {
+                    echo "No supplier found";
+                }
+                ?>
 
             </div>
             <div class="filter">
