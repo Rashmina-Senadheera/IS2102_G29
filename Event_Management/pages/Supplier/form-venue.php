@@ -33,7 +33,14 @@
 
         <form class='add-ps' action="controllers/passdata.php" method="POST" enctype="multipart/form-data">
 
-          <h4 class='ps-form-title'>Add Venue</h4>
+          <h4 class='ps-form-title'>Add 
+            <?php 
+              if($pid == 'venue') { echo 'Venue';} 
+              if($pid == 'foodbev') { echo 'Catering & Beverages';} 
+              if($pid == 'venue') { echo 'Venue';} 
+              if($pid == 'venue') { echo 'Venue';} 
+            ?>
+          </h4>
 
           <div class="form-description">
             You can create a package by including the services you provide. Please fill the form correctly.
@@ -48,18 +55,23 @@
             <?php } ?>
           </div>
 
-          <div class="row">
-            <div class="input-ps">
-              <label for="" class="input-ps-label"  >Title <span>*</span></label>
-              <input type="text" placeholder="Full Name" name="title" class="input-ps-in" required/>
-            </div>
-          </div>
+          <div class="comp">
 
-          <div class="row">
-            <div class="input-ps">
-              <label for="" class="input-ps-label">Description <span>*</span></label>
-              <textarea  name="descript" class="input-ps-in" id='txt-area' required spellcheck="true">
-              </textarea>
+            <input type="hidden" name="ptype" value = '<?php echo $pid; ?>' required/>
+
+            <div class="row">
+              <div class="input-ps">
+                <label for="" class="input-ps-label"  >Title <span>*</span></label>
+                <input type="text" placeholder="Full Name" name="title" class="input-ps-in" required/>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-ps">
+                <label for="" class="input-ps-label">Description <span>*</span></label>
+                <textarea  name="descript" class="input-ps-in" id='txt-area' required spellcheck="true">
+                </textarea>
+              </div>
             </div>
           </div>
           
@@ -169,92 +181,96 @@
             <?php } ?>
             <!-- Transport Optional Parameters end -->
 
-                <?php if($pid == 'cb') {?>
-                <div class="row" id='check'>
-                <div class="input-ps" id='check'>
-                  <label for="" class="input-ps-label" id='check'>Catered for</label>
-                  <div class="check-bx">
-                    <div class="check-bx-opt">
-                      <input type="checkbox" id="type-venue" name="type-venue" value="Car">
-                      <label for="" class="input-ps-label-opt">Indoor Catering</label>
-                    </div>
-                    <div class="check-bx-opt">
-                      <input type="checkbox" id="type-venue" name="type-venue" value="Car">
-                      <label for="" class="input-ps-label-opt">Outdoor Catering</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="input-ps" id='check'>
-                  <label for="" class="input-ps-label" id='check'>Transport provided</label>
-                  <div class="check-bx">
-                    <div class="check-bx-opt">
-                      <input type="radio" id="type-venue" name="type-venue" value="Car">
-                      <label for="" class="input-ps-label-opt">provided</label>
-                    </div>
-                    <div class="check-bx-opt">
-                      <input type="radio" id="type-venue" name="type-venue" value="Car">
-                      <label for="" class="input-ps-label-opt">not provided</label>
-                    </div>
-                  </div>
-                </div>
-            </div>
+            <!-- Catering Optional Parameters  -->
+            <?php if($pid == 'foodbev') {?>
+
             <div class="row" id='check'>
-                <div class="input-ps" id='check'>
-                  <label for="" class="input-ps-label" id='check'>Available as </label>
-                  <div class="check-bx">
-                    <div class="check-bx-opt">
-                      <input type="checkbox" id="type-venue" name="type-venue" value="Car">
-                      <label for="" class="input-ps-label-opt">Packets/Cups</label>
-                    </div>
-                    <div class="check-bx-opt">
-                      <input type="checkbox" id="type-venue" name="type-venue" value="Car">
-                      <label for="" class="input-ps-label-opt">Buffet</label>
-                    </div>
+              <div class="input-ps" id='check'>
+                <label for="" class="input-ps-label" id='check'>Catered for</label>
+                <div class="check-bx">
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="cater-type" value="Indoor">
+                    <label for="" class="input-ps-label-opt">Indoor Catering</label>
+                  </div>
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="cater-type" value="Outdoor">
+                    <label for="" class="input-ps-label-opt">Outdoor Catering</label>
                   </div>
                 </div>
-                <div class="input-ps" id='check'>
-                  <label for="" class="input-ps-label" id='check'>Available For </label>
-                  <div class="check-bx">
-                    <div class="check-bx-opt">
-                      <input type="checkbox" id="type-venue" name="type-venue" value="Car">
-                      <label for="" class="input-ps-label-opt">Breakfast</label>
-                    </div>
-                    <div class="check-bx-opt">
-                      <input type="checkbox" id="type-venue" name="type-venue" value="Car">
-                      <label for="" class="input-ps-label-opt">Lunch</label>
-                    </div>
-                    <div class="check-bx-opt">
-                      <input type="checkbox" id="type-venue" name="type-venue" value="Car">
-                      <label for="" class="input-ps-label-opt">Dinner</label>
-                    </div>
+              </div>
+              <div class="input-ps" id='check'>
+                <label for="" class="input-ps-label" id='check'>Transport provided</label>
+                <div class="check-bx">
+                  <div class="check-bx-opt">
+                    <input type="radio" id="type-venue" name="cater-transport" value="Provided">
+                    <label for="" class="input-ps-label-opt">Provided</label>
                   </div>
-                  <div class="check-bx">
-                    <div class="check-bx-opt">
-                      <input type="checkbox" id="type-venue" name="type-venue" value="Car">
-                      <label for="" class="input-ps-label-opt">Brunch</label>
-                    </div>
-                    <div class="check-bx-opt">
-                      <input type="checkbox" id="type-venue" name="type-venue" value="Car">
-                      <label for="" class="input-ps-label-opt">High-Tea</label>
-                    </div>
-                  </div>
+                  <div class="check-bx-opt">
+                    <input type="radio" id="type-venue" name="cater-transport" value="Not provided">
+                    <label for="" class="input-ps-label-opt">Not Provided</label>
                   </div>
                 </div>
-                <div class="row">
-                    <div class="card">
-                      <label for="" class="input-ps-label" id='check'>Upload Menu </label>
-                      <div class="drop_box">
-                        <header>
-                          <h4>Select File here</h4>
-                        </header>
-                        <p>Files Supported: PDF, TEXT, DOC , DOCX</p>
-                        <input type="file" id="real-file" hidden="hidden" />
-                        <button type="button" class="btn" id="custom-button">CHOOSE A FILE</button>
-                        <span id="custom-text">No file chosen, yet.</span>
-                      </div>
-                    </div>
-                  </div> 
-                <?php } ?>
+              </div>
+            </div>
+
+            <div class="row" id='check'>
+              <div class="input-ps" id='check'>
+                <label for="" class="input-ps-label" id='check'>Available as </label>
+                <div class="check-bx">
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="available-as" value="Packets/Cups">
+                    <label for="" class="input-ps-label-opt">Packets/Cups</label>
+                  </div>
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="available-as" value="Buffet">
+                    <label for="" class="input-ps-label-opt">Buffet</label>
+                  </div>
+                </div>
+              </div>
+              <div class="input-ps" id='check'>
+                <label for="" class="input-ps-label" id='check'>Available For </label>
+                <div class="check-bx">
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="available-for" value="Breakfast">
+                    <label for="" class="input-ps-label-opt">Breakfast</label>
+                  </div>
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="available-for" value="Lunch">
+                    <label for="" class="input-ps-label-opt">Lunch</label>
+                  </div>
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="available-for" value="Dinner">
+                    <label for="" class="input-ps-label-opt">Dinner</label>
+                  </div>
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="available-for" value="Brunch">
+                    <label for="" class="input-ps-label-opt">Brunch</label>
+                  </div>
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="available-for" value="High-tea">
+                    <label for="" class="input-ps-label-opt">High-Tea</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="card">
+                <label for="" class="input-ps-label" id='check'>Upload Menu </label>
+                <div class="drop_box">
+                  <header>
+                    <h4>Select File here</h4>
+                  </header>
+                  <p>Files Supported: PDF, TEXT, DOC , DOCX</p>
+                  <input type="file" id="real-file"/>
+                </div>
+              </div>
+            </div>
+
+            <?php } ?>
+            
+            <!-- Catering Optional Parameters end -->
+
                 <?php if($pid == 'florist') {?>
                 <div class="row">
                 <div class="input-ps">
@@ -485,13 +501,9 @@
               </div>
             </div>
 
-            <?php if($pid == 'venue') {?> 
             <div class="action">
-              
                 <input type="submit" value="Add" class="action-button" />
-              
-            </div>
-            <?php } ?>   
+            </div>  
 
             </div>
           </form>

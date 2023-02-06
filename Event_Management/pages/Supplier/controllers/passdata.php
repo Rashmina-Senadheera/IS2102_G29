@@ -28,6 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     $other = validate($_POST['other']);
     $sup_ID = $_SESSION['user_id'];
     $images = $_FILES['images'];
+    $ptype = validate($_POST['ptype']);
 
 
     // Validation patters
@@ -65,8 +66,8 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         echo "<script> history.back(); </script>";
     } else {
         // Prepare an insert statement
-        $sql = "INSERT INTO  sup_product_general( supplier_ID,title,description,other_details) 
-        VALUES(?,?,?,?)";
+        $sql = "INSERT INTO  sup_product_general( supplier_ID,title,description,other_details,type) 
+        VALUES(?,?,?,?,?)";
 
         //,venloc,venlocation,ventype,maxCap,minCap,?,?,?,?,?
 
@@ -74,11 +75,12 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
 
 
             // Bind variables to the prepared statement as parameters
-            $stmt->bind_param('isss',$sup_ID, $param_title, $param_descript,$param_other);
+            $stmt->bind_param('issss',$sup_ID, $param_title, $param_descript,$param_other,$param_ptype);
             // Set parameters
             $param_title = $title;
             $param_descript = $descript ;
             $param_other = $other ;
+            $param_ptype = $ptype ;
             
 
             // Attempt to execute the prepared statement
@@ -86,13 +88,16 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                 // Get the last inserted id
                 $product_id  = $conn->insert_id;
 
-                $sql1 = "INSERT INTO  supplier_venue( product_id,venloc,venlocation,ventype,maxCap,minCap) 
-                VALUES(?,?,?,?,?,?)";
+                if($ptype == 'venue'){
+                    $sql1 = "INSERT INTO  supplier_venue( product_id,venloc,venlocation,ventype,maxCap,minCap) VALUES(?,?,?,?,?,?)";
+                }
+                
 
                 if ($stmt1 = $conn->prepare($sql1)) {
 
-                    $stmt1->bind_param('isssii',$product_id, $param_venueIn, $param_location, $param_type,$param_maxCap,$param_minCap);
-                    
+                    if($ptype == 'venue'){
+                        $stmt1->bind_param('isssii',$product_id, $param_venueIn, $param_location, $param_type,$param_maxCap,$param_minCap);
+                    }
                     $param_venueIn = $venueIn ;
                     $param_location = $location;
                     $param_type = $type;

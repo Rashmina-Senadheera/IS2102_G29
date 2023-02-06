@@ -154,7 +154,7 @@ h4 {
 
 .check-bx{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 input#type-venue {
   background: rgb(196, 71, 71);
@@ -162,6 +162,7 @@ input#type-venue {
 .row#check{
   display: flex;
   flex-direction: row;
+  margin-bottom: 20px;
 }
 .input-ps{
   flex: 50%;
@@ -214,6 +215,7 @@ label.input-ps-label-opt{
 }
 .card{
   margin-top: 20px;
+  width: 100%;
 }
 .card#upload{
   margin-top: 5px;
@@ -795,4 +797,19 @@ input[type="range"]::-moz-range-thumb{
   pointer-events: auto;
   -moz-appearance: none;
   box-shadow: 0 0 6px rgba(0,0,0,0.05);
+}
+
+input[type=file]::file-selector-button {
+  margin-right: 20px;
+  border: none;
+  background: #084cdf;
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: background .2s ease-in-out;
+}
+
+input[type=file]::file-selector-button:hover {
+  background: #0d45a5;
 }
