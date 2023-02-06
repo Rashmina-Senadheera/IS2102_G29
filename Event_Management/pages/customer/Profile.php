@@ -218,6 +218,9 @@ include('customer_header.php');
        var isEmail= false;
        var isValiContactNumber= false;
        var isValiName= false;
+       var isValiNIC= false;
+       var isValiAdress= false;
+       var isValiBio= false;
 
        var name=$('#fname').val();
        var email=$('#email').val();
@@ -228,18 +231,29 @@ include('customer_header.php');
        $('#valiEmail').text("");
        $('#valiContactNumber').text("");
        $('#valiName').text("");
+       $('#valiNIC').text("");
+       $('#valiAdress').text("");
+       $('#valiBio').text("");
 
        if(ValidateEmail(email)){ 
-        $('#valiEmail').text("You have entered an invalid email address!");
+        $('#valiEmail').text("Invalid Email Address!");
         isEmail =false
        }else{
         isEmail =true
        }
+
         if(phonenumber(contact)){
-        $('#valiContactNumber').text("Not a valid Phone Number");
+        $('#valiContactNumber').text("Invalid Phone Number !");
         isValiContactNumber =false
        }else{
         isValiContactNumber =true
+       }
+
+       if(nIc(nic)){
+        $('#valiNIC').text("Invalid NIC !");
+        isValiNIC =false
+       }else{
+        isValiNIC =true
        }
        
        if(name == ''){
@@ -248,14 +262,50 @@ include('customer_header.php');
        }else{
         isValiName =true
        }
-      if(isEmail && isValiContactNumber && isValiName){
-        $('#valiName').text("This field can't be empty ");
-       
+
+       if(email == ''){
+        $('#valiEmail').text("This field can not be empty ");
+        isValiEmail =false
+       }else{
+        isValiEmail =true
+       }
+
+       if(nic == ''){
+        $('#valiNIC').text("This field can not be empty ");
+        isValiNIC =false
+       }else{
+        isValiNIC =true
+       }
+
+       if(contact == ''){
+        $('#valiContactNumber').text("This field can not be empty ");
+        isValiContactNumber =false
+       }else{
+        isValiContactNumber =true
+       }
+ 
+       if(address == ''){
+        $('#valiAdress').text("This field can not be empty ");
+        isValiAdress =false
+       }else{
+        isValiAdress =true
+       }
+
+       if(bio == ''){
+        $('#valiBio').text("This field can not be empty ");
+        isValiBio =false
+       }else{
+        isValiBio =true
+       }
+
+    
+      if(isEmail && isValiContactNumber && isValiNIC && isValiName && isValiAdress && isValiBio){
+        $('#valiName').text("");
        
         $.ajax({
                 type: "POST",
-                url: "php/ProfileBackend.php?method=update",
-                data: { "NAME": name, "EMAIL": email, "NIC": nic, "PHONE_NUMBER": contact, "ADDRESS": address, "BIO": bio},
+                url: "php/ProfileController.php?method=update",
+                data: { "NAME": name, "EMAIL": email, "NIC": nic, "PHONE_NUMER": contact, "ADDRESS": address, "BIO": bio},
                 success: function(response){
                     console.log(response);
                     callPHPFunction();
@@ -267,7 +317,7 @@ include('customer_header.php');
         });
 
     }
-    }
+}
 
     function ValidateEmail(inputText)
     {
@@ -297,10 +347,19 @@ include('customer_header.php');
     }
 
     
-    function nic(inputtxt)
+    function nIc(inputtxt)
     {
+        var pattern = /^[0-9]{9}[Vv0-9]{1,3}$/;
+        if(!pattern.test(inputtxt))
+        {
+        return true;
+        }
+        else
+        {
+        
+        return false;
+        }
     }
-
 
 </script>
 
