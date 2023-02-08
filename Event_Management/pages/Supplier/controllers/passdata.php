@@ -132,7 +132,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                 }
                 // Redirect package services page
                 $_SESSION['success'] = "Package added successfully".$package_id;
-                header("location: ../form-venue.php?product_type=venue");
+                header("location: ../form-venue.php?product_type=".$ptype);
             } else {
                 $_SESSION['error'] =  "Something went wrong. Please try again later.";
             }
