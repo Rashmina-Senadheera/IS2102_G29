@@ -36,8 +36,8 @@
           <h4 class='ps-form-title'>Add 
             <?php 
               if($pid == 'venue') { echo 'Venue';} 
-              if($pid == 'foodbev') { echo 'Catering & Beverages';} 
-              if($pid == 'venue') { echo 'Venue';} 
+              if($pid == 'foodbev') { echo 'Catering & Beverages';}; 
+              if($pid == 'transport') { echo 'Transport';} 
               if($pid == 'venue') { echo 'Venue';} 
             ?>
           </h4>
@@ -152,7 +152,7 @@
             <div class="row">
               <div class="input-ps">
                 <label for="" class="input-ps-label">Type</label>
-                <select name="type" id="type">
+                <select name="transport_type" id="type">
                   <option value="">Car</option>
                   <option value="">Motorbike</option>
                   <option value="">Bicycle</option>
@@ -167,14 +167,14 @@
             <div class="row">
               <div class="input-ps">
                 <label for="" class="input-ps-label">Brand</label>
-                <input type="text" placeholder="Brand" class="input-ps-in"/>
+                <input type="text" name = "transport_Brand" placeholder="Brand" class="input-ps-in"/>
               </div>
             </div>
 
             <div class="row">
               <div class="input-ps">
                 <label for="" class="input-ps-label">Model</label>
-                <input type="text" placeholder="Brand" class="input-ps-in"/>
+                <input type="text" placeholder="Brand" name = "transport_Model" class="input-ps-in"/>
               </div>
             </div>
 

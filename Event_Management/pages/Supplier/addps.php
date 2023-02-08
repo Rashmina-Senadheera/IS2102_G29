@@ -53,7 +53,7 @@
                                     <i class='bx bx-chevron-right' id="item"></i>
                                 </div>
                             </li></a>
-                            <a href="form-venue.php?product_type=transport" id="btn">
+                            <a href="form-venue.php?product_type=tran" id="btn">
                             <li class = "header" id="ps-item-add">
                                 <div class="ps-cat-desc" id='item'>
                                     <div class="ps-cat-item">Transport</div>

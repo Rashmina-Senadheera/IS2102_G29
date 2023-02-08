@@ -38,6 +38,11 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         $available_as_fb = validate($_POST['available-as-fb']);
         $available_for_fb = validate($_POST['available-for-fb']);
     }
+    if($ptype == 'transport'){
+        $transport_type = validate($_POST['transport_type']);
+        $transport_Brand = validate($_POST['transport_Brand']);
+        $transport_Model = validate($_POST['transport_Model']);
+    }
 
 
 
@@ -90,6 +95,9 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                 if($ptype == 'foodbev'){
                     $sql1 = "INSERT INTO  supplier_foodbev( product_id,catered_for,transport,available_as,available_for) VALUES(?,?,?,?,?)";
                 }
+                if($ptype == 'transport'){
+                    $sql1 = "INSERT INTO  supplier_transport( product_id,type,brand,model) VALUES(?,?,?,?)";
+                }
 
                 if ($stmt1 = $conn->prepare($sql1)) {
 
@@ -107,6 +115,12 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                         $param_availForFb = $available_for_fb;
                         $param_catTransport = $cater_transport;
                         $param_catType = $cater_type;
+                    }
+                    if($ptype == 'transport'){
+                        $stmt1->bind_param('isss',$product_id, $param_transportType, $param_transportBrand, $param_transportModel);
+                        $param_transportType = $transport_type;
+                        $param_transportBrand = $transport_Brand;
+                        $param_transportModel = $transport_Model;
                     }
                     
 
