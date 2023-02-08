@@ -20,15 +20,25 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
 
     $title = validate($_POST['title']);
     $descript = validate($_POST['descript']);
-    $venueIn = validate($_POST['venueIn']);
-    $location = validate($_POST['location']);
-    $type = validate($_POST['type']);
-    $maxCap = validate($_POST['maxCap']);
-    $minCap = validate($_POST['minCap']);
     $other = validate($_POST['other']);
     $sup_ID = $_SESSION['user_id'];
     $images = $_FILES['images'];
     $ptype = validate($_POST['ptype']);
+
+    if($ptype == 'venue'){
+        $venueIn = validate($_POST['venueIn']);
+        $location = validate($_POST['location']);
+        $maxCap = validate($_POST['maxCap']);
+        $minCap = validate($_POST['minCap']);
+        $type = validate($_POST['type']);
+    }
+    if($ptype == 'foodbev'){
+        $cater_type = validate($_POST['cater-type']);
+        $cater_transport = validate($_POST['cater-transport']);
+        $available_as_fb = validate($_POST['available-as-fb']);
+        $available_for_fb = validate($_POST['available-for-fb']);
+    }
+
 
 
     // Validation patters
@@ -44,24 +54,10 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         $_SESSION['error-descript'] = "Event type is required";
     }
 
-    // Validate price from
-    if (empty($minCap)) {
-        $_SESSION['error-minCap'] = "Starting price is required";
-    } else if (!preg_match($onlyPositiveNumbers, $minCap)) {
-        $_SESSION['error-minCap'] = "Starting price must be a positive number";
-    }
-
-    // Validate description
-    if (empty($location)) {
-        $_SESSION['error-location'] = "Description is required";
-    }
-
     // If there are any errors go back
     if (
         isset($_SESSION['error-title']) ||
-        isset($_SESSION['error-descript']) ||
-        isset($_SESSION['error-minCap']) ||
-        isset($_SESSION['error-location'])
+        isset($_SESSION['error-descript'])
     ) {
         echo "<script> history.back(); </script>";
     } else {
@@ -91,18 +87,28 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                 if($ptype == 'venue'){
                     $sql1 = "INSERT INTO  supplier_venue( product_id,venloc,venlocation,ventype,maxCap,minCap) VALUES(?,?,?,?,?,?)";
                 }
-                
+                if($ptype == 'foodbev'){
+                    $sql1 = "INSERT INTO  supplier_foodbev( product_id,catered_for,transport,available_as,available_for) VALUES(?,?,?,?,?)";
+                }
 
                 if ($stmt1 = $conn->prepare($sql1)) {
 
                     if($ptype == 'venue'){
                         $stmt1->bind_param('isssii',$product_id, $param_venueIn, $param_location, $param_type,$param_maxCap,$param_minCap);
+                        $param_venueIn = $venueIn ;
+                        $param_location = $location;
+                        $param_type = $type;
+                        $param_maxCap = $maxCap ;
+                        $param_minCap = $minCap;
                     }
-                    $param_venueIn = $venueIn ;
-                    $param_location = $location;
-                    $param_type = $type;
-                    $param_maxCap = $maxCap ;
-                    $param_minCap = $minCap;
+                    if($ptype == 'foodbev'){
+                        $stmt1->bind_param('issss',$product_id, $param_catType, $param_catTransport, $param_availAsFb,$param_availForFb);
+                        $param_availAsFb = $available_as_fb;
+                        $param_availForFb = $available_for_fb;
+                        $param_catTransport = $cater_transport;
+                        $param_catType = $cater_type;
+                    }
+                    
 
                     if ($stmt1->execute()) {
                         // Loop through the images array with count

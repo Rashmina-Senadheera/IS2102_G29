@@ -218,11 +218,11 @@
                 <label for="" class="input-ps-label" id='check'>Available as </label>
                 <div class="check-bx">
                   <div class="check-bx-opt">
-                    <input type="checkbox" id="type-venue" name="available-as" value="Packets/Cups">
+                    <input type="checkbox" id="type-venue" name="available-as-fb" value="Packets/Cups">
                     <label for="" class="input-ps-label-opt">Packets/Cups</label>
                   </div>
                   <div class="check-bx-opt">
-                    <input type="checkbox" id="type-venue" name="available-as" value="Buffet">
+                    <input type="checkbox" id="type-venue" name="available-as-fb" value="Buffet">
                     <label for="" class="input-ps-label-opt">Buffet</label>
                   </div>
                 </div>
@@ -231,23 +231,23 @@
                 <label for="" class="input-ps-label" id='check'>Available For </label>
                 <div class="check-bx">
                   <div class="check-bx-opt">
-                    <input type="checkbox" id="type-venue" name="available-for" value="Breakfast">
+                    <input type="checkbox" id="type-venue" name="available-for-fb" value="Breakfast">
                     <label for="" class="input-ps-label-opt">Breakfast</label>
                   </div>
                   <div class="check-bx-opt">
-                    <input type="checkbox" id="type-venue" name="available-for" value="Lunch">
+                    <input type="checkbox" id="type-venue" name="available-for-fb" value="Lunch">
                     <label for="" class="input-ps-label-opt">Lunch</label>
                   </div>
                   <div class="check-bx-opt">
-                    <input type="checkbox" id="type-venue" name="available-for" value="Dinner">
+                    <input type="checkbox" id="type-venue" name="available-for-fb" value="Dinner">
                     <label for="" class="input-ps-label-opt">Dinner</label>
                   </div>
                   <div class="check-bx-opt">
-                    <input type="checkbox" id="type-venue" name="available-for" value="Brunch">
+                    <input type="checkbox" id="type-venue" name="available-for-fb" value="Brunch">
                     <label for="" class="input-ps-label-opt">Brunch</label>
                   </div>
                   <div class="check-bx-opt">
-                    <input type="checkbox" id="type-venue" name="available-for" value="High-tea">
+                    <input type="checkbox" id="type-venue" name="available-for-fb" value="High-tea">
                     <label for="" class="input-ps-label-opt">High-Tea</label>
                   </div>
                 </div>
