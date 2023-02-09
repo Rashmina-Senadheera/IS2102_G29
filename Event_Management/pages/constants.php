@@ -2,7 +2,7 @@
     //start session
     session_start();
 
-    define('SITEURL','http://localhost/IS2102_G29/Event_Management/');
+    define('SITEURL','http://localhost/e/IS2102_G29/Event_Management/');
     define('LOCALHOST','localhost');
     define('DB_USERNAME','root');
     define('DB_PASSWORD','');

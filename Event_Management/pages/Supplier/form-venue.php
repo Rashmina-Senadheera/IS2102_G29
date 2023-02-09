@@ -36,9 +36,9 @@
           <h4 class='ps-form-title'>Add 
             <?php 
               if($pid == 'venue') { echo 'Venue';} 
-              if($pid == 'foodbev') { echo 'Catering & Beverages';}; 
+              if($pid == 'foodbev') { echo 'Catering & Beverages';}
               if($pid == 'transport') { echo 'Transport';} 
-              if($pid == 'venue') { echo 'Venue';} 
+              if($pid == 'florist') { echo 'Floral Arrangements';} 
             ?>
           </h4>
 
@@ -262,81 +262,61 @@
                     <h4>Select File here</h4>
                   </header>
                   <p>Files Supported: PDF, TEXT, DOC , DOCX</p>
-                  <input type="file" id="real-file"/>
+                  <input type="file" id="real-file" name='pdf-files'/>
                 </div>
               </div>
             </div>
 
-            <?php } ?>
-            
-            <!-- Catering Optional Parameters end -->
+          <?php } ?>
+          <!-- Catering Optional Parameters end -->
 
-                <?php if($pid == 'florist') {?>
-                <div class="row">
-                <div class="input-ps">
-                  <label for="" class="input-ps-label">Type of Flowers</label>
-                  <input type="text" placeholder="type" class="input-ps-in"/>
-                </div>
+          <!-- Florists Optional Parameters -->
+          <?php if($pid == 'florist') {?>
+
+            <div class="row">
+              <div class="input-ps">
+                <label for="" class="input-ps-label">Type of Flowers</label>
+                <input type="text" placeholder="type" name='floral-type' class="input-ps-in"/>
               </div>
-              <div class="row" id='check'>
-                <div class="input-ps">
-                  <label for="" class="input-ps-label">Height</label>
-                  <input type="text" placeholder="type" class="input-ps-in"/>
-                </div>
-              </div>
-              <div class="row" id='check'>
-                <div class="input-ps">
-                  <label for="" class="input-ps-label">Quantity of Flowers</label>
-                  <input type="text" placeholder="type" class="input-ps-in"/>
-                </div>
-              </div>
+            </div>
+
             <div class="row" id='check'>
-                <div class="input-ps" id='check'>
+              <div class="input-ps">
+                <label for="" class="input-ps-label">Height</label>
+                <input type="text" placeholder="type" name='floral-height' class="input-ps-in"/>
+              </div>
+            </div>
+
+            <div class="row" id='check'>
+              <div class="input-ps">
+                <label for="" class="input-ps-label">Quantity of Flowers</label>
+                <input type="text" placeholder="type" name='floral-quant' class="input-ps-in"/>
+              </div>
+            </div>
+
+            <div class="row" id='check'>
+                <div class="input-ps">
                   <label for="" class="input-ps-label" id='check'>Suitablefor</label>
                   <div class="check-bx">
                     <div class="check-bx-opt">
-                      <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                      <input type="checkbox" id="type-venue" name="type-floral" value="Car">
                       <label for="" class="input-ps-label-opt">Indoor Events</label>
                     </div>
                     <div class="check-bx-opt">
-                      <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                      <input type="checkbox" id="type-venue" name="type-floral" value="Car">
                       <label for="" class="input-ps-label-opt">Outdoor Events</label>
                     </div>
                   </div>
                 </div>
-                <div class="input-ps" id='check'>
-                  <label for="" class="input-ps-label" id='check'>Transport provided</label>
-                  <div class="check-bx">
-                    <div class="check-bx-opt">
-                      <input type="radio" id="type-venue" name="type-venue" value="Car">
-                      <label for="" class="input-ps-label-opt">provided</label>
-                    </div>
-                    <div class="check-bx-opt">
-                      <input type="radio" id="type-venue" name="type-venue" value="Car">
-                      <label for="" class="input-ps-label-opt">not provided</label>
-                    </div>
-                  </div>
-                </div>
             </div>
-                
-                <div class="row">
-                    <div class="card">
-                      <label for="" class="input-ps-label" id='check'>Upload Catalog </label>
-                      <div class="drop_box">
-                        <header>
-                          <h4>Select File here</h4>
-                        </header>
-                        <p>Files Supported: PDF, TEXT, DOC , DOCX</p>
-                        <input type="file" id="real-file" hidden="hidden" />
-                        <button type="button" class="btn" id="custom-button">CHOOSE A FILE</button>
-                        <span id="custom-text">No file chosen, yet.</span>
-                      </div>
-                    </div>
-                  </div> 
-                  <?php } ?>
-                  <?php if($pid == 'deco') {?>
 
-                    <div class="row" id='check'>
+          <?php } ?>
+          <!-- Florists Optional Parameters end -->
+
+            <!-- Decorations Optional Parameters end -->
+            <?php if($pid == 'deco') {?>
+
+              <div class="row" id='check'>
                 <div class="input-ps" id='check'>
                   <label for="" class="input-ps-label" id='check'>Suitablefor</label>
                   <div class="check-bx">

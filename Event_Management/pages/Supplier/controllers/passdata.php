@@ -43,6 +43,12 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         $transport_Brand = validate($_POST['transport_Brand']);
         $transport_Model = validate($_POST['transport_Model']);
     }
+    if($ptype == 'florist'){
+        $floral_type = validate($_POST['floral-type']);
+        $floral_height = validate($_POST['floral-height']);
+        $floral_quant = validate($_POST['floral-quant']);
+        $floral_for = validate($_POST['type-floral']);
+    }
 
 
 
@@ -98,6 +104,9 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                 if($ptype == 'transport'){
                     $sql1 = "INSERT INTO  supplier_transport( product_id,type,brand,model) VALUES(?,?,?,?)";
                 }
+                if($ptype == 'florist'){
+                    $sql1 = "INSERT INTO  supplier_florist( product_id,type_of_flowers,height,quantity,suitable_for) VALUES(?,?,?,?,?)";
+                }
 
                 if ($stmt1 = $conn->prepare($sql1)) {
 
@@ -115,6 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                         $param_availForFb = $available_for_fb;
                         $param_catTransport = $cater_transport;
                         $param_catType = $cater_type;
+
                     }
                     if($ptype == 'transport'){
                         $stmt1->bind_param('isss',$product_id, $param_transportType, $param_transportBrand, $param_transportModel);
@@ -122,6 +132,14 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                         $param_transportBrand = $transport_Brand;
                         $param_transportModel = $transport_Model;
                     }
+                    if($ptype == 'florist'){
+                        $stmt1->bind_param('isdis',$product_id, $param_type_of_flowers, $param_height, $param_quantity,$param_suitable_for);
+                        $param_type_of_flowers = $floral_type;
+                        $param_height = $floral_height;
+                        $param_quantity = $floral_quant;
+                        $param_suitable_for = $floral_for;
+                    }
+                    
                     
 
                     if ($stmt1->execute()) {
