@@ -401,3 +401,16 @@ nav .profile-details i {
         display: none;
     }
 }
+
+li.log_out button#btnlogOut:hover {
+    background: #490258;
+}
+button#btnlogOut {
+    width: 100%;
+    background: #1f0027;
+    color: white;
+    padding: 5px;
+    display: flex;
+    border: none;
+    font-size: 17px;
+}
