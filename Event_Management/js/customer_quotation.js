@@ -23,6 +23,8 @@ function venue_check(Index){
     if(Index == 0){       
         venueNeeded[Index].classList.add('needed');
         venueInputbox[Index].style.display="flex";
+        venue_error.style.display = "none";
+
         // venueInputbox[Index].classList.add('show');
 
         
@@ -32,7 +34,9 @@ function venue_check(Index){
     }
     else if(Index ==1){       
 
-        venueNeeded[Index].classList.add('needed');        
+        venueNeeded[Index].classList.add('needed');  
+        venue_error.style.display = "none";
+
         v = selectedOption[Index].value;
         console.log(v);
 
@@ -53,6 +57,7 @@ function showVenue(panelIndex){
     });
     contents[panelIndex].style.display="block";
     
+    
 
 }
 
@@ -71,6 +76,7 @@ function food_check(Index){
 
         foodNeeded[0].classList.add('needed');
         foodInfo.style.display="block";
+        food_error.style.display = "none";
         // venueInputbox[Index].classList.add('show');
         v = selectedOption1[Index].value;
         console.log(v);
@@ -79,7 +85,9 @@ function food_check(Index){
     else if(Index ==1){       
 
         foodNeeded[1].classList.add('needed');  
-        foodInfo.style.display="none";      
+        foodInfo.style.display="none";  
+        food_error.style.display = "none";
+
         v = selectedOption1[Index].value;
         console.log(v);
 
@@ -92,7 +100,7 @@ function food_check(Index){
 
 var s_l_Needed = document.querySelectorAll(".s_l .radio-btns label");
 var s_l_Info = document.querySelector(".sound_light .s_l_info");
-var selectedOption2 = document.getElementsByName('s&l');
+var selectedOption2 = document.getElementsByName('s_l');
 
 
 function s_l_check(Index){
@@ -105,6 +113,8 @@ function s_l_check(Index){
 
         s_l_Needed[0].classList.add('needed');
         s_l_Info.style.display="flex";
+        s_l_error.style.display = "none";
+
         // venueInputbox[Index].classList.add('show');
         v = selectedOption2[Index].value;
         console.log(v);
@@ -114,6 +124,8 @@ function s_l_check(Index){
 
         s_l_Needed[1].classList.add('needed');  
         s_l_Info.style.display="none";
+        s_l_error.style.display = "none";
+
         v = selectedOption2[Index].value;
         console.log(v);
       
@@ -212,6 +224,8 @@ function p_v_check(Index){
 
         p_v_Needed[0].classList.add('needed');
         p_v_Info.style.display="flex";
+        p_v_error.style.display = "none";
+
         // venueInputbox[Index].classList.add('show');
         v = selectedOption5[Index].value;
         console.log(v);
@@ -220,7 +234,9 @@ function p_v_check(Index){
     else if(Index ==1){       
 
         p_v_Needed[1].classList.add('needed');  
-        p_v_Info.style.display="none";      
+        p_v_Info.style.display="none";
+        p_v_error.style.display = "none";
+        
         v = selectedOption5[Index].value;
         console.log(v);
 
@@ -325,9 +341,25 @@ no_pax_error = document.querySelector(".no_pax_error"),
 theme_error = document.querySelector(".theme_error"),
 date_error = document.querySelector(".date_error"),
 budget_error = document.querySelector(".budget_error"),
+min_budget_error = document.querySelector(".min_budget_error"),
 time_error = document.querySelector(".time_error"),
 from_date_error = document.querySelector(".from_date_error"),
-to_date_error = document.querySelector(".to_date_error");
+to_date_error = document.querySelector(".to_date_error"),
+indoor_remarks_error = document.querySelector(".indoor_remarks_error"),
+outdoor_remarks_error = document.querySelector(".outdoor_remarks_error"),
+venue_type_error = document.querySelector(".venue_type_error"),
+venue_error = document.querySelector(".venue_error"),
+food_error = document.querySelector(".food_error"),
+food_remarks_error = document.querySelector(".food_remarks_error"),
+s_l_error = document.querySelector(".s_l_error"),
+s_l_remarks_error = document.querySelector(".s_l_remarks_error"),
+p_v_remarks_error = document.querySelector(".p_v_remarks_error"),
+p_v_error = document.querySelector(".p_v_error");
+
+var data;
+var dataArr;
+var error;
+
 
 
 quote_form.onsubmit = (e)=>{
@@ -341,105 +373,218 @@ submit_btn.onclick = ()=>{
     xhr.onload = ()=>{
         if(xhr.readyState === XMLHttpRequest.DONE){
             if(xhr.status === 200){
-                let data = xhr.response;
-                if(data == "Success"){
-                    alert("Success");
-                    quote_form.reset();
-                    error_txt.style.display = "none";
-                }else {
-                    // alert(data);
-                    // fields_error.textContent = data;
-                    
-                    if(data == "fields_error"){
-                        fields_error.style.display = "block";
-                        
-                    }else{
-                        fields_error.style.display = "none";
+                data = xhr.response;
+                dataArr = data.split(" ");
 
+                if(data == "success"){
+                        alert("Success");
+                        quote_form.reset();
+                        error_txt.style.display = "none";
+                    }
+                else{
+                    
+                    //event type
+                    if(dataArr.includes("event_type_error")){
+                        event_type_error.style.display = "block";
+                    }
+                    else{
+                        event_type_error.style.display = "none";
+                    }
+
+                    //no. of participants
+                    if(dataArr.includes("no_pax_error")){
+                        no_pax_error.style.display = "block";
+                    }
+                    else{
+                        no_pax_error.style.display = "none";
+                    }
+
+                    //theme
+                    if(dataArr.includes("theme_error")){
+                        theme_error.style.display = "block";
+                    }
+                    else{
+                        theme_error.style.display = "none";
+                    }
+
+                    //date
+                    if(dataArr.includes("date_error")){
+                        date_error.style.display = "block";
+                    }
+                    else{
+                        date_error.style.display = "none";
+                    }
+
+                    //from and to date
+                    if(dataArr.includes("from_date_error")){
+                        from_date_error.style.display = "block";
+                    }
+                    else{
+                        from_date_error.style.display = "none";
                         
-                        if(data == "event_type_error"){
-                            // alert(data);
-                            event_type_error.style.display = "block";
-                            no_pax_error.style.display = "none";
-                            theme_error.style.display = "none";
-                            date_error.style.display = "none";
-                            budget_error.style.display="none";
-                            time_error.style.display = "none";
-                            from_date_error.style.display = "none";
-                            to_date_error.style.display = "none";
+
+                    }
+
+                    //to date
+                    if(dataArr.includes("to_date_error")){
+                        to_date_error.style.display = "block";
+                    }
+                    else{
+                        to_date_error.style.display = "none";
+                        
+                    }
+
+                    //budget
+                    if(dataArr.includes("budget_error")){
+                        budget_error.style.display = "block";
+                    }
+                    else{
+                        budget_error.style.display = "none";
+                        if(dataArr.includes("min_budget_error")){
+                            min_budget_error.style.display = "block";
                         }
                         else{
-                            event_type_error.style.display = "none";
-
-                            if(data == "no_pax_error"){
-                                no_pax_error.style.display = "block";
-                                theme_error.style.display = "none";
-                                date_error.style.display = "none";
-                                budget_error.style.display="none";
-                                time_error.style.display = "none";
-                                from_date_error.style.display = "none";
-                                to_date_error.style.display = "none";
-                            }
-                            else{
-                                no_pax_error.style.display = "none";
-
-                                if(data == "theme_error"){
-                                    theme_error.style.display = "block";
-                                    date_error.style.display = "none";
-                                    budget_error.style.display="none";
-                                    time_error.style.display = "none";
-                                    from_date_error.style.display = "none";
-                                    to_date_error.style.display = "none";
-                                }
-                                else{
-                                    theme_error.style.display = "none";
-                                    alert(data);
-                                    if(data == "date_error"){
-                                        date_error.style.display = "block";
-                                        budget_error.style.display="none";
-                                        time_error.style.display = "none";
-                                        from_date_error.style.display = "none";
-                                        to_date_error.style.display = "none";
-                                    }
-                                    else{
-                                        date_error.style.display = "none";
-                                        if(data == "from_date_error"){
-                                            from_date_error.style.display = "block";
-                                            to_date_error.style.display = "none";
-
-                                        }
-                                        else{
-                                            from_date_error.style.display = "none";
-                                            if(data == "to_date_error"){
-                                                to_date_error.style.display = "block";
-                                            }
-                                            else{
-                                                to_date_error.style.display = "none";
-
-                                                if(data == "budget_error"){
-                                                    budget_error.style.display="block";
-                                                    time_error.style.display = "none";
-                                                }
-                                                else{
-                                                    budget_error.style.display = "none";
-                                                    if(data == "time_error"){
-                                                        time_error.style.display = "block";
-                                                    }
-                                                    else{
-                                                        time_error.style.display = "none";
-                                                    }
-                                                }  
-                                            }
-                                            
-
-
-                                        }
-                                    }
-                                }
-                            }
+                            min_budget_error.style.display = "none";
                         }
                     }
+
+
+                    //time
+                    if(dataArr.includes("time_error")){
+                        time_error.style.display = "block";
+                    }
+                    else{
+                        time_error.style.display = "none";
+                    }
+                    
+
+                    //venue
+                    if(dataArr.includes("venue_error")){
+                        venue_error.style.display = "block";
+
+                    }
+                    else{
+                        venue_error.style.display = "none";
+
+                    }
+
+                    if(dataArr.includes("venue_type_error")){
+                        venue_type_error.style.display = "block";
+
+                    }
+                    else{
+                        venue_type_error.style.display = "none";
+
+                    }
+
+                    //indoor
+                    if(dataArr.includes("indoor_remarks_error")){
+                        indoor_remarks_error.style.display = "block";
+                        // alert(data);
+                    }
+                    else{
+                        indoor_remarks_error.style.display = "none";
+                        // alert(data);
+                    }
+
+                    //outdoor
+                    if(dataArr.includes("outdoor_remarks_error")){
+                        outdoor_remarks_error.style.display = "block";
+                        // alert(data);
+                    }
+                    else{
+                        outdoor_remarks_error.style.display = "none";
+                        // alert(data);
+                    }
+                    if(dataArr.includes("good")){
+                        // outdoor_remarks_error.style.display = "block";
+                        // alert(data);
+                    }
+                    else{
+                        // outdoor_remarks_error.style.display = "none";
+                        // alert(data);
+                    }
+                    
+                    //food
+                    if(dataArr.includes("food_error")){
+                        food_error.style.display = "block";
+                    }
+                    else{
+                        food_error.style.display = "none";
+                    }
+                    //food_remarks
+                    if(dataArr.includes("food_remarks_error")){
+                        food_remarks_error.style.display = "block";
+                    }
+                    else{
+                        food_remarks_error.style.display = "none";
+                    }
+                    //sound and light
+                    if(dataArr.includes("s_l_error")){
+                        s_l_error.style.display = "block";
+                    }
+                    else{
+                        s_l_error.style.display = "none";
+                    }
+                    // sound and light remarks
+                    if(dataArr.includes("s_l_remarks_error")){
+                        s_l_remarks_error.style.display = "block";
+                        
+                    }
+                    else{
+                        s_l_remarks_error.style.display = "none";
+                    }
+
+                    //photo and video 
+                    if(dataArr.includes("p_v_error")){
+                        p_v_error.style.display = "block";
+                        
+                    }
+                    else{
+                        p_v_error.style.display = "none";
+                    }
+
+                    //photo and video remarks
+                    if(dataArr.includes("p_v_remarks_error")){
+                        p_v_remarks_error.style.display = "block";
+                        
+                    }
+                    else{
+                        p_v_remarks_error.style.display = "none";
+                    }
+
+                    if(dataArr.includes("filled")){
+                        // p_v_remarks_error.style.display = "block";
+                        // alert("filled");
+                        
+                    }
+                    else{
+                        // p_v_remarks_error.style.display = "none";
+                    }
+                    if(dataArr.includes("error_in_details_add")){
+                        // p_v_remarks_error.style.display = "block";
+                        // alert("nice");
+                        
+                    }
+                    
+                    if(dataArr.includes("details_added")){
+                        // alert(data);
+                    }
+
+                    if(dataArr.includes("venue_added")){
+                        // alert(data);
+                    }else if(dataArr.includes("venue_added_failed")){
+                        // alert(data);
+                    }
+                    
+                    
                 }
+                
+
+
+                
+
+                
             }
         }
     }
@@ -448,5 +593,6 @@ submit_btn.onclick = ()=>{
     xhr.send(formData);
 
 }
+
 
                                         

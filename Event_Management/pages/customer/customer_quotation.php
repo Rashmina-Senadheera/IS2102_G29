@@ -16,11 +16,11 @@ include('../controllers/commonFunctions.php');
         
         <h4>GENERAL</h4>
         <div class="general">
-            <div class="error_txt fields_error">All fields are required</div>
+            <!-- <div class="error_txt fields_error">All fields are required</div> -->
             <div class="flex-row">
                 <div class="input_box">
                     <label class="label flex-row">Event Type<div class="error">&nbsp;*</div></label>
-                    <select name="event-type" id="event-type">
+                    <select name="event-type" id="event-type" required>
                         <option> </option>
                         <option value="Birthday">Birthday</option>
                         <option value="Wedding">Wedding</option>
@@ -72,6 +72,7 @@ include('../controllers/commonFunctions.php');
                         <input type="number" name="max-budget" required>
                     </div>
                     <div class="error_txt budget_error">Budget is Required</div>
+                    <div class="error_txt min_budget_error">Min budget must be less than Max budget</div>
                 </div>
             </div>
 
@@ -98,12 +99,13 @@ include('../controllers/commonFunctions.php');
                     <div class="flex-row-sb v">
                         <label class="label">Venue</label>
                         <div class="radio-btns">
-                            <input type="radio" id="venue_needed" name="venue" class="venue_needed" value="Venue Needed" >
+                            <input type="radio" id="venue_needed" name="venue" class="venue_needed" value="Venue_Needed" >
                             <label onclick="venue_check(0)" for="venue_needed" >Needed</label>
-                            <input type="radio" id="venue_not_needed" name="venue" class="venue_not_needed" value="Venue Not Needed">
+                            <input type="radio" id="venue_not_needed" name="venue" class="venue_not_needed" value="Venue_Not_Needed">
                             <label onclick="venue_check(1)" for="venue_not_needed" >Not Needed</label>
                         </div>
                     </div>
+                    <div class="error_txt venue_error">Please indicate the needed and not needed services</div>
                 
                     <div class="input_box">
                         <div class="venue_details">
@@ -127,7 +129,10 @@ include('../controllers/commonFunctions.php');
                                     </div>
                                     <div class="venue_remarks flex-column">
                                         <label class="label">Remarks</label>
-                                        <textarea class="txt_remarks" rows="4" cols="20" placeholder="Any remarks regarding the 'Other' options chosen"></textarea>
+                                        <textarea class="txt_remarks" rows="4" cols="20" placeholder="Any remarks regarding the 'Other' options chosen" name="indoor_remarks"></textarea>
+                                        <div class="error_txt indoor_remarks_error">Please select a venue or enter any remarks</div>
+                                        <div class="error_txt venue_type_error">Please select a venue type or enter any remarks</div>
+
                                     </div>
                                 </div>
 
@@ -144,7 +149,11 @@ include('../controllers/commonFunctions.php');
                                     </div>
                                     <div class="venue_remarks flex-column">
                                         <label class="label">Remarks</label>
-                                        <textarea class="txt_remarks" rows="4" cols="20" placeholder="Any remarks regarding the 'Other' options chosen"></textarea>
+                                        <textarea class="txt_remarks" rows="4" cols="20" placeholder="Any remarks regarding the 'Other' options chosen" name="outdoor_remarks"></textarea>
+                                        <div class="error_txt outdoor_remarks_error">Please select a venue or enter any remarks</div>
+                                        <div class="error_txt venue_type_error">Please select a venue type or enter any remarks</div>
+
+
                                     </div>
                                 </div>
                                 
@@ -164,6 +173,8 @@ include('../controllers/commonFunctions.php');
                             <label onclick="food_check(1)" for="food_bev_not_needed">Not Needed</label>
                         </div>
                     </div>
+                    <div class="error_txt food_error">Please indicate the needed and not needed services</div>
+                    
                     <div class="food_info">
                         <div class="flex-row">
                             <div class="input_box">
@@ -208,7 +219,9 @@ include('../controllers/commonFunctions.php');
                         </div>  
                         <div class="f_b_remarks">
                         <label class="label">Remarks</label>
-                        <textarea class="txt_remarks" rows="4" cols="20" placeholder="Any remarks regarding the 'Other' options chosen"></textarea>
+                        <textarea class="txt_remarks" rows="4" name="food_remarks" cols="20" placeholder="Any remarks regarding the 'Other' options chosen"></textarea>
+                        <div class="error_txt food_remarks_error">Please enter details or enter any remarks</div>
+
                         </div>
                     </div>
                 </div>
@@ -217,12 +230,13 @@ include('../controllers/commonFunctions.php');
                     <div class="flex-row-sb s_l">
                         <label class="label">Sound & Lighting</label>
                         <div class="radio-btns">
-                            <input type="radio" id="s&l_needed" name="s&l" value="s&l_needed">
+                            <input type="radio" id="s&l_needed" name="s_l" value="s_l_needed">
                             <label onclick="s_l_check(0)" for="s&l_needed">Needed</label>
-                            <input type="radio" id="s&l_not_needed" name="s&l" value="s&l_not_needed">
+                            <input type="radio" id="s&l_not_needed" name="s_l" value="s&l_not_needed">
                             <label onclick="s_l_check(1)" for="s&l_not_needed">Not Needed</label>
                         </div> 
                     </div>
+                    <div class="error_txt s_l_error">Please indicate the needed and not needed services</div>
 
                     <div class="s_l_info">
                         <div class="sound">
@@ -259,22 +273,23 @@ include('../controllers/commonFunctions.php');
                             <div class="input_box">
                                 <label class="label">Type</label>
                                 <div class="flex-row-se light_type">
-                                    <input type="checkbox" value="LED">
+                                    <input type="checkbox" value="LED" name="light_type[]">
                                     <label for="LED">LED</label>
-                                    <input type="checkbox" value="Spotlight">
+                                    <input type="checkbox" value="Spotlight" name="light_type[]">
                                     <label for="spotlight">Spotlight</label>
-                                    <input type="checkbox" value="Laser">
+                                    <input type="checkbox" value="Laser" name="light_type[]">
                                     <label for="laser">Laser</label>
-                                    <input type="checkbox" value="DimLights">
+                                    <input type="checkbox" value="DimLights" name="light_type[]">
                                     <label for="DimLights">Dim&nbsp;Lights</label>
-                                    <input type="checkbox" value="Other">
+                                    <input type="checkbox" value="Other" name="light_type[]">
                                     <label for="Other">Other</label>
                                 </div>
                             </div>  
                         </div>
                         <div class="s_l_remarks">
                         <label class="label">Remarks</label>
-                        <textarea class="txt_remarks" rows="4" cols="20" placeholder="Any remarks regarding the 'Other' options chosen"></textarea>
+                        <textarea class="txt_remarks" rows="4" name="s_l_remarks" cols="20" placeholder="Any remarks regarding the 'Other' options chosen"></textarea>
+                        <div class="error_txt s_l_remarks_error">Please select the needed services or enter any remarks</div>
                         </div>
                     </div>
 
@@ -284,12 +299,14 @@ include('../controllers/commonFunctions.php');
                     <div class="flex-row-sb p_v">
                         <label class="label">Photography & Videography</label>
                         <div class="radio-btns">
-                            <input type="radio" id="p&v_needed" name="pv" value="p&v_needed">
-                            <label onclick="p_v_check(0)" for="p&v_needed">Needed</label>
-                            <input type="radio" id="p&v_not_needed" name="pv" value="p&v_not_needed">
-                            <label onclick="p_v_check(1)" for="p&v_not_needed">Not Needed</label>
+                            <input type="radio" id="p_v_needed" name="pv" value="p_v_needed">
+                            <label onclick="p_v_check(0)" for="p_v_needed">Needed</label>
+                            <input type="radio" id="p_v_not_needed" name="pv" value="p_v_not_needed">
+                            <label onclick="p_v_check(1)" for="p_v_not_needed">Not Needed</label>
                         </div> 
                     </div>
+                    <div class="error_txt p_v_error">Please indicate the needed and not needed services</div>
+
                     <div class="p_v_info">
                         <div class="photo">
                             <div class="flex-row-sb">  
@@ -321,11 +338,18 @@ include('../controllers/commonFunctions.php');
                                 <input type="text" name="video_pref">
                             </div> 
                         </div>
+                        <div class="s_l_remarks">
+                        <label class="label">Remarks</label>
+                        <textarea class="txt_remarks" rows="4" name="p_v_remarks" cols="20" placeholder="Any remarks regarding the 'Other' options chosen"></textarea>
+                        <div class="error_txt p_v_remarks_error">Please select the needed services or enter any remarks</div>
+
+
+                        </div>
                     </div>
                 </div>
                 <div class="remarks">
                 <label class="label">Remarks</label>
-                <textarea class="txt_remarks" rows="4" cols="20" placeholder="Additional remarks"></textarea>
+                <textarea class="txt_remarks" rows="4" cols="20" placeholder="Additional remarks" name="additional_remarks"></textarea>
                 </div>
             </div>
             
