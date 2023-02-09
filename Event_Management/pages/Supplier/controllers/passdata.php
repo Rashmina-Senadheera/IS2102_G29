@@ -49,6 +49,16 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         $floral_quant = validate($_POST['floral-quant']);
         $floral_for = validate($_POST['type-floral']);
     }
+    if($ptype == 'deco'){
+        $deco_type = validate($_POST['type-deco']);
+    }
+    if($ptype == 'photo'){
+        $photo_in = validate($_POST['photo-in']);
+        $type_photo = validate($_POST['type-photo']);
+    }
+    if($ptype == 'ent'){
+        $type_ent = validate($_POST['type-ent']);
+    }
 
 
 
@@ -107,8 +117,18 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                 if($ptype == 'florist'){
                     $sql1 = "INSERT INTO  supplier_florist( product_id,type_of_flowers,height,quantity,suitable_for) VALUES(?,?,?,?,?)";
                 }
+                if($ptype == 'deco'){
+                    $sql1 = "INSERT INTO  supplier_deco( product_id,suitable_for) VALUES(?,?)";
+                }
+                if($ptype == 'photo'){
+                    $sql1 = "INSERT INTO  supplier_photo( product_id,photo_in,available) VALUES(?,?,?)";
+                }
+                if($ptype == 'ent'){
+                    $sql1 = "INSERT INTO  supplier_ent( product_id,provide) VALUES(?,?)";
+                }
 
-                if ($stmt1 = $conn->prepare($sql1)) {
+                if($ptype != 'other') {
+                    if ($stmt1 = $conn->prepare($sql1)) {
 
                     if($ptype == 'venue'){
                         $stmt1->bind_param('isssii',$product_id, $param_venueIn, $param_location, $param_type,$param_maxCap,$param_minCap);
@@ -139,9 +159,22 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                         $param_quantity = $floral_quant;
                         $param_suitable_for = $floral_for;
                     }
-                    
-                    
+                    if($ptype == 'deco'){
+                        $stmt1->bind_param('is',$product_id, $param_type_deco);
+                        $param_type_deco = $deco_type;
+                    }
 
+                    if($ptype == 'photo'){
+                        $stmt1->bind_param('iss',$product_id,$photo_in, $param_type_photo);
+                        $param_photo_in = $photo_in;
+                        $param_type_photo = $type_photo;
+                    }
+                    if($ptype == 'ent'){
+                        $stmt1->bind_param('is',$product_id, $param_type_ent);
+                        $param_type_ent = $type_ent;
+                    }
+                }
+                
                     if ($stmt1->execute()) {
                         // Loop through the images array with count
                         foreach ($images['tmp_name'] as $index => $tmp_name) {

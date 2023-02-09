@@ -39,6 +39,11 @@
               if($pid == 'foodbev') { echo 'Catering & Beverages';}
               if($pid == 'transport') { echo 'Transport';} 
               if($pid == 'florist') { echo 'Floral Arrangements';} 
+              if($pid == 'deco') { echo 'Decorations';} 
+              if($pid == 'ent') { echo 'Entertainment';} 
+              if($pid == 'photo') { echo 'Photography';} 
+              if($pid == 'other') { echo 'Other';} 
+              
             ?>
           </h4>
 
@@ -73,6 +78,7 @@
                 </textarea>
               </div>
             </div>
+
           </div>
           
           <!-- Venue Optional Parameters -->
@@ -178,11 +184,11 @@
               </div>
             </div>
 
-            <?php } ?>
-            <!-- Transport Optional Parameters end -->
+          <?php } ?>
+          <!-- Transport Optional Parameters end -->
 
-            <!-- Catering Optional Parameters  -->
-            <?php if($pid == 'foodbev') {?>
+          <!-- Catering Optional Parameters  -->
+          <?php if($pid == 'foodbev') {?>
 
             <div class="row" id='check'>
               <div class="input-ps" id='check'>
@@ -299,11 +305,11 @@
                   <label for="" class="input-ps-label" id='check'>Suitablefor</label>
                   <div class="check-bx">
                     <div class="check-bx-opt">
-                      <input type="checkbox" id="type-venue" name="type-floral" value="Car">
+                      <input type="checkbox" id="type-venue" name="type-floral" value="Indoor">
                       <label for="" class="input-ps-label-opt">Indoor Events</label>
                     </div>
                     <div class="check-bx-opt">
-                      <input type="checkbox" id="type-venue" name="type-floral" value="Car">
+                      <input type="checkbox" id="type-venue" name="type-floral" value="Outdoor">
                       <label for="" class="input-ps-label-opt">Outdoor Events</label>
                     </div>
                   </div>
@@ -313,182 +319,161 @@
           <?php } ?>
           <!-- Florists Optional Parameters end -->
 
-            <!-- Decorations Optional Parameters end -->
-            <?php if($pid == 'deco') {?>
+          <!-- Decorations Optional Parameters  -->
+          <?php if($pid == 'deco') {?>
 
-              <div class="row" id='check'>
-                <div class="input-ps" id='check'>
-                  <label for="" class="input-ps-label" id='check'>Suitablefor</label>
-                  <div class="check-bx">
-                    <div class="check-bx-opt">
-                      <input type="checkbox" id="type-venue" name="type-venue" value="Car">
-                      <label for="" class="input-ps-label-opt">Indoor Events</label>
-                    </div>
-                    <div class="check-bx-opt">
-                      <input type="checkbox" id="type-venue" name="type-venue" value="Car">
-                      <label for="" class="input-ps-label-opt">Outdoor Events</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="input-ps" id='check'>
-                  <label for="" class="input-ps-label" id='check'>Transport provided</label>
-                  <div class="check-bx">
-                    <div class="check-bx-opt">
-                      <input type="radio" id="type-venue" name="type-venue" value="Car">
-                      <label for="" class="input-ps-label-opt">provided</label>
-                    </div>
-                    <div class="check-bx-opt">
-                      <input type="radio" id="type-venue" name="type-venue" value="Car">
-                      <label for="" class="input-ps-label-opt">not provided</label>
-                    </div>
-                  </div>
-                </div>
-            </div>
-
-                <div class="row">
-                    <div class="card">
-                      <label for="" class="input-ps-label" id='check'>Upload Catalog </label>
-                      <div class="drop_box">
-                        <header>
-                          <h4>Select File here</h4>
-                        </header>
-                        <p>Files Supported: PDF, TEXT, DOC , DOCX</p>
-                        <input type="file" id="real-file" hidden="hidden" />
-                        <button type="button" class="btn" id="custom-button">CHOOSE A FILE</button>
-                        <span id="custom-text">No file chosen, yet.</span>
-                      </div>
-                    </div>
-                  </div> 
-                  <?php } ?>
-                <?php if($pid == 'florist' || $pid == 'deco' || $pid == 'cb' ) {?>
-                <div class="row" id='check'>
-                <div class="input-ps" id='check'>
-                  <label for="" class="input-ps-label" id='check'>Available Provinces </label>
-                  <div class="check-bx">
-                    <div class="check-bx-opt">
-                      <input type="checkbox" id="type-venue" name="type-venue" value="Car">
-                      <label for="" class="input-ps-label-opt">Western </label>
-                    </div>
-                    <div class="check-bx-opt">
-                      <input type="checkbox" id="type-venue" name="type-venue" value="Car">
-                      <label for="" class="input-ps-label-opt">Eastern</label>
-                    </div>
-                    <div class="check-bx-opt">
-                      <input type="checkbox" id="type-venue" name="type-venue" value="Car">
-                      <label for="" class="input-ps-label-opt">Central</label>
-                    </div>
-                    <div class="check-bx-opt">
-                      <input type="checkbox" id="type-venue" name="type-venue" value="Car">
-                      <label for="" class="input-ps-label-opt">Northern</label>
-                    </div>
-                    <div class="check-bx-opt">
-                      <input type="checkbox" id="type-venue" name="type-venue" value="Car">
-                      <label for="" class="input-ps-label-opt">Southern</label>
-                    </div>
-                    <div class="check-bx-opt">
-                      <input type="checkbox" id="type-venue" name="type-venue" value="Car">
-                      <label for="" class="input-ps-label-opt">North Western</label>
-                    </div>
-                  </div>
-                  <div class="check-bx">
-                    <div class="check-bx-opt">
-                      <input type="checkbox" id="type-venue" name="type-venue" value="Car">
-                      <label for="" class="input-ps-label-opt">Sabaragamuwa </label>
-                    </div>
-                    <div class="check-bx-opt">
-                      <input type="checkbox" id="type-venue" name="type-venue" value="Car">
-                      <label for="" class="input-ps-label-opt">Uva</label>
-                    </div>
-                    <div class="check-bx-opt">
-                      <input type="checkbox" id="type-venue" name="type-venue" value="Car">
-                      <label for="" class="input-ps-label-opt">North Central</label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <?php } ?>
-                <!-- <div class="row">
-                    <div class="card" id="upload">
-                      <label for="" class="input-ps-label" id='check'>Upload Pictures </label>
-                      <div class="drop_box">
-                        <header>
-                          <h4>Select Pictures here</h4>
-                        </header>
-                        <div class="upload__box">
-                          <div class="upload__btn-box">
-                            <label class="upload__btn">
-                              <p>UPLOAD IMAGES</p>
-                              <input type="file" multiple=""name="choosefile" data-max_length="20" class="upload__inputfile" id="custom-button" hidden="hidden">
-                            </label>
-                          </div>
-                          <div class="upload__img-wrap"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div> -->
-
-              <div class="row">
-                <div class="input-ps">
-
-                  <label class="input-label">Images <span class="desc">(Maximum 6 images)</span></label>
-
-                  <div class="row" id="img">
-
-                    <input type="file" name="images[]" id="img0" class="inputfile" accept="image/*" onchange="imageSelect(this, 0)" />
-                    <label for="img0" id="labelImg0">+</label>
-                    <img for="img0" class="imgPreview" id="prev0" src="" onclick="clickImage(0)"></img>
-                    <button type="button" id="removeImg0" class="img-delete-btn">X</button>
-
-
-                    <input type="file" name="images[]" id="img1" class="inputfile" accept="image/*" onchange="imageSelect(this, 1)" />
-                    <label for="img1" id="labelImg1">+</label>
-                    <img class="imgPreview" id="prev1" src="" onclick="clickImage(1)"></img>
-                    <button type="button" id="removeImg1" class="img-delete-btn">X</button>
-
-
-                    <input type="file" name="images[]" id="img2" class="inputfile" accept="image/*" onchange="imageSelect(this, 2)" />
-                    <label for="img2" id="labelImg2">+</label>
-                    <img class="imgPreview" id="prev2" src="" onclick="clickImage(2)"></img>
-                    <button type="button" id="removeImg2" class="img-delete-btn">X</button>
-
-                    <input type="file" name="images[]" id="img3" class="inputfile" accept="image/*" onchange="imageSelect(this, 3)" />
-                    <label for="img3" id="labelImg3">+</label>
-                    <img class="imgPreview" id="prev3" src="" onclick="clickImage(3)"></img>
-                    <button type="button" id="removeImg3" class="img-delete-btn">X</button>
-
-                    <input type="file" name="images[]" id="img4" class="inputfile" accept="image/*" onchange="imageSelect(this, 4)" />
-                    <label for="img4" id="labelImg4">+</label>
-                    <img class="imgPreview" id="prev4" src="" onclick="clickImage(4)"></img>
-                    <button type="button" id="removeImg4" class="img-delete-btn">X</button>
-
-                    <input type="file" name="images[]" id="img5" class="inputfile" accept="image/*" onchange="imageSelect(this, 5)" />
-                    <label for="img5" id="labelImg5">+</label>
-                    <img class="imgPreview" id="prev5" src="" onclick="clickImage(5)"></img>
-                    <button type="button" id="removeImg5" class="img-delete-btn">X</button>
-
-                  </div>
-
-                  <output id="imgResult"></output>
-
-                </div>
-              </div>
-              
-              <div class="row">
+            <div class="row" id='check'>
               <div class="input-ps">
-                <label for="" class="input-ps-label">Other Details <span>*</span></label>
-                <textarea  name="other" class="input-ps-in" id='other' required spellcheck="true">
-                </textarea>
+                <label for="" class="input-ps-label" id='check'>Suitablefor</label>
+                <div class="check-bx">
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-deco" name="type-deco" value="Indoor">
+                    <label for="" class="input-ps-label-opt">Indoor Events</label>
+                  </div>
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-deco" name="type-deco" value="Outdoor">
+                    <label for="" class="input-ps-label-opt">Outdoor Events</label>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div class="action">
-                <input type="submit" value="Add" class="action-button" />
-            </div>  
+          <?php } ?>
+          <!-- Decorations Optional Parameters end -->
 
+          <!-- Photo Optional Parameters  -->
+          <?php if($pid == 'photo') {?>
+
+            <br>
+            <div class="row" id='check'>
+              <div class="input-ps">
+                <label for="" class="input-ps-label" id='check'>Photographs in</label>
+                <div class="check-bx">
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="photo-in" value="Indoor">
+                    <label for="" class="input-ps-label-opt">Indoor Events</label>
+                  </div>
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="photo-in" value="Outdoor">
+                    <label for="" class="input-ps-label-opt">Outdoor Events</label>
+                  </div>
+                </div>
+              </div>
             </div>
-          </form>
+
+            <div class="row" id='check'>
+              <div class="input-ps" >
+                <label for="" class="input-ps-label" id='check'>Provide </label>
+                <div class="check-bx">
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="type-photo" value="DVD">
+                    <label for="" class="input-ps-label-opt">DVD</label>
+                  </div>
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="type-photo" value="Prints">
+                    <label for="" class="input-ps-label-opt">Prints</label>
+                  </div>
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="type-photo" value="Book">
+                    <label for="" class="input-ps-label-opt">Book</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <?php } ?>
+          <!-- Photo Optional Parameters end -->
+
+          <!-- Entertainment Optional Parameters  -->
+          <?php if($pid == 'ent') {?>
+            <br>
+            <div class="row" id='check'>
+              <div class="input-ps">
+                <label for="" class="input-ps-label" id='check'>Provide </label>
+                <div class="check-bx">
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="type-ent" value="Music">
+                    <label for="" class="input-ps-label-opt">Music</label>
+                  </div>
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="type-ent" value="Dancing">
+                    <label for="" class="input-ps-label-opt">Dancing</label>
+                  </div>
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="type-ent" value="Other">
+                    <label for="" class="input-ps-label-opt">Other</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <?php } ?>
+          <!-- Entertainment Optional Parameters end -->
+
+          <!-- Images Upload  -->
+          <div class="row">
+            <div class="input-ps">
+
+              <label class="input-label">Images <span class="desc">(Maximum 6 images)</span></label>
+
+              <div class="row" id="img">
+
+                <input type="file" name="images[]" id="img0" class="inputfile" accept="image/*" onchange="imageSelect(this, 0)" />
+                <label for="img0" id="labelImg0">+</label>
+                <img for="img0" class="imgPreview" id="prev0" src="" onclick="clickImage(0)"></img>
+                <button type="button" id="removeImg0" class="img-delete-btn">X</button>
+
+
+                <input type="file" name="images[]" id="img1" class="inputfile" accept="image/*" onchange="imageSelect(this, 1)" />
+                <label for="img1" id="labelImg1">+</label>
+                <img class="imgPreview" id="prev1" src="" onclick="clickImage(1)"></img>
+                <button type="button" id="removeImg1" class="img-delete-btn">X</button>
+
+
+                <input type="file" name="images[]" id="img2" class="inputfile" accept="image/*" onchange="imageSelect(this, 2)" />
+                <label for="img2" id="labelImg2">+</label>
+                <img class="imgPreview" id="prev2" src="" onclick="clickImage(2)"></img>
+                <button type="button" id="removeImg2" class="img-delete-btn">X</button>
+
+                <input type="file" name="images[]" id="img3" class="inputfile" accept="image/*" onchange="imageSelect(this, 3)" />
+                <label for="img3" id="labelImg3">+</label>
+                <img class="imgPreview" id="prev3" src="" onclick="clickImage(3)"></img>
+                <button type="button" id="removeImg3" class="img-delete-btn">X</button>
+
+                <input type="file" name="images[]" id="img4" class="inputfile" accept="image/*" onchange="imageSelect(this, 4)" />
+                <label for="img4" id="labelImg4">+</label>
+                <img class="imgPreview" id="prev4" src="" onclick="clickImage(4)"></img>
+                <button type="button" id="removeImg4" class="img-delete-btn">X</button>
+
+                <input type="file" name="images[]" id="img5" class="inputfile" accept="image/*" onchange="imageSelect(this, 5)" />
+                <label for="img5" id="labelImg5">+</label>
+                <img class="imgPreview" id="prev5" src="" onclick="clickImage(5)"></img>
+                <button type="button" id="removeImg5" class="img-delete-btn">X</button>
+
+              </div>
+              <output id="imgResult"></output>
+            </div>
+          </div>
+          <!-- Images Upload end -->
+          
+          <!-- other details-->
+          <div class="row">
+            <div class="input-ps">
+              <label for="" class="input-ps-label">Other Details <span>*</span></label>
+              <textarea  name="other" class="input-ps-in" id='other' required spellcheck="true">
+              </textarea>
+            </div>
+          </div>
+          <!-- other details end -->
+
+          <!-- action button -->
+          <div class="action">
+              <input type="submit" value="Add" class="action-button" />
+          </div>  
+
+        </form>
       </div>
+    </div>
   </div>
+
   <script type='text/javascript'>
         var numOfServices = 0;
         var btnAddService = document.getElementById("btnAddService");
