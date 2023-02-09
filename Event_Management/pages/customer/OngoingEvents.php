@@ -10,9 +10,9 @@ include('customer_header.php');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/eventPlannerMain.css">
-    <link rel="stylesheet" href="../css/eventPlannerMyevents.css">
-    <link rel="stylesheet" href="../css/Custcss3.css">
+    <link rel="stylesheet" href="../../css/eventPlannerMain.css">
+    <link rel="stylesheet" href="../../css/eventPlannerMyevents.css">
+    <link rel="stylesheet" href="../../css/Custcss3.css">
 </head>
 <body>
     <div class="grid-container-payments">
@@ -32,7 +32,7 @@ include('customer_header.php');
                 <div class="card">
                     <div class="content">
                         <div class="imgBx">
-                            <img src="../images/event.jpg">
+                            <img src="../../images/event.jpg">
                         </div>
                         <div class="contentBx">
                             <h3>Gihani's Wedding Day<br><span>
@@ -49,7 +49,7 @@ include('customer_header.php');
                 <div class="card">
                     <div class="content">
                         <div class="imgBx">
-                            <img src="../images/event2.jpg">
+                            <img src="../../images/event2.jpg">
                         </div>
                         <div class="contentBx">
                             <h3>Chathu's Gender Reveal<br><span>
@@ -66,7 +66,7 @@ include('customer_header.php');
                 <div class="card">
                     <div class="content">
                         <div class="imgBx">
-                            <img src="../images/event3.jpg">
+                            <img src="../../images/event3.jpg">
                         </div>
                         <div class="contentBx">
                             <h3>Outdoor Wedding<br><span>The first initiative undertaken by DEVENT, an event management firm aiming to reach the pinnacle of the industry. After thorough market research, we figured out one critical attention grasping issue faced by the wider community, which is the mental instability emerging due to the hectic monotonous routines of a substantial proportion of the population, ultimately leading to the deterioration of their overall wellbeing.</span></h3>
@@ -81,7 +81,7 @@ include('customer_header.php');
                 <div class="card">
                     <div class="content">
                         <div class="imgBx">
-                            <img src="../images/event4.jpg">
+                            <img src="../../images/event4.jpg">
                         </div>
                         <div class="contentBx">
                             <h3>Sandali's Birthday<br><span>
@@ -98,7 +98,7 @@ include('customer_header.php');
                 <div class="card">
                     <div class="content">
                         <div class="imgBx">
-                            <img src="../images/event.jpg">
+                            <img src="../../images/event.jpg">
                         </div>
                         <div class="contentBx">
                             <h3>Gihani's Wedding Day<br><span>
@@ -115,7 +115,7 @@ include('customer_header.php');
                 <div class="card">
                     <div class="content">
                         <div class="imgBx">
-                            <img src="../images/event2.jpg">
+                            <img src="../../images/event2.jpg">
                         </div>
                         <div class="contentBx">
                             <h3>Chathu's Gender Reveal<br><span>
