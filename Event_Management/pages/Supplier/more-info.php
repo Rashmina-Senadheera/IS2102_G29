@@ -21,9 +21,12 @@
 <body>
     <?php
         $sql = "SELECT *
-                FROM supplier_venue V , images I
-                where V.item_ID = I.item_ID
-                AND V.item_ID = $id";
+                FROM sup_product_general S , supplier_product_images I , supplier_venue V
+                where S.product_id = I.product_id 
+                AND S.product_id = V.product_id
+                AND S.product_id = $id";
+
+
 
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
