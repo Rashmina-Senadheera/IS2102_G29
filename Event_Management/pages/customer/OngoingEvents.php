@@ -63,7 +63,7 @@ include('customer_header.php');
                         </li>
                     </ul>
                 </div>
-                <div class="card">
+                <!-- <div class="card">
                     <div class="content">
                         <div class="imgBx">
                             <img src="../../images/event3.jpg">
@@ -128,7 +128,7 @@ include('customer_header.php');
                             <a href="#">View</a>
                         </li>
                     </ul>
-                </div>
+                </div> -->
 
             </div>
         </div>

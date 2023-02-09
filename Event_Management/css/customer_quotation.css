@@ -103,6 +103,9 @@ main {
     padding: 10px;
     margin-bottom: 10px;
 }
+.general {
+    padding-bottom: 15px;
+}
 .event_details {
     border: none;
     padding: 0;
@@ -349,6 +352,7 @@ main {
 }
 .f_b_remarks textarea,
 .s_l_remarks textarea,
+.p_v_remarks textarea,
 .venue_remarks textarea{
     width: 100%;
     resize: none;
@@ -374,6 +378,12 @@ main {
     display: none;
     flex-direction: column;
     align-items: center;
+}
+
+.s_l_error,
+.p_v_error {
+    /* border: 1px solid black; */
+    width: 100%;
 }
 
 
@@ -465,6 +475,16 @@ p {
 .from_date_error,
 .to_date_error,
 .budget_error,
-.time_error{
+.min_budget_error,
+.time_error,
+.indoor_remarks_error,
+.outdoor_remarks_error,
+.venue_error,
+.venue_type_error,
+.food_error,
+.s_l_error,
+.s_l_remarks_error,
+.p_v_error
+{
     display: none;
 }
