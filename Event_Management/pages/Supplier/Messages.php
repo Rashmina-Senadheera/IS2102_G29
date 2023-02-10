@@ -38,7 +38,7 @@
                     <!-- <a href="chat.php?user_id='.$row['unique_id'].'"> -->
                     <div class="users-area">
                         <div class="content">
-                            <img src="../images/Udari.jpeg" alt="">
+                            <img src="../../images/S1.jpeg" alt="">
                             <div class="details">
                                 <span>Shamin Fernando</span>
                                 <p>Hello</p>
@@ -50,7 +50,7 @@
                     </div>
                     <div class="users-area">
                         <div class="content">
-                            <img src="../images/RashmikaFernando.jpeg" alt="">
+                            <img src="../../images/S3.jpeg" alt="">
                             <div class="details">
                                 <span>Sachintha Gunaratne</span>
                                 <p>Hi</p>
@@ -62,7 +62,7 @@
                     </div>
                     <div class="users-area">
                         <div class="content">
-                            <img src="../images/Milindu Abeynayake.jpeg" alt="">
+                            <img src="../../images/S2.jpg" alt="">
                             <div class="details">
                                 <span>Rashmina Senadheera</span>
                                 <p>Hi</p>
@@ -86,7 +86,7 @@
 
                     ?>
                     <a href="users.php" class="back-icon"><i class="fas fa-arrow-left"></i></a>
-                    <img src="../images/Milindu Abeynayake.jpeg" alt="">
+                    <img src="../../images/S2.jpg" alt="">
                     <div class="details">
                         <span>Rashmina Senadheera</span>
                         <p>Active Now</p>
@@ -99,7 +99,7 @@
                         </div>
                     </div>
                     <div class="chat incoming">
-                        <img src="../images/Milindu Abeynayake.jpeg" alt="">
+                        <img src="../../images/S2.jpg" alt="">
                         <div class="details">
                             <p>Hello</p>
                         </div>
