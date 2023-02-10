@@ -28,6 +28,7 @@
     }
     else{
        echo " event_type_error";
+       $event_type_fill = FALSE;
        $error = TRUE;
     }
 
@@ -38,6 +39,8 @@
     }
     else{
         echo " no_pax_error";
+        $no_pax_fill = FALSE;
+
         $error = TRUE;
     }
 
@@ -49,6 +52,8 @@
     else{
         echo " theme_error";
         $error = TRUE;
+        $theme_fill = FALSE;          
+
     }
 
 
@@ -63,14 +68,18 @@
             }
             else{
                 echo "to_date_error";
-                $error = TRUE;
+                $date_fill = FALSE;
+
+                // $error = TRUE;
 
             }
             
         }
         else{
             echo " from_date_error";
-            $error = TRUE;
+            // $error = TRUE;
+            $date_fill = FALSE;
+
 
         }
         
@@ -78,7 +87,9 @@
     }
     else{
         echo " date_error";
-        $error = TRUE;
+        $date_fill = FALSE;
+
+        // $error = TRUE;
     }
 
 
@@ -86,7 +97,7 @@
     if(!empty($min_budget) && !empty($max_budget)){
         if($min_budget > $max_budget){
             echo " min_budget_error";
-            $error = TRUE;
+            
         }else{
             $budget_fill = TRUE;
         }        
@@ -103,7 +114,8 @@
     }
     else{
         echo " time_error";
-        $error = TRUE;
+        $time_fill = FALSE;                           
+
     }
     // if($error == TRUE){
     //     echo " error";
@@ -135,7 +147,9 @@
                     if(isset($_POST['indoor'])){
                         $indoor = mysqli_real_escape_string($conn,checkInput($_POST['indoor']));
                         $venue_indoor_fill = TRUE;
-                        $venue_outdoor_fill = FALSE; 
+                        $venue_outdoor_fill = FALSE;
+                        $error = FALSE;
+
 
                         
                     }
@@ -155,12 +169,16 @@
                         $outdoor = mysqli_real_escape_string($conn,checkInput($_POST['outdoor']));
                         $venue_outdoor_fill = TRUE;
                         $venue_indoor_fill = FALSE;
+                        $error = FALSE;
+                        
 
 
                         
                     }else{
                         if(empty($outdoor_remarks) ){
                             echo " outdoor_remarks_error";
+                            $error = TRUE;
+
                            
                         }
                         
@@ -171,13 +189,17 @@
                 //venue type not selected
                 if(empty($indoor_remarks) && empty($outdoor_remarks)){
                     echo " venue_type_error";
+                    $venue_outdoor_fill = FALSE;
+                    $venue_indoor_fill = FALSE;
+
+
                     
                    
                 }
                 else{
                     if(!empty($indoor_remarks)){
                         $venue_indoor_fill = TRUE;
-                        $venue_outdoor_fill = FALSE; 
+                        $venue_outdoor_fill = FALSE;
                     }
                     else if(!empty($outdoor_remarks)){
                         $venue_outdoor_fill = TRUE;
@@ -192,12 +214,20 @@
         }
         else{
             //venue_not_needed
+            $venue_outdoor_fill = FALSE;
+            $venue_indoor_fill = FALSE;
+            $error = FALSE;
+
         }
 
         
     }else{
         //venue not selected
         echo " venue_error";
+        $venue_outdoor_fill = FALSE;
+        $venue_indoor_fill = FALSE;
+        $error = TRUE;
+
     }
 
     //food
@@ -212,14 +242,12 @@
         if($food == "food_bev_needed"){
 
             
-            if(empty($food_availability) && empty($food_type) && empty($food_pref)){
-                if(empty($food_remarks)){
+            if(empty($food_availability) && empty($food_type) && empty($food_pref) && empty($food_remarks) ){
                     echo " food_remarks_error";
-                }else{
-                    $food_filled = TRUE;
-
-                }
+                
             }else{
+                $food_fill = TRUE;
+                $error = FALSE;
                 
 
             }
@@ -227,12 +255,19 @@
         }
         else{
             //food and bev not needed
+            $food_fill = FALSE;
+            $error = FALSE;
+
+
         }
         
     }
     else{
         //food and bev not selected
         echo " food_error";
+        $food_fill = FALSE;
+        $error = TRUE;
+
     }
 
 
@@ -252,15 +287,23 @@
 
                 }else{
                     //sound not needed
+                    $sound_type_fill = FALSE;
+                    $error = FALSE;
+
+
                 }
             }
             else{
+                $sound_type_fill = FALSE;
+                // $error = TRUE;
+
+
                 //sound not selected
             }
             if(isset($_POST['light'])){
                 $light = mysqli_real_escape_string($conn,checkInput($_POST['light']));
                 if($light == 'l_needed'){
-                    $light_type[] = mysqli_real_escape_string($conn,checkInput($_POST['light_type']));
+                    $light_type = $_POST['light_type'];
                     $light_type = implode(" ", $light_type);
                     $light_type_fill = TRUE;
 
@@ -268,11 +311,19 @@
                 }
                 else{
                     //light not needed
+                    $light_type_fill = TRUE;
+                    $error = FALSE;
+
+
                 }
                 
 
             }else{
+                $light_type_fill = FALSE;
+                // $error = TRUE;
+
                 //light not selected
+
             }
             
 
@@ -283,19 +334,34 @@
             else{
                 if(empty($sound_light_remarks)){
                     echo " s_l_remarks_error";
+                    $light_type_fill = FALSE;
+                    $sound_type_fill = FALSE;
+
+
+
                 }
                 else{
+                    $error = FALSE;
+                    
                 }
 
             }
         }else{
             //sound and light not needed
+            $light_type_fill = FALSE;
+            $sound_type_fill = FALSE;
+            $error = FALSE;
+
         }
 
     }
     else{
         //sound_light not selected
         echo " s_l_error";
+        $light_type_fill = FALSE;
+        $sound_type_fill = FALSE;
+        $error = TRUE;
+        
     }
 
 
@@ -320,6 +386,7 @@
                         }
                         else{
                             $photo_fill = TRUE;
+                            $error = FALSE;
                             
                         }
 
@@ -330,10 +397,15 @@
 
                 }else{
                     //photo not needed
+                    $photo_fill = FALSE;
+                    $error = FALSE;
+                    
                 }
         
             }else{
                 //photo not selected
+                $photo_fill = FALSE;
+
             }
 
             //video 
@@ -358,10 +430,16 @@
 
                 }else{
                     //video not needed
+                    $video_fill = FALSE;
+                    $error = FALSE;
+
+
                 }
 
             }else{
                 //video not selected
+                $video_fill = FALSE;
+
             }
             if(isset($_POST['photo']) && isset($_POST['video'])){
                 // $photo_video_remarks = mysqli_real_escape_string($conn,checkInput($_POST['p_v_remarks']));
@@ -382,10 +460,19 @@
             
         }else{
             //photo and video not needed
+            $photo_fill = FALSE;
+            $video_fill = FALSE;
+            $error = FALSE;
+
+
         }
     }else{
         //photo and video not selected
         echo " p_v_error";
+        $photo_fill = FALSE;
+        $video_fill = FALSE;
+        $error = TRUE;
+
     }
 
     $additional_remarks = mysqli_real_escape_string($conn, checkInput($_POST['additional_remarks']));
@@ -397,56 +484,94 @@
 
     }
 
-    //no errors 
-    if($error == FALSE){
-        echo "success";
-    }
-    else{
+    
+    
 
-    }
-
-    if($event_type_fill && $no_pax_fill && $theme_fill && $date_fill && $time_fill && $budget_fill && ($venue_indoor_fill || $venue_outdoor_fill) ){
-        echo " filled";
-   
-
-
+    if($event_type_fill && $no_pax_fill && $theme_fill && $date_fill && $time_fill && $budget_fill ){
+        if($error == FALSE){
         $sql1 = "INSERT INTO `cust_req_general`(`event_type`, `no_of_pax`, `theme`, `from_date`, `to_date`, `min_budget`, `max_budget`, `from_time`, `to_time`, `remarks`) VALUES (?,?,?,?,?,?,?,?,?,?) ";
         $stmt1 = $conn->prepare($sql1);
         $stmt1->bind_param("sissssssss",$event_type,$no_pax,$theme,$from_date,$to_date,$min_budget,$max_budget,$from_time,$to_time,$additional_remarks);
         $res1 = $stmt1->execute();
+        $id = mysqli_insert_id($conn);
         if($res1){
             echo " details_added";
         }
         else{
             echo " error_in_details_add";
         }  
-        
-        // $sql = "SELECT max(request_id) FROM `cust_req_general` ";
-        // $res = mysqli_query($conn, $sql3);
-        // if($res){
-        //     $id = mysqli_fetch_assoc($res);
-        // }
-        
-        $sql2 =  "INSERT INTO `cust_req_venue`(`venue`, `remarks`) VALUES (?,?)";
-        $stmt2 = $conn->prepare($sql2);
-        if($venue_outdoor_fill){
-            $stmt2->bind_param("ss",$outdoor,$outdoor_remarks);
         }
-        if($venue_indoor_fill){
-            $stmt2->bind_param("ss", $indoor,$indoor_remarks);
-        }
+        if($venue_indoor_fill || $venue_outdoor_fill){
         
-        $res2 = $stmt2->execute();
-        if($res2){
-            echo " venue_added";
+            $sql2 =  "INSERT INTO `cust_req_venue`(`request_id`, `venue`, `remarks`) VALUES (?,?,?)";
+            $stmt2 = $conn->prepare($sql2);
+            if($venue_outdoor_fill){
+                $stmt2->bind_param("iss",$id, $outdoor,$outdoor_remarks);
+            }
+            if($venue_indoor_fill){
+                $stmt2->bind_param("iss",$id, $indoor,$indoor_remarks);
+            }
+            
+            $res2 = $stmt2->execute();
+            if($res2){
+                echo " venue_added";
+            }
+            else{
+                echo " venue_adding_failed";
+            }
         }
-        else{
-            echo " venue_adding_failed";
+
+        if($food_fill){
+            $sql3 = "INSERT INTO `cust_req_food`(`request_id`, `available_in`, `available_at`, `preferences`, `remarks`) VALUES (?,?,
+            ?,?,?)";
+            $stmt3 = $conn->prepare($sql3);
+            $stmt3->bind_param("issss",$id,$food_availability,$food_type ,$food_pref, $food_remarks);
+            $res3 = $stmt3->execute();
+            if($res3){
+                echo " food_added";
+            }
+            else{
+                echo " food_added_error";
+            }
+        }
+
+        if($sound_type_fill || $light_type_fill){
+            $sql4 = "INSERT INTO `cust_req_sl`(`request_id`, `sound_type`, `light_type`, `remarks`) VALUES (?,?,?,?)";
+            $stmt4 = $conn->prepare($sql4);
+            $stmt4->bind_param("isss", $id,$sound_type, $light_type, $sound_light_remarks);
+            $res4 = $stmt4->execute();
+            if($res4){
+                echo " sound_light_added";
+            }
+            else{
+                echo " sound_light_add_error";
+            }
+
+
+        }
+
+        if($photo_fill || $video_fill){
+            $sql5 = "INSERT INTO `cust_req_pv`(`request_id`, `photo_pref`, `video_pref`, `remarks`) VALUES (?,?,?,?)";
+            $stmt5 = $conn->prepare($sql5);
+            $stmt5->bind_param("isss",$id,$photo_pref,$video_pref,$photo_video_remarks);
+            $res5 = $stmt5->execute();
+            if($res5){
+                echo " photo_video_added";
+            }else{
+                echo " photo_video_not_added";
+            }
+        }
+        if($error == FALSE){
+            echo " success";
+        }
+        else if($error == TRUE){
+            echo " error";
         }
     }
     else{
         echo " error";
     }
+    
     
 
 
