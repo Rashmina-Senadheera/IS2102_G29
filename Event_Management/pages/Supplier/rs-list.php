@@ -2,7 +2,7 @@
     include('../constants.php');
     include( 'supplier_sidenav.php' );
     include( 'header.php' );
-    if(isset($_SESSION['user_name'])){
+    include('../controllers/commonFunctions.php');
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +13,7 @@
         <meta http-equiv = 'X-UA-Compatible' content = 'IE=edge'>
         <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0'>
         <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-         <link rel = 'stylesheet' href = '../../css/supplierMain.css'>
+        <link rel = 'stylesheet' href = '../../css/supplierMain.css'>
         <link rel = 'stylesheet' href = '../../css/ps-list.css'>
     </head>
         
@@ -30,33 +30,56 @@
             <div class ='grid-main' id='rs-list'>
                 <div class="cards" >
                     <div class='ps-card-title' id='title'>
-                            <div class='rs-card-img'>
-                            </div>
-                            <div class='ps-card-desc' id="rs">
-                                <div class='rs-title'>Quotation Request</div>
-                                <div class='rs-title' id = 'tit'>Event Date</div>
-                                <div class='rs-title' id = 'tit'>Event Type </div>
-                                <div class='rs-title' id = 'tit'>Requested </div>
-                            </div>
+                        <div class='rs-card-img'>
                         </div>
-                        
-                    <a href='quote-view.php' id='a-card'>
-                        <div class='ps-card'>
-                            <div class='rs-card-img'>
-                                <img src= "../images/Udari.jpeg" alt="">
-                            </div>
-                            <div class='ps-card-desc' id="rs">
-                                <div class='rs-title'>Quotation for Bravo Event Productions Hall</div>
-                                <div class='rs-type'>22/12/2022</div>
-                                <div class='rs-type'>Wedding</div>
-                                <div class='rs-type' id="urg">2 weeks ago</div>
-                            </div>
+                        <div class='ps-card-desc' id="rs">
+                            <div class='rs-title'>Quotation Request</div>
+                            <div class='rs-title' id = 'tit'>Event Date</div>
+                            <div class='rs-title' id = 'tit'>Event Type </div>
+                            <div class='rs-title' id = 'tit'>Requested </div>
                         </div>
-                    </a> 
+                    </div>
+
+                    <?php
+                        $sql = "SELECT * FROM request_supplier_quotation";
+                        $result = mysqli_query($conn, $sql);
+
+                        if (mysqli_num_rows($result) > 0) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $request_id  = $row['request_id'];
+                                $date = $row['date'];
+                                $theme = $row['theme'];
+                                $product_type = $row['product_type'];
+                                $remarks = $row['remarks'];
+                                $event_type = $row['event_type'];
+                                $status = $row['status'];
+                                $EP_id = $row['EP_id'];
+                                $supplierId = $row['supplierId'];
+                                $title = $row['title'];
+                                
+                                echo 
+                                "<a href='quote-view.php?id=".$request_id."' id='a-card'>
+                                    <div class='ps-card'>
+                                        <div class='rs-card-img'>
+                                            <img src= '../../images/S1.jpeg' alt=''>
+                                        </div>
+                                        <div class='ps-card-desc' id='rs'>
+                                            <div class='rs-title'>".$title."</div>
+                                            <div class='rs-type'>".$date."</div>
+                                            <div class='rs-type'>".$event_type."</div>
+                                            <div class='rs-type' id='urg'>".$event_type."</div>
+                                        </div>
+                                    </div>
+                                </a> " ;
+                        } }else {
+                            echo "No supplier found";
+                        }
+                    ?>
+            
                     <a href='more-info.php?id=' id='a-card'>
                         <div class='ps-card'>
                             <div class='rs-card-img'>
-                                <img src= "../images/RashmikaFernando.jpeg" alt="">
+                                <img src= "../../images/S2.jpg" alt="">
                             </div>
                             <div class='ps-card-desc' id="rs">
                                 <div class='rs-title'>Quotation for Bravo Event Productions Hall</div>
@@ -69,7 +92,7 @@
                     <a href='more-info.php?id=' id='a-card'>
                         <div class='ps-card'>
                             <div class='rs-card-img'>
-                                <img src= "../images/Milindu Abeynayake.jpeg" alt="">
+                                <img src= "../../images/S3.jpeg" alt="">
                             </div>
                             <div class='ps-card-desc' id="rs">
                                 <div class='rs-title'>Quotation for Bravo Event Productions Hall</div>
@@ -137,9 +160,3 @@
 
 </html>
 
-<?php
- }else{
-    header("Location:sign_in.php?");
-    exit();
- }
-?>

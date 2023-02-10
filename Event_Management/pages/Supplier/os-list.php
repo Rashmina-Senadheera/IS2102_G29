@@ -43,7 +43,7 @@
                     <a href='order-view.php' id='a-card'>
                         <div class='ps-card'>
                             <div class='rs-card-img'>
-                                <img src= "../images/RashmikaFernando.jpeg" alt="">
+                                <img src= "../../images/S1.jpeg" alt="">
                             </div>
                             <div class='ps-card-desc' id="rs">
                                 <div class='rs-title'>Order Bravo Event Productions Hall</div>
@@ -56,7 +56,7 @@
                     <a href='more-info.php?id=' id='a-card'>
                         <div class='ps-card'>
                             <div class='rs-card-img'>
-                                <img src= "../images/Nuwanthara_ Abeykoon.jpg" alt="">
+                                <img src= "../../images/S2.jpg" alt="">
                             </div>
                             <div class='ps-card-desc' id="rs">
                                 <div class='rs-title'>Order Aluthge Banquet Hall</div>

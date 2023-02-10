@@ -97,6 +97,11 @@ img.mySlides {
 
 #ed {
     background-color: #490258;
+    width: 50%;
+}
+a#ed{
+    text-decoration: none;
+    text-align: center;
 }
 
 #del {
