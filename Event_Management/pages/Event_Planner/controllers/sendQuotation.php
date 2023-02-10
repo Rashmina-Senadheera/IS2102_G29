@@ -6,8 +6,6 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     require_once '../../constants.php';
     require_once '../../controllers/commonFunctions.php';
 
-    echo print_r($_POST);
-
     // get POST value for each field or set to null
     $psId = isset($_POST['psId']) ? checkInput($_POST['psId']) : "";
     $psTitle = isset($_POST['psTitle']) ? checkInput($_POST['psTitle']) : "";
@@ -41,16 +39,15 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         $_SESSION['error-eventType'] = "Event type is required";
     }
 
-    if (empty($no_of_participants)) {
-        $_SESSION['error-no_of_participants'] = "Number of participants is required";
-    } else if (!preg_match($onlyPositiveNumbers, $no_of_participants)) {
-        $_SESSION['error-no_of_participants'] = "Number of participants must be a positive number";
-    }
+    // if (empty($no_of_participants)) {
+    //     $_SESSION['error-no_of_participants'] = "Number of participants is required";
+    // } else if (!preg_match($onlyPositiveNumbers, $no_of_participants)) {
+    //     $_SESSION['error-no_of_participants'] = "Number of participants must be a positive number";
+    // }
 
     if (
         isset($_SESSION['error-date']) ||
-        isset($_SESSION['error-eventType']) ||
-        isset($_SESSION['error-no_of_participants'])
+        isset($_SESSION['error-eventType'])
     ) {
         // echo "<script> history.back(); </script>";
     } else {

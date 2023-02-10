@@ -36,32 +36,35 @@
         <div class="ps-list">
             <div class ='grid-main' id='ps-list'>
                 <div class="cards">
-          <?php
-              $sql = "SELECT V.product_ID,V.title,V.description
-                      FROM sup_product_general V , supplier_product_images I
-                      where V.product_ID = I.product_ID 
-                      AND V.supplier_ID = $id";
+                    <?php
+                        $sql = "SELECT V.product_ID,V.title,V.description
+                                FROM sup_product_general V 
+                                WHERE V.supplier_ID = $id";
 
-                    $result = $conn->query($sql);
-                    if ($result->num_rows > 0) {
-                    while($row = $result->fetch_assoc()) {
-                        $product_id = $row['product_ID'];
-                        $image_sql = "SELECT * FROM supplier_product_images WHERE product_id = $product_id LIMIT 1";
-                        $image_result = $conn->query($image_sql);
-                        $image_row = $image_result->fetch_assoc();
-                        $packageImage = $image_row['image'];
+                        $result = $conn->query($sql);
+                        if ($result->num_rows > 0) {
+                        while($row = $result->fetch_assoc()) {
+                            $product_id = $row['product_ID'];
+                            $image_sql = "SELECT * FROM supplier_product_images WHERE product_id = $product_id LIMIT 1";
+                            $image_result = $conn->query($image_sql);
+                            $image_row = $image_result->fetch_assoc();
+                            $packageImage = $image_row['image'];
                     ?>
                     <a href='more-info.php?id=<?php echo $row["product_ID"];?>' id='a-card'>
-                            <div class='ps-card'>
-                                <div class='ps-card-img'>
-                                    <img src= "data:image/jpeg;base64,<?php echo base64_encode($packageImage);?> " alt="">
-                                </div>
-                                <div class='ps-card-desc'>
-                                    <div class='ps-title'><?php echo $row["title"];?></div>
-                                    <div class='ps-type'><?php echo $row["description"];?></div>
-                                </div>
-                            </div></a> <?php ;}
-                    }
+                        <div class='ps-card'>
+                            <div class='ps-card-img'>
+                                <img src= "data:image/jpeg;base64,<?php echo base64_encode($packageImage);?> " alt="">
+                            </div>
+                            <div class='ps-card-desc'>
+                                <div class='ps-title'><?php echo $row["title"];?></div>
+                                <div class='ps-type'><?php echo $row["description"];?></div>
+                            </div>
+                        </div>
+                    </a> 
+                    
+                    <?php 
+                        ;}
+                        }
                     ?> 
                 </div>
             </div>

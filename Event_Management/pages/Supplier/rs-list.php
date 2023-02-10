@@ -36,7 +36,7 @@
                             <div class='rs-title'>Quotation Request</div>
                             <div class='rs-title' id = 'tit'>Event Date</div>
                             <div class='rs-title' id = 'tit'>Event Type </div>
-                            <div class='rs-title' id = 'tit'>Requested </div>
+                            <div class='rs-title' id = 'tit'>Urgency </div>
                         </div>
                     </div>
 
@@ -54,8 +54,9 @@
                                 $event_type = $row['event_type'];
                                 $status = $row['status'];
                                 $EP_id = $row['EP_id'];
+                                $urgency = $row['urgency'];
                                 $supplierId = $row['supplierId'];
-                                $title = $row['title'];
+                                $title = $row['product_title'];
                                 
                                 echo 
                                 "<a href='quote-view.php?id=".$request_id."' id='a-card'>
@@ -67,7 +68,7 @@
                                             <div class='rs-title'>".$title."</div>
                                             <div class='rs-type'>".$date."</div>
                                             <div class='rs-type'>".$event_type."</div>
-                                            <div class='rs-type' id='urg'>".$event_type."</div>
+                                            <div class='rs-type' id='urg'>".$urgency."</div>
                                         </div>
                                     </div>
                                 </a> " ;
@@ -75,33 +76,6 @@
                             echo "No supplier found";
                         }
                     ?>
-            
-                    <a href='more-info.php?id=' id='a-card'>
-                        <div class='ps-card'>
-                            <div class='rs-card-img'>
-                                <img src= "../../images/S2.jpg" alt="">
-                            </div>
-                            <div class='ps-card-desc' id="rs">
-                                <div class='rs-title'>Quotation for Bravo Event Productions Hall</div>
-                                <div class='rs-type'>22/12/2022</div>
-                                <div class='rs-type'>Wedding</div>
-                                <div class='rs-type'>5 days ago</div>
-                            </div>
-                        </div>
-                    </a> 
-                    <a href='more-info.php?id=' id='a-card'>
-                        <div class='ps-card'>
-                            <div class='rs-card-img'>
-                                <img src= "../../images/S3.jpeg" alt="">
-                            </div>
-                            <div class='ps-card-desc' id="rs">
-                                <div class='rs-title'>Quotation for Bravo Event Productions Hall</div>
-                                <div class='rs-type'>22/12/2022</div>
-                                <div class='rs-type'>Birthday</div>
-                                <div class='rs-type'> 2 days ago</div>
-                            </div>
-                        </div>
-                    </a> 
                 </div>         
             </div>
             <div class="filter">

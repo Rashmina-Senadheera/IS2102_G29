@@ -415,7 +415,6 @@ button#btnlogOut {
     font-size: 17px;
 }
 .sidebar .nav-links .log_out {
-    position: absolute;
     bottom: 0;
     width: 100%;
 }

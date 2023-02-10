@@ -246,7 +246,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {
                             </div>
                             <div class="input width-50 hide" id="theme">
                                 <label class="input-label">Theme <span>*</span></label>
-                                <input name="theme" type="text" class="input-field" required />
+                                <input name="theme" type="text" class="input-field" />
                             </div>
                         </div>
                         <div class="row" id='check'>
