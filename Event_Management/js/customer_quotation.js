@@ -378,7 +378,7 @@ submit_btn.onclick = ()=>{
                 dataArr = data.split(" ");
 
                 if(dataArr.includes("success")){
-                        alert("Success");
+                        // alert("Success");
                         quote_form.reset();
                         error_txt.style.display = "none";
                         success.style.display = "block";
@@ -579,13 +579,7 @@ submit_btn.onclick = ()=>{
                     else{
                         p_v_remarks_error.style.display = "none";
                     }
-                    if(dataArr.includes("details_added")){
-                        alert(data);
-                        
-                    }
-                    else{
-                        alert("error");
-                    }
+                    
 
                     
                     
