@@ -3,7 +3,7 @@
 // Check the method of the request
 // If request methot is not POST redirect to the register page
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
-    header("location: ../sign_up_form.php");
+    header("location: ../404.php");
 } else {
     // include the database config file
     require_once '../../constants.php';

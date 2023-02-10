@@ -10,13 +10,14 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {
     echo "<script>window.location.href = 'Suppliers.php'</script>";
 } else {
     $psId = $_GET['id'];
-    $sql = "SELECT `title`, `type` FROM sup_product_general WHERE `product_id` = " . $psId;
+    $sql = "SELECT `title`, `type`, `supplier_ID` FROM sup_product_general WHERE `product_id` = " . $psId;
     $result = mysqli_query($conn, $sql);
-    
+
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
         $psTitle = $row['title'];
         $psType = $row['type'];
+        $supplierId = $row['supplier_ID'];
     } else {
         echo "<script>alert('Product or Service cannot be found!')</script>";
         echo "<script>window.location.href = 'Suppliers.php'</script>";
@@ -40,12 +41,16 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {
                 <div class="searchSec">
                     <div class="page-title">Request Quotation for <?php echo $psTitle ?></div>
                 </div>
-                <form>
+                <form action="controllers/sendQuotation.php" method="POST">
+                    <input type="hidden" name="psId" value="<?php echo $psId ?>">
+                    <input type="hidden" name="psTitle" value="<?php echo $psTitle ?>">
+                    <input type="hidden" name="psType" value="<?php echo $psType ?>">
+                    <input type="hidden" name="supplierId" value="<?php echo $supplierId ?>">
                     <div class="form-description"></div>
                     <div class="row">
                         <div class="input width-50">
                             <label class="input-label">Date <span>*</span></label>
-                            <input type="date" class="input-field" required />
+                            <input type="date" name="date" class="input-field" required />
                         </div>
                         <div class="input width-50">
                             <label class="input-label">Event Type <span>*</span></label>
@@ -68,11 +73,11 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {
                         <div class="row">
                             <div class="input width-50" id="noOfParticipants">
                                 <label class="input-label">Number of Participants <span>*</span></label>
-                                <input type="text" class="input-field" required />
+                                <input name="no_of_participants" type="number" class="input-field" required />
                             </div>
                             <div class="input width-50" id="transportLocations">
                                 <label class="input-label">Locations </label>
-                                <input type="text" class="input-field" required />
+                                <input name="location" type="text" class="input-field" required />
                             </div>
                         </div>
                         <div class="row" id='check'>
@@ -80,11 +85,11 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {
                                 <label for="" class="input-label" id='check'>Catered for <span>*</span></label>
                                 <div class="check-bx">
                                     <div class="check-bx-opt">
-                                        <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                                        <input type="checkbox" id="catered_for" name="catered_for" value="Indoor">
                                         <label for="" class="input-ps-label-opt">Indoor Catering</label>
                                     </div>
                                     <div class="check-bx-opt">
-                                        <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                                        <input type="checkbox" id="catered_for" name="catered_for" value="Outdoor">
                                         <label for="" class="input-ps-label-opt">Outdoor Catering</label>
                                     </div>
                                 </div>
@@ -93,11 +98,11 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {
                                 <label for="" class="input-label" id='check'>Transport <span>*</span></label>
                                 <div class="check-bx">
                                     <div class="check-bx-opt">
-                                        <input type="radio" id="type-venue" name="type-venue" value="Car">
+                                        <input type="radio" id="transport" name="transport" value="Needed">
                                         <label for="" class="input-ps-label-opt">Needed</label>
                                     </div>
                                     <div class="check-bx-opt">
-                                        <input type="radio" id="type-venue" name="type-venue" value="Car">
+                                        <input type="radio" id="transport" name="transport" value="Not Needed">
                                         <label for="" class="input-ps-label-opt">Not Needed</label>
                                     </div>
                                 </div>
@@ -110,26 +115,27 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {
                                 <?php if ($psType == "foodbev") { ?>
                                     <div class="check-bx">
                                         <div class="check-bx-opt">
-                                            <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                                            <input type="checkbox" id="bev_need_as" name="bev_need_as" value="Bottle">
                                             <label for="" class="input-ps-label-opt">Bottle</label>
                                         </div>
                                         <div class="check-bx-opt">
-                                            <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                                            <input type="checkbox" id="bev_need_as" name="bev_need_as" value="In bulk">
                                             <label for="" class="input-ps-label-opt">In bulk</label>
                                         </div>
                                         <div class="check-bx-opt">
-                                            <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                                            <input type="checkbox" id="bev_need_as" name="bev_need_as" value="Cups/Packets">
                                             <label for="" class="input-ps-label-opt">Cups/Packets</label>
                                         </div>
                                     </div>
-                                <?php } else if ($psType == "foodbev") { ?>
+                                <?php }
+                                if ($psType == "foodbev") { ?>
                                     <div class="check-bx">
                                         <div class="check-bx-opt">
-                                            <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                                            <input type="checkbox" id="food_need_as" name="food_need_as" value="Packets">
                                             <label for="" class="input-ps-label-opt">Packets</label>
                                         </div>
                                         <div class="check-bx-opt">
-                                            <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                                            <input type="checkbox" id="food_need_as" name="food_need_as" value="Buffet">
                                             <label for="" class="input-ps-label-opt">Buffet</label>
                                         </div>
                                     </div>
@@ -139,23 +145,23 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {
                                 <label for="" class="input-label" id='check'>Need For <span>*</span></label>
                                 <div class="check-bx">
                                     <div class="check-bx-opt">
-                                        <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                                        <input type="checkbox" id="need_for" name="need_for" value="Breakfast">
                                         <label for="" class="input-ps-label-opt">Breakfast</label>
                                     </div>
                                     <div class="check-bx-opt">
-                                        <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                                        <input type="checkbox" id="need_for" name="need_for" value="Lunch">
                                         <label for="" class="input-ps-label-opt">Lunch</label>
                                     </div>
                                     <div class="check-bx-opt">
-                                        <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                                        <input type="checkbox" id="need_for" name="need_for" value="Dinner">
                                         <label for="" class="input-ps-label-opt">Dinner</label>
                                     </div>
                                     <div class="check-bx-opt">
-                                        <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                                        <input type="checkbox" id="need_for" name="need_for" value="Brunch">
                                         <label for="" class="input-ps-label-opt">Brunch</label>
                                     </div>
                                     <div class="check-bx-opt">
-                                        <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                                        <input type="checkbox" id="need_for" name="need_for" value="High-Tea">
                                         <label for="" class="input-ps-label-opt">High-Tea</label>
                                     </div>
                                 </div>
@@ -166,21 +172,21 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {
                         <div class="row">
                             <div class="input width-50" id="noOfParticipants">
                                 <label class="input-label">Location (From) <span>*</span></label>
-                                <input type="text" class="input-field" required />
+                                <input name="location_from" type="text" class="input-field" required />
                             </div>
                             <div class="input width-50" id="transportLocations">
                                 <label class="input-label">Location (To) <span>*</span></label>
-                                <input type="text" class="input-field" required />
+                                <input name="location_to" type="text" class="input-field" required />
                             </div>
                         </div>
                         <div class="row">
                             <div class="input width-50" id="noOfParticipants">
                                 <label class="input-label">Number of Participants <span>*</span></label>
-                                <input type="text" class="input-field" required />
+                                <input name="no_of_participants" type="number" class="input-field" required />
                             </div>
                             <div class="input width-50" id="hours">
                                 <label class="input-label">Hours</label>
-                                <input type="text" class="input-field" placeholder="Approximately" required />
+                                <input name="hours" type="number" class="input-field" placeholder="Approximately" required />
                             </div>
                         </div>
 
@@ -188,11 +194,11 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {
                         <div class="row">
                             <div class="input width-50" id="noOfParticipants">
                                 <label class="input-label">Number of Participants <span>*</span></label>
-                                <input type="text" class="input-field" required />
+                                <input name="no_of_participants" type="number" class="input-field" required />
                             </div>
                             <div class="input width-50" id="hours">
                                 <label class="input-label">Hours</label>
-                                <input type="text" class="input-field" placeholder="Approximately" required />
+                                <input name="hours" type="number" class="input-field" placeholder="Approximately" required />
                             </div>
                         </div>
 
@@ -200,7 +206,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {
                         <div class="row">
                             <div class="input width-50" id="theme">
                                 <label class="input-label">Theme <span>*</span></label>
-                                <input type="text" class="input-field" required />
+                                <input name="theme" type="text" class="input-field" required />
                             </div>
                         </div>
                         <div class="row" id='check'>
@@ -208,11 +214,11 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {
                                 <label for="" class="input-label" id='check'>Need for <span>*</span></label>
                                 <div class="check-bx">
                                     <div class="check-bx-opt">
-                                        <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                                        <input type="checkbox" id="need_for" name="need_for" value="Indoor">
                                         <label for="" class="input-ps-label-opt">Indoor</label>
                                     </div>
                                     <div class="check-bx-opt">
-                                        <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                                        <input type="checkbox" id="need_for" name="need_for" value="Outdoor">
                                         <label for="" class="input-ps-label-opt">Outdoor</label>
                                     </div>
                                 </div>
@@ -221,11 +227,11 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {
                                 <label for="" class="input-label" id='check'>Transport <span>*</span></label>
                                 <div class="check-bx">
                                     <div class="check-bx-opt">
-                                        <input type="radio" id="type-venue" name="type-venue" value="Car">
+                                        <input type="radio" id="transport" name="transport" value="Needed">
                                         <label for="" class="input-ps-label-opt">Needed</label>
                                     </div>
                                     <div class="check-bx-opt">
-                                        <input type="radio" id="type-venue" name="type-venue" value="Car">
+                                        <input type="radio" id="transport" name="transport" value="Not Needed">
                                         <label for="" class="input-ps-label-opt">Not Needed</label>
                                     </div>
                                 </div>
@@ -236,11 +242,11 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {
                         <div class="row">
                             <div class="input width-50" id="hours">
                                 <label class="input-label">Hours</label>
-                                <input type="text" class="input-field" placeholder="Approximately" required />
+                                <input name="hours" type="number" class="input-field" placeholder="Approximately" required />
                             </div>
                             <div class="input width-50 hide" id="theme">
                                 <label class="input-label">Theme <span>*</span></label>
-                                <input type="text" class="input-field" required />
+                                <input name="theme" type="text" class="input-field" required />
                             </div>
                         </div>
                         <div class="row" id='check'>
@@ -248,11 +254,11 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {
                                 <label for="" class="input-label" id='check'>Photographs in <span>*</span></label>
                                 <div class="check-bx">
                                     <div class="check-bx-opt">
-                                        <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                                        <input type="checkbox" id="photographs_in" name="photographs_in" value="Indoor">
                                         <label for="" class="input-ps-label-opt">Indoor</label>
                                     </div>
                                     <div class="check-bx-opt">
-                                        <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                                        <input type="checkbox" id="photographs_in" name="photographs_in" value="Outdoor">
                                         <label for="" class="input-ps-label-opt">Outdoor</label>
                                     </div>
                                 </div>
@@ -261,15 +267,15 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {
                                 <label for="" class="input-label" id='check'>Needs <span>*</span></label>
                                 <div class="check-bx">
                                     <div class="check-bx-opt">
-                                        <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                                        <input type="checkbox" id="needs" name="needs" value="DVD">
                                         <label for="" class="input-ps-label-opt">DVD</label>
                                     </div>
                                     <div class="check-bx-opt">
-                                        <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                                        <input type="checkbox" id="needs" name="needs" value="Prints">
                                         <label for="" class="input-ps-label-opt">Prints</label>
                                     </div>
                                     <div class="check-bx-opt">
-                                        <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                                        <input type="checkbox" id="needs" name="needs" value="Book">
                                         <label for="" class="input-ps-label-opt">Book</label>
                                     </div>
                                 </div>
@@ -280,7 +286,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {
                         <div class="row">
                             <div class="input width-50" id="hours">
                                 <label class="input-label">Hours</label>
-                                <input type="text" class="input-field" placeholder="Approximately" required />
+                                <input name="hours" type="number" class="input-field" placeholder="Approximately" required />
                             </div>
                         </div>
                         <div class="row" id='check'>
@@ -288,11 +294,11 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {
                                 <label for="" class="input-label" id='check'>Perform in <span>*</span></label>
                                 <div class="check-bx">
                                     <div class="check-bx-opt">
-                                        <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                                        <input type="checkbox" id="perform_in" name="perform_in" value="Indoor">
                                         <label for="" class="input-ps-label-opt">Indoor</label>
                                     </div>
                                     <div class="check-bx-opt">
-                                        <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                                        <input type="checkbox" id="perform_in" name="perform_in" value="Outdoor">
                                         <label for="" class="input-ps-label-opt">Outdoor</label>
                                     </div>
                                 </div>
@@ -301,15 +307,15 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {
                                 <label for="" class="input-label" id='check'>Needs <span>*</span></label>
                                 <div class="check-bx">
                                     <div class="check-bx-opt">
-                                        <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                                        <input type="checkbox" id="needs" name="needs" value="Music">
                                         <label for="" class="input-ps-label-opt">Music</label>
                                     </div>
                                     <div class="check-bx-opt">
-                                        <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                                        <input type="checkbox" id="needs" name="needs" value="Dancing">
                                         <label for="" class="input-ps-label-opt">Dancing</label>
                                     </div>
                                     <div class="check-bx-opt">
-                                        <input type="checkbox" id="type-venue" name="type-venue" value="Car">
+                                        <input type="checkbox" id="needs" name="needs" value="Other">
                                         <label for="" class="input-ps-label-opt">Other</label>
                                     </div>
                                 </div>
@@ -318,56 +324,11 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {
 
                     <?php } ?>
 
-                    <!-- <div class="row" id='check'>
-                        <div class="input-ps" id='check'>
-                            <label for="" class="input-label" id='check'>Province <span>*</span></label>
-
-                            <div class="check-bx">
-                                <div class="check-bx-opt">
-                                    <input type="radio" id="province" name="province" value="Car">
-                                    <label for="" class="input-ps-label-opt">Western </label>
-                                </div>
-                                <div class="check-bx-opt">
-                                    <input type="radio" id="province" name="province" value="Car">
-                                    <label for="" class="input-ps-label-opt">Eastern</label>
-                                </div>
-                                <div class="check-bx-opt">
-                                    <input type="radio" id="province" name="province" value="Car">
-                                    <label for="" class="input-ps-label-opt">Central</label>
-                                </div>
-                                <div class="check-bx-opt">
-                                    <input type="radio" id="province" name="province" value="Car">
-                                    <label for="" class="input-ps-label-opt">Northern</label>
-                                </div>
-                                <div class="check-bx-opt">
-                                    <input type="radio" id="province" name="province" value="Car">
-                                    <label for="" class="input-ps-label-opt">Southern</label>
-                                </div>
-                                <div class="check-bx-opt">
-                                    <input type="radio" id="province" name="province" value="Car">
-                                    <label for="" class="input-ps-label-opt">North Western</label>
-                                </div>
-                                <div class="check-bx-opt">
-                                    <input type="radio" id="province" name="province" value="Car">
-                                    <label for="" class="input-ps-label-opt">Sabaragamuwa </label>
-                                </div>
-                                <div class="check-bx-opt">
-                                    <input type="radio" id="province" name="province" value="Car">
-                                    <label for="" class="input-ps-label-opt">Uva</label>
-                                </div>
-                                <div class="check-bx-opt">
-                                    <input type="radio" id="province" name="province" value="Car">
-                                    <label for="" class="input-ps-label-opt">North Central</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-
                     <div class="row">
                         <div class="input">
                             <label class="input-label">Remarks </label>
                             <!-- <input type="text" class="input-field" required /> -->
-                            <textarea class="input-field" rows="5"></textarea>
+                            <textarea name="remarks" class="input-field" rows="5"></textarea>
                         </div>
                     </div>
                     <div class="action">
