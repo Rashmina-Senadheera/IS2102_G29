@@ -12,6 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     $psId = isset($_POST['psId']) ? checkInput($_POST['psId']) : "";
     $psTitle = isset($_POST['psTitle']) ? checkInput($_POST['psTitle']) : "";
     $psType = isset($_POST['psType']) ? checkInput($_POST['psType']) : "";
+    $supplierId = isset($_POST['supplierId']) ? checkInput($_POST['supplierId']) : "";
     $date = isset($_POST['date']) ? checkInput($_POST['date']) : "";
     $eventType = isset($_POST['eventType']) ? checkInput($_POST['eventType']) : "";
     $no_of_participants = isset($_POST['no_of_participants']) ? checkInput($_POST['no_of_participants']) : "";
@@ -28,6 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     $photographs_in = isset($_POST['photographs_in']) ? checkInput($_POST['photographs_in']) : "";
     $needs = isset($_POST['needs']) ? checkInput($_POST['needs']) : "";
     $perform_in = isset($_POST['perform_in']) ? checkInput($_POST['perform_in']) : "";
+    $remarks = isset($_POST['remarks']) ? checkInput($_POST['remarks']) : "";
 
     $onlyPositiveNumbers = "/^[1-9][0-9]*$/";
 
@@ -52,6 +54,17 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     ) {
         // echo "<script> history.back(); </script>";
     } else {
-        echo "success";
+        $now = date("Y-m-d H:i:s");
+        $sql = "INSERT INTO request_supplier_quotation 
+        (psId, `date`, event_type, no_of_participants, `location`, catered_for, transport, bev_need_as, food_need_as, need_for, location_from, location_to, `hours`, theme, photographs_in, needs, perform_in, remarks, supplierId, urgency, requested_on, EP_id, `status`, product_type, product_title) 
+        VALUES ('$psId', '$date', '$eventType', '$no_of_participants', '$location', '$catered_for', '$transport', '$bev_need_as', '$food_need_as', '$need_for', '$location_from', '$location_to', '$hours', '$theme', '$photographs_in', '$needs', '$perform_in', '$remarks', '$supplierId', 'Normal', '$now', '$_SESSION[user_id]', 'Pending', '$psType', '$psTitle')";
+
+        if($conn->query($sql) === TRUE) {
+            $_SESSION['success'] = "Quotation Request sent successfully";
+            header("location: ../Suppliers.php");
+        } else {
+            $_SESSION['error'] = "Error: " . $sql . "<br>" . $conn->error;
+            header("location: ../Requests.php");
+        }
     }
 }

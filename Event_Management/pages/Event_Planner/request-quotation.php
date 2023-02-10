@@ -10,13 +10,14 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {
     echo "<script>window.location.href = 'Suppliers.php'</script>";
 } else {
     $psId = $_GET['id'];
-    $sql = "SELECT `title`, `type` FROM sup_product_general WHERE `product_id` = " . $psId;
+    $sql = "SELECT `title`, `type`, `supplier_ID` FROM sup_product_general WHERE `product_id` = " . $psId;
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
         $psTitle = $row['title'];
         $psType = $row['type'];
+        $supplierId = $row['supplier_ID'];
     } else {
         echo "<script>alert('Product or Service cannot be found!')</script>";
         echo "<script>window.location.href = 'Suppliers.php'</script>";
@@ -44,6 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {
                     <input type="hidden" name="psId" value="<?php echo $psId ?>">
                     <input type="hidden" name="psTitle" value="<?php echo $psTitle ?>">
                     <input type="hidden" name="psType" value="<?php echo $psType ?>">
+                    <input type="hidden" name="supplierId" value="<?php echo $supplierId ?>">
                     <div class="form-description"></div>
                     <div class="row">
                         <div class="input width-50">
