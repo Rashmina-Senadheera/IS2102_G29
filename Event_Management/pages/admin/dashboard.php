@@ -129,7 +129,7 @@
             });
             </script>
              -->
-             <table class="details_table">
+             <!-- <table class="details_table">
                     <thead>
                     <tr>
                         <th>ID</th>
@@ -142,7 +142,7 @@
                     
                     </tbody>
                     
-                </table>
+                </table> -->
     </main>
 
 </body>

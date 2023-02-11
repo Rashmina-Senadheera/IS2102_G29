@@ -13,7 +13,7 @@
     <header class="lp_header">
         <div class="reg_top_head">
         <span>
-        <img src="images/logo-white.svg" class="reg_header_logo">
+        <img src="<?php echo SITEURL; ?>images/logo-white.svg" class="reg_header_logo">
         </span>
         <span>
         <div class="user_details">
@@ -21,25 +21,25 @@
                    
                 <?php
                 
-                if(isset($_SESSION['user'])){
-                    echo $_SESSION['user'];
+                if(isset($_SESSION['user_id'])){
+                    echo $_SESSION['user_name'];
                     
                 }
                 ?>
                 <div class="dropdown_content">
                     <span class="dropdown_element">
-                        <img src="images/profile.png" class="user_profile">
+                        <img src="<?php echo SITEURL; ?>images/profile.png" class="user_profile">
                         <a href="customer_profile.php">Profile</a>
                     </span>
                     <span class="dropdown_element" >
-                        <img src="images/log-out.png" class="user_logout">
-                        <a onclick="logout_check()" href="logout.php">Logout</a>
+                        <img src="<?php echo SITEURL; ?>images/log-out.png" class="user_logout">
+                        <a onclick="logout_check()" href="<?php echo SITEURL;?>pages/logout.php">Logout</a>
                         </span>
 
                 </div>
                 </span>
 
-                <img src="images/user.png" class="user_logo">
+                <img src="<?php echo SITEURL; ?>images/user.png" class="user_logo">
                 
 
                 </div>
@@ -56,10 +56,10 @@
             </span>
             <span>
             <ul class="menu_items">
-                <li class="menu_link"><a href="landing_page.php">Home</a></li>
-                <li class="menu_link"><a href="event_planners.php">Event Planners</a></li>
-                <li class="menu_link"><a>About us</a></li>
-                <li class="menu_link"><a>Contact Us</a></li>
+                <li class="menu_link"><a href=<?php echo SITEURL . 'index.php'?>>Home</a></li>
+                <li class="menu_link"><a href=<?php echo SITEURL . 'pages/event_planners.php'?>>Event Planners</a></li>
+                <li class="menu_link"><a href=<?php echo SITEURL . 'pages/aboutUs.php'?>>About us</a></li>
+                <li class="menu_link"><a href=<?php echo SITEURL . 'pages/contactUs.php'?>>Contact Us</a></li>
             </ul>
             </span>
            

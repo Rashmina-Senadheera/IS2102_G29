@@ -10,7 +10,7 @@
         while($row = mysqli_fetch_assoc($res)){
             
             $output .= '<span class="card">
-                            <img src="images/evt_planner.jfif" >
+                            <img src="../images/evt_planner.jfif" >
                             <span class="name_rating">
                             <h4>'.$row['name'].'</h4>
                             

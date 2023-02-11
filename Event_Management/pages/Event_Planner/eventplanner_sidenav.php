@@ -52,7 +52,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['
             <li>
                 <a href=<?php echo SITEURL . 'pages/event_planner/os-list.php'  ?>>
                     <i class='bx bx-coin-stack'></i>
-                    <span class="links_name">Order Requests</span>
+                    <span class="links_name">Quotation Requests</span>
                 </a>
             </li>
             <li>

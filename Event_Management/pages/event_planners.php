@@ -1,6 +1,6 @@
 <?php 
 include('constants.php');
-if(isset($_SESSION['user'])){
+if(isset($_SESSION['user_id'])){
     include('reg_header.php');
 }
 else{
@@ -21,7 +21,7 @@ else{
         </div>
 
     </main>
-    <script src="javascript/all_event_planners.js"></script>
+    <script src="../js/all_event_planners.js"></script>
 </body>
 <?php 
     include("footer.php");

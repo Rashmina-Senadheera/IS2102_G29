@@ -20,7 +20,7 @@ include('../controllers/commonFunctions.php');
     <div class='grid-container-payments'>
         <div class='gridSearch'>
             <div class='searchSec'>
-                <div class='page-title'>Order Request</div>
+                <div class='page-title'>Quotation Request</div>
             </div>
         </div>
         <div class="ps-list">
@@ -30,7 +30,7 @@ include('../controllers/commonFunctions.php');
                         <div class='rs-card-img'>
                         </div>
                         <div class='ps-card-desc' id="rs">
-                            <div class='rs-title'>Order Request</div>
+                            <div class='rs-title'>Request</div>
                             <div class='rs-title' id='tit'>Quotation Number</div>
                             <div class='rs-title' id='tit'>Event Type </div>
                             <div class='rs-title' id='tit'>Requested </div>
@@ -53,7 +53,7 @@ include('../controllers/commonFunctions.php');
                                             <img src='../../images/cs1.jpg' alt=''>
                                         </div>
                                         <div class='ps-card-desc' id='rs'>
-                                            <div class='rs-title'>Order for $r_title</div>
+                                            <div class='rs-title'>Request for $r_title</div>
                                             <div class='rs-type'>#Q$r_id</div>
                                             <div class='rs-type'>$r_type</div>
                                             <div class='rs-type' id='urg'>$r_requested_on</div>

@@ -1,6 +1,6 @@
 <?php 
 include('constants.php');
-if(isset($_SESSION['user'])){
+if(isset($_SESSION['user_id'])){
     include('reg_header.php');
 }
 else{
@@ -14,10 +14,10 @@ else{
     <h2>About Us</h2>
     <div class="about">
         <div class="about-image">
-            <img src="images/event-about.jpg" alt="">
-            <img src="images/event-about2.jpg" alt="">
-            <img src="images/event-about3.jpg" alt="">
-            <img src="images/event-about4.jpg" alt="">
+            <img src="../images/event-about.jpg" alt="">
+            <img src="../images/event-about2.jpg" alt="">
+            <img src="../images/event-about3.jpg" alt="">
+            <img src="../images/event-about4.jpg" alt="">
         </div>
     </div>
     

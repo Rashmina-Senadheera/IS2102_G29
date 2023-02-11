@@ -1,6 +1,6 @@
 <?php 
 include('constants.php');
-if(isset($_SESSION['user'])){
+if(isset($_SESSION['user_id'])){
     include('reg_header.php');
 }
 else{

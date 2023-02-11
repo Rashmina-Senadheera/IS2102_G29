@@ -83,7 +83,7 @@
                     <span class="links_name">Setting</span>
                 </a>
             </li>-->
-            <li class="log_out" >
+            <li class="log_out" style="position: absolute;" >
                 <button type="button" id="btnlogOut">
                     <i class='bx bx-log-out'></i>
                     Log out

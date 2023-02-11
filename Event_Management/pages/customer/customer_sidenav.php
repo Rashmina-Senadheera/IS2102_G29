@@ -32,7 +32,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="../event_planners.php">
                     <i class="fa-solid fa-person"></i>
                     <span class="links_name">Event Planners</span>
                 </a>
@@ -61,7 +61,7 @@
                     <span class="links_name">Profile</span>
                 </a>
             </li>
-            <li class="log_out">
+            <li class="log_out" style = "position: absolute;">
                <a href="logout.php">
                     <i class='bx bx-log-out'></i>
                     <span class="links_name">Log out</span>

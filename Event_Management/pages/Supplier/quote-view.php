@@ -17,6 +17,9 @@ if (isset($_GET['id'])) {
         $remarks = $general_details['remarks'];
         $event_type = $general_details['event_type'];
         $hours = $general_details['hours'];
+        $date = $general_details['date'];
+        $hours = $general_details['hours'];
+        $urgency = $general_details['urgency'];
         $no_of_participants = $general_details['no_of_participants'];
         
         $psId = $general_details['psId'];
@@ -156,15 +159,15 @@ if (isset($_GET['id'])) {
                     </div>
                     <div class="prof-all">
                         <div class="prof-name-50">Tentative Date:</div>
-                        <div class="prof-data">2022-07-15</div>
+                        <div class="prof-data"><?php echo $date; ?></div>
                     </div>
                      <div class="prof-all">
                         <div class="prof-name-50">Remarks:</div>
-                        <div class="prof-data">Need the quotation to be submitted as soon as possible with the necessary details</div>
+                        <div class="prof-data"><?php echo $remarks; ?></div>
                     </div>
                     <div class="prof-all">
                         <div class="prof-name-50">Urgency:</div>
-                        <div class="prof-data" id="urg">Urgent</div>
+                        <div class="prof-data" id="urg"><?php echo $urgency; ?></div>
                     </div>
                     <div class="actionBtn">
                         <button type="button" id="btnDecline" class="rejected" style="margin-left: 0;">

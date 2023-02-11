@@ -1,6 +1,6 @@
 <?php 
 include('constants.php');
-if(isset($_SESSION['user'])){
+if(isset($_SESSION['user_id'])){
     include('reg_header.php');
 }
 else{
@@ -30,7 +30,7 @@ else{
             <h1><?php echo $row['name']; ?></h1>
             <h3 class="flex-row-center">Event Planner's Information</h3>
             <span class="flex-row-center information">
-                <img src="images/evt_planner.jfif" class="evt_img">
+                <img src="../images/evt_planner.jfif" class="evt_img">
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio sequi molestiae 
                     accusantium omnis? Aspernatur a vitae sapiente dignissimos eaque, quaerat omnis fugiat 
                     animi ab suscipit, obcaecati mollitia itaque deserunt minus.
@@ -45,7 +45,7 @@ else{
             </span>
                 <span class="flex-row btns_info txt-white">
                     <a href="chat.php?email=<?php echo $email;?>" class="btn a-txt-deco-none txt-white contact_btn">Contact</a>
-                    <a href="#" class="btn a-txt-deco-none txt-white">Get a Quote</a>
+                    <a href="customer/customer_quotation.php" class="btn a-txt-deco-none txt-white">Get a Quote</a>
                 <form method="POST" action="chat/chat.php" class="contact-names" hidden >
                     <input type="text" name="user_id" value="<?php echo $_SESSION['user'];  ?>" >
                     <input type="text" name="event_id" value="<?php echo $email;  ?>" >
@@ -57,21 +57,21 @@ else{
             <div class="events_cards flex-row">
 
                 <span class="card flex-column">
-                    <img src="images/event.jpg" >
+                    <img src="../images/event.jpg" >
                     <h4>Lorem Ipsum</h4>
                     <p>Lorem ipsum dolor sitamet, consectetur
                     </p>
                 </span>
 
                 <span class="card flex-column">
-                    <img src="images/event.jpg" >
+                    <img src="../images/event.jpg" >
                     <h4>Lorem Ipsum</h4>
                     <p>Lorem ipsum dolor sitamet, consectetur
                     </p>
                 </span>
 
                 <span class="card flex-column">
-                    <img src="images/event.jpg" />
+                    <img src="../images/event.jpg" />
                     <h4>Lorem Ipsum</h4>
                     <p>
                     Lorem ipsum dolor sit
@@ -80,7 +80,7 @@ else{
                 </span>
 
                 <span class="card flex-column">
-                    <img src="images/event.jpg" >
+                    <img src="../images/event.jpg" >
                     <h4>Lorem Ipsum</h4>
                     <p>
                     Lorem ipsum dolor sit
