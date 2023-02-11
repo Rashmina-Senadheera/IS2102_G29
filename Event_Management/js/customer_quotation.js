@@ -354,7 +354,8 @@ food_remarks_error = document.querySelector(".food_remarks_error"),
 s_l_error = document.querySelector(".s_l_error"),
 s_l_remarks_error = document.querySelector(".s_l_remarks_error"),
 p_v_remarks_error = document.querySelector(".p_v_remarks_error"),
-p_v_error = document.querySelector(".p_v_error");
+p_v_error = document.querySelector(".p_v_error"),
+success = document.querySelector(".success");
 
 var data;
 var dataArr;
@@ -376,10 +377,36 @@ submit_btn.onclick = ()=>{
                 data = xhr.response;
                 dataArr = data.split(" ");
 
-                if(data == "success"){
-                        alert("Success");
+                if(dataArr.includes("success")){
+                        // alert("Success");
                         quote_form.reset();
                         error_txt.style.display = "none";
+                        success.style.display = "block";
+
+                        //venue
+                        venueNeeded.forEach(function(node){
+                            node.classList.remove('needed');
+                        });
+                       
+
+
+                        foodNeeded.forEach(function(node){
+                            node.classList.remove('needed');
+                        });
+                        
+                        foodInfo.style.display="none";
+
+
+                        s_l_Needed.forEach(function(node){
+                            node.classList.remove('needed');
+                        });
+                        s_l_Info.style.display="none";
+
+                        p_v_Needed.forEach(function(node){
+                            node.classList.remove('needed');
+                        });
+                        p_v_Info.style.display="none";
+
                     }
                 else{
                     
@@ -552,30 +579,10 @@ submit_btn.onclick = ()=>{
                     else{
                         p_v_remarks_error.style.display = "none";
                     }
-
-                    if(dataArr.includes("filled")){
-                        // p_v_remarks_error.style.display = "block";
-                        // alert("filled");
-                        
-                    }
-                    else{
-                        // p_v_remarks_error.style.display = "none";
-                    }
-                    if(dataArr.includes("error_in_details_add")){
-                        // p_v_remarks_error.style.display = "block";
-                        // alert("nice");
-                        
-                    }
                     
-                    if(dataArr.includes("details_added")){
-                        // alert(data);
-                    }
 
-                    if(dataArr.includes("venue_added")){
-                        // alert(data);
-                    }else if(dataArr.includes("venue_added_failed")){
-                        // alert(data);
-                    }
+                    
+                    
                     
                     
                 }

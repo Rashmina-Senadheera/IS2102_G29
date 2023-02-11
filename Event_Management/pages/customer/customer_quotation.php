@@ -355,6 +355,7 @@ include('../controllers/commonFunctions.php');
             
         <div class="submit-btn">
         <input type="submit" value="Submit" class="btn-submit">
+        <div class="success">Data sent successfully</div>
         </div>
 
 

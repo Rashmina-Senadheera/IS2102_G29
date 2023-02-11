@@ -484,7 +484,15 @@ p {
 .food_error,
 .s_l_error,
 .s_l_remarks_error,
-.p_v_error
+.p_v_error,
+.food_remarks_error,
+.p_v_remarks_error,
+.success
 {
     display: none;
+}
+.success{
+    margin-top: 1%;
+    color: #4BB543;
+    font-weight: 400;
 }
