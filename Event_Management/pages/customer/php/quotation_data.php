@@ -9,6 +9,9 @@
     
     // $event_type = $no_pax = $theme = $from_date = $to_date = $min_budget = $max_budget = $from_time=$to_time = $venue = $venue_type = $indoor = $outdoor = $indoor_remarks = $outdoor_remarks = $food = $food_availability=$food_pref = $food_remarks =$sound = $sound_type = $light = $light_type = $sound_light_remarks = $photo = $photo_pref = $video = $video_pref = $photo_video_remarks = "";
 
+    $evt_id = showSessionMessage('evt_id');
+    $cust_id = $_SESSION['user_id'];
+
     $event_type = mysqli_real_escape_string($conn,checkInput($_POST['event-type']));
     $no_pax = mysqli_real_escape_string($conn,checkInput($_POST['no-pax']));
     $theme = mysqli_real_escape_string($conn,checkInput($_POST['theme']));
@@ -495,12 +498,12 @@
         $res1 = $stmt1->execute();
         $id = mysqli_insert_id($conn);
         if($res1){
-            echo " details_added";
+            echo " good";
         }
         else{
             echo " error_in_details_add";
         }  
-        }
+        
         if($venue_indoor_fill || $venue_outdoor_fill){
         
             $sql2 =  "INSERT INTO `cust_req_venue`(`request_id`, `venue`, `remarks`) VALUES (?,?,?)";
@@ -560,12 +563,29 @@
             }else{
                 echo " photo_video_not_added";
             }
+            
         }
+
+        $sql6 = "INSERT INTO `request_ep_quotation`(`request_id`,`customer_id`, `EP_id`) VALUES (?,?,?)";
+        $stmt6 = $conn->prepare($sql6);
+        $stmt6->bind_param("iii",$id,$cust_id,$evt_id);
+        $res6 = $stmt6->execute();
+        if($res6){
+            echo " good";
+        }else{
+            echo " final_error";
+        }
+
+
+
         if($error == FALSE){
             echo " success";
         }
         else if($error == TRUE){
             echo " error";
+        }
+
+
         }
     }
     else{

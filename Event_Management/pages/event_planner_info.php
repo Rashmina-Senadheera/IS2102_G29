@@ -6,8 +6,8 @@ if(isset($_SESSION['user_id'])){
 else{
     include('unreg_header.php');
 }
-$email = mysqli_real_escape_string($conn,$_GET['email']);
-$sql = "SELECT * FROM user WHERE email='{$email}'";
+$id = mysqli_real_escape_string($conn,$_GET['id']);
+$sql = "SELECT * FROM user WHERE user_id='{$id}'";
 $res = mysqli_query($conn,$sql);
 if(mysqli_num_rows($res) >0){
     $row = mysqli_fetch_assoc($res);
@@ -45,12 +45,8 @@ else{
             </span>
                 <span class="flex-row btns_info txt-white">
                     <a href="chat.php?email=<?php echo $email;?>" class="btn a-txt-deco-none txt-white contact_btn">Contact</a>
-                    <a href="customer/customer_quotation.php" class="btn a-txt-deco-none txt-white">Get a Quote</a>
-                <form method="POST" action="chat/chat.php" class="contact-names" hidden >
-                    <input type="text" name="user_id" value="<?php echo $_SESSION['user'];  ?>" >
-                    <input type="text" name="event_id" value="<?php echo $email;  ?>" >
-
-                </form>
+                    <a href="customer/customer_quotation.php?evt_planner_id=<?php echo $id;?>" class="btn a-txt-deco-none txt-white">Get a Quote</a>
+                
                 
             </span>
             <h3 class="flex-row">Events</h3>

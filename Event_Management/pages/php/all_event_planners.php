@@ -22,7 +22,7 @@
                                     <label>Category</label>
                                 </span>
                             
-                            <a href="event_planner_info.php?email='.$row['email'].'" class="btn_view btn">View </a>
+                            <a href="event_planner_info.php?id='.$row['user_id'].'" class="btn_view btn">View </a>
                             </span>
                         </span>';
         }

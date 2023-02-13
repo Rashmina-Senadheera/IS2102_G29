@@ -569,6 +569,7 @@ submit_btn.onclick = ()=>{
                     }
                     else{
                         p_v_error.style.display = "none";
+                        alert(data);
                     }
 
                     //photo and video remarks
@@ -579,8 +580,10 @@ submit_btn.onclick = ()=>{
                     else{
                         p_v_remarks_error.style.display = "none";
                     }
-                    
 
+                    
+                    
+                    
                     
                     
                     
