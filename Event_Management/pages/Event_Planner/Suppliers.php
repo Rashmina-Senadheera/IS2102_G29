@@ -38,7 +38,12 @@ include('../controllers/commonFunctions.php');
             <div class="suppliers-cards-container">
 
                 <?php
-                $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general";
+                if (isset($_GET['type'])) {
+                    $type = $_GET['type'];
+                    $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = '$type'";
+                } else {
+                    $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general";
+                }
                 $result = mysqli_query($conn, $sql);
 
                 if (mysqli_num_rows($result) > 0) {
