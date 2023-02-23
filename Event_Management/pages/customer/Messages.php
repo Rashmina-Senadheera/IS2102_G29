@@ -6,9 +6,9 @@
     include('customer_sidenav.php');
     // include('header.php');
     include('customer_header.php');
-    if(isset($_GET['evt_planner_id'])){}
+    if(isset($_GET['evt_planner_id'])){
     $evt_planner_id = mysqli_real_escape_string($conn,$_GET['evt_planner_id']);
-    
+    }
 
 ?>
 <!DOCTYPE html>

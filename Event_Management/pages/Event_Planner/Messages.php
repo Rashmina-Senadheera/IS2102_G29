@@ -2,6 +2,10 @@
 include('eventplanner_sidenav.php');
 include('eventplanner_header.php');
 include('../controllers/commonFunctions.php');
+
+if(isset($_GET['supplier_id'])){
+$supplier_id = mysqli_real_escape_string($conn,$_GET['supplier_id']);
+}
 ?>
 
 <!DOCTYPE html>
@@ -25,8 +29,8 @@ include('../controllers/commonFunctions.php');
         echo '<div class="success-message">' . showSessionMessage("success") . '</div>';
     }
     ?>
-    <div class="grid-container-payments" style="height: calc(100%-60px);">
-        <div class="wrapper">
+    <div class="grid-container-payments" style="height: calc(100%-60px); ">
+        <div class="wrapper" style="margin-top:30px">
             <section class="users">
                 <div class="search">
                     <span class="text">Select an user to start chat</span>
@@ -35,87 +39,80 @@ include('../controllers/commonFunctions.php');
                 </div>
                 <div class="users-list">
                     <!-- <a href="chat.php?user_id='.$row['unique_id'].'"> -->
-                    <div class="users-area">
-                        <div class="content">
-                            <img src="../../images/customer.png" alt="">
-                            <div class="details">
-                                <span>Shamin Fernando</span>
-                                <p>Hello</p>
-                            </div>
-                        </div>
-                        <div class="status-dot"><i class="fas fa-circle"></i></div>
+
+                    <?php 
+                        $sql2 = "SELECT * FROM `user` WHERE `role`= 'customer' OR `role` = 'supplier'";
+                        $res2 = mysqli_query($conn,$sql2);
+                        if($res2){
+                            while($row = mysqli_fetch_assoc($res2)){?>
+                            <div class="users-area">
+                                <div class="content">
+                                    <img src="../supplier/images/Udari.jpeg" alt="">
+                                    <div class="details" onclick="showDetails(this)" id="message" data-id="<?php echo $row['user_id']; ?>" data-name="<?php echo $row['name']; ?>">
+                                        
+                                        <span><?php echo $row['name']; ?></span>
+                                        <p><?php echo $row['user_id']; ?></p>
+                                        
+                                    </div>
+                                </div>
+                                <div class="status-dot"><i class="fas fa-circle"></i></div>
 
                         <!-- </a> -->
                     </div>
-                    <div class="users-area">
-                        <div class="content">
-                            <img src="../../images/supplier.png" alt="">
-                            <div class="details">
-                                <span>Sachintha Gunaratne</span>
-                                <p>Hi</p>
-                            </div>
-                        </div>
-                        <div class="status-dot"><i class="fas fa-circle"></i></div>
-
-                        <!-- </a> -->
-                    </div>
-                    <div class="users-area">
-                        <div class="content">
-                            <img src="../../images/d_supplier.png" alt="">
-                            <div class="details">
-                                <span>Rashmina Senadheera</span>
-                                <p>Hi</p>
-                            </div>
-                        </div>
-                        <div class="status-dot"><i class="fas fa-circle"></i></div>
-
-                        <!-- </a> -->
-                    </div>
+                            
+                            
+                            
+                            <?php
+                            }
+                        }
+                    ?>
+                    
+                    
                 </div>
             </section>
             <section class="chat-area">
                 <header>
-                    <?php
-                    // $user_id = mysqli_real_escape_string($conn, $_GET['user_id']);
-                    // $sql = mysqli_query($conn,"SELECT * FROM users WHERE unique_id = '{$user_id}'");
-                    // if(mysqli_num_rows($sql)>0){
-                    //     $row = mysqli_fetch_assoc($sql);
-                    // }
-
-
-                    ?>
-                    <a href="users.php" class="back-icon"><i class="fas fa-arrow-left"></i></a>
-                    <img src="../../images/evt_planner.jfif" alt="">
-                    <div class="details">
-                        <span>Rashmina Senadheera</span>
-                        <p>Active Now</p>
+                    <div class="img_name">                 
+                        <!-- <img src="../supplier/images/Milindu Abeynayake.jpeg" alt=""> -->
+                        <div class="details">
+                            <span id="name"></span>
+                            <!-- <p>Active Now</p> -->
+                        </div>
                     </div>
+                    <a class="back-icon"><i class="fa-solid fa-xmark"></i></a>
+                    <!-- <i class="fa-solid fa-xmark"></i> -->
                 </header>
                 <div class="chat-box">
-                    <div class="chat outgoing">
-                        <div class="details">
-                            <p>Hi</p>
-                        </div>
+                    <div class="no_message">
+                        No Messages
                     </div>
-                    <div class="chat incoming">
-                        <img src="../../images/evt_planner.jfif" alt="">
-                        <div class="details">
-                            <p>Hello</p>
-                        </div>
-                    </div>
-
                 </div>
-                <form action="#" class="typing-area" autocomplete="off">
+                <form action="" class="typing-area" autocomplete="off" >
 
-                    <input type="text" name="outgoing_id" value="" hidden>
-                    <input type="text" name="incoming_id" value="" hidden>
+                    <input type="text" name="outgoing_id" id="outgoing_id" class="outgoing_id" value="<?php echo $_SESSION['user_id']; ?>" hidden>
+                    <input type="text" name="incoming_id" id="incoming_id" class="incoming_id" value="
+                    <?php if(!empty($supplier_id)){
+                        echo $supplier_id;
+                        }else{
+                            echo "";
+                        }
+                        ?>" hidden >
                     <input type="text" name="message" class="input-field" placeholder="Type a message here...">
-                    <button><i class="fa-solid fa-paper-plane"></i></button>
+                    <button class="send_btn"><i class="fa-solid fa-paper-plane"></i></button>
                 </form>
             </section>
         </div>
     </div>
+    <script src="../chat/chat.js"></script>
+    <!-- <script>
+        const incoming_id = document.querySelector(".incoming_id").value;
+        if(incoming_id != ""){
+            alert("empty");
+        }
+    </script> -->
 
+
+    
 
 
 </body>
