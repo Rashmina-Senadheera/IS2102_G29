@@ -36,14 +36,18 @@
                     }else{
                         
                         $output .= '<div class="no_message">
-                                            No Messages
-                                        </div>';
+                                        <img class="select_user" src="../../images/chat/no_message.png">
+                                        <label>No messages</label>
+                                    </div>';
                         
                     }
                         
                     
                 }else{
-                    $output .= "No Messages";
+                    $output .= '<div class="no_message">
+                                    <img class="select_user" src="../../images/chat/select_user.png">
+                                    <label>Please select a user</label>
+                                </div>';
                 }
                 
             echo $output;
