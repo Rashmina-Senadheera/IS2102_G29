@@ -1,7 +1,33 @@
 <?php
-    include('../../constants.php');
+    include('../constants.php');
     include( 'supplier_sidenav.php' );
     include( 'header.php' );
+    include('../controllers/commonFunctions.php');
+
+//check if there is a id in the url
+if (isset($_GET['id'])) {
+    $id = checkInput($_GET['id']);
+    $sql = "SELECT * FROM request_supplier_quotation WHERE request_id = $id";
+    $result = mysqli_query($conn, $sql);
+
+    // check if the id is valid
+    if (mysqli_num_rows($result) > 0) {
+        $general_details = mysqli_fetch_assoc($result);
+        $p_title = $general_details['product_title'];
+        $remarks = $general_details['remarks'];
+        $event_type = $general_details['event_type'];
+        $hours = $general_details['hours'];
+        $date = $general_details['date'];
+        $hours = $general_details['hours'];
+        $urgency = $general_details['urgency'];
+        $no_of_participants = $general_details['no_of_participants'];
+        $psId = $general_details['psId'];
+        $ep_id = $general_details['EP_id'];
+        } else {
+    header("Location: 404.php");
+}
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +53,7 @@
                 <div class="row">
                     <div class="input-50" >
                         <label class="input-label">Request For:</label>
-                        <div class="input-value" id="acc">Bravo Event Productions Hall</div>
+                        <div class="input-value" id="acc"><?php echo $p_title; ?></div>
                     </div>
                     <div class="input-50" >
                         <label class="input-label">Requested On:</label>

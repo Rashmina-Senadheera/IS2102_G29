@@ -21,8 +21,8 @@ if (isset($_GET['id'])) {
         $hours = $general_details['hours'];
         $urgency = $general_details['urgency'];
         $no_of_participants = $general_details['no_of_participants'];
-        
         $psId = $general_details['psId'];
+        $ep_id = $general_details['EP_id'];
         
         
         // $type = $general_details['type'];
@@ -173,7 +173,7 @@ if (isset($_GET['id'])) {
                         <button type="button" id="btnDecline" class="rejected" style="margin-left: 0;">
                             Decline
                         </button>
-                        <a href="SendEventPlannerQuote.php">
+                        <a href="SendEventPlannerQuote.php?id=<?php echo $id;?>">
                             <button type="button" class="accepted" style="margin-left: 0;">
                                 Send Quotation
                             </button>
