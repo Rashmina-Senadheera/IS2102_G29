@@ -84,7 +84,8 @@ $supplier_id = mysqli_real_escape_string($conn,$_GET['supplier_id']);
                 </header>
                 <div class="chat-box">
                     <div class="no_message">
-                        No Messages
+                        <img class="select_user" src="../../images/chat/select_user.png">
+                        <label>Please select a user</label>
                     </div>
                 </div>
                 <form action="" class="typing-area" autocomplete="off" >

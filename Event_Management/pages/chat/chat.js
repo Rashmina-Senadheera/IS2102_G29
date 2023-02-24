@@ -3,7 +3,8 @@ chatBox = document.querySelector(".chat-box"),
 inputField = document.querySelector(".input-field"),
 sendBtn = document.querySelector(".send_btn"),
 incoming_id = document.querySelector(".incoming_id").value.trim(),
-no_msg = document.querySelector(".no_message");
+no_msg = document.querySelector(".no_message"),
+close_btn = document.querySelector(".back-icon");
 
 
 form.onsubmit = (e)=>{
@@ -77,7 +78,12 @@ function scrollToBottom(){
 }
 
 
-        
+close_btn.onclick = ()=>{
+    document.getElementById("incoming_id").value= " ";
+    document.getElementById("name").innerHTML = " ";
+
+
+}       
         
 
 
