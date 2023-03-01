@@ -12,6 +12,7 @@ require_once './controllers/getRequestDetails.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../css/eventPlannerMain.css">
     <link rel="stylesheet" href="../../css/formEP.css">
+    <script type="text/javascript" src="../../js/sendCustomerQuotation_ep.js"></script>
 </head>
 
 <body>
@@ -119,11 +120,11 @@ require_once './controllers/getRequestDetails.php';
                         <div class='input'>
                             <label class='input-label'>Supplier Quotations related to this event:</label>
                             <table>
-                                <tr>
+                                <tr onClick='setVenueCost(`Bravo Event Productions`, `154000.00`)'>
                                     <td>Bravo Event Productions</td>
                                     <td>Rs. 154,000.00</td>
                                 </tr>
-                                <tr>
+                                <tr onClick='setVenueCost(`Bandu River Hotel`, `142000.00`)'>
                                     <td>Bandu River Hotel</td>
                                     <td>Rs. 142,000.00</td>
                                 </tr>
@@ -200,21 +201,27 @@ require_once './controllers/getRequestDetails.php';
                 <div class="row">
                     <div class="input">
                         <label class="input-label">Event Planner's Cost</label>
-                        <input type="text" class="input-field" name="packageName" placeholder="Cost" />
+                        <input id="epCost" onkeyup="changeTotal()" onchange="changeTotal()" value="0" type="number" class="input-field" name="packageName" placeholder="Cost" />
                     </div>
                     <div class="row">
                         <div class="input">
                             <label class="input-label">Venue</label>
-                            <input type="text" class="input-field" name="packageName" placeholder="Supplier Name / Product Name" />
-                            <input type="text" class="input-field" name="packageName" placeholder="Cost" style="margin-top: 5px;" />
+                            <input id="venueName" type="text" class="input-field" name="packageName" placeholder="Supplier Name / Product Name" />
+                            <input id="venueCost" onkeyup="calcTotalCost()" onchange="calcTotalCost()" value="0" type="number" class="input-field" name="packageName" placeholder="Cost" style="margin-top: 5px;" />
 
                         </div>
                     </div>
                     <div class="row">
                         <div class="input">
                             <label class="input-label">Food & Beverages</label>
-                            <input type="text" class="input-field" name="packageName" placeholder="Supplier Name / Product Name" />
-                            <input type="text" class="input-field" name="packageName" placeholder="Cost" style="margin-top: 5px;" />
+                            <input id="foodBevName" type="text" class="input-field" name="packageName" placeholder="Supplier Name / Product Name" />
+                            <input id="foodBevCost" onkeyup="calcTotalCost()" onchange="calcTotalCost()" value="0" type="number" class="input-field" name="packageName" placeholder="Cost" style="margin-top: 5px;" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input">
+                            <label class="input-label">Total Cost</label>
+                            <input id="totalCost" type="text" class="input-field" name="packageName" readonly/>
                         </div>
                     </div>
                     <div class="row">
