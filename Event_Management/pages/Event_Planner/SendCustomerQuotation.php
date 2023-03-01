@@ -1,7 +1,6 @@
 <?php
-include('eventplanner_sidenav.php');
-include('eventplanner_header.php');
 include('../controllers/commonFunctions.php');
+require_once './controllers/getRequestDetails.php';
 ?>
 
 <!DOCTYPE html>
@@ -26,95 +25,172 @@ include('../controllers/commonFunctions.php');
                 <div class="row">
                     <div class="input-50">
                         <label class="input-label">Requested On:</label>
-                        <div class="input-value">2022-05-01</div>
+                        <div class="input-value"><?php echo $requested_on ?></div>
                     </div>
                     <div class="input-50">
                         <label class="input-label">Event Type:</label>
-                        <div class="input-value">Wedding</div>
+                        <div class="input-value"><?php echo $event_type ?></div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-50">
                         <label class="input-label">Participants:</label>
-                        <div class="input-value">170</div>
+                        <div class="input-value"><?php echo $no_of_guests ?></div>
                     </div>
                     <div class="input-50">
                         <label class="input-label">Theme:</label>
-                        <div class="input-value">Classic</div>
+                        <div class="input-value"><?php echo $theme ?></div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-50">
                         <label class="input-label">Tentative Date:</label>
-                        <div class="input-value">2022-07-15</div>
+                        <div class="input-value"><?php echo $date ?></div>
                     </div>
                     <div class="input-50">
-                        <label class="input-label">Budget:</label>
-                        <div class="input-value">Rs. 560,000</div>
+                        <label class="input-label">Budget (Rs.):</label>
+                        <div class="input-value"><?php echo "$budget1 $budget2" ?></div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-50">
                         <label class="input-label">Time:</label>
-                        <div class="input-value">10:00 AM</div>
+                        <div class="input-value"><?php echo "$time_from - $time_to" ?></div>
                     </div>
                 </div>
             </div>
 
-            <div class="formSection">Venue
-                <div class="row">
-                    <div class="input-50">
-                        <label class="input-label">Type:</label>
-                        <div class="input-value">Banquet Hall</div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input input-background">
-                        <label class="input-label">Remarks:</label>
-                        <div class="input-value">We want a hall that looks good on the outside as well. And the seats should be comfortable.</div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input">
-                        <label class="input-label">Supplier Quotations related to this event:</label>
-                        <table>
-                            <tr>
-                                <td>Bravo Event Productions</td>
-                                <td>Rs. 154,000.00</td>
-                            </tr>
-                            <tr>
-                                <td>Bandu River Hotel</td>
-                                <td>Rs. 142,000.00</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
+            <?php
+            if ($result_food->num_rows > 0) {
+                $food_row = $result_food->fetch_assoc();
+                $food_available_in = $food_row['available_in'];
+                $food_available_at = $food_row['available_at'];
+                $food_preferences = $food_row['preferences'];
+                $food_remarks = !empty($food_row['remarks']) ? $food_row['remarks'] : "No remarks";
 
-            <div class="formSection">Food & Beverages
-                <div class="row">
-                    <div class="input-50">
-                        <label class="input-label">Need as:</label>
-                        <div class="input-value">Buffet</div>
+                echo "
+                <div class='formSection'>Food & Beverages
+                    <div class='row'>
+                        <div class='input-50'>
+                            <label class='input-label'>Need as:</label>
+                            <div class='input-value'>$food_available_in</div>
+                        </div>
+                        <div class='input-50'>
+                            <label class='input-label'>Need for:</label>
+                            <div class='input-value'>$food_available_at</div>
+                        </div>
                     </div>
-                    <div class="input-50">
-                        <label class="input-label">Need for:</label>
-                        <div class="input-value">Lunch</div>
+                    <div class='row'>
+                        <div class='input-50'>
+                            <label class='input-label'>Preferences:</label>
+                            <div class='input-value'>$food_preferences</div>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='input input-background'>
+                            <label class='input-label'>Remarks:</label>
+                            <div class='input-value'>$food_remarks</div>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="input-50">
-                        <label class="input-label">Preferences:</label>
-                        <div class="input-value">Non Veg</div>
+                ";
+            }
+
+            if ($result_venue->num_rows > 0) {
+                $venue_row = $result_venue->fetch_assoc();
+                $venue_type = $venue_row['venue'];
+                $venue_remarks = !empty($venue_row['remarks']) ? $venue_row['remarks'] : "No remarks";
+
+                echo "
+                <div class='formSection'>Venue
+                    <div class='row'>
+                        <div class='input-50'>
+                            <label class='input-label'>Type:</label>
+                            <div class='input-value'>$venue_type</div>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='input input-background'>
+                            <label class='input-label'>Remarks:</label>
+                            <div class='input-value'>$venue_remarks</div>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='input'>
+                            <label class='input-label'>Supplier Quotations related to this event:</label>
+                            <table>
+                                <tr>
+                                    <td>Bravo Event Productions</td>
+                                    <td>Rs. 154,000.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Bandu River Hotel</td>
+                                    <td>Rs. 142,000.00</td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="input input-background">
-                        <label class="input-label">Remarks:</label>
-                        <div class="input-value">Grilled chicken salad with mixed greens, cherry tomatoes, cucumbers, and a honey mustard dressing.</div>
+                ";
+            }
+
+            if ($result_pv->num_rows > 0) {
+                $pv_row = $result_pv->fetch_assoc();
+                $pv_photoPref = !empty($pv_row['photo_pref']) ? $pv_row['photo_pref'] : "Not Set";
+                $pv_videoPref = !empty($pv_row['video_pref']) ? $pv_row['video_pref'] : "Not Set";
+                $pv_remarks = !empty($pv_row['remarks']) ? $pv_row['remarks'] : "No remarks";
+
+                echo "
+                <div class='formSection'>Photography & Videography
+                    <div class='row'>
+                        <div class='input-50'>
+                            <label class='input-label'>Photography:</label>
+                            <div class='input-value'>$pv_photoPref</div>
+                        </div>
+                        <div class='input-50'>
+                            <label class='input-label'>Videography:</label>
+                            <div class='input-value'>$pv_videoPref</div>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='input input-background'>
+                            <label class='input-label'>Remarks:</label>
+                            <div class='input-value'>$pv_remarks</div>
+                        </div>
                     </div>
                 </div>
-            </div>
+                ";
+            }
+
+            if ($result_sl->num_rows > 0) {
+                $sl_row = $result_sl->fetch_assoc();
+                $sl_sound = !empty($sl_row['sound_type']) ? $sl_row['sound_type'] : "Not Set";
+                $sl_light = !empty($sl_row['light_type']) ? $sl_row['light_type'] : "Not Set";
+                $sl_remarks = !empty($sl_row['remarks']) ? $sl_row['remarks'] : "No remarks";
+
+                echo "
+                <div class='formSection'>Sound & Lighting
+                    <div class='row'>
+                        <div class='input-50'>
+                            <label class='input-label'>Sound Type:</label>
+                            <div class='input-value'>$sl_sound</div>
+                        </div>
+                        <div class='input-50'>
+                            <label class='input-label'>Light Type:</label>
+                            <div class='input-value'>$sl_light</div>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='input input-background'>
+                            <label class='input-label'>Remarks:</label>
+                            <div class='input-value'>$food_remarks</div>
+                        </div>
+                    </div>
+                </div>
+                ";
+            }
+            ?>
+
         </div>
 
         <div class="form-card scrollable">

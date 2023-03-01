@@ -1,72 +1,5 @@
 <?php
-if (isset($_GET['reqID'])) {
-    // Start output buffering
-    ob_start();
-
-    include('eventplanner_sidenav.php');
-    include('eventplanner_header.php');
-
-    $reqID = $_GET['reqID'];
-    $sql = "SELECT * FROM request_ep_quotation WHERE request_id = $reqID";
-
-    // execute query and check if successful
-    if ($result = $conn->query($sql)) {
-        if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-
-            // check if the user is the owner of the package
-            if ($row['EP_id'] == $_SESSION['user_id']) {
-                $date = !empty($row['date']) ? $row['date'] : "Not Set";
-                $description = !empty($row['description']) ? $row['description'] : "Not Set";
-                $theme = !empty($row['theme']) ? $row['theme'] : "Not Set";
-                $catering_type = !empty($row['catering_type']) ? $row['catering_type'] : "Not Set";
-                $event_type = !empty($row['event_type']) ? $row['event_type'] : "Not Set";
-                $vanue_type = !empty($row['vanue_type']) ? $row['vanue_type'] : "Not Set";
-                $no_of_guests = !empty($row['no_of_guests']) ? $row['no_of_guests'] : "Not Set";
-                $status = !empty($row['status']) ? $row['status'] : "Not Set";
-                $time_from = !empty($row['time_from']) ? $row['time_from'] : "Not Set";
-                $time_to = !empty($row['time_to']) ? $row['time_to'] : "Not Set";
-                $budget1 = !empty($row['budget_min']) ? $row['budget_min'] : "0";
-                $budget2 = !empty($row['budget_max']) ? "- " . $row['budget_max'] : " ";
-                $requested_on = $row['requested_on'];
-
-                $getUser_sql = "SELECT `name`, `email` FROM user WHERE user_id = " . $row['customer_id'];
-                $getPhone_sql = "SELECT phone_number FROM user_phone WHERE user_id = " . $row['customer_id'];
-
-                $getUser_result = $conn->query($getUser_sql);
-                $getPhone_result = $conn->query($getPhone_sql);
-
-                if ($getUser_result->num_rows > 0) {
-                    $user_row = $getUser_result->fetch_assoc();
-                    $name = $user_row['name'];
-                    $email = $user_row['email'];
-                } else {
-                    $name = "Undefined";
-                    $email = "Undefined";
-                }
-
-                if ($getPhone_result->num_rows > 0) {
-                    $phone_row = $getPhone_result->fetch_assoc();
-                    $phone = $phone_row['phone_number'];
-                } else {
-                    $phone = "Undefined";
-                }
-            } else {
-                header("Location: ./403.php");
-                exit();
-            }
-        } else {
-            header("Location: ./404.php");
-            exit();
-        }
-    }
-
-    // Send the output buffer to the browser and turn off output buffering
-    ob_end_flush();
-} else {
-    header("Location: Requests.php");
-    exit();
-}
+require_once './controllers/getRequestDetails.php';
 ?>
 
 <!DOCTYPE html>
@@ -153,43 +86,127 @@ if (isset($_GET['reqID'])) {
             <div class="other">
                 <div class="info">
                     <div class="personal-info">
-                        <div class="personal-info-heading">
-                            Venue
-                        </div>
-                        <div class="prof-all">
-                            <div class="prof-name">Type:</div>
-                            <div class="prof-data">Banquet Hall</div>
-                        </div>
-                        <div class="prof-all">
-                            <div class="prof-name">Remarks:</div>
-                            <div class="prof-data">We want a hall that looks good on the outside as well. And the seats should be comfortable.</div>
-                        </div>
 
-                        <div class="personal-info-heading">
-                            Food & Beverages
-                        </div>
-                        <div class="prof-all">
-                            <div class="prof-name">Need as:</div>
-                            <div class="prof-data">Buffet</div>
-                        </div>
-                        <div class="prof-all">
-                            <div class="prof-name">Need for:</div>
-                            <div class="prof-data">Lunch</div>
-                        </div>
-                        <div class="prof-all">
-                            <div class="prof-name">Preferences:</div>
-                            <div class="prof-data">Non Veg</div>
-                        </div>
-                        <div class="prof-all">
-                            <div class="prof-name">Remarks:</div>
-                            <div class="prof-data">Grilled chicken salad with mixed greens, cherry tomatoes, cucumbers, and a honey mustard dressing.</div>
-                        </div>
+                        <?php
+                        if ($result_food->num_rows > 0) {
+                            $food_row = $result_food->fetch_assoc();
+                            $food_available_in = $food_row['available_in'];
+                            $food_available_at = $food_row['available_at'];
+                            $food_preferences = $food_row['preferences'];
+                            $food_remarks = !empty($food_row['remarks']) ? $food_row['remarks'] : "No remarks";
+
+                            echo "
+                            <div class='row'>
+                                <div class='personal-info-heading'>
+                                    Food & Beverages
+                                </div>
+                                <a href='Suppliers.php?type=foodbev'>Find Suppliers</a>
+                            </div>
+                            <div class='prof-all'>
+                                <div class='prof-name'>Available In:</div>
+                                <div class='prof-data'>$food_available_in</div>
+                            </div>
+                            <div class='prof-all'>
+                                <div class='prof-name'>Available At:</div>
+                                <div class='prof-data'>$food_available_at</div>
+                            </div>
+                            <div class='prof-all'>
+                                <div class='prof-name'>Preferences:</div>
+                                <div class='prof-data'>$food_preferences</div>
+                            </div>
+                            <div class='prof-all'>
+                                <div class='prof-name'>Remarks:</div>
+                                <div class='prof-data'>$food_remarks</div>
+                            </div>
+                            ";
+                        }
+
+                        if ($result_venue->num_rows > 0) {
+                            $venue_row = $result_venue->fetch_assoc();
+                            $venue_type = $venue_row['venue'];
+                            $venue_remarks = !empty($venue_row['remarks']) ? $venue_row['remarks'] : "No remarks";
+
+                            echo "
+                            <div class='row'>
+                                <div class='personal-info-heading'>
+                                    Venue
+                                </div>
+                                <a href='Suppliers.php?type=venue'>Find Suppliers</a>
+                            </div>
+                            <div class='prof-all'>
+                                <div class='prof-name'>Type:</div>
+                                <div class='prof-data'>$venue_type</div>
+                            </div>
+                            <div class='prof-all'>
+                                <div class='prof-name'>Remarks:</div>
+                                <div class='prof-data'>$venue_remarks</div>
+                            </div>
+                            ";
+                        }
+
+                        if ($result_pv->num_rows > 0) {
+                            $pv_row = $result_pv->fetch_assoc();
+                            $pv_photoPref = !empty($pv_row['photo_pref']) ? $pv_row['photo_pref'] : "Not Set";
+                            $pv_videoPref = !empty($pv_row['video_pref']) ? $pv_row['video_pref'] : "Not Set";
+                            $pv_remarks = !empty($pv_row['remarks']) ? $pv_row['remarks'] : "No remarks";
+
+                            echo "
+                            <div class='row'>
+                                <div class='personal-info-heading'>
+                                    Photography & Videography
+                                </div>
+                                <a href='Suppliers.php?type=pv'>Find Suppliers</a>
+                            </div>
+                            <div class='prof-all'>
+                                <div class='prof-name'>Photography:</div>
+                                <div class='prof-data'>$pv_photoPref</div>
+                            </div>
+                            <div class='prof-all'>
+                                <div class='prof-name'>Videography:</div>
+                                <div class='prof-data'>$pv_videoPref</div>
+                            </div>
+                            <div class='prof-all'>
+                                <div class='prof-name'>Remarks:</div>
+                                <div class='prof-data'>$pv_remarks</div>
+                            </div>
+                            ";
+                        }
+
+                        if ($result_sl->num_rows > 0) {
+                            $sl_row = $result_sl->fetch_assoc();
+                            $sl_sound = !empty($sl_row['sound_type']) ? $sl_row['sound_type'] : "Not Set";
+                            $sl_light = !empty($sl_row['light_type']) ? $sl_row['light_type'] : "Not Set";
+                            $sl_remarks = !empty($sl_row['remarks']) ? $sl_row['remarks'] : "No remarks";
+
+                            echo "
+                            <div class='row'>
+                                <div class='personal-info-heading'>
+                                    Sound & Lighting
+                                </div>
+                                <a href='Suppliers.php?type=sl'>Find Suppliers</a>
+                            </div>
+                            <div class='prof-all'>
+                                <div class='prof-name'>Sound Type:</div>
+                                <div class='prof-data'>$sl_sound</div>
+                            </div>
+                            <div class='prof-all'>
+                                <div class='prof-name'>Light Type:</div>
+                                <div class='prof-data'>$sl_light</div>
+                            </div>
+                            <div class='prof-all'>
+                                <div class='prof-name'>Remarks:</div>
+                                <div class='prof-data'>$sl_remarks</div>
+                            </div>
+                            ";
+                        }
+                        ?>
+
                     </div>
                     <div class="actionBtn">
                         <button type="button" id="btnDecline" class="rejected" style="margin-left: 0;">
                             Decline
                         </button>
-                        <a href="SendCustomerQuotation.php">
+                        <a href=<?php echo "SendCustomerQuotation.php?reqID=" . $reqID; ?>>
                             <button type="button" class="accepted" style="margin-left: 0;">
                                 Send Quotation
                             </button>
