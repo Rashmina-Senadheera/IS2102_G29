@@ -40,7 +40,15 @@ include('../controllers/commonFunctions.php');
                 <?php
                 if (isset($_GET['type'])) {
                     $type = $_GET['type'];
-                    $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = '$type'";
+                    if ($type == "foodbev") {
+                        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = 'food' OR `type` = 'beverage'";
+                    } else if ($type == "pv") {
+                        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = 'photography' OR `type` = 'videography'";
+                    } else if ($type == "sl") {
+                        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = 'lighting' OR `type` = 'sound'";
+                    } else {
+                        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = '$type'";
+                    }
                 } else {
                     $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general";
                 }
