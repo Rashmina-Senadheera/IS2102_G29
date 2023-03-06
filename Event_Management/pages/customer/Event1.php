@@ -11,7 +11,6 @@ $sql = "SELECT * FROM events_c WHERE id=?";
             $row = $stmt->fetch();
         }
 ?>
-?>
 
 <!DOCTYPE html>
 <html>
@@ -25,11 +24,33 @@ $sql = "SELECT * FROM events_c WHERE id=?";
 
 </style>
 </head>
+</head>
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "eventra";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$id = $_GET['id'];
+$sql = "select * from quotation where id = '$id'";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc()
+
+?>
+
 <body>
+    
     <div class="grid-container-payments">
         <div class="gridSearch">
             <div class="searchSec">
-                <div class="page-title"> Gihani's Wedding Day </div>
+                <div class="page-title"><?php echo $row['eventtype'] ?></div>
                 <div class="input-container">
                 </div>
             </div>
@@ -38,13 +59,14 @@ $sql = "SELECT * FROM events_c WHERE id=?";
                 <div class="info">
                     <div class="personal-info">
                         <center><img src="../../images/event.jpg" style="width:550px; height:300px;"></center><br>
-                        <center>We don’t want you to wait for information, to compromise your dream, to apologise to family and friends for the quality of ceremony music or the food not being delicious.</center><br><br>
-                        <center><b>Event Planner:</b> <?php echo $row['name']; ?><br>
-                                <b>Event Type:</b> Wedding<br>
-                                <b>Theme:</b> Garden<br>
-                                <b>Date:</b> 2022-01-01<br><br>
-                        <a href="Events.php"><button type="submit" class="srcButton"  data-inline="true">Back</button></a>
-                        <a href="Feedback.php?name= <?php echo $row['name'] ?>"><button type="submit" class="srcButton"  data-inline="true">Give FeedBack</button></a></center>
+                        <center><?php echo $row['info'] ?></center><br><br>
+                        <center><b>Event Planner:</b><?php echo $row['planner_name'] ?><br>
+                                <b>Event Type:</b><?php echo $row['event_type'] ?><br>
+                                <b>Theme:</b> <?php echo $row['venue'] ?><br>
+                                <b>Date:</b> <?php echo $row['date_from'] ?><br><br>
+                        <a href="CompletedEvents.php"><button type="submit" class="srcButton"  data-inline="true">Back</button></a>
+                        <a href="Feedback.php?name= "><button type="submit" class="srcButton"  data-inline="true">Give FeedBack</button></a></center> 
+                        
                     </div>
                 </div>
             </div>
