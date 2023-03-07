@@ -11,6 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     $psTitle = isset($_POST['psTitle']) ? checkInput($_POST['psTitle']) : "";
     $psType = isset($_POST['psType']) ? checkInput($_POST['psType']) : "";
     $supplierId = isset($_POST['supplierId']) ? checkInput($_POST['supplierId']) : "";
+    $forCusReq = isset($_POST['quotation_for']) ? checkInput($_POST['quotation_for']) : "0";
     $date = isset($_POST['date']) ? checkInput($_POST['date']) : "";
     $eventType = isset($_POST['eventType']) ? checkInput($_POST['eventType']) : "";
     $no_of_participants = isset($_POST['no_of_participants']) ? checkInput($_POST['no_of_participants']) : "";
@@ -49,12 +50,12 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         isset($_SESSION['error-date']) ||
         isset($_SESSION['error-eventType'])
     ) {
-        // echo "<script> history.back(); </script>";
+        echo "<script> history.back(); </script>";
     } else {
         $now = date("Y-m-d H:i:s");
         $sql = "INSERT INTO request_supplier_quotation 
-        (psId, `date`, event_type, no_of_participants, `location`, catered_for, transport, bev_need_as, food_need_as, need_for, location_from, location_to, `hours`, theme, photographs_in, needs, perform_in, remarks, supplierId, urgency, requested_on, EP_id, `status`, product_type, product_title) 
-        VALUES ('$psId', '$date', '$eventType', '$no_of_participants', '$location', '$catered_for', '$transport', '$bev_need_as', '$food_need_as', '$need_for', '$location_from', '$location_to', '$hours', '$theme', '$photographs_in', '$needs', '$perform_in', '$remarks', '$supplierId', 'Normal', '$now', '$_SESSION[user_id]', 'Pending', '$psType', '$psTitle')";
+        (psId, `date`, event_type, no_of_participants, `location`, catered_for, transport, bev_need_as, food_need_as, need_for, location_from, location_to, `hours`, theme, photographs_in, needs, perform_in, remarks, supplierId, urgency, requested_on, EP_id, `status`, product_type, product_title, for_cus_req) 
+        VALUES ('$psId', '$date', '$eventType', '$no_of_participants', '$location', '$catered_for', '$transport', '$bev_need_as', '$food_need_as', '$need_for', '$location_from', '$location_to', '$hours', '$theme', '$photographs_in', '$needs', '$perform_in', '$remarks', '$supplierId', 'Normal', '$now', '$_SESSION[user_id]', 'Pending', '$psType', '$psTitle', '$forCusReq')";
 
         if($conn->query($sql) === TRUE) {
             $_SESSION['success'] = "Quotation Request sent successfully";

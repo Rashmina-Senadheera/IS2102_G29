@@ -100,7 +100,7 @@ require_once './controllers/getRequestDetails.php';
                                 <div class='personal-info-heading'>
                                     Food & Beverages
                                 </div>
-                                <a href='Suppliers.php?type=foodbev'>Find Suppliers</a>
+                                <a href='Suppliers.php?type=foodbev&reqID=$reqID'>Find Suppliers</a>
                             </div>
                             <div class='prof-all'>
                                 <div class='prof-name'>Available In:</div>
@@ -131,7 +131,7 @@ require_once './controllers/getRequestDetails.php';
                                 <div class='personal-info-heading'>
                                     Venue
                                 </div>
-                                <a href='Suppliers.php?type=venue'>Find Suppliers</a>
+                                <a href='Suppliers.php?type=venue&reqID=$reqID'>Find Suppliers</a>
                             </div>
                             <div class='prof-all'>
                                 <div class='prof-name'>Type:</div>
@@ -155,7 +155,7 @@ require_once './controllers/getRequestDetails.php';
                                 <div class='personal-info-heading'>
                                     Photography & Videography
                                 </div>
-                                <a href='Suppliers.php?type=pv'>Find Suppliers</a>
+                                <a href='Suppliers.php?type=pv&reqID=$reqID'>Find Suppliers</a>
                             </div>
                             <div class='prof-all'>
                                 <div class='prof-name'>Photography:</div>
@@ -183,7 +183,7 @@ require_once './controllers/getRequestDetails.php';
                                 <div class='personal-info-heading'>
                                     Sound & Lighting
                                 </div>
-                                <a href='Suppliers.php?type=sl'>Find Suppliers</a>
+                                <a href='Suppliers.php?type=sl&reqID=$reqID'>Find Suppliers</a>
                             </div>
                             <div class='prof-all'>
                                 <div class='prof-name'>Sound Type:</div>

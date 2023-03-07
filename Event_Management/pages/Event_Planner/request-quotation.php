@@ -9,6 +9,10 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {
     // redirect to suppliers page
     echo "<script>window.location.href = 'Suppliers.php'</script>";
 } else {
+    // get reqID from cookie
+    $reqID = $_COOKIE['quotation_for'];
+
+    // get the product or service details
     $psId = $_GET['id'];
     $sql = "SELECT `title`, `type`, `supplier_ID` FROM sup_product_general WHERE `product_id` = " . $psId;
     $result = mysqli_query($conn, $sql);
@@ -41,11 +45,12 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {
                 <div class="searchSec">
                     <div class="page-title">Request Quotation for <?php echo $psTitle ?></div>
                 </div>
-                <form action="controllers/sendQuotation.php" method="POST">
+                <form action="controllers/sendQuotationRequest.php" method="POST">
                     <input type="hidden" name="psId" value="<?php echo $psId ?>">
                     <input type="hidden" name="psTitle" value="<?php echo $psTitle ?>">
                     <input type="hidden" name="psType" value="<?php echo $psType ?>">
                     <input type="hidden" name="supplierId" value="<?php echo $supplierId ?>">
+                    <input type="hidden" name="quotation_for" value="<?php echo $reqID ?>">
                     <div class="form-description"></div>
                     <div class="row">
                         <div class="input width-50">

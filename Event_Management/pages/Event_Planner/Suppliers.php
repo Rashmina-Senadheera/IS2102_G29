@@ -1,9 +1,3 @@
-<?php
-include('eventplanner_sidenav.php');
-include('eventplanner_header.php');
-include('../controllers/commonFunctions.php');
-?>
-
 <!DOCTYPE html>
 <html>
 
@@ -17,8 +11,26 @@ include('../controllers/commonFunctions.php');
 </head>
 
 <body>
-    <!-- Show success message -->
     <?php
+    // Start output buffering
+    ob_start();
+
+    include('eventplanner_sidenav.php');
+    include('eventplanner_header.php');
+    include('../controllers/commonFunctions.php');
+
+    // get the request id if it is set
+    if (isset($_GET['reqID'])) {
+        $reqID = $_GET['reqID'];
+        setcookie("quotation_for", $reqID);
+    } else {
+        setcookie("quotation_for", 0);
+    }
+
+    // Send the output buffer to the browser and turn off output buffering
+    ob_end_flush();
+
+    // Show success message if it is set
     if (isset($_SESSION['success'])) {
         echo '<div class="success-message">' . showSessionMessage("success") . '</div>';
     }

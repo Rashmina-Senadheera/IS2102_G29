@@ -1,4 +1,4 @@
-<?php 
+<?php
 if (isset($_GET['reqID'])) {
     // Start output buffering
     ob_start();
@@ -7,7 +7,6 @@ if (isset($_GET['reqID'])) {
     include('eventplanner_header.php');
 
     $reqID = $_GET['reqID'];
-    setcookie("current_request", $reqID);
     $sql = "SELECT * FROM request_ep_quotation WHERE request_id = $reqID";
 
     // execute query and check if successful
@@ -80,3 +79,4 @@ if (isset($_GET['reqID'])) {
     header("Location: Requests.php");
     exit();
 }
+?>
