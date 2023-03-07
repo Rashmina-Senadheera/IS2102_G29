@@ -89,6 +89,6 @@ include('eventplanner_header.php');
     </div>
 
 </body>
-<script src="../js/sortTable.js"></script>
+<script src="../../js/sortTable.js"></script>
 
 </html>

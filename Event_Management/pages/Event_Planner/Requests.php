@@ -27,11 +27,6 @@ include('../controllers/commonFunctions.php');
         <div class="gridSearch">
             <div class="searchSec">
                 <div class="page-title"> Quotation Requests </div>
-                <!-- <div class="input-container">
-                    <input class="input-field" type="text" placeholder="Search suppliers" name="search">
-                    <i class="fa fa-search icon"></i>
-                </div>
-                <button type="submit" class="srcButton">Search</button> -->
             </div>
         </div>
         <div class="gridMain">
@@ -54,31 +49,6 @@ include('../controllers/commonFunctions.php');
                             <th onclick="sortTable(6)">Budget (Rs.)</th>
                         </tr>
                     </thead>
-                    <!-- <tr>
-                        <td onclick="window.location='Request-view.php';">1</td>
-                        <td onclick="window.location='Request-view.php';">2022-05-01</td>
-                        <td onclick="window.location='Request-view.php';">Wedding</td>
-                        <td onclick="window.location='Request-view.php';">170</td>
-                        <td onclick="window.location='Request-view.php';">Classic</td>
-                        <td onclick="window.location='Request-view.php';">2022-07-15</td>
-                        <td onclick="window.location='Request-view.php';">Rs. 560,000</td>
-                        <td class="tCenter menu">&#10247
-                            <ul>
-                                <li>
-                                    <a href="Request-view.php">View</a>
-                                </li>
-                                <li>
-                                    <a href="SendCustomerQuotation.php">Send Quotation</a>
-                                </li>
-                                <li>
-                                    <a href="#">Message Customer</a>
-                                </li>
-                                <li>
-                                    <button type="button" id="btnDecline" class="destructive">Decline</button>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr> -->
                 <?php
                     while ($row = mysqli_fetch_assoc($result)) {
                         $request_id = !empty($row['request_id']) ? $row['request_id'] : "Not Set";
@@ -99,7 +69,6 @@ include('../controllers/commonFunctions.php');
                         echo "<td onclick='requestView($request_id)'>$theme</td>";
                         echo "<td onclick='requestView($request_id)'>$date</td>";
                         echo "<td onclick='requestView($request_id)'>$budget1 $budget2</td>";
-
 
                         echo '<td class="tCenter menu">&#10247
                                 <ul>
@@ -159,42 +128,7 @@ include('../controllers/commonFunctions.php');
     <!-- </div> -->
 
 </body>
-<script src="../js/sortTable.js"></script>
-<script>
-    // Get the modal
-    var modal = document.getElementById("myModal");
-
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-
-    // Request view
-    requestView = (requestID) => {
-        window.location = "Request-view.php?reqID=" + requestID
-    }
-
-    closeModal = () => {
-        document.getElementById("modal_request_id").value = "";
-        document.getElementById("modal_customer_id").value = "";
-        modal.style.display = "none";
-    }
-    // Decline request
-    declineRequest = (requestID, customerID) => {
-        document.getElementById("modal_request_id").value = requestID;
-        document.getElementById("modal_customer_id").value = customerID;
-        modal.style.display = "block";
-    }
-</script>
+<script src="../../js/sortTable.js"></script>
+<script src="../../js/epHandleCusReq.js"></script>
 
 </html>

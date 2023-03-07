@@ -30,7 +30,8 @@ if (isset($_GET['reqID'])) {
                 $budget2 = !empty($row['budget_max']) ? "- " . $row['budget_max'] : " ";
                 $requested_on = $row['requested_on'];
 
-                $getUser_sql = "SELECT `name`, `email` FROM user WHERE user_id = " . $row['customer_id'];
+                $customerID = $row['customer_id'];
+                $getUser_sql = "SELECT `name`, `email` FROM user WHERE user_id = " . $customerID;
                 $getPhone_sql = "SELECT phone_number FROM user_phone WHERE user_id = " . $row['customer_id'];
 
                 $getUser_result = $conn->query($getUser_sql);
