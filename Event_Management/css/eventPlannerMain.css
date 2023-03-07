@@ -463,6 +463,13 @@ label {
     width: 100%;
 }
 
+.modal-body .decline-reason {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
 .modal-footer {
     padding: 2px 16px;
     background-color: var(--mainColor);

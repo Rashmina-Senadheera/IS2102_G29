@@ -38,7 +38,7 @@ include('../controllers/commonFunctions.php');
             <table id="tableToSort" class="ep-table">
 
                 <?php
-                $sql = "SELECT * FROM request_ep_quotation";
+                $sql = "SELECT * FROM request_ep_quotation WHERE status = 'pending'";
                 $result = mysqli_query($conn, $sql);
                 // if (true) {
                 if (mysqli_num_rows($result) > 0) {
@@ -113,7 +113,7 @@ include('../controllers/commonFunctions.php');
                                             <a href="Messages.php">Message Customer</a>
                                         </li>
                                         <li>
-                                        <button type="button" onclick="declineRequest(' . $request_id . ')" class="destructive">Decline</button>
+                                        <button type="button" onclick="declineRequest(' . $request_id . ', ' . $customer_id . ')" class="destructive">Decline</button>
                                         </li>
                                     </ul>
                                 </td>';
@@ -137,14 +137,22 @@ include('../controllers/commonFunctions.php');
                 Are you sure you want to decline this request?
             </div>
             <div class="modal-body">
-                <div class="actionBtn">
-                    <button type="button" class="rejected" style="margin-left: 0;">
-                        Cancel
-                    </button>
-                    <button type="button" class="accepted" style="margin-left: 0;">
-                        Yes, Decline
-                    </button>
-                </div>
+                <form method="POST" action="./controllers/declineRequest.php">
+                    <div class="decline-reason">
+                        <input hidden type="text" name="request_id" id="modal_request_id">
+                        <input hidden type="text" name="customer_id" id="modal_customer_id">
+                        <label for="reason">Reason</label>
+                        <textarea id="reason" name="reason" rows="4" cols="50" required></textarea>
+                    </div>
+                    <div class="actionBtn">
+                        <button type="button" onclick="closeModal()" class="rejected" id="modal_cancel" style="margin-left: 0;">
+                            Cancel
+                        </button>
+                        <button type="submit" class="accepted" style="margin-left: 0;">
+                            Yes, Decline
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -176,8 +184,15 @@ include('../controllers/commonFunctions.php');
         window.location = "Request-view.php?reqID=" + requestID
     }
 
+    closeModal = () => {
+        document.getElementById("modal_request_id").value = "";
+        document.getElementById("modal_customer_id").value = "";
+        modal.style.display = "none";
+    }
     // Decline request
-    declineRequest = (requestID) => {
+    declineRequest = (requestID, customerID) => {
+        document.getElementById("modal_request_id").value = requestID;
+        document.getElementById("modal_customer_id").value = customerID;
         modal.style.display = "block";
     }
 </script>
