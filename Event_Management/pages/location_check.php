@@ -4,7 +4,7 @@ if (isset($_SESSION['role'])) {
     $role = $_SESSION['role'];
 } else { ?>
     <script>
-        location.replace('index.php');
+        location.replace('../index.php');
     </script>
 <?php
 }

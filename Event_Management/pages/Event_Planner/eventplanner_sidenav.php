@@ -7,7 +7,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['
         // do nothing
     } else {
         // redirect to unauthorized page
-        header('location: ' . SITEURL . 'Event_Planner/unauthorized.php');
+        header('location: ' . SITEURL . 'pages/Event_Planner/unauthorized.php');
         exit();
     }
 } else {
@@ -15,7 +15,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['
     unset($_SESSION['user_id']);
     unset($_SESSION['user_name']);
     // redirect to unauthorized page
-    header('location: ' . SITEURL . 'Event_Planner/unauthorized.php');
+    header('location: ' . SITEURL . 'pages/Event_Planner/unauthorized.php');
     exit();
 }
 ?>
@@ -47,12 +47,6 @@ if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['
                 <a href=<?php echo SITEURL . 'pages/event_planner/Messages.php'  ?>>
                     <i class='bx bx-chat'></i>
                     <span class="links_name">Messages</span>
-                </a>
-            </li>
-            <li>
-                <a href=<?php echo SITEURL . 'pages/event_planner/os-list.php'  ?>>
-                    <i class='bx bx-coin-stack'></i>
-                    <span class="links_name">Quotation Requests</span>
                 </a>
             </li>
             <li>

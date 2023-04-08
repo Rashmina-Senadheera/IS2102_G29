@@ -191,7 +191,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {
                             </div>
                             <div class="input width-50" id="hours">
                                 <label class="input-label">Hours</label>
-                                <input name="hours" type="number" class="input-field" placeholder="Approximately" required />
+                                <input name="hours" type="number" class="input-field" placeholder="Approximately" />
                             </div>
                         </div>
 
@@ -203,7 +203,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {
                             </div>
                             <div class="input width-50" id="hours">
                                 <label class="input-label">Hours</label>
-                                <input name="hours" type="number" class="input-field" placeholder="Approximately" required />
+                                <input name="hours" type="number" class="input-field" placeholder="Approximately" />
                             </div>
                         </div>
 
@@ -247,7 +247,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {
                         <div class="row">
                             <div class="input width-50" id="hours">
                                 <label class="input-label">Hours</label>
-                                <input name="hours" type="number" class="input-field" placeholder="Approximately" required />
+                                <input name="hours" type="number" class="input-field" placeholder="Approximately" />
                             </div>
                             <div class="input width-50 hide" id="theme">
                                 <label class="input-label">Theme <span>*</span></label>
@@ -291,7 +291,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {
                         <div class="row">
                             <div class="input width-50" id="hours">
                                 <label class="input-label">Hours</label>
-                                <input name="hours" type="number" class="input-field" placeholder="Approximately" required />
+                                <input name="hours" type="number" class="input-field" placeholder="Approximately" />
                             </div>
                         </div>
                         <div class="row" id='check'>

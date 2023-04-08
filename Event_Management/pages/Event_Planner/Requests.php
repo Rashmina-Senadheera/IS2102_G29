@@ -13,7 +13,8 @@ include('../controllers/commonFunctions.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../css/viewSuppliersEP.css">
     <link rel="stylesheet" href="../../css/filterEP.css">
-    <link rel="stylesheet" href="../../css/eventPlannerMain.css">
+    <!-- <link rel="stylesheet" href="../../css/eventPlannerMain.css"> -->
+    <link rel='stylesheet' href='../../css/req-list.css'>
 </head>
 
 <body>
@@ -29,106 +30,138 @@ include('../controllers/commonFunctions.php');
                 <div class="page-title"> Quotation Requests </div>
             </div>
         </div>
-        <div class="gridMain">
-            <table id="tableToSort" class="ep-table">
+        <div class="ps-list">
+            <div class='grid-main' id='rs-list'>
+                <div class="cards">
+                    <div class='ps-card-title' id='title'>
+                        <div class='rs-title t2'></div>
+                        <div class='rs-title'>Requested On</div>
+                        <div class='rs-title'>Event Type</div>
+                        <div class='rs-title'>Participants</div>
+                        <div class='rs-title'>Theme</div>
+                        <div class='rs-title'>Tentative Dates</div>
+                        <div class='rs-title'>Budget (Rs.)</div>
+                        <div class='rs-title t2'></div>
+                    </div>
 
-                <?php
-                $sql = "SELECT * FROM request_ep_quotation WHERE status = 'pending'";
-                $result = mysqli_query($conn, $sql);
-                // if (true) {
-                if (mysqli_num_rows($result) > 0) {
-                ?>
-                    <thead>
-                        <tr>
-                            <th onclick="sortTable(0)">Req. ID</th>
-                            <th onclick="sortTable(1)">Requested On</th>
-                            <th onclick="sortTable(2)">Event Type</th>
-                            <th>Participants</th>
-                            <th onclick="sortTable(4)">Theme</th>
-                            <th onclick="sortTable(5)">Tentative Dates</th>
-                            <th onclick="sortTable(6)">Budget (Rs.)</th>
-                        </tr>
-                    </thead>
-                <?php
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        $request_id = !empty($row['request_id']) ? $row['request_id'] : "Not Set";
-                        $reqdate = !empty($row['requested_on']) ? $row['requested_on'] : "Not Set";
-                        $event_type = !empty($row['event_type']) ? $row['event_type'] : "Not Set";
-                        $no_of_guests = !empty($row['no_of_guests']) ? $row['no_of_guests'] : "Not Set";
-                        $theme = !empty($row['theme']) ? $row['theme'] : "Not Set";
-                        $date = !empty($row['date']) ? $row['date'] : "Not Set";
-                        $budget1 = !empty($row['budget_min']) ? $row['budget_min'] : "0";
-                        $budget2 = !empty($row['budget_max']) ? "- " . $row['budget_max'] : " ";
-                        $customer_id = $row['customer_id'];
+                    <?php
+                    $sql = "SELECT * FROM request_ep_quotation WHERE status = 'pending'";
+                    $result = mysqli_query($conn, $sql);
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            $request_id = !empty($row['request_id']) ? $row['request_id'] : "Not Set";
+                            $reqdate = !empty($row['requested_on']) ? $row['requested_on'] : "Not Set";
+                            $event_type = !empty($row['event_type']) ? $row['event_type'] : "Not Set";
+                            $no_of_guests = !empty($row['no_of_guests']) ? $row['no_of_guests'] : "Not Set";
+                            $theme = !empty($row['theme']) ? $row['theme'] : "Not Set";
+                            $date = !empty($row['date']) ? $row['date'] : "Not Set";
+                            $budget1 = !empty($row['budget_min']) ? $row['budget_min'] : "0";
+                            $budget2 = !empty($row['budget_max']) ? "- " . $row['budget_max'] : " ";
+                            $customer_id = $row['customer_id'];
 
-                        echo "<tr>";
-                        echo "<td onclick='requestView($request_id)'>$request_id</td>";
-                        echo "<td onclick='requestView($request_id)'>$reqdate</td>";
-                        echo "<td onclick='requestView($request_id)'>$event_type</td>";
-                        echo "<td onclick='requestView($request_id)'>$no_of_guests</td>";
-                        echo "<td onclick='requestView($request_id)'>$theme</td>";
-                        echo "<td onclick='requestView($request_id)'>$date</td>";
-                        echo "<td onclick='requestView($request_id)'>$budget1 $budget2</td>";
-
-                        echo '<td class="tCenter menu">&#10247
-                                <ul>
-                                        <li>
-                                            <a href="Request-view.php?reqID=' . $request_id . '">View</a>
-                                        </li>
-                                        <li>
-                                            <a href="SendCustomerQuotation.php?reqID=' . $request_id . '">Send Quotation</a>
-                                        </li>
-                                        <li>
-                                            <a href="Messages.php">Message Customer</a>
-                                        </li>
-                                        <li>
-                                        <button type="button" onclick="declineRequest(' . $request_id . ', ' . $customer_id . ')" class="destructive">Decline</button>
-                                        </li>
-                                    </ul>
-                                </td>';
-                        echo "</tr>";
+                            echo "
+                                    <div class='ps-card'>
+                                        <div class='ps-card-desc' id='rs'>
+                                            <a class='rs-title t2' href='Request-view.php?reqID=$request_id' id='a-card'>
+                                                <div>#R$request_id</div>
+                                            </a>
+                                            <a class='rs-type' href='Request-view.php?reqID=$request_id' id='a-card'>
+                                                <div>$reqdate</div>
+                                            </a>
+                                            <a class='rs-type' href='Request-view.php?reqID=$request_id' id='a-card'>
+                                                <div>$event_type</div>
+                                            </a>
+                                            <a class='rs-type' href='Request-view.php?reqID=$request_id' id='a-card'>
+                                                <div>$no_of_guests</div>
+                                            </a>
+                                            <a class='rs-type' href='Request-view.php?reqID=$request_id' id='a-card'>
+                                                <div>$theme</div>
+                                            </a>
+                                            <a class='rs-type' href='Request-view.php?reqID=$request_id' id='a-card'>
+                                                <div>$date</div>
+                                            </a>
+                                            <a class='rs-type' href='Request-view.php?reqID=$request_id' id='a-card'>
+                                                <div>$$budget1 $budget2</div>
+                                            </a>
+                                            <div class='rs-type t2 menu'>&#10247
+                                                <ul>
+                                                <li>
+                                                    <button type='button' onclick='view($request_id)' class='view'>
+                                                        View
+                                                    </button>
+                                                </li>
+                                                <li>
+                                                    <button type='button' onclick='sendQuotation($request_id, $customer_id)' class='sendQuotation'>
+                                                        Send Quotation
+                                                    </button>
+                                                </li>
+                                                <li>
+                                                    <button type='button' onclick='sendMessage($request_id, $customer_id)' class='sendQuotation'>
+                                                        Send Message
+                                                    </button>
+                                                </li>
+                                                <li>
+                                                    <button type='button' onclick='declineRequest($request_id, $customer_id)' class='destructive'>Decline</button>
+                                                </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>";
+                        }
+                    } else {
+                        echo "No requests found";
                     }
-                } else {
-                    echo "<tr><td colspan='8'>No requests found</td></tr>";
-                }
-                ?>
-            </table>
-        </div>
-    </div>
-
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-
-        <!-- Modal content -->
-        <div class="modal-decline">
-            <div class="modal-header">
-                <span class="close">&times;</span>
-                Are you sure you want to decline this request?
-            </div>
-            <div class="modal-body">
-                <form method="POST" action="./controllers/declineRequest.php">
-                    <div class="decline-reason">
-                        <input hidden type="text" name="request_id" id="modal_request_id">
-                        <input hidden type="text" name="customer_id" id="modal_customer_id">
-                        <label for="reason">Reason</label>
-                        <textarea id="reason" name="reason" rows="4" cols="50" required></textarea>
-                    </div>
-                    <div class="actionBtn">
-                        <button type="button" onclick="closeModal()" class="rejected" id="modal_cancel" style="margin-left: 0;">
-                            Cancel
-                        </button>
-                        <button type="submit" class="accepted" style="margin-left: 0;">
-                            Yes, Decline
-                        </button>
-                    </div>
-                </form>
+                    ?>
+                </div>
             </div>
         </div>
-    </div>
-    <!-- </div> -->
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-decline">
+                <div class="modal-header">
+                    <span class="close">&times;</span>
+                    Are you sure you want to decline this request?
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="./controllers/declineRequest.php">
+                        <div class="decline-reason">
+                            <input hidden type="text" name="request_id" id="modal_request_id">
+                            <input hidden type="text" name="customer_id" id="modal_customer_id">
+                            <label for="reason">Reason</label>
+                            <textarea id="reason" name="reason" rows="4" cols="50" required></textarea>
+                        </div>
+                        <div class="actionBtn">
+                            <button type="button" onclick="closeModal()" class="rejected" id="modal_cancel" style="margin-left: 0;">
+                                Cancel
+                            </button>
+                            <button type="submit" class="accepted" style="margin-left: 0;">
+                                Yes, Decline
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- </div> -->
 
 </body>
 <script src="../../js/sortTable.js"></script>
 <script src="../../js/epHandleCusReq.js"></script>
+<script>
+    function view(id) {
+        window.location.href = "Request-view.php?reqID=" + id;
+    }
+
+    function sendQuotation(id) {
+        window.location.href = "SendCustomerQuotation.php?reqID=" + id;
+    }
+
+    function sendMessage(id) {
+        window.location.href = "Messages.php";
+    }
+</script>
 
 </html>

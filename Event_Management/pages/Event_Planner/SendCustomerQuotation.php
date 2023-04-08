@@ -195,39 +195,64 @@ require_once './controllers/getRequestDetails.php';
         </div>
 
         <div class="form-card scrollable">
-            <form method="POST" action="controllers/addNewPackage.php" enctype="multipart/form-data">
+            <form method="POST" action="controllers/sendQuotation.php" enctype="multipart/form-data">
                 <div class="form-title">Send Quotation</div>
-                <!-- <div class="form-description"></div> -->
+                <input type="hidden" name="reqID" value="<?php echo $reqID; ?>" />
+                <input type="hidden" name="cusId" value="<?php echo $customerID; ?>" />
                 <div class="row">
                     <div class="input">
                         <label class="input-label">Event Planner's Cost</label>
-                        <input id="epCost" onkeyup="changeTotal()" onchange="changeTotal()" value="0" type="number" class="input-field" name="packageName" placeholder="Cost" />
+                        <input id="epCost" onkeyup="changeTotal()" onchange="changeTotal()" value="0" type="number" class="input-field" name="epCost" placeholder="Cost" />
                     </div>
-                    <div class="row">
-                        <div class="input">
-                            <label class="input-label">Venue</label>
-                            <input id="venueName" type="text" class="input-field" name="packageName" placeholder="Supplier Name / Product Name" />
-                            <input id="venueCost" onkeyup="calcTotalCost()" onchange="calcTotalCost()" value="0" type="number" class="input-field" name="packageName" placeholder="Cost" style="margin-top: 5px;" />
+                    <?php if ($result_food->num_rows > 0) { ?>
+                        <div class="row">
+                            <div class="input">
+                                <label class="input-label">Food & Beverages</label>
+                                <input id="foodBevName" type="text" class="input-field" name="foodBevName" placeholder="Supplier Name / Product Name" />
+                                <input id="foodBevCost" onkeyup="calcTotalCost()" onchange="calcTotalCost()" value="0" type="number" class="input-field" name="foodBevCost" placeholder="Cost" style="margin-top: 5px;" />
+                            </div>
+                        </div>
+                    <?php } ?>
+                    <?php if ($result_venue->num_rows > 0) { ?>
+                        <div class="row">
+                            <div class="input">
+                                <label class="input-label">Venue</label>
+                                <input id="venueName" type="text" class="input-field" name="venueName" placeholder="Supplier Name / Product Name" />
+                                <input id="venueCost" onkeyup="calcTotalCost()" onchange="calcTotalCost()" value="0" type="number" class="input-field" name="venueCost" placeholder="Cost" style="margin-top: 5px;" />
 
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="input">
-                            <label class="input-label">Food & Beverages</label>
-                            <input id="foodBevName" type="text" class="input-field" name="packageName" placeholder="Supplier Name / Product Name" />
-                            <input id="foodBevCost" onkeyup="calcTotalCost()" onchange="calcTotalCost()" value="0" type="number" class="input-field" name="packageName" placeholder="Cost" style="margin-top: 5px;" />
+                    <?php } ?>
+                    <?php if ($result_pv->num_rows > 0) { ?>
+                        <div class="row">
+                            <div class="input">
+                                <label class="input-label">Photography & Videography</label>
+                                <input id="pvName" type="text" class="input-field" name="pvName" placeholder="Supplier Name / Product Name" />
+                                <input id="pvCost" onkeyup="calcTotalCost()" onchange="calcTotalCost()" value="0" type="number" class="input-field" name="pvCost" placeholder="Cost" style="margin-top: 5px;" />
+
+                            </div>
                         </div>
-                    </div>
+                    <?php } ?>
+                    <?php if ($result_sl->num_rows > 0) { ?>
+                        <div class="row">
+                            <div class="input">
+                                <label class="input-label">Sound & Lighting</label>
+                                <input id="slName" type="text" class="input-field" name="slName" placeholder="Supplier Name / Product Name" />
+                                <input id="pvCost" onkeyup="calcTotalCost()" onchange="calcTotalCost()" value="0" type="number" class="input-field" name="pvCost" placeholder="Cost" style="margin-top: 5px;" />
+
+                            </div>
+                        </div>
+                    <?php } ?>
                     <div class="row">
                         <div class="input">
                             <label class="input-label">Total Cost</label>
-                            <input id="totalCost" type="text" class="input-field" name="packageName" readonly/>
+                            <input id="totalCost" type="text" class="input-field" name="totalCost" readonly />
                         </div>
                     </div>
                     <div class="row">
                         <div class="input">
                             <label class="input-label">Remarks <span class="desc">(You can specify other expenses or special notes here.)</span></label>
-                            <textarea class="input-field" rows="5" name="description"></textarea>
+                            <textarea class="input-field" rows="5" name="remarks"></textarea>
                         </div>
                     </div>
                     <div class="action btnSend">
