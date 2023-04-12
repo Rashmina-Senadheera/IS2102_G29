@@ -131,6 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                 header("location: ../PackagesServices.php");
             } else {
                 $_SESSION['error'] =  "Something went wrong. Please try again later.";
+                echo "<script> history.back(); </script>";
             }
 
             // Close statement

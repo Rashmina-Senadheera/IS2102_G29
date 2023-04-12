@@ -5,34 +5,49 @@
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
     header("location: ../../sign_up_form.php");
 } else {
-    
+
     // include the database config file
     require_once '../../constants.php';
     require_once 'commonFunctions.php';
 
     // define variables and set to empty values
-     function validate($data){
-        $data =trim($data);
-        $data =stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-    }
+    $date = date("Y-m-d");
+    $title = checkInput($_POST['title']);
+    $description = checkInput($_POST['description']);
+    $cost = checkInput($_POST['cost']);
+    $status = "pending";
+    $supplier_id = $_SESSION['user_id'];
+    $ep_id = checkInput($_POST['ep_id']);
+    $req_id = checkInput($_POST['req_id']);
 
-    $title = validate($_POST['packageName']);
-    $descript = validate($_POST['description']);
-    $quote_id = validate($_POST['ptype']);
+    $sql = "INSERT INTO  supplier_quotation(date, title, description, cost, status, supplier_id, ep_id, req_id) VALUES(?,?,?,?,?,?,?,?)";
 
-    $sql = "INSERT INTO  supplier_quotation( quotation_id,description,estimated_price) VALUES(?,?,?)";
+    if ($stmt = $conn->prepare($sql)) {
 
-        if ($stmt = $conn->prepare($sql)) {
+        // Bind variables to the prepared statement as parameters
+        $stmt->bind_param('sssdsiii', $param_date, $param_title, $param_description, $param_cost, $param_status, $param_supplier_id, $param_ep_id, $param_req_id);
+        // Set parameters
+        $param_date = $date;
+        $param_title = $title;
+        $param_description = $description;
+        $param_cost = $cost;
+        $param_status = $status;
+        $param_supplier_id = $supplier_id;
+        $param_ep_id = $ep_id;
+        $param_req_id = $req_id;
 
-            // Bind variables to the prepared statement as parameters
-            $stmt->bind_param('iss', $param_quote_id,$param_title, $param_descript);
-            // Set parameters
-            $param_title = $title;
-            $param_descript = $descript ;
-            $param_quote_id = $quote_id ;
+        // Attempt to execute the prepared statement
+        if ($stmt->execute()) {
+            $_SESSION['success'] = "Quotation sent successfully";
 
+            // Update the status of the request
+            $sql = "UPDATE request_supplier_quotation SET status = 'Completed' WHERE request_id = $req_id";
+            $conn->query($sql);
+
+            header("location: ../quote-view.php?id=$req_id");
+        } else {
+            $_SESSION['error'] = "Something went wrong. Please try again later.";
+            echo "<script>history.go(-1);</script>";
         }
     }
-    ?>
+}

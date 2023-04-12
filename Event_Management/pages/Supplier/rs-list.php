@@ -41,7 +41,7 @@
                     </div>
 
                     <?php
-                        $sql = "SELECT * FROM request_supplier_quotation";
+                        $sql = "SELECT * FROM request_supplier_quotation WHERE status='Pending'";
                         $result = mysqli_query($conn, $sql);
 
                         if (mysqli_num_rows($result) > 0) {

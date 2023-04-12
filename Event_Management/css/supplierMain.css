@@ -17,31 +17,34 @@ body {
 hr {
   border: 0.5px solid var(--mainColor);
 }
+
 .actionBtn {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin: 20px 10px;
-    gap: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 20px 10px;
+  gap: 20px;
 }
+
 .actionBtn .rejected {
-    background: #fff;
-    color: #490258;
-    border: 2px solid #490258;
-    text-align: center;
-    display: inline-block;
-    cursor: pointer;
-    border-radius: 0.5rem;
-    padding: 5px 2rem;
+  background: #fff;
+  color: #490258;
+  border: 2px solid #490258;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  padding: 5px 2rem;
 }
+
 .actionBtn .accepted {
-    background: #490258;
-    color: #fff;
-    text-align: center;
-    display: inline-block;
-    cursor: pointer;
-    border-radius: 0.5rem;
-    padding: 5px 2rem;
+  background: #490258;
+  color: #fff;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  padding: 5px 2rem;
 }
 
 /********* For grid view *********/
@@ -49,6 +52,7 @@ hr {
 .grid-container-payments {
   margin-left: 240px;
 }
+
 .gridHeader {
   grid-area: header;
   font-weight: 1000;
@@ -139,7 +143,8 @@ tr:nth-child(even) {
   position: relative;
   justify-content: start;
 }
-.searchSec#an{
+
+.searchSec#an {
   flex-direction: column;
 }
 
@@ -155,14 +160,17 @@ tr:nth-child(even) {
   border-radius: 0.5rem;
   padding-left: 0.5rem;
 }
+
 .page-title {
   flex-grow: 1;
   font-size: 1.3rem;
   font-weight: 900px;
 }
-.page-title#an{
+
+.page-title#an {
   width: 100%;
 }
+
 .icon {
   padding: 10px;
   min-width: 50px;
@@ -265,6 +273,7 @@ input[type="submit"] {
 }
 
 @media screen and (max-width: 600px) {
+
   .col-50,
   input[type="submit"] {
     width: 100%;
@@ -296,6 +305,7 @@ input[type="submit"] {
   background-color: rgba(0, 0, 0, 0.4);
   /* Black w/ opacity */
 }
+
 .logmodal {
   display: none;
   /* Hidden by default */
@@ -426,35 +436,40 @@ input[type="submit"] {
   list-style: none;
 }
 
-.container-main{
-    margin-left: 240px;
-    height: 90%;
+.container-main {
+  margin-left: 240px;
+  height: 90%;
 }
-.flex-container-main{
-    display: flex;
-    flex-direction: row;
+
+.flex-container-main {
+  display: flex;
+  flex-direction: row;
 }
-.title-search{
-    flex: 90%;
-    border-radius: 0.5rem;
-    height: fit-content;
-    margin: 20px;
-    margin-bottom: 15px;
-    padding: 1vw;
-    box-shadow: 0 1px 10px 0 rgb(0 0 0 / 20%);
+
+.title-search {
+  flex: 90%;
+  border-radius: 0.5rem;
+  height: fit-content;
+  margin: 20px;
+  margin-bottom: 15px;
+  padding: 1vw;
+  box-shadow: 0 1px 10px 0 rgb(0 0 0 / 20%);
 }
-.search{
-    display: flex;
-    flex-direction: row;
+
+.search {
+  display: flex;
+  flex-direction: row;
 }
-.grid-main{
-    border-radius: 0.5rem;
-    margin: 20px;
-    margin-top: 0px;
-    padding: 1vw;
-    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
+
+.grid-main {
+  border-radius: 0.5rem;
+  margin: 20px;
+  margin-top: 0px;
+  padding: 1vw;
+  box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
 
 }
+
 .srcButton-small {
   border: 2px solid var(--mainColor);
   color: var(--mainColor);
@@ -468,62 +483,72 @@ input[type="submit"] {
 }
 
 @media (max-width: 1000px) {
-    .container-main{
-        margin-left: 60px;
-        height: 90%;
-        overflow-x: hidden;
-    }
-    .flex-container-main{
-        display: flex;
-        flex-direction: column;
-    }
-    .searchSec{
-        flex-direction: column;
-    }
-    .srcButton-small{
-        visibility: visible;
-    }
-    .srcButton{
-        display: none;
-    }
-    .input-container .icon{
-        display: none;
-    }
-}
-.modal-decline {
-    position: relative;
-    background-color: #fefefe;
-    margin: auto;
-    padding: 0;
-    border: 1px solid #888;
-    width: 30%;
-    /* height: 20%; */
-    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
-    -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s;
-    animation-name: animatetop;
-    animation-duration: 0.4s;
+  .container-main {
+    margin-left: 60px;
+    height: 90%;
+    overflow-x: hidden;
+  }
+
+  .flex-container-main {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .searchSec {
+    flex-direction: column;
+  }
+
+  .srcButton-small {
+    visibility: visible;
+  }
+
+  .srcButton {
+    display: none;
+  }
+
+  .input-container .icon {
+    display: none;
+  }
 }
 
-label#tt{
+.modal-decline {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 30%;
+  /* height: 20%; */
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+
+label#tt {
   font-size: 13px;
 }
-.formSection#quote{
+
+.formSection#quote {
   font-weight: normal;
 }
-.page-des{
+
+.page-des {
   font-size: 12px;
   width: 100%;
   color: #888;
 }
-.contain-analytics{
+
+.contain-analytics {
   width: 98%;
   margin: auto;
   display: flex;
   padding-bottom: 10px;
   border-bottom: rgb(206, 206, 206) solid 1px;
 }
-.analytics{
+
+.analytics {
   padding: 10px;
   margin: 10px;
   flex: 1;
@@ -533,19 +558,23 @@ label#tt{
   border-radius: 0.5rem;
   background-color: #3a0247;
 }
-.icon-an{
+
+.icon-an {
   text-align: center;
   margin-top: 10px;
 }
-.an-descript{
+
+.an-descript {
   text-align: center;
   color: white;
 }
-.an-tit{
+
+.an-tit {
   font-size: 20px;
   font-weight: bold;
 }
-.contain-chart{
+
+.contain-chart {
   width: 98%;
   margin: auto;
   display: flex;
@@ -553,17 +582,29 @@ label#tt{
   padding-bottom: 10px;
   border-bottom: rgb(206, 206, 206) solid 1px;
 }
-.tit-chart{
+
+.tit-chart {
   margin: 20px;
   font-weight: 500;
   font-size: 18px;
 }
-.tit-cal{
+
+.tit-cal {
   margin: 5px;
   font-weight: bold;
   font-size: 20px;
 }
+
 canvas#myChart {
-    max-height: 300px;
-    max-width: 600px;
+  max-height: 300px;
+  max-width: 600px;
+}
+
+.success-message {
+  font-size: 14px;
+  font-weight: 500;
+  padding: 15px;
+  color: #fff;
+  background-color: green;
+  text-align: center;
 }

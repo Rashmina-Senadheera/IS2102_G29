@@ -1,8 +1,8 @@
 <?php
-    include('../constants.php');
-    include( 'supplier_sidenav.php' );
-    include( 'header.php' );
-    include('../controllers/commonFunctions.php');
+include('../constants.php');
+include('supplier_sidenav.php');
+include('header.php');
+include('../controllers/commonFunctions.php');
 
 //check if there is a id in the url
 if (isset($_GET['id'])) {
@@ -23,8 +23,6 @@ if (isset($_GET['id'])) {
         $no_of_participants = $general_details['no_of_participants'];
         $psId = $general_details['psId'];
         $ep_id = $general_details['EP_id'];
-        
-        
         // $type = $general_details['type'];
         // $img_sql = "SELECT `image` FROM supplier_product_images WHERE `product_id` = $id";
         // $img_result = mysqli_query($conn, $img_sql);
@@ -72,7 +70,7 @@ if (isset($_GET['id'])) {
                 $ventype = !empty($more_details['ventype']) ? $more_details['ventype'] : "";
                 $maxCap = !empty($more_details['maxCap']) ? $more_details['maxCap'] : "";
                 $minCap = !empty($more_details['minCap']) ? $more_details['minCap'] : "";
-            } 
+            }
         }
     } else {
         header("Location: 404.php");
@@ -89,21 +87,27 @@ if (isset($_GET['id'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = 'stylesheet' href = '../../css/supplierMain.css'>
+    <link rel='stylesheet' href='../../css/supplierMain.css'>
     <link rel="stylesheet" href="../../css/profileEP.css">
     <link rel="stylesheet" href="../css/quote-view.css">
 </head>
 
 <body>
+    <!-- Show success message -->
+    <?php
+    if (isset($_SESSION['success'])) {
+        echo '<div class="success-message">' . showSessionMessage("success") . '</div>';
+    }
+    ?>
     <!-- <div class="gridMain"> -->
-    <div class = 'container-main'>
-        <div class = 'flex-container-main'>
-                <div class="title-search">
-                    <div class = 'searchSec'>
-                        <div class = 'page-title'><?php echo $p_title; ?></div>
-                    </div>
+    <div class='container-main'>
+        <div class='flex-container-main'>
+            <div class="title-search">
+                <div class='searchSec'>
+                    <div class='page-title'><?php echo $p_title; ?></div>
                 </div>
             </div>
+        </div>
         <div class="flex-container-profile" style="height: 90%;">
             <div class="about" style="margin-top: 0px;">
                 <div class="personal-info">
@@ -111,7 +115,7 @@ if (isset($_GET['id'])) {
                         Product/Service Details
                     </div>
                     <div class="prof-all">
-                        <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($img) .'" id="about-img" ">'?>
+                        <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($img) . '" id="about-img" ">' ?>
                     </div>
                     <div class="prof-all">
                         <div class="prof-name-50">Location:</div>
@@ -140,7 +144,7 @@ if (isset($_GET['id'])) {
                 </div>
             </div>
             <div class="other" id="quote" style="margin-top: 0px;margin-right:0px;">
-                
+
                 <div class="personal-info" style="margin-bottom: 0px; margin-top: 5px;">
                     <div class="personal-info-heading" id="quoteb" style="width: 90%;">
                         Quotation Event Details
@@ -161,7 +165,7 @@ if (isset($_GET['id'])) {
                         <div class="prof-name-50">Tentative Date:</div>
                         <div class="prof-data"><?php echo $date; ?></div>
                     </div>
-                     <div class="prof-all">
+                    <div class="prof-all">
                         <div class="prof-name-50">Remarks:</div>
                         <div class="prof-data"><?php echo $remarks; ?></div>
                     </div>
@@ -173,7 +177,7 @@ if (isset($_GET['id'])) {
                         <button type="button" id="btnDecline" class="rejected" style="margin-left: 0;">
                             Decline
                         </button>
-                        <a href="SendEventPlannerQuote.php?id=<?php echo $id;?>">
+                        <a href="SendEventPlannerQuote.php?id=<?php echo $id; ?>">
                             <button type="button" class="accepted" style="margin-left: 0;">
                                 Send Quotation
                             </button>
@@ -188,18 +192,18 @@ if (isset($_GET['id'])) {
                         <div class="prof-name-20">Name:</div>
                         <div class="contact">Chandana Sooriyabandara</div>
                     </div>
-                     <div class="prof-all">
+                    <div class="prof-all">
                         <div class="prof-name-20">Contact :</div>
                         <div class="contact">
-                            <i class="fa-solid fa-envelope"  id="qu-con"></i>hhshaminf@gmail.com
+                            <i class="fa-solid fa-envelope" id="qu-con"></i>hhshaminf@gmail.com
                             <i class="fa-solid fa-phone" id="qu-conm"></i>0777931062
-                            <i class="fa-brands fa-rocketchat" id="qu-conme"></i><a href = "Messages.php"> <b>Message</b> <a>
+                            <i class="fa-brands fa-rocketchat" id="qu-conme"></i><a href="Messages.php"> <b>Message</b> <a>
                         </div>
                     </div>
                 </div>
             </div>
-            </div>
         </div>
+    </div>
     </div>
 
     <!-- The Modal -->

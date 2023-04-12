@@ -16,7 +16,7 @@
             <div class="cards">
 
                 <?php
-                $sql = "SELECT * FROM request_supplier_quotation WHERE status='Pending' AND EP_id='$_SESSION[user_id]'";
+                $sql = "SELECT * FROM request_supplier_quotation WHERE status='Completed' AND EP_id='$_SESSION[user_id]'";
 
                 if ($result = $conn->query($sql)) {
                     if ($result->num_rows > 0) {
