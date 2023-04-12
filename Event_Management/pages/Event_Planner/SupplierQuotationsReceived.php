@@ -16,25 +16,23 @@
             <div class="cards">
 
                 <?php
-                $sql = "SELECT * FROM request_supplier_quotation WHERE status='Completed' AND EP_id='$_SESSION[user_id]'";
+                $sql = "SELECT * FROM supplier_quotation WHERE ep_id='$_SESSION[user_id]'";
 
                 if ($result = $conn->query($sql)) {
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
-                            $r_id = $row['request_id'];
-                            $r_title = $row['product_title'];
-                            $r_type = $row['event_type'];
-                            $r_requested_on = $row['requested_on'];
+                            $qid = $row['quotation_id'];
+                            $title = $row['title'];
+                            $date = $row['date'];
+                            $cost = $row['cost'];
+                            
                             echo "<a href='order-view.php' id='a-card'>
                                     <div class='ps-card'>
-                                        <div class='rs-card-img'>
-                                            <img src='../../images/cs1.jpg' alt=''>
-                                        </div>
                                         <div class='ps-card-desc' id='rs'>
-                                            <div class='rs-title'>Request for $r_title</div>
-                                            <div class='rs-type'>#Q$r_id</div>
-                                            <div class='rs-type'>$r_type</div>
-                                            <div class='rs-type' id='urg'>$r_requested_on</div>
+                                            <div class='rs-title'>#Q$qid</div>
+                                            <div class='rs-type'>$title</div>
+                                            <div class='rs-type'>$date</div>
+                                            <div class='rs-type'>Rs. $cost</div>
                                         </div>
                                     </div>
                                     </a>";
@@ -52,19 +50,6 @@
                 <div class='input-container'>
                     <input class='input-field-filter' type='text' placeholder='Search payments' name='search'>
                     <i class='fa fa-search icon'></i>
-                </div>
-            </div>
-            <div class="status">
-                <div class="filter-heading">Filter by Status</div>
-                <div class="status-list">
-                    <ul>
-                        <li><a href="#">
-                                <div class="li-heading" id="out">Urgent</div>
-                            </a></li>
-                        <li><a href="#">
-                                <div class="li-heading" id="in">Not Urgent</div>
-                            </a></li>
-                    </ul>
                 </div>
             </div>
             <div class="category">
