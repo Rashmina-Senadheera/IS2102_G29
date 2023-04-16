@@ -81,7 +81,7 @@ include('../controllers/commonFunctions.php');
                                                 <div>$date</div>
                                             </a>
                                             <a class='rs-type' href='Request-view.php?reqID=$request_id' id='a-card'>
-                                                <div>$$budget1 $budget2</div>
+                                                <div>$budget1 $budget2</div>
                                             </a>
                                             <div class='rs-type t2 menu'>&#10247
                                                 <ul>
