@@ -5,21 +5,29 @@ if (isset($_GET['type'])) {
     $type = $_GET['type'];
     $search = $_GET['search'];
     $typeArr = explode(",", $type);
-    print_r($typeArr);
-    if ($type == "") {
-        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general";
-    } else if ($type == "foodbev") {
-        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = 'food' OR `type` = 'beverage'";
-    } else if ($type == "pv") {
-        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = 'photography' OR `type` = 'videography'";
-    } else if ($type == "sl") {
-        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = 'lighting' OR `type` = 'sound'";
+    $dbTypes = "";
+
+    for ($i = 0; $i < count($typeArr); $i++) {
+        if ($i == 0) {
+            $dbTypes = $dbTypes . "`type` = '" . $typeArr[$i] . "'";
+        } else {
+            $dbTypes = $dbTypes . " OR `type` = '" . $typeArr[$i] . "'";
+        }
+    }
+
+    if ($search != "" && $type != "") {
+        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE (`title` LIKE '%" . $search . "%' OR `description` LIKE '%" . $search . "%') AND (" . $dbTypes . ")";
+    } else if ($search == "" && $type != "") {
+        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE " . $dbTypes;
+    } else if ($search != "" && $type == "") {
+        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `title` LIKE '%" . $search . "%' OR `description` LIKE '%" . $search . "%'";
     } else {
-        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = '$type'";
+        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general";
     }
 } else {
     $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general";
 }
+
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {

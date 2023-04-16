@@ -5,6 +5,13 @@ function setTypes() {
     var type2 = document.getElementById("Entertainment").checked;
     var type3 = document.getElementById("Catering").checked;
     var type4 = document.getElementById("Photography").checked;
+    var type5 = document.getElementById("Transport").checked;
+    var type6 = document.getElementById("Beverages").checked;
+    var type7 = document.getElementById("Florists").checked;
+    var type8 = document.getElementById("Decoration").checked;
+    var type9 = document.getElementById("Lighting").checked;
+    var type10 = document.getElementById("Audio/Video").checked;
+
 
     if (type1) {
         type += first ? 'Venue' : ',Venue';
@@ -20,6 +27,30 @@ function setTypes() {
     }
     if (type4) {
         type += first ? 'pv' : ',pv';
+        first = false;
+    }
+    if (type5) {
+        type += first ? 'Transport' : ',Transport';
+        first = false;
+    }
+    if (type6) {
+        type += first ? 'foodbev' : ',foodbev';
+        first = false;
+    }
+    if (type7) {
+        type += first ? 'Florists' : ',Florists';
+        first = false;
+    }
+    if (type8) {
+        type += first ? 'Decoration' : ',Decoration';
+        first = false;
+    }
+    if (type9) {
+        type += first ? 'Lighting' : ',Lighting';
+        first = false;
+    }
+    if (type10) {
+        type += first ? 'Audio/Video' : ',Audio/Video';
         first = false;
     }
 
