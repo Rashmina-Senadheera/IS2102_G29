@@ -14,6 +14,7 @@ if (isset($_GET['id'])) {
     if (mysqli_num_rows($result) > 0) {
         $general_details = mysqli_fetch_assoc($result);
         $req_id = $general_details['request_id'];
+        $for_cus_req = $general_details['for_cus_req'];
         $p_title = $general_details['product_title'];
         $remarks = $general_details['remarks'];
         $event_type = $general_details['event_type'];
@@ -25,6 +26,7 @@ if (isset($_GET['id'])) {
         $no_of_participants = $general_details['no_of_participants'];
         $psId = $general_details['psId'];
         $ep_id = $general_details['EP_id'];
+        $pID = $general_details['psId'];
     } else {
         header("Location: 404.php");
     }
@@ -101,6 +103,8 @@ if (isset($_GET['id'])) {
                     <input type="hidden" name="title" value='<?php echo $p_title; ?>' required />
                     <input type="hidden" name="ep_id" value='<?php echo $ep_id; ?>' required />
                     <input type="hidden" name="req_id" value='<?php echo $req_id; ?>' required />
+                    <input type="hidden" name="product_id" value='<?php echo $psId; ?>' required />
+                    <input type="hidden" name="for_cus_req" value='<?php echo $for_cus_req; ?>' required />
                     <div class="input">
                         <label class="input-label">Event Planner's Cost</label>
                         <input type="number" class="input-field" name="cost" placeholder="Cost" />

@@ -15,6 +15,7 @@ if (isset($_GET['type'])) {
         }
     }
 
+    // different sql queries for different search and type combinations
     if ($search != "" && $type != "") {
         $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE (`title` LIKE '%" . $search . "%' OR `description` LIKE '%" . $search . "%') AND (" . $dbTypes . ")";
     } else if ($search == "" && $type != "") {
@@ -41,25 +42,25 @@ if (mysqli_num_rows($result) > 0) {
         $img_row = mysqli_fetch_assoc($img_result);
         $img = $img_row['image'];
         echo '<div class="card">
-        <div class="content">
-            <div class="imgBx">
-                <img src="data:image/jpeg;base64,' . base64_encode($img) . '">
-            </div>
-            <div class="contentBx">
-                <h3>' . $title . '</h3>
-                <span>' . $description . '</span>
-            </div>
-        </div>
-        <ul class="sci">
-            <li>
-                <!-- <a href="" class="view-supplier">View</a> -->
-                <a href="./Supplier-more-info.php?id=' . $productID . '" class="view-supplier">View</a>
-            </li>
-            <li>
-                <a href="./request-quotation.php?id=' . $productID . '" class="request">Request a Quotation</a>
-            </li>
-        </ul>
-    </div>';
+                <div class="content">
+                    <div class="imgBx">
+                        <img src="data:image/jpeg;base64,' . base64_encode($img) . '">
+                    </div>
+                    <div class="contentBx">
+                        <h3>' . $title . '</h3>
+                        <span>' . $description . '</span>
+                    </div>
+                </div>
+                <ul class="sci">
+                    <li>
+                        <!-- <a href="" class="view-supplier">View</a> -->
+                        <a href="./Supplier-more-info.php?id=' . $productID . '" class="view-supplier">View</a>
+                    </li>
+                    <li>
+                        <a href="./request-quotation.php?id=' . $productID . '" class="request">Request a Quotation</a>
+                    </li>
+                </ul>
+            </div>';
     }
 } else {
     echo "No supplier found";

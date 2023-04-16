@@ -53,7 +53,7 @@
                 if (isset($_GET['type'])) {
                     $type = $_GET['type'];
                     if ($type == "foodbev") {
-                        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = 'food' OR `type` = 'beverage'";
+                        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = 'foodbev'";
                     } else if ($type == "pv") {
                         $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = 'photography' OR `type` = 'videography'";
                     } else if ($type == "sl") {

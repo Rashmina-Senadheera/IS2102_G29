@@ -1,6 +1,10 @@
+// check if the user has selected any type of supplier
 function setTypes() {
     let type = '&type=';
-    let first = true;
+
+    // to check if it is the first type. If it is, then we don't need to add a comma before it.
+    let first = true; 
+
     var type1 = document.getElementById("Venue").checked;
     var type2 = document.getElementById("Entertainment").checked;
     var type3 = document.getElementById("Catering").checked;
@@ -18,7 +22,7 @@ function setTypes() {
         first = false;
     }
     if (type2) {
-        type += first ? 'Entertainment' : ',Entertainment';
+        type += first ? 'ent' : ',ent';
         first = false;
     }
     if (type3) {
@@ -26,7 +30,7 @@ function setTypes() {
         first = false;
     }
     if (type4) {
-        type += first ? 'pv' : ',pv';
+        type += first ? 'photo' : ',photo';
         first = false;
     }
     if (type5) {
@@ -38,11 +42,11 @@ function setTypes() {
         first = false;
     }
     if (type7) {
-        type += first ? 'Florists' : ',Florists';
+        type += first ? 'Florist' : ',Florist';
         first = false;
     }
     if (type8) {
-        type += first ? 'Decoration' : ',Decoration';
+        type += first ? 'Deco' : ',Deco';
         first = false;
     }
     if (type9) {
@@ -70,6 +74,7 @@ function showResult() {
         }
     }
 
+    // filter by type and search
     xmlhttp.open("GET", "components/SuppliersItems.php?search=" + str + setTypes(), true);
     xmlhttp.send();
 }
