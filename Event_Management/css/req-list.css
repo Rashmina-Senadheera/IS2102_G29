@@ -56,19 +56,23 @@ a#btn {
     font-size: 13px;
     font-weight: bold;
     padding: 0px 20px 0px 20px;
-    width: calc((100%-200px)/6);
+    width: calc((100%-150px)/6);
 }
 
 .rs-type {
     color: rgb(53, 52, 52);
     font-size: 12px;
     padding: 0px 20px 0px 20px;
-    width: calc((100%-200px)/6);
+    width: calc((100%-150px)/6);
     position: relative;
 }
 
+.rs-title.sq, .rs-type.sq {
+    width: calc((100%-150px)/5);
+}
+
 .rs-type.t2, .rs-title.t2 {
-    width: 100px;
+    width: 75px;
 }
 
 .ps-type {

@@ -4,8 +4,9 @@
     margin: 20px 0 20px 0;
     padding: 20px;
     box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
-    flex: 20%;
+    /* flex: 20%; */
     height: 500px;
+    /* width: fit-content; */
 }
 
 .filter-heading {

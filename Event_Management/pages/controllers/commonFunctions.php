@@ -113,3 +113,9 @@ function checkInput($data)
     $data = htmlspecialchars($data);
     return $data;
 }
+
+// format currency
+function formatCurrency($number)
+{
+    return number_format($number, 2, '.', ',');
+}
