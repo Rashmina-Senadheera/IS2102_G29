@@ -42,6 +42,7 @@ if (isset($_GET['id'])) {
     <link rel='stylesheet' href='../../css/supplierMain.css'>
     <link rel="stylesheet" href="../../css/eventPlannerMain.css">
     <link rel="stylesheet" href="../../css/formEP.css">
+    <link rel="stylesheet" href="../../css/form.css">
 </head>
 
 <body>
@@ -101,6 +102,15 @@ if (isset($_GET['id'])) {
                     <input type="hidden" name="title" value='<?php echo $p_title; ?>' required />
                     <input type="hidden" name="ep_id" value='<?php echo $ep_id; ?>' required />
                     <input type="hidden" name="req_id" value='<?php echo $req_id; ?>' required />
+                    <input type="hidden" name="ptype" value = '<?php echo $id; ?>' required/>
+                    <div class="row">
+                        <?php if (isset($_SESSION['success'])) { 
+                            echo '<p class="success">' . showSessionMessage("success") . '</p>';
+                        }?>
+                        <?php if (isset($_GET['successs'])) { ?>
+                            <p class="success"><i class="fa-solid fa-check"></i><?php echo $_GET['successs']; ?></p>
+                        <?php } ?>
+                    </div>
                     <div class="input">
                         <label class="input-label">Event Planner's Cost</label>
                         <input type="number" class="input-field" name="cost" placeholder="Cost" />

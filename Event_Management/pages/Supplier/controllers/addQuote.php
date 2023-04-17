@@ -48,6 +48,17 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         } else {
             $_SESSION['error'] = "Something went wrong. Please try again later.";
             echo "<script>history.go(-1);</script>";
+            if ($stmt->execute()) {
+            // Redirect package services page
+                $_SESSION['success'] = "Package added successfully".$package_id;
+                header("location: ../sendEventPlannerQuote.php?");
+            } else {
+                $_SESSION['error'] =  "Something went wrong. Please try again later.";
+            }
+            $stmt->close();
+
         }
+        $conn->close();
     }
 }
+?>

@@ -1,3 +1,25 @@
+<?php
+
+// check user already logged in
+if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && !isset($_SESSION['userStatus'])) {
+    // check user role
+    if ($_SESSION['role'] == 'supplier') {
+        // do nothing
+    } else {
+        // redirect to unauthorized page
+        header('location: ' . SITEURL . 'Event_Planner/unauthorized.php');
+        exit();
+    }
+} else {
+    unset($_SESSION['role']);
+    unset($_SESSION['user_id']);
+    unset($_SESSION['user_name']);
+    // redirect to unauthorized page
+    header('location: ' . SITEURL . 'Event_Planner/unauthorized.php');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <!-- Designined by CodingLab | www.youtube.com/codinglabyt -->
 <html lang="en" dir="ltr">
