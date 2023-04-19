@@ -159,13 +159,13 @@
               <div class="input-ps">
                 <label for="" class="input-ps-label">Type</label>
                 <select name="transport_type" id="type">
-                  <option value="">Car</option>
-                  <option value="">Motorbike</option>
-                  <option value="">Bicycle</option>
-                  <option value="">Van</option>
-                  <option value="">Lorry</option>
-                  <option value="">Bus</option>
-                  <option value="">Jeep</option>
+                  <option value="Car">Car</option>
+                  <option value="Motorbike">Motorbike</option>
+                  <option value="Bicycle">Bicycle</option>
+                  <option value="Van">Van</option>
+                  <option value="Lorry">Lorry</option>
+                  <option value="Bus">Bus</option>
+                  <option value="Jeep">Jeep</option>
                 </select>
               </div>
             </div>
