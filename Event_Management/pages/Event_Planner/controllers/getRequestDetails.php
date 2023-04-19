@@ -7,7 +7,7 @@ if (isset($_GET['reqID'])) {
     include('eventplanner_header.php');
 
     $reqID = $_GET['reqID'];
-    $sql = "SELECT * FROM request_ep_quotation WHERE request_id = $reqID";
+    $sql = "SELECT * FROM cust_req_general AS c, request_ep_quotation AS r WHERE c.request_id = r.request_id AND c.request_id = $reqID";
 
     // execute query and check if successful
     if ($result = $conn->query($sql)) {
@@ -17,20 +17,21 @@ if (isset($_GET['reqID'])) {
             // check if the user is the owner of the package
             if ($row['EP_id'] == $_SESSION['user_id']) {
                 $date = !empty($row['date']) ? $row['date'] : "Not Set";
-                $description = !empty($row['description']) ? $row['description'] : "Not Set";
+                $remarks = !empty($row['remarks']) ? $row['remarks'] : "Not Set";
                 $theme = !empty($row['theme']) ? $row['theme'] : "Not Set";
-                $catering_type = !empty($row['catering_type']) ? $row['catering_type'] : "Not Set";
+                // $catering_type = !empty($row['catering_type']) ? $row['catering_type'] : "Not Set";
                 $event_type = !empty($row['event_type']) ? $row['event_type'] : "Not Set";
-                $vanue_type = !empty($row['vanue_type']) ? $row['vanue_type'] : "Not Set";
-                $no_of_guests = !empty($row['no_of_guests']) ? $row['no_of_guests'] : "Not Set";
+                // $vanue_type = !empty($row['vanue_type']) ? $row['vanue_type'] : "Not Set";
+                $no_of_guests = !empty($row['no_of_pax']) ? $row['no_of_pax'] : "Not Set";
                 $status = !empty($row['status']) ? $row['status'] : "Not Set";
-                $time_from = !empty($row['time_from']) ? $row['time_from'] : "Not Set";
-                $time_to = !empty($row['time_to']) ? $row['time_to'] : "Not Set";
-                $budget1 = !empty($row['budget_min']) ? $row['budget_min'] : "0";
-                $budget2 = !empty($row['budget_max']) ? "- " . $row['budget_max'] : " ";
-                $requested_on = $row['requested_on'];
+                $time_from = !empty($row['from_time']) ? $row['from_time'] : "Not Set";
+                $time_to = !empty($row['to_time']) ? $row['to_time'] : "Not Set";
+                $budget1 = !empty($row['min_budget']) ? formatCurrency($row['min_budget']) : "0";
+                $budget2 = !empty($row['max_budget']) ? "- " . formatCurrency($row['max_budget']) : " ";
+                $requested_on = !empty($row['req_date']) ? $row['req_date'] : "Not Set";
 
-                $customerID = $row['customer_id'];
+                // $customerID = $row['customer_id'];
+                $customerID = 46;
                 $getUser_sql = "SELECT `name`, `email` FROM user WHERE user_id = " . $customerID;
                 $getPhone_sql = "SELECT phone_number FROM user_phone WHERE user_id = " . $row['customer_id'];
 

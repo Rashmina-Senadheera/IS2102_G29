@@ -45,19 +45,22 @@ include('../controllers/commonFunctions.php');
                     </div>
 
                     <?php
-                    $sql = "SELECT * FROM request_ep_quotation WHERE status = 'pending'";
+                    $sql = "SELECT * FROM cust_req_general AS c, request_ep_quotation AS r WHERE c.request_id = r.request_id AND status = 'pending'";
+                    // $sql = "SELECT * FROM cust_req_general";
                     $result = mysqli_query($conn, $sql);
                     if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_assoc($result)) {
                             $request_id = !empty($row['request_id']) ? $row['request_id'] : "Not Set";
-                            $reqdate = !empty($row['requested_on']) ? $row['requested_on'] : "Not Set";
+                            $reqdate = !empty($row['req_date']) ? $row['req_date'] : "Not Set";
                             $event_type = !empty($row['event_type']) ? $row['event_type'] : "Not Set";
-                            $no_of_guests = !empty($row['no_of_guests']) ? $row['no_of_guests'] : "Not Set";
+                            $no_of_guests = !empty($row['no_of_pax']) ? $row['no_of_pax'] : "Not Set";
                             $theme = !empty($row['theme']) ? $row['theme'] : "Not Set";
-                            $date = !empty($row['date']) ? $row['date'] : "Not Set";
-                            $budget1 = !empty($row['budget_min']) ? $row['budget_min'] : "0";
-                            $budget2 = !empty($row['budget_max']) ? "- " . $row['budget_max'] : " ";
-                            $customer_id = $row['customer_id'];
+                            $date1 = !empty($row['from_date']) ? $row['from_date'] : "Not Set";
+                            $date = !empty($row['to_date']) ? $date1. " to " . $row['to_date'] : $date1;
+                            $budget1 = !empty($row['min_budget']) ? formatCurrency($row['min_budget']) : "0";
+                            $budget2 = !empty($row['max_budget']) ? "- " . formatCurrency($row['max_budget']) : " ";
+                            // $customer_id = $row['customer_id'];
+                            $customer_id = 46;
 
                             echo "
                                     <div class='ps-card'>

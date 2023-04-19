@@ -1,4 +1,5 @@
 <?php
+require_once '../controllers/commonFunctions.php';
 require_once './controllers/getRequestDetails.php';
 
 function getQuotationCount($conn, $reqID, $type)
@@ -75,6 +76,10 @@ function getRequestsCount($conn, $reqID, $type)
                     <div class="prof-all">
                         <div class="prof-name-50">Budget (Rs.):</div>
                         <div class="prof-data"><?php echo "$budget1 $budget2" ?></div>
+                    </div>
+                    <div class="prof-all">
+                        <div class="prof-name-50">Remarks:</div>
+                        <div class="prof-data"><?php echo "$remarks" ?></div>
                     </div>
 
                     <div class="personal-info-heading" style="width: 50%; margin-top: 40px;">
@@ -155,7 +160,9 @@ function getRequestsCount($conn, $reqID, $type)
                                 <a href='Suppliers.php?type=venue&reqID=$reqID'>Find Suppliers</a>
                             </div>
                             <div class='quotation-count'>
-                                You have " . getQuotationCount($conn, $reqID, "venue") . " quotations available
+                                Requested " . getRequestsCount($conn, $reqID, "venue") . " quotation(s)
+                                <br/>
+                                Recieved " . getQuotationCount($conn, $reqID, "venue") . " quotation(s)
                             </div>
                             <div class='prof-all'>
                                 <div class='prof-name'>Type:</div>
@@ -182,7 +189,9 @@ function getRequestsCount($conn, $reqID, $type)
                                 <a href='Suppliers.php?type=pv&reqID=$reqID'>Find Suppliers</a>
                             </div>
                             <div class='quotation-count'>
-                                You have " . getQuotationCount($conn, $reqID, "photo") . " quotations available
+                                Requested " . getRequestsCount($conn, $reqID, "photo") . " quotation(s)
+                                <br/>
+                                Recieved " . getQuotationCount($conn, $reqID, "photo") . " quotation(s)
                             </div>
                             <div class='prof-all'>
                                 <div class='prof-name'>Photography:</div>
@@ -213,8 +222,9 @@ function getRequestsCount($conn, $reqID, $type)
                                 <a href='Suppliers.php?type=sl&reqID=$reqID'>Find Suppliers</a>
                             </div>
                             <div class='quotation-count'>
-                            You have
-                                You have " . getQuotationCount($conn, $reqID, "deco") . " quotations available
+                                Requested " . getRequestsCount($conn, $reqID, "deco") . " quotation(s)
+                                <br/>
+                                Recieved " . getQuotationCount($conn, $reqID, "deco") . " quotation(s)
                             </div>
                             <div class='prof-all'>
                                 <div class='prof-name'>Sound Type:</div>
