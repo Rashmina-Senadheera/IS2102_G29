@@ -1,5 +1,21 @@
 <?php
 require_once './controllers/getRequestDetails.php';
+
+function getQuotationCount($conn, $reqID, $type)
+{
+    $sql = "SELECT COUNT(*) AS count FROM supplier_quotation WHERE for_cus_req = $reqID AND type = '$type'";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    return $row['count'];
+}
+
+function getRequestsCount($conn, $reqID, $type)
+{
+    $sql = "SELECT COUNT(*) AS count FROM request_supplier_quotation WHERE for_cus_req = $reqID AND product_type = '$type'";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    return $row['count'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -102,6 +118,11 @@ require_once './controllers/getRequestDetails.php';
                                 </div>
                                 <a href='Suppliers.php?type=foodbev&reqID=$reqID'>Find Suppliers</a>
                             </div>
+                            <div class='quotation-count'>
+                                Requested " . getRequestsCount($conn, $reqID, "foodbev") . " quotation(s)
+                                <br/>
+                                Recieved " . getQuotationCount($conn, $reqID, "foodbev") . " quotation(s)
+                            </div>
                             <div class='prof-all'>
                                 <div class='prof-name'>Available In:</div>
                                 <div class='prof-data'>$food_available_in</div>
@@ -133,6 +154,9 @@ require_once './controllers/getRequestDetails.php';
                                 </div>
                                 <a href='Suppliers.php?type=venue&reqID=$reqID'>Find Suppliers</a>
                             </div>
+                            <div class='quotation-count'>
+                                You have " . getQuotationCount($conn, $reqID, "venue") . " quotations available
+                            </div>
                             <div class='prof-all'>
                                 <div class='prof-name'>Type:</div>
                                 <div class='prof-data'>$venue_type</div>
@@ -156,6 +180,9 @@ require_once './controllers/getRequestDetails.php';
                                     Photography & Videography
                                 </div>
                                 <a href='Suppliers.php?type=pv&reqID=$reqID'>Find Suppliers</a>
+                            </div>
+                            <div class='quotation-count'>
+                                You have " . getQuotationCount($conn, $reqID, "photo") . " quotations available
                             </div>
                             <div class='prof-all'>
                                 <div class='prof-name'>Photography:</div>
@@ -184,6 +211,10 @@ require_once './controllers/getRequestDetails.php';
                                     Sound & Lighting
                                 </div>
                                 <a href='Suppliers.php?type=sl&reqID=$reqID'>Find Suppliers</a>
+                            </div>
+                            <div class='quotation-count'>
+                            You have
+                                You have " . getQuotationCount($conn, $reqID, "deco") . " quotations available
                             </div>
                             <div class='prof-all'>
                                 <div class='prof-name'>Sound Type:</div>
