@@ -1,9 +1,54 @@
 <?php
+
+// variable to check images and services
+$hasProduct = false;
+
+if (isset($_GET['id'])) {
+    // Start output buffering
+    ob_start();
+
     include('../constants.php');
     include( 'supplier_sidenav.php' );
     include( 'header.php' );
-    $id = $_GET['id'];
-    if(isset($_SESSION['user_name'])){
+
+    $productId = $_GET['id'];
+    $sql = "SELECT * FROM sup_product_general WHERE product_id = $productId";
+
+    // execute query and check if successful
+    if ($result = $conn->query($sql)) {
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+
+            // check if the user is the owner of the package
+            if ($row['supplier_ID'] == $_SESSION['user_id']) {
+                $hasProduct = true;
+                $productName = $row['title'];
+                $productType = $row['type'];
+                $productDescript = $row['description'];
+            } else {
+                header("Location: ./403.php");
+                exit();
+            }
+        } else {
+            header("Location: ./404.php");
+            exit();
+        }
+    }
+
+    // Send the output buffer to the browser and turn off output buffering
+    ob_end_flush();
+} else {
+    header("Location: ./ps-list.php");
+    exit();
+}
+
+// avoid fetching images and services in the buffer
+if ($hasProduct) {
+    // get package image
+    $image_sql = "SELECT * FROM supplier_product_images WHERE product_id = $productId";
+    $image_result = $conn->query($image_sql);
+
+}
 ?>
 
 <!DOCTYPE html>
@@ -22,15 +67,7 @@
 </head>
 
 <body>
-          <?php
-              $sql = "SELECT *
-                      FROM supplier_venue V , images I
-                      where V.item_ID = I.item_ID
-                      AND V.item_ID = $id";
-
-                    $result = $conn->query($sql);
-                    if ($result->num_rows > 0) {
-                    while($row = $result->fetch_assoc()) {?>
+  
   <div class="container-profile">
     <div class="flex-container-addps">
     <div class ='grid-main' id='ps'>
@@ -45,17 +82,19 @@
                   <p class="success"><?php echo $_GET['successs']; ?></p>
               <?php } ?>
             </div>
+            
             <input type="hidden" name="item_ID" id="item_ID" value = '<?php echo $id;?>'></td>
             <div class="row">
               <div class="input-ps">
                 <label for="" class="input-ps-label">Title</label>
-                <input type="text" placeholder="Full Name" name="title" class="input-ps-in" value = '<?php echo $row["title"];?>'/>
+                <input type="text" placeholder="Full Name" name="title" class="input-ps-in" value = '<?php echo $productName;?>'/>
               </div>
             </div>
+
             <div class="row">
               <div class="input-ps">
                 <label for="" class="input-ps-label">Description</label>
-                <textarea  name="descript" class="input-ps-in" id='txt-area'><?php echo $row["descript"];?>
+                <textarea  name="descript" class="input-ps-in" id='txt-area'><?php echo $productDescript;?>
                 </textarea>
               </div>
             </div>
@@ -129,19 +168,9 @@
                 </div>                    
           </div>
         </form>
-        <?php ;}
-                    }
-                    ?> 
     </div>
   </div>
   <script src="../js/file-up.js"></script>
 </body>
 
 </html>
-
-<?php
- }else{
-    header("Location:sign_in.php?");
-    exit();
- }
-?>

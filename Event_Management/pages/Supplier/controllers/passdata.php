@@ -37,6 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         $cater_transport = validate($_POST['cater-transport']);
         $available_as_fb = validate($_POST['available-as-fb']);
         $available_for_fb = validate($_POST['available-for-fb']);
+        
     }
     if($ptype == 'transport'){
         $transport_type = validate($_POST['transport_type']);

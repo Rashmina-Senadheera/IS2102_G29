@@ -227,7 +227,7 @@ if (isset($_GET['id'])) {
                         <?php } ?>
 
                         <div class="prof-all-e">
-                            <a href="form-venue_edit.php?id=<?php echo $id;?>" class="custom-button-e" id="ed">
+                            <a href="product-edit.php?id=<?php echo $id;?>" class="custom-button-e" id="ed">
                                 Edit
                             </a>
                             <button type="button" class="custom-button-e" id="del">Delete</button>

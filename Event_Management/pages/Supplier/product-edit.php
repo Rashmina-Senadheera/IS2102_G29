@@ -1,10 +1,95 @@
 <?php
-    session_start();
+
+// variable to check images and services
+$hasProduct = false;
+
+if (isset($_GET['id'])) {
+    // Start output buffering
+    ob_start();
+
+    include('../constants.php');
     include( 'supplier_sidenav.php' );
     include( 'header.php' );
-    include('../controllers/commonFunctions.php');
-    $pid = $_GET['product_type'];
-    if(isset($_SESSION['user_name'])){
+
+    $productId = $_GET['id'];
+    $sql = "SELECT * FROM sup_product_general WHERE product_id = $productId";
+
+    // execute query and check if successful
+    if ($result = $conn->query($sql)) {
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+
+            // check if the user is the owner of the package
+            if ($row['supplier_ID'] == $_SESSION['user_id']) {
+                $hasProduct = true;
+                $productName = $row['title'];
+                $productType = $row['type'];
+                $productDescript = $row['description'];
+                $other_details = $row['other_details'];
+            } else {
+                header("Location: ./403.php");
+                exit();
+            }
+        } else {
+            header("Location: ./404.php");
+            exit();
+        }
+    }
+
+    // Send the output buffer to the browser and turn off output buffering
+    ob_end_flush();
+} else {
+    header("Location: ./ps-list.php");
+    exit();
+}
+
+// avoid fetching images and services in the buffer
+if ($hasProduct) {
+    // get package image
+    $image_sql = "SELECT * FROM supplier_product_images WHERE product_id = $productId";
+    $image_result = $conn->query($image_sql);
+
+    if($productType== 'venue') { 
+      $sql = "SELECT * FROM supplier_venue WHERE product_id = $productId";
+    } 
+    if($productType == 'foodbev') { 
+      $sql = "SELECT * FROM supplier_foodbev WHERE product_id = $productId";
+    }
+    if($productType == 'transport') {
+      $sql = "SELECT * FROM supplier_transport WHERE product_id = $productId";
+    } 
+    if($productType == 'florist') {
+      $sql = "SELECT * FROM supplier_florist WHERE product_id = $productId";
+    } 
+    if($productType == 'deco') { 
+      $sql = "SELECT * FROM supplier_deco WHERE product_id = $productId";
+    } 
+    if($productType == 'ent') { 
+      $sql = "SELECT * FROM supplier_ent WHERE product_id = $productId";
+    } 
+    if($productType == 'photo') { 
+      $sql = "SELECT * FROM supplier_photo WHERE product_id = $productId";
+    } 
+
+    if ($result = $conn->query($sql)) {
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+
+            // check if the user is the owner of the package
+            if ($productType== 'venue') {
+                $venlocation = $row['venlocation'];
+                $venloc = $row['venloc'];
+                $ventype = $row['ventype'];
+                $maxCap = $row['maxCap'];
+                $minCap = $row['minCap'];
+            }
+        } else {
+            header("Location: ./404.php");
+            exit();
+        }
+    }
+
+}
 ?>
 
 <!DOCTYPE html>
@@ -35,14 +120,14 @@
 
           <h4 class='ps-form-title'>Add 
             <?php 
-              if($pid == 'venue') { echo 'Venue';} 
-              if($pid == 'foodbev') { echo 'Catering & Beverages';}
-              if($pid == 'transport') { echo 'Transport';} 
-              if($pid == 'florist') { echo 'Floral Arrangements';} 
-              if($pid == 'deco') { echo 'Decorations';} 
-              if($pid == 'ent') { echo 'Entertainment';} 
-              if($pid == 'photo') { echo 'Photography';} 
-              if($pid == 'other') { echo 'Other';} 
+              if($productType== 'venue') { echo 'Venue';} 
+              if($productType == 'foodbev') { echo 'Catering & Beverages';}
+              if($productType == 'transport') { echo 'Transport';} 
+              if($productType == 'florist') { echo 'Floral Arrangements';} 
+              if($productType == 'deco') { echo 'Decorations';} 
+              if($productType == 'ent') { echo 'Entertainment';} 
+              if($productType == 'photo') { echo 'Photography';} 
+              if($productType == 'other') { echo 'Other';} 
               
             ?>
           </h4>
@@ -62,12 +147,12 @@
 
           <div class="comp">
 
-            <input type="hidden" name="ptype" value = '<?php echo $pid; ?>' required/>
+            <input type="hidden" name="ptype" value = '<?php echo $productType; ?>' required/>
 
             <div class="row">
               <div class="input-ps">
                 <label for="" class="input-ps-label"  >Title <span>*</span></label>
-                <input type="text" placeholder="Full Name" name="title" class="input-ps-in" required/>
+                <input type="text" placeholder="Full Name" name="title" class="input-ps-in" required value = '<?php echo $productName;?>'/>
               </div>
             </div>
 
@@ -75,6 +160,7 @@
               <div class="input-ps">
                 <label for="" class="input-ps-label">Description <span>*</span></label>
                 <textarea  name="descript" class="input-ps-in" id='txt-area' required spellcheck="true">
+                  <?php echo $productDescript; ?>
                 </textarea>
               </div>
             </div>
@@ -82,12 +168,12 @@
           </div>
           
           <!-- Venue Optional Parameters -->
-          <?php if($pid == 'venue') {?>
+          <?php if($productType == 'venue') {?>
 
             <div class="row">
               <div class="input-ps">
                 <label for="" class="input-ps-label">Venue in <span>*</span></label>
-                <select name="venueIn" id="type" required>
+                <select name="venueIn" id="venueIn" required>
                   <option value="indoor">Indoor</option>
                   <option value="outdoor">Outdoor</option>
                 </select>
@@ -97,14 +183,14 @@
             <div class="row">
               <div class="input-ps" >
                 <label for="" class="input-ps-label">Location <span>*</span> </label>
-                <input type="text" placeholder="Full Name" name="location" class="input-ps-in" required/>
+                <input type="text" placeholder="Full Name" name="location" class="input-ps-in" required value = '<?php echo $venlocation;?>'/>
               </div>
             </div>
 
             <div class="row">
               <div class="input-ps">
                 <label for="" class="input-ps-label" >Type <span>*</span></label>
-                <select name="type" id="type" required>
+                <select name="venType" id="venType" required>
                   <option value="Banquet Halls">Banquet Halls</option>
                   <option value="Conference Halls">Conference Halls</option>
                   <option value="Stadium">Stadium</option>
@@ -131,19 +217,19 @@
                   <div class="price-input">
                     <div class="field">
                       <span>Min</span>
-                      <input type="number" class="input-min" name="maxCap" value="2500">
+                      <input type="number" class="input-min" name="minCap" value = '<?php echo $minCap;?>'>
                     </div>
                     <div class="field">
                       <span>Max</span>
-                      <input type="number" class="input-max" name="minCap" value="7500">
+                      <input type="number" class="input-max" name="maxCap" value = '<?php echo $maxCap;?>'>
                     </div>
                   </div>
                   <div class="slider">
                     <div class="progress"></div>
                   </div>
                   <div class="range-input">
-                    <input type="range" class="range-min" min="0" max="10000" value="2500" step="100">
-                    <input type="range" class="range-max" min="0" max="10000" value="7500" step="100">
+                    <input type="range" class="range-min" min="0" max="10000" value = '<?php echo $minCap;?>' step="100">
+                    <input type="range" class="range-max" min="0" max="10000" value = '<?php echo $maxCap;?>' step="100">
                   </div>
                 </div>
               </div>
@@ -153,7 +239,7 @@
           <!-- Venue Optional Parameters end -->
 
           <!-- Transport Optional Parameters -->
-          <?php if($pid == 'transport') {?>
+          <?php if($productType == 'transport') {?>
 
             <div class="row">
               <div class="input-ps">
@@ -188,7 +274,7 @@
           <!-- Transport Optional Parameters end -->
 
           <!-- Catering Optional Parameters  -->
-          <?php if($pid == 'foodbev') {?>
+          <?php if($productType == 'foodbev') {?>
 
             <div class="row" id='check'>
               <div class="input-ps" id='check'>
@@ -277,7 +363,7 @@
           <!-- Catering Optional Parameters end -->
 
           <!-- Florists Optional Parameters -->
-          <?php if($pid == 'florist') {?>
+          <?php if($productType == 'florist') {?>
 
             <div class="row">
               <div class="input-ps">
@@ -320,7 +406,7 @@
           <!-- Florists Optional Parameters end -->
 
           <!-- Decorations Optional Parameters  -->
-          <?php if($pid == 'deco') {?>
+          <?php if($productType == 'deco') {?>
 
             <div class="row" id='check'>
               <div class="input-ps">
@@ -342,7 +428,7 @@
           <!-- Decorations Optional Parameters end -->
 
           <!-- Photo Optional Parameters  -->
-          <?php if($pid == 'photo') {?>
+          <?php if($productType == 'photo') {?>
 
             <br>
             <div class="row" id='check'>
@@ -384,7 +470,7 @@
           <!-- Photo Optional Parameters end -->
 
           <!-- Entertainment Optional Parameters  -->
-          <?php if($pid == 'ent') {?>
+          <?php if($productType == 'ent') {?>
             <br>
             <div class="row" id='check'>
               <div class="input-ps">
@@ -416,49 +502,48 @@
 
               <div class="row" id="img">
 
-                <input type="file" name="images[]" id="img0" class="inputfile" accept="image/*" onchange="imageSelect(this, 0)" />
-                <label for="img0" id="labelImg0">+</label>
-                <img for="img0" class="imgPreview" id="prev0" src="" onclick="clickImage(0)"></img>
-                <button type="button" id="removeImg0" class="img-delete-btn">X</button>
+              <?php
+              for ($i = 0; $i < 6; $i++) {
+                if ($image_row = $image_result->fetch_assoc()) {
+                  while ($image_row['image_id'] != $i) {
+                      echo '<input type="file" name="images[]" id="img' . $i . '" class="inputfile" accept="image/*" onchange="imageSelect(this, ' . $i . ')" />
+                      <label for="img' . $i . '" id="labelImg' . $i . '">+</label>
+                      <img for="img' . $i . '" class="imgPreview" id="prev' . $i . '" src="" onclick="clickImage(' . $i . ')"></img>
+                      <button type="button" id="removeImg" class="img-delete-btn">X</button>';
+                      $i++;
+                  }
+                  echo '<input type="file" name="images[]" id="img' . $i . '" class="inputfile" accept="image/*" onchange="imageSelect(this, ' . $i . ')" />
+                      <label for="img' . $i . '" id="labelImg' . $i . '" style="display: none;">+</label>
+                      <img for="img' . $i . '" class="imgPreview" style="display: block;" id="prev' . $i . '" src="data:' . $image_row['type'] . ';base64,' . base64_encode($image_row['image']) . '" onclick="clickImage(' . $i . ')"></img>
+                      <button type="button" id="removeImg' . $i . '" class="img-delete-btn">X</button>';
+                  } else {
+                    echo '<input type="file" name="images[]" id="img' . $i . '" class="inputfile" accept="image/*" onchange="imageSelect(this, ' . $i . ')" />
+                    <label for="img' . $i . '" id="labelImg' . $i . '">+</label>
+                    <img for="img' . $i . '" class="imgPreview" id="prev' . $i . '" src="" onclick="clickImage(' . $i . ')"></img>
+                    <button type="button" id="removeImg" class="img-delete-btn">X</button>';
+                }
+              }
+              ?>
 
-
-                <input type="file" name="images[]" id="img1" class="inputfile" accept="image/*" onchange="imageSelect(this, 1)" />
-                <label for="img1" id="labelImg1">+</label>
-                <img class="imgPreview" id="prev1" src="" onclick="clickImage(1)"></img>
-                <button type="button" id="removeImg1" class="img-delete-btn">X</button>
-
-
-                <input type="file" name="images[]" id="img2" class="inputfile" accept="image/*" onchange="imageSelect(this, 2)" />
-                <label for="img2" id="labelImg2">+</label>
-                <img class="imgPreview" id="prev2" src="" onclick="clickImage(2)"></img>
-                <button type="button" id="removeImg2" class="img-delete-btn">X</button>
-
-                <input type="file" name="images[]" id="img3" class="inputfile" accept="image/*" onchange="imageSelect(this, 3)" />
-                <label for="img3" id="labelImg3">+</label>
-                <img class="imgPreview" id="prev3" src="" onclick="clickImage(3)"></img>
-                <button type="button" id="removeImg3" class="img-delete-btn">X</button>
-
-                <input type="file" name="images[]" id="img4" class="inputfile" accept="image/*" onchange="imageSelect(this, 4)" />
-                <label for="img4" id="labelImg4">+</label>
-                <img class="imgPreview" id="prev4" src="" onclick="clickImage(4)"></img>
-                <button type="button" id="removeImg4" class="img-delete-btn">X</button>
-
-                <input type="file" name="images[]" id="img5" class="inputfile" accept="image/*" onchange="imageSelect(this, 5)" />
-                <label for="img5" id="labelImg5">+</label>
-                <img class="imgPreview" id="prev5" src="" onclick="clickImage(5)"></img>
-                <button type="button" id="removeImg5" class="img-delete-btn">X</button>
-
+              <output id="imgResult">
+                <?php
+                if ($image_result->num_rows > 0) {
+                    while ($image_row = $image_result->fetch_assoc()) {
+                        echo '<div>
+                                <img src="data:image/jpeg;base64,' . base64_encode($image_row['image']) . '" alt="" class="thumbnail" />
+                                <button type="button" class="img-delete-btn">X</button>
+                            </div>';
+                    }
+                }
+                ?>
+              </output>
               </div>
-              <output id="imgResult"></output>
-            </div>
-          </div>
-          <!-- Images Upload end -->
-          
           <!-- other details-->
           <div class="row">
             <div class="input-ps">
               <label for="" class="input-ps-label">Other Details <span>*</span></label>
-              <textarea  name="other" class="input-ps-in" id='other' required spellcheck="true">
+              <textarea  name="other" class="input-ps-in" id='other' required spellcheck="true" >
+                <?php echo $other_details;?>
               </textarea>
             </div>
           </div>
@@ -466,7 +551,7 @@
 
           <!-- action button -->
           <div class="action">
-              <input type="submit" value="Add" class="action-button" />
+              <input type="submit" value="Update" class="action-button" />
           </div>  
 
         </form>
@@ -566,14 +651,20 @@ rangeInput.forEach(input =>{
         }
     });
 });
+
+        // select value of event type
+        var eventType = document.getElementById("venueIn");
+        var eventTypeValue = "<?php echo $venloc ?>";
+        if (eventTypeValue != "") {
+            eventType.value = eventTypeValue;
+        }
+
+        var venType = document.getElementById("venType");
+        var venTypeValue = "<?php echo $ventype ?>";
+        if (venTypeValue != "") {
+            venType.value = venTypeValue;
+        }
     </script>
 </body>
 
 </html>
-
-<?php
- }else{
-    header("Location:sign_in.php?");
-    exit();
- }
-?>
