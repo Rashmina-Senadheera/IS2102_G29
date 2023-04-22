@@ -119,3 +119,21 @@ function formatCurrency($number)
 {
     return number_format($number, 2, '.', ',');
 }
+
+// format date
+function formatDate($date)
+{
+    return date('d M Y', strtotime($date));
+}
+
+// format date
+function formatDateTime($date)
+{
+    return date('d M Y h:i A', strtotime($date));
+}
+
+// format date
+function formatTime($date)
+{
+    return date('h:i', strtotime($date));
+}

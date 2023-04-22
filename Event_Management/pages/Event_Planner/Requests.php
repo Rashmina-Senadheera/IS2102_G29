@@ -59,8 +59,7 @@ include('../controllers/commonFunctions.php');
                             $date = !empty($row['to_date']) ? $date1. " to " . $row['to_date'] : $date1;
                             $budget1 = !empty($row['min_budget']) ? formatCurrency($row['min_budget']) : "0";
                             $budget2 = !empty($row['max_budget']) ? "- " . formatCurrency($row['max_budget']) : " ";
-                            // $customer_id = $row['customer_id'];
-                            $customer_id = 46;
+                            $customer_id = $row['customer_id'];
 
                             echo "
                                     <div class='ps-card'>
@@ -129,7 +128,6 @@ include('../controllers/commonFunctions.php');
                     Are you sure you want to decline this request?
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="./controllers/declineRequest.php">
                         <div class="decline-reason">
                             <input hidden type="text" name="request_id" id="modal_request_id">
                             <input hidden type="text" name="customer_id" id="modal_customer_id">

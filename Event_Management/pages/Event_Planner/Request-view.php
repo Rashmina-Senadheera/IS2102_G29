@@ -66,8 +66,8 @@ function getRequestsCount($conn, $reqID, $type)
                         <div class="prof-data"><?php echo $theme ?></div>
                     </div>
                     <div class="prof-all">
-                        <div class="prof-name-50">Tentative Date:</div>
-                        <div class="prof-data"><?php echo $date ?></div>
+                        <div class="prof-name-50">Tentative Dates:</div>
+                        <div class="prof-data"><?php echo "$date_from - $date_to"  ?></div>
                     </div>
                     <div class="prof-all">
                         <div class="prof-name-50">Time:</div>
