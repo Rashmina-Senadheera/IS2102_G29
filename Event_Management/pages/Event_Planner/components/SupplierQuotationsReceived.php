@@ -72,7 +72,7 @@
                                 </div>";
                     }
                 } else {
-                    echo "<div class='no-requests'>No declined quotation requests</div>";
+                    echo "<div class='no-requests'>No quotation received</div>";
                 }
             }
             ?>

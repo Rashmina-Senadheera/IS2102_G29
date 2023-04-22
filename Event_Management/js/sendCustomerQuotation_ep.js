@@ -1,22 +1,26 @@
-function setFoodBevCost(name, cost) {
+function setFoodBevCost(id, name, cost) {
+    document.getElementById('foodBevId').value = id;
     document.getElementById('foodBevCost').value = cost;
     document.getElementById('foodBevName').value = name;
     calcTotalCost();
 }
 
-function setVenueCost(name, cost) {
+function setVenueCost(id, name, cost) {
+    document.getElementById('venueId').value = id;
     document.getElementById('venueCost').value = cost;
     document.getElementById('venueName').value = name;
     calcTotalCost();
 }
 
-function setPVCost(name, cost) {
+function setPVCost(id, name, cost) {
+    document.getElementById('pvId').value = id;
     document.getElementById('pvCost').value = cost;
     document.getElementById('pvName').value = name;
     calcTotalCost();
 }
 
-function setSLCost(name, cost) {
+function setSLCost(id, name, cost) {
+    document.getElementById('slId').value = id;
     document.getElementById('slCost').value = cost;
     document.getElementById('slName').value = name;
     calcTotalCost();
@@ -52,8 +56,4 @@ function calcTotalCost() {
     totalCost = "Rs. " + totalCost;
 
     document.getElementById('totalCost').value = totalCost;
-}
-
-function changeTotal() {
-    calcTotalCost();
 }

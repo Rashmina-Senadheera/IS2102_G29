@@ -74,9 +74,22 @@ require_once './controllers/getRequestDetails.php';
                                     <table>";
 
                     while ($row = $result->fetch_assoc()) {
+                        $qid = $row['quotation_id'];
                         $title = $row['title'];
                         $cost = $row['cost'];
-                        echo "<tr onClick='setFoodBevCost(`$title`, `$cost`)'>
+
+                        // select js function to set the title and cost
+                        if ($type == "foodbev") {
+                            $setFunction = "setFoodBevCost";
+                        } else if ($type == "venue") {
+                            $setFunction = "setVenueCost";
+                        } else if ($type == "photo") {
+                            $setFunction = "setPVCost";
+                        } else if ($type == "ent") {
+                            $setFunction = "setSLCost";
+                        }
+
+                        echo "<tr onClick='$setFunction(`$qid`, `$title`, `$cost`)'>
                                 <td>$title</td>
                                 <td>Rs. " . formatCurrency($cost) . "</td>
                             </tr>";
@@ -193,7 +206,7 @@ require_once './controllers/getRequestDetails.php';
                                 <div class='input-value'>$food_remarks</div>
                             </div>
                         </div>";
-                getQuotationDetails($reqID, $conn, "sound");
+                getQuotationDetails($reqID, $conn, "ent");
                 echo "</div>";
             }
             ?>
@@ -208,12 +221,13 @@ require_once './controllers/getRequestDetails.php';
                 <div class="row">
                     <div class="input">
                         <label class="input-label">Event Planner's Cost</label>
-                        <input id="epCost" onkeyup="changeTotal()" onchange="changeTotal()" value="0" type="number" class="input-field" name="epCost" placeholder="Cost" />
+                        <input id="epCost" onkeyup="calcTotalCost()" onchange="calcTotalCost()" value="0" type="number" class="input-field" name="epCost" placeholder="Cost" />
                     </div>
                     <?php if ($result_food->num_rows > 0) { ?>
                         <div class="row">
                             <div class="input">
                                 <label class="input-label">Food & Beverages</label>
+                                <input id="foodBevId" type="hidden" value="0" name="foodBevId" />
                                 <input id="foodBevName" type="text" class="input-field" name="foodBevName" placeholder="Supplier Name / Product Name" />
                                 <input id="foodBevCost" onkeyup="calcTotalCost()" onchange="calcTotalCost()" value="0" type="number" class="input-field" name="foodBevCost" placeholder="Cost" style="margin-top: 5px;" />
                             </div>
@@ -223,6 +237,7 @@ require_once './controllers/getRequestDetails.php';
                         <div class="row">
                             <div class="input">
                                 <label class="input-label">Venue</label>
+                                <input id="venueId" type="hidden" value="0" name="venueId" />
                                 <input id="venueName" type="text" class="input-field" name="venueName" placeholder="Supplier Name / Product Name" />
                                 <input id="venueCost" onkeyup="calcTotalCost()" onchange="calcTotalCost()" value="0" type="number" class="input-field" name="venueCost" placeholder="Cost" style="margin-top: 5px;" />
 
@@ -233,6 +248,7 @@ require_once './controllers/getRequestDetails.php';
                         <div class="row">
                             <div class="input">
                                 <label class="input-label">Photography & Videography</label>
+                                <input id="pvId" type="hidden" value="0" name="pvId" />
                                 <input id="pvName" type="text" class="input-field" name="pvName" placeholder="Supplier Name / Product Name" />
                                 <input id="pvCost" onkeyup="calcTotalCost()" onchange="calcTotalCost()" value="0" type="number" class="input-field" name="pvCost" placeholder="Cost" style="margin-top: 5px;" />
 
@@ -243,6 +259,7 @@ require_once './controllers/getRequestDetails.php';
                         <div class="row">
                             <div class="input">
                                 <label class="input-label">Sound & Lighting</label>
+                                <input id="slId" type="hidden" value="0" name="slId" />
                                 <input id="slName" type="text" class="input-field" name="slName" placeholder="Supplier Name / Product Name" />
                                 <input id="pvCost" onkeyup="calcTotalCost()" onchange="calcTotalCost()" value="0" type="number" class="input-field" name="pvCost" placeholder="Cost" style="margin-top: 5px;" />
 

@@ -19,7 +19,7 @@
                 <li><input type="checkbox" name="supType" onchange="showResult()" id="Florists" value="Florists">Florists</li>
                 <li><input type="checkbox" name="supType" onchange="showResult()" id="Decoration" value="Decoration">Decoration</li>
                 <li><input type="checkbox" name="supType" onchange="showResult()" id="Lighting" value="Lighting">Lighting</li>
-                <li><input type="checkbox" name="supType" onchange="showResult()" id="Audio/Video" value="Audio/Video">Audio/Video</li>
+                <li><input type="checkbox" name="supType" onchange="showResult()" id="AudioVideo" value="AudioVideo">Audio/Video</li>
             </ul>
         </div>
         <div class="sort">

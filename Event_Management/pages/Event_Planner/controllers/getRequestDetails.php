@@ -1,5 +1,5 @@
 <?php
-if (isset($_GET['reqID'])) {
+if (isset($_GET['reqID']) && !empty($_GET['reqID'])) {
     // Start output buffering
     ob_start();
 
@@ -75,6 +75,9 @@ if (isset($_GET['reqID'])) {
             header("Location: ./404.php");
             exit();
         }
+    } else {
+        header("Location: ./404.php");
+        exit();
     }
 
     // Send the output buffer to the browser and turn off output buffering
@@ -83,4 +86,3 @@ if (isset($_GET['reqID'])) {
     header("Location: Requests.php");
     exit();
 }
-?>
