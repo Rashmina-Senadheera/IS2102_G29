@@ -31,6 +31,8 @@ if (isset($_GET['id'])) {
 
             $suitable_for = !empty($more_details['suitable_for']) ? $more_details['suitable_for'] : "";
             $locations = !empty($more_details['locations']) ? $more_details['locations'] : "";
+            $photo_in= !empty($more_details['photo_in']) ? $more_details['photo_in'] : "";
+            $photo_avaiable = !empty($more_details['available']) ? $more_details['available'] : "";
             $provide = !empty($more_details['provide']) ? $more_details['provide'] : "";
             $type_of_flowers = !empty($more_details['type_of_flowers']) ? $more_details['type_of_flowers'] : "";
             $height = !empty($more_details['height']) ? $more_details['height'] : "";
@@ -114,35 +116,123 @@ if (isset($_GET['id'])) {
                         <div class="personal-info-heading">
                             Product Description
                         </div> 
-                        <div class="prof-all-p">
-                            <div class="prof-name-p">Catered For</div>
-                            <div class="prof-data"><?php echo $venloc;?></div>
-                        </div>
-                        <div class="prof-all-p">
-                            <div class="prof-name-p">Venue Location</div>
-                            <div class="prof-data"><?php echo $venlocation;?></div>
-                        </div>
-                        <div class="prof-all-p">
-                            <div class="prof-name-p">Venue Type</div>
-                            <div class="prof-data"><?php echo $ventype;?></div>
-                        </div>
-                        <div class="prof-all-p">
-                            <div class="prof-name-p">Maximum Capacity</div>
-                            <div class="prof-data"><?php echo $maxCap ;?></div>
-                        </div>
-                        <div class="prof-all-p">
-                            <div class="prof-name-p">Minimum Capacity</div>
-                            <div class="prof-data"><?php echo $minCap;?></div>
-                        </div>
-                       
 
-                         <div class="prof-all-e">
-                                <a href="form-venue_edit.php?id=<?php echo $id;?>" class="custom-button-e" id="ed">
-                                    Edit
-                                </a>
-                                <button type="button" class="custom-button-e" id="del">Delete</button>
+                        <?php if($type == 'venue') {?>
+                            <div class="prof-all-p">
+                                <div class="prof-name-p">Catered For</div>
+                                <div class="prof-data"><?php echo $venloc;?></div>
                             </div>
+                            <div class="prof-all-p">
+                                <div class="prof-name-p">Venue Location</div>
+                                <div class="prof-data"><?php echo $venlocation;?></div>
+                            </div>
+                            <div class="prof-all-p">
+                                <div class="prof-name-p">Venue Type</div>
+                                <div class="prof-data"><?php echo $ventype;?></div>
+                            </div>
+                            <div class="prof-all-p">
+                                <div class="prof-name-p">Maximum Capacity</div>
+                                <div class="prof-data"><?php echo $maxCap ;?></div>
+                            </div>
+                            <div class="prof-all-p">
+                                <div class="prof-name-p">Minimum Capacity</div>
+                                <div class="prof-data"><?php echo $minCap;?></div>
+                            </div>
+                        <?php } ?>
+
+                        <?php if($type == 'foodbev') {?>
+                            <div class="prof-all-p">
+                                <div class="prof-name-p">Catered For</div>
+                                <div class="prof-data"><?php echo $catered_for;?> Events</div>
+                            </div>
+                            <div class="prof-all-p">
+                                <div class="prof-name-p">Transport</div>
+                                <div class="prof-data"><?php echo $transport;?></div>
+                            </div>
+                            <div class="prof-all-p">
+                                <div class="prof-name-p">Available as </div>
+                                <div class="prof-data"><?php echo $available_as;?></div>
+                            </div>
+                            <div class="prof-all-p">
+                                <div class="prof-name-p">Available for</div>
+                                <div class="prof-data"><?php echo $available_for ;?></div>
+                            </div>
+                        <?php } ?>
+
+                        <?php if($type == 'transport') {?>
+                            <div class="prof-all-p">
+                                <div class="prof-name-p">Type of Transport </div>
+                                <div class="prof-data"><?php echo $transport_type;?> </div>
+                            </div>
+                            <div class="prof-all-p">
+                                <div class="prof-name-p">Brand of Vehicle</div>
+                                <div class="prof-data"><?php echo $brand;?></div>
+                            </div>
+                            <div class="prof-all-p">
+                                <div class="prof-name-p">Model of Vehicle </div>
+                                <div class="prof-data"><?php echo $model;?></div>
+                            </div>
+                        <?php } ?>
+
+                        <?php if($type == 'florist') {?>
+                            <div class="prof-all-p">
+                                <div class="prof-name-p">Type of Flowers</div>
+                                <div class="prof-data"><?php echo $type_of_flowers;?> </div>
+                            </div>
+                            <div class="prof-all-p">
+                                <div class="prof-name-p">Height of Arrangement</div>
+                                <div class="prof-data"><?php echo $height;?></div>
+                            </div>
+                            <div class="prof-all-p">
+                                <div class="prof-name-p">Quantity of Flowers</div>
+                                <div class="prof-data"><?php echo $quantity;?></div>
+                            </div>
+                            <div class="prof-all-p">
+                                <div class="prof-name-p">Suitable for </div>
+                                <div class="prof-data"><?php echo $suitable_for;?></div>
+                            </div>
+                        <?php } ?>
+
+                        <?php if($type == 'deco') {?>
+                            <div class="prof-all-p">
+                                <div class="prof-name-p">Suitable for </div>
+                                <div class="prof-data"><?php echo $suitable_for;?></div>
+                            </div>
+                        <?php } ?>
+
+                        <?php if($type == 'deco') {?>
+                            <div class="prof-all-p">
+                                <div class="prof-name-p">Suitable for </div>
+                                <div class="prof-data"><?php echo $suitable_for;?></div>
+                            </div>
+
+                        <?php } ?>
+
+                        <?php if($type == 'photo') {?>
+                            <div class="prof-all-p">
+                                <div class="prof-name-p">Suitable for </div>
+                                <div class="prof-data"><?php echo $photo_in;?></div>
+                            </div>
+                            <div class="prof-all-p">
+                                <div class="prof-name-p">Available as  </div>
+                                <div class="prof-data"><?php echo $photo_avaiable;?></div>
+                            </div>
+                        <?php } ?>
+
+                        <?php if($type == 'ent') {?>
+                            <div class="prof-all-p">
+                                <div class="prof-name-p">Entertainment Provided  </div>
+                                <div class="prof-data"><?php echo $provide ;?></div>
+                            </div>
+                        <?php } ?>
+
+                        <div class="prof-all-e">
+                            <a href="product-edit.php?id=<?php echo $id;?>" class="custom-button-e" id="ed">
+                                Edit
+                            </a>
+                            <button type="button" class="custom-button-e" id="del">Delete</button>
                         </div>
+                    </div>
                     </div>
                 </div>
             </div>

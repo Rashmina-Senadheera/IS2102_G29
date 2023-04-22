@@ -37,6 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         $cater_transport = validate($_POST['cater-transport']);
         $available_as_fb = validate($_POST['available-as-fb']);
         $available_for_fb = validate($_POST['available-for-fb']);
+        
     }
     if($ptype == 'transport'){
         $transport_type = validate($_POST['transport_type']);
@@ -176,25 +177,29 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                 }
                 
                     if ($stmt1->execute()) {
-                        // Loop through the images array with count
-                        foreach ($images['tmp_name'] as $index => $tmp_name) {
-                            $name = mysqli_real_escape_string($conn, $images['name'][$index]);
-                            $type = mysqli_real_escape_string($conn, $images['type'][$index]);
-                            if (file_exists($tmp_name)) {
-                                $image = file_get_contents($tmp_name);
-                            } else {
-                                $image = null;
-                                continue;
-                            }
-                            $image = mysqli_real_escape_string($conn, $image);
-
-                            $sql = "INSERT INTO supplier_product_images (product_id, image_id, image, name, type) VALUES ('$product_id', '$index', '$image', '$name', '$type')";
-
-                            mysqli_query($conn, $sql);
-                            echo mysqli_error($conn);
+                            // continue the loop
+                        } else {
+                            echo "Something went wrong.";
                         }
                     }
+                // Loop through the images array with count
+                foreach ($images['tmp_name'] as $index => $tmp_name) {
+                    $name = mysqli_real_escape_string($conn, $images['name'][$index]);
+                    $type = mysqli_real_escape_string($conn, $images['type'][$index]);
+                    if (file_exists($tmp_name)) {
+                        $image = file_get_contents($tmp_name);
+                    } else {
+                        $image = null;
+                        continue;
+                    }
+                    $image = mysqli_real_escape_string($conn, $image);
+
+                    $sql = "INSERT INTO supplier_product_images (product_id, image_id, image, name, type) VALUES ('$product_id', '$index', '$image', '$name', '$type')";
+
+                    mysqli_query($conn, $sql);
+                    echo mysqli_error($conn);
                 }
+
                 // Redirect package services page
                 $_SESSION['success'] = "Package added successfully".$package_id;
                 header("location: ../form-venue.php?product_type=".$ptype);
