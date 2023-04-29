@@ -1,14 +1,18 @@
 <?php
+require_once '../controllers/commonFunctions.php';
 require_once('eventplanner_sidenav.php');
 require_once('eventplanner_header.php');
-require_once('./controllers/getRequestDetails.php');
+
+if (!empty($_GET['reqID'])) {
+    require_once './controllers/getRequestDetails.php';
+}
 
 // check method is post
 if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {
     // show error message
     echo "<script>alert('No product or service selected!')</script>";
     // redirect to suppliers page
-    echo "<script>window.location.href = 'Suppliers.php'</script>";
+    // echo "<script>window.location.href = 'Suppliers.php'</script>";
 } else {
     // get reqID from cookie
     $reqID = $_COOKIE['quotation_for'];
@@ -56,21 +60,40 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {
                     <div class="row">
                         <div class="input width-50">
                             <label class="input-label">Date <span>*</span></label>
-                            <input type="date" name="date" class="input-field" required />
+                            <input type="date" name="date" class="input-field" value="<?php echo formatDateDefault($date_from); ?>" required />
                         </div>
                         <div class="input width-50">
                             <label class="input-label">Event Type <span>*</span></label>
+                            <?php
+                            $isDefault = 'selected';
+                            $isBirthday = $isWedding = $isAnniversary = $isCompanyParty = $isCorporateEvent = $isConference = $isExhibition = $isGenderReveal = $isMusicalShow = $isSeminar = $isSportsAndCompetition = $isOther = '';
+
+                            if ($psType == "foodbev") {
+                                $isBottle = $isBulk = $isCups = $isPackets = $isBuffet = '';
+                                $isBreakfast = $isLunch = $isDinner = $isBrunch = $isHighTea = '';
+                            } else if ($psType == "venue") {
+                            } else if ($psType == "florist" || $psType == "deco") {
+                            } else if ($psType == "photo") {
+                            } else if ($psType == "ent") {
+                            }
+                            if (!empty($_GET['reqID'])) {
+                                require_once './controllers/request-quotation-value-select.php';
+                            }
+                            ?>
                             <select name="eventType" class="input-field" onchange="test()">
-                                <option value="" disabled selected>Select Event Type...</option>
-                                <option value="Birthday">Birthday</option>
-                                <option value="Company Party">Company Party</option>
-                                <option value="Conference">Conference</option>
-                                <option value="Exhibition">Exhibition</option>
-                                <option value="Exhibition">Musical Show</option>
-                                <option value="Seminar">Seminar</option>
-                                <option value="Sports and Competition">Sports and Competition</option>
-                                <option value="Wedding">Wedding</option>
-                                <option value="Other">Other</option>
+                                <option value="" disabled <?php echo $isDefault; ?>>Select Event Type...</option>
+                                <option value="Anniversary" <?php echo $isAnniversary; ?>>Anniversary</option>
+                                <option value="Birthday" <?php echo $isBirthday; ?>>Birthday</option>
+                                <option value="Company Party" <?php echo $isCompanyParty; ?>>Company Party</option>
+                                <option value="Corporate Event" <?php echo $isCorporateEvent; ?>>Corporate Event</option>
+                                <option value="Conference" <?php echo $isConference; ?>>Conference</option>
+                                <option value="Exhibition" <?php echo $isExhibition; ?>>Exhibition</option>
+                                <option value="Gender Reveal" <?php echo $isGenderReveal; ?>>Gender Reveal</option>
+                                <option value="Musical Show" <?php echo $isMusicalShow; ?>>Musical Show</option>
+                                <option value="Seminar" <?php echo $isSeminar; ?>>Seminar</option>
+                                <option value="Sports and Competition" <?php echo $isSportsAndCompetition; ?>>Sports and Competition</option>
+                                <option value="Wedding" <?php echo $isWedding; ?>>Wedding</option>
+                                <option value="Other" <?php echo $isOther; ?>>Other</option>
                             </select>
                         </div>
                     </div>
@@ -79,11 +102,11 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {
                         <div class="row">
                             <div class="input width-50" id="noOfParticipants">
                                 <label class="input-label">Number of Participants <span>*</span></label>
-                                <input name="no_of_participants" type="number" class="input-field" required />
+                                <input name="no_of_participants" type="number" class="input-field" value="<?php echo $no_of_guests; ?>" required />
                             </div>
                             <div class="input width-50" id="transportLocations">
                                 <label class="input-label">Locations </label>
-                                <input name="location" type="text" class="input-field" required />
+                                <input name="location" type="text" class="input-field" placeholder="Address / City" required />
                             </div>
                         </div>
                         <div class="row" id='check'>
@@ -121,15 +144,15 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {
                                 <?php if ($psType == "foodbev") { ?>
                                     <div class="check-bx">
                                         <div class="check-bx-opt">
-                                            <input type="checkbox" id="bev_need_as" name="bev_need_as" value="Bottle">
+                                            <input type="checkbox" id="bev_need_as" name="bev_need_as" value="Bottle" <?php echo $isBottle; ?>>
                                             <label for="" class="input-ps-label-opt">Bottle</label>
                                         </div>
                                         <div class="check-bx-opt">
-                                            <input type="checkbox" id="bev_need_as" name="bev_need_as" value="In bulk">
+                                            <input type="checkbox" id="bev_need_as" name="bev_need_as" value="In bulk" <?php echo $isBulk; ?>>
                                             <label for="" class="input-ps-label-opt">In bulk</label>
                                         </div>
                                         <div class="check-bx-opt">
-                                            <input type="checkbox" id="bev_need_as" name="bev_need_as" value="Cups/Packets">
+                                            <input type="checkbox" id="bev_need_as" name="bev_need_as" value="Cups/Packets" <?php echo $isCups; ?>>
                                             <label for="" class="input-ps-label-opt">Cups/Packets</label>
                                         </div>
                                     </div>
@@ -137,11 +160,11 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {
                                 if ($psType == "foodbev") { ?>
                                     <div class="check-bx">
                                         <div class="check-bx-opt">
-                                            <input type="checkbox" id="food_need_as" name="food_need_as" value="Packets">
+                                            <input type="checkbox" id="food_need_as" name="food_need_as" value="Packets" <?php echo $isPackets; ?>>
                                             <label for="" class="input-ps-label-opt">Packets</label>
                                         </div>
                                         <div class="check-bx-opt">
-                                            <input type="checkbox" id="food_need_as" name="food_need_as" value="Buffet">
+                                            <input type="checkbox" id="food_need_as" name="food_need_as" value="Buffet" <?php echo $isBuffet; ?>>
                                             <label for="" class="input-ps-label-opt">Buffet</label>
                                         </div>
                                     </div>
@@ -151,23 +174,23 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {
                                 <label for="" class="input-label" id='check'>Need For <span>*</span></label>
                                 <div class="check-bx">
                                     <div class="check-bx-opt">
-                                        <input type="checkbox" id="need_for" name="need_for" value="Breakfast">
+                                        <input type="checkbox" id="need_for" name="need_for" value="Breakfast"<?php echo $isBreakfast; ?>>
                                         <label for="" class="input-ps-label-opt">Breakfast</label>
                                     </div>
                                     <div class="check-bx-opt">
-                                        <input type="checkbox" id="need_for" name="need_for" value="Lunch">
+                                        <input type="checkbox" id="need_for" name="need_for" value="Lunch"<?php echo $isLunch; ?>>
                                         <label for="" class="input-ps-label-opt">Lunch</label>
                                     </div>
                                     <div class="check-bx-opt">
-                                        <input type="checkbox" id="need_for" name="need_for" value="Dinner">
+                                        <input type="checkbox" id="need_for" name="need_for" value="Dinner"<?php echo $isDinner; ?>>
                                         <label for="" class="input-ps-label-opt">Dinner</label>
                                     </div>
                                     <div class="check-bx-opt">
-                                        <input type="checkbox" id="need_for" name="need_for" value="Brunch">
+                                        <input type="checkbox" id="need_for" name="need_for" value="Brunch"<?php echo $isBrunch; ?>>
                                         <label for="" class="input-ps-label-opt">Brunch</label>
                                     </div>
                                     <div class="check-bx-opt">
-                                        <input type="checkbox" id="need_for" name="need_for" value="High-Tea">
+                                        <input type="checkbox" id="need_for" name="need_for" value="High-Tea"<?php echo $isHighTea; ?>>
                                         <label for="" class="input-ps-label-opt">High-Tea</label>
                                     </div>
                                 </div>
@@ -178,11 +201,11 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {
                         <div class="row">
                             <div class="input width-50" id="noOfParticipants">
                                 <label class="input-label">Location (From) <span>*</span></label>
-                                <input name="location_from" type="text" class="input-field" required />
+                                <input name="location_from" type="text" class="input-field" placeholder="Address / City" required />
                             </div>
                             <div class="input width-50" id="transportLocations">
                                 <label class="input-label">Location (To) <span>*</span></label>
-                                <input name="location_to" type="text" class="input-field" required />
+                                <input name="location_to" type="text" class="input-field" placeholder="Address / City" required />
                             </div>
                         </div>
                         <div class="row">

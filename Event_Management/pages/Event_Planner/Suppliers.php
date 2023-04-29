@@ -24,6 +24,7 @@
         $reqID = $_GET['reqID'];
         setcookie("quotation_for", $reqID);
     } else {
+        $reqID = '0';
         setcookie("quotation_for", 0);
     }
 
@@ -92,7 +93,7 @@
                                     <a href="./Supplier-more-info.php?id=' . $productID . '" class="view-supplier">View</a>
                                 </li>
                                 <li>
-                                    <a href="./request-quotation.php?id=' . $productID . '" class="request">Request a Quotation</a>
+                                    <a href="./request-quotation.php?id=' . $productID . '&reqID=' . $reqID . '" class="request">Request a Quotation</a>
                                 </li>
                             </ul>
                         </div>';

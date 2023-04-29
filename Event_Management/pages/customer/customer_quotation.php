@@ -10,8 +10,6 @@ if(isset($evt_planner_id)){
     $_SESSION['evt_id'] = $evt_planner_id;
 
 }
-// $evt_planner_id = 
-
 
 ?>
 <main>

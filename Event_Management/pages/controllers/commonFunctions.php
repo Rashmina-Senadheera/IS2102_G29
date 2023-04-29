@@ -137,3 +137,9 @@ function formatTime($date)
 {
     return date('h:i', strtotime($date));
 }
+
+// format date
+function formatDateDefault($date)
+{
+    return date('Y-m-d', strtotime($date));
+}
