@@ -15,9 +15,9 @@
     // Start output buffering
     ob_start();
 
-    include('eventplanner_sidenav.php');
-    include('eventplanner_header.php');
-    include('../controllers/commonFunctions.php');
+    require_once('eventplanner_sidenav.php');
+    require_once('eventplanner_header.php');
+    require_once('../controllers/commonFunctions.php');
 
     // get the request id if it is set
     if (isset($_GET['reqID'])) {
@@ -103,7 +103,7 @@
                 ?>
 
             </div>
-            <?php include 'components/SuppliersFilter.php'; ?>
+            <?php require_once 'components/SuppliersFilter.php'; ?>
         </div>
     </div>
     <script src="../../js/epSupplierFilter.js"></script>

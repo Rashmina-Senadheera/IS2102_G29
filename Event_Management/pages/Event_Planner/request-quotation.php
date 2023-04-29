@@ -1,6 +1,7 @@
 <?php
-include('eventplanner_sidenav.php');
-include('eventplanner_header.php');
+require_once('eventplanner_sidenav.php');
+require_once('eventplanner_header.php');
+require_once('./controllers/getRequestDetails.php');
 
 // check method is post
 if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {

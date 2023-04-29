@@ -1,5 +1,5 @@
 <?php
-include('../controllers/commonFunctions.php');
+require_once('../controllers/commonFunctions.php');
 require_once './controllers/getRequestDetails.php';
 ?>
 

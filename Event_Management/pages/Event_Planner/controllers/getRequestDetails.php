@@ -3,8 +3,8 @@ if (isset($_GET['reqID']) && !empty($_GET['reqID'])) {
     // Start output buffering
     ob_start();
 
-    include('eventplanner_sidenav.php');
-    include('eventplanner_header.php');
+    require_once('eventplanner_sidenav.php');
+    require_once('eventplanner_header.php');
 
     $reqID = $_GET['reqID'];
     $sql = "SELECT * FROM cust_req_general AS c, request_ep_quotation AS r WHERE c.request_id = r.request_id AND c.request_id = $reqID";

@@ -7,9 +7,9 @@ if (isset($_GET['packageId'])) {
     // Start output buffering
     ob_start();
 
-    include('eventplanner_sidenav.php');
-    include('eventplanner_header.php');
-    include('../controllers/commonFunctions.php');
+    require_once('eventplanner_sidenav.php');
+    require_once('eventplanner_header.php');
+    require_once('../controllers/commonFunctions.php');
 
     $packageId = $_GET['packageId'];
     $sql = "SELECT * FROM packages WHERE package_id = $packageId";

@@ -1,7 +1,7 @@
 <?php
-include('eventplanner_sidenav.php');
-include('eventplanner_header.php');
-include('../controllers/commonFunctions.php');
+require_once('eventplanner_sidenav.php');
+require_once('eventplanner_header.php');
+require_once('../controllers/commonFunctions.php');
 ?>
 
 <!DOCTYPE html>
@@ -33,15 +33,15 @@ include('../controllers/commonFunctions.php');
             </div>
 
             <div id="Received" class="tabcontent">
-                <?php include('components/SupplierQuotationsReceived.php'); ?>
+                <?php require_once('components/SupplierQuotationsReceived.php'); ?>
             </div>
 
             <div id="Requested" class="tabcontent">
-                <?php include('components/SupplierQuotationsRequested.php'); ?>
+                <?php require_once('components/SupplierQuotationsRequested.php'); ?>
             </div>
 
             <div id="Declined" class="tabcontent">
-                <?php include('components/SupplierQuotationsDeclined.php'); ?>
+                <?php require_once('components/SupplierQuotationsDeclined.php'); ?>
             </div>
 
         </div>

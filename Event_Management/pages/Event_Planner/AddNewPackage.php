@@ -1,7 +1,7 @@
 <?php
-include('eventplanner_sidenav.php');
-include('eventplanner_header.php');
-include('../controllers/commonFunctions.php');
+require_once('eventplanner_sidenav.php');
+require_once('eventplanner_header.php');
+require_once('../controllers/commonFunctions.php');
 ?>
 
 <!DOCTYPE html>
