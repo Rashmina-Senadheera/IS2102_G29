@@ -590,7 +590,7 @@ label {
 .tab button {
     background-color: inherit;
     float: left;
-    border:  1px solid #ccc;
+    border: 1px solid #ccc;
     outline: none;
     cursor: pointer;
     padding: 8px 16px;
@@ -618,4 +618,25 @@ label {
     padding: 6px 12px;
     /* border: 1px solid #ccc; */
     border-top: none;
+}
+
+/* Quotation count in request view page */
+.quotation-count {
+    /* background: #eeeeee; */
+    color: #490258;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px 10px;
+    margin-left: 20px;
+    border-radius: 5px;
+    /* text-align: center; */
+}
+
+/* Find supplier button in request view page */
+.btnFindSupplier {
+    margin: 0;
+}
+
+.btnFindSupplier a {
+    text-decoration: none;
 }

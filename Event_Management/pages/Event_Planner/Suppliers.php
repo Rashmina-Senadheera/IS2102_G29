@@ -56,9 +56,9 @@
                     if ($type == "foodbev") {
                         $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = 'foodbev'";
                     } else if ($type == "pv") {
-                        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = 'photography' OR `type` = 'videography'";
+                        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = 'photo' OR `type` = 'video'";
                     } else if ($type == "sl") {
-                        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = 'lighting' OR `type` = 'sound'";
+                        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = 'deco' OR `type` = 'deco'";
                     } else {
                         $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = '$type'";
                     }
