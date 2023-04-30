@@ -96,11 +96,11 @@ function sendEmail($to, $name, $subject, $message)
     }
 }
 
-function showSessionMessage($error)
+function showSessionMessage($type)
 {
-    if (isset($_SESSION[$error])) {
-        $tempErr = $_SESSION[$error];
-        unset($_SESSION[$error]);
+    if (isset($_SESSION[$type])) {
+        $tempErr = $_SESSION[$type];
+        unset($_SESSION[$type]);
         return $tempErr;
     }
 }

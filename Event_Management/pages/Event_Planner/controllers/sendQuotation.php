@@ -23,15 +23,13 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
 
     $onlyPositiveNumbers = "/^[0-9]*$/";
 
-    if (empty($epCost)) {
-        $_SESSION['error-epCost'] = "Cost is required";
-    } else if (!preg_match($onlyPositiveNumbers, $epCost)) {
+    if (!preg_match($onlyPositiveNumbers, $epCost)) {
         $_SESSION['error-epCost'] = "Cost must be a positive number";
     } else {
         unset($_SESSION['error-epCost']);
     }
 
-    // if confirm proceed with warnings
+    unset($_SESSION['warning-venue']);
 
     if ($runFood) {
         $foodBevId = checkInput($_POST['foodBevId']);
@@ -42,11 +40,6 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
             $_SESSION['error-foodBevCost'] = "Cost must be a positive number";
         } else {
             unset($_SESSION['error-foodBevCost']);
-            if (empty($foodBevName) || empty($foodBevCost)) {
-                $_SESSION['warning-food'] = "Food & Beverage not set";
-            } else {
-                unset($_SESSION['warning-food']);
-            }
         }
     }
 
@@ -59,11 +52,6 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
             $_SESSION['error-venueCost'] = "Cost must be a positive number";
         } else {
             unset($_SESSION['error-venueCost']);
-            if (empty($venueName) || empty($venueCost)) {
-                $_SESSION['warning-venue'] = "Venue not set";
-            } else {
-                unset($_SESSION['warning-food']);
-            }
         }
     }
 
@@ -76,11 +64,6 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
             $_SESSION['error-pvCost'] = "Cost must be a positive number";
         } else {
             unset($_SESSION['error-pvCost']);
-            if (empty($pvName) || empty($pvCost)) {
-                $_SESSION['warning-pv'] = "Photographer/Videographer not set";
-            } else {
-                unset($_SESSION['warning-pv']);
-            }
         }
     }
 
@@ -93,15 +76,10 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
             $_SESSION['error-slCost'] = "Cost must be a positive number";
         } else {
             unset($_SESSION['error-slCost']);
-            if (empty($slName) || empty($slCost)) {
-                $_SESSION['warning-sl'] = "Sound/Lighting not set";
-            } else {
-                unset($_SESSION['warning-sl']);
-            }
         }
     }
 
-    if (isset($_SESSION['warning-food']) || isset($_SESSION['warning-venue']) || isset($_SESSION['warning-pv']) || isset($_SESSION['warning-sl'])) {
+    if (isset($_SESSION['error-foodBevCostCost']) || isset($_SESSION['error-venueCost']) || isset($_SESSION['error-pvCost']) || isset($_SESSION['error-sl'])) {
         echo "<script> window.history.go(-1); </script>";
         exit();
     } else {
@@ -109,35 +87,65 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         $sql = "INSERT INTO `ep_quotation`(`reqId`, `cusId`, `epId`, `remarks`, `date`, `status`, `epCost`) VALUES ('$reqID','$cusId','$epId','$remarks','$date','$status','$epCost')";
         if ($conn->query($sql) === TRUE) {
             $last_id = $conn->insert_id;
+            $updateStatus = "UPDATE `request_ep_quotation` SET `status`='quotation sent' WHERE `request_id`='$reqID'";
+            $conn->query($updateStatus);
         } else {
             $_SESSION['error'] = "Error: " . $conn->error;
             echo "<script> window.history.go(-1); </script>";
             exit();
         }
 
+
         // check if ep_quotation is inserted
         if (!empty($last_id)) {
-            // insert into ep_quotation_items
+            $sql = "INSERT INTO `ep_quotation_items`(`qId`, `type`, `name`, `cost`) VALUES (?,?,?,?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("issd", $param_id, $param_type, $param_name, $param_cost);
+            $param_id = $last_id;
+
             if ($runFood) {
-                $type = 'foodbev';
-                $stmt->bind_param("issd", $last_id, $type, $foodBevName, $foodBevCost);
+                $param_type = 'foodbev';
+                if (empty($foodBevName)) {
+                    $param_name = "Not Set";
+                } else {
+                    $param_name = $foodBevName;
+                }
+                $param_cost = $foodBevCost;
                 $stmt->execute();
             }
             if ($runVenue) {
-                $type = 'venue';
-                $stmt->bind_param("issd", $last_id, $type, $venueName, $venueCost);
+                $param_type = 'venue';
+                if (empty($venueName)) {
+                    $param_name = "Not Set";
+                } else {
+                    $param_name = $venueName;
+                }
+                $param_cost = $venueCost;
                 $stmt->execute();
             }
             if ($runPV) {
-                $type = 'photo';
-                $stmt->bind_param("issd", $last_id, $type, $pvName, $pvCost);
+                $param_type = 'photo';
+                if (empty($pvName)) {
+                    $param_name = "Not Set";
+                } else {
+                    $param_name = $pvName;
+                }
+                $param_cost = $pvCost;
                 $stmt->execute();
             }
             if ($runSL) {
-                $type = 'ent';
-                $stmt->bind_param("issd", $last_id, $type, $slName, $slCost);
+                $param_type = 'ent';
+                if (empty($slName)) {
+                    $param_name = "Not Set";
+                } else {
+                    $param_name = $slName;
+                }
+                $param_cost = $slCost;
                 $stmt->execute();
             }
         }
+
+        $_SESSION['success'] = "Quotation sent successfully";
+        header("location: ../Requests.php");
     }
 }

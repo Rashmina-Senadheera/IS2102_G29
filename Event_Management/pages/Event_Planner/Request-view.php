@@ -126,8 +126,8 @@ function getRequestsCount($conn, $reqID, $type)
                                 </div>
                             </div>
                             <div class='quotation-count'>
-                                Quotation(s) : &emsp;Requested  " . getRequestsCount($conn, $reqID, "foodbev") . " 
-                                &emsp; |  &emsp; Recieved " . getQuotationCount($conn, $reqID, "foodbev") . " 
+                                Quotation(s) : &emsp;Requested -  " . getRequestsCount($conn, $reqID, "foodbev") . " 
+                                &emsp; |  &emsp; Recieved - " . getQuotationCount($conn, $reqID, "foodbev") . " 
                             </div>
                             <div class='prof-all'>
                                 <div class='prof-name'>Available In:</div>
@@ -163,8 +163,8 @@ function getRequestsCount($conn, $reqID, $type)
                                 </div>
                             </div>
                             <div class='quotation-count'>
-                                Quotation(s) : &emsp;Requested  " . getRequestsCount($conn, $reqID, "venue") . "
-                                &emsp; |  &emsp; Recieved " . getQuotationCount($conn, $reqID, "venue") . "
+                                Quotation(s) : &emsp;Requested -  " . getRequestsCount($conn, $reqID, "venue") . "
+                                &emsp; |  &emsp; Recieved - " . getQuotationCount($conn, $reqID, "venue") . "
                             </div>
                             <div class='prof-all'>
                                 <div class='prof-name'>Type:</div>
@@ -193,8 +193,8 @@ function getRequestsCount($conn, $reqID, $type)
                                 </div>
                             </div>
                             <div class='quotation-count'>
-                                Quotation(s) : &emsp;Requested  " . getRequestsCount($conn, $reqID, "photo") . " 
-                                &emsp; |  &emsp; Recieved " . getQuotationCount($conn, $reqID, "photo") . " 
+                                Quotation(s) : &emsp;Requested -  " . getRequestsCount($conn, $reqID, "photo") . " 
+                                &emsp; |  &emsp; Recieved - " . getQuotationCount($conn, $reqID, "photo") . " 
                             </div>
                             <div class='prof-all'>
                                 <div class='prof-name'>Photography:</div>
@@ -227,8 +227,8 @@ function getRequestsCount($conn, $reqID, $type)
                                 </div>
                             </div>
                             <div class='quotation-count'>
-                                Quotation(s) : &emsp;Requested  " . getRequestsCount($conn, $reqID, "deco") . " 
-                                &emsp; |  &emsp; Recieved " . getQuotationCount($conn, $reqID, "deco") . " 
+                                Quotation(s) : &emsp;Requested -  " . getRequestsCount($conn, $reqID, "deco") . " 
+                                &emsp; |  &emsp; Recieved - " . getQuotationCount($conn, $reqID, "deco") . " 
                             </div>
                             <div class='prof-all'>
                                 <div class='prof-name'>Sound Type:</div>

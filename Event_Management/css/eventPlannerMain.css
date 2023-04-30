@@ -467,7 +467,15 @@ label {
     width: 100%;
     padding: 1rem;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    text-align: center;
+}
+
+.modal-body .decline-reason #formErrors {
+    color: red;
+    font-size: .9rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-align: center;
 }
 
 .modal-footer {

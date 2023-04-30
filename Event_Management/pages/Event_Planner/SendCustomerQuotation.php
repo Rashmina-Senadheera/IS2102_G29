@@ -17,7 +17,6 @@ require_once './controllers/getRequestDetails.php';
 
 <body>
     <div class="main-body">
-
         <div class="form-card scrollable">
             <div class="form-title">Request Details</div>
             <div class="form-description">The customer has requested the quotation for the following details.</div>
@@ -203,7 +202,7 @@ require_once './controllers/getRequestDetails.php';
                         <div class='row'>
                             <div class='input input-background'>
                                 <label class='input-label'>Remarks:</label>
-                                <div class='input-value'>$food_remarks</div>
+                                <div class='input-value'>$sl_remarks</div>
                             </div>
                         </div>";
                 getQuotationDetails($reqID, $conn, "ent");
@@ -214,7 +213,7 @@ require_once './controllers/getRequestDetails.php';
         </div>
 
         <div class="form-card scrollable">
-            <form method="POST" action="controllers/sendQuotation.php" enctype="multipart/form-data">
+            <form id="sendCustomerQuotation" method="POST" action="controllers/sendQuotation.php">
                 <div class="form-title">Send Quotation</div>
                 <input type="hidden" name="reqID" value="<?php echo $reqID; ?>" />
                 <input type="hidden" name="cusId" value="<?php echo $customerID; ?>" />
@@ -261,7 +260,7 @@ require_once './controllers/getRequestDetails.php';
                                 <label class="input-label">Sound & Lighting</label>
                                 <input id="slId" type="hidden" value="0" name="slId" />
                                 <input id="slName" type="text" class="input-field" name="slName" placeholder="Supplier Name / Product Name" />
-                                <input id="pvCost" onkeyup="calcTotalCost()" onchange="calcTotalCost()" value="0" type="number" class="input-field" name="pvCost" placeholder="Cost" style="margin-top: 5px;" />
+                                <input id="slCost" onkeyup="calcTotalCost()" onchange="calcTotalCost()" value="0" type="number" class="input-field" name="pvCost" placeholder="Cost" style="margin-top: 5px;" />
 
                             </div>
                         </div>
@@ -279,12 +278,43 @@ require_once './controllers/getRequestDetails.php';
                         </div>
                     </div>
                     <div class="action btnSend">
-                        <input type="submit" value="Send" class="action-button" />
+                        <!-- <input type="submit" value="Send" class="action-button" /> -->
+                        <button type="button" onclick="<?php echo 'sendCustomerQuotation()'; ?>" class="action-button" style="margin-left: 0;">
+                            Send
+                        </button>
                     </div>
             </form>
         </div>
     </div>
 
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-decline">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                Confirm sending the quotation to the customer?
+            </div>
+            <div class="modal-body">
+                <div class="decline-reason">
+                    <label>Please check everything before sending the quotation to the customer. You cannot modify the quotation after sending it to the customer.</label>
+                    <div id="formErrors"></div>
+                </div>
+                <div class="actionBtn">
+                    <button type="button" onclick="closeModal2()" class="rejected" id="modal_cancel" style="margin-left: 0;">
+                        Cancel
+                    </button>
+                    <button type="button" onclick="sendCustomerQuotationConfirm()" class="accepted" style="margin-left: 0;">
+                        Confirm
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
+
+<script src="../../js/epHandleCusReq.js"></script>
 
 </html>
