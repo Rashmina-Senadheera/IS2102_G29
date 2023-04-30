@@ -7,7 +7,7 @@
     display: flex;
     flex-wrap: wrap;
     margin: 10px 15px 10px 0px;
-    /* flex: 80%; */
+    flex: 80%;
 }
 
 .suppliers-cards-container .card {

@@ -1,18 +1,21 @@
 <?php
 require_once '../controllers/commonFunctions.php';
+
+ob_start();
 require_once('eventplanner_sidenav.php');
 require_once('eventplanner_header.php');
 
 if (!empty($_GET['reqID'])) {
     require_once './controllers/getRequestDetails.php';
 }
+ob_end_flush();
 
 // check method is post
-if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {
+if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id']) || empty($_GET['id'])) {
     // show error message
-    echo "<script>alert('No product or service selected!')</script>";
+    // echo "<script>alert('No product or service selected!')</script>";
     // redirect to suppliers page
-    // echo "<script>window.location.href = 'Suppliers.php'</script>";
+    echo "<script>window.location.href = '404.php'</script>";
 } else {
     // get reqID from cookie
     $reqID = $_COOKIE['quotation_for'];
@@ -28,8 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id'])) {
         $psType = $row['type'];
         $supplierId = $row['supplier_ID'];
     } else {
-        echo "<script>alert('Product or Service cannot be found!')</script>";
-        echo "<script>window.location.href = 'Suppliers.php'</script>";
+        // echo "<script>alert('Product or Service cannot be found!')</script>";
+        echo "<script>window.location.href = '404.php'</script>";
     }
 ?>
     <!DOCTYPE html>
