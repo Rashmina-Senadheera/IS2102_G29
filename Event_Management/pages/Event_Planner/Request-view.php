@@ -1,5 +1,22 @@
 <?php
+require_once '../controllers/commonFunctions.php';
 require_once './controllers/getRequestDetails.php';
+
+function getQuotationCount($conn, $reqID, $type)
+{
+    $sql = "SELECT COUNT(*) AS count FROM supplier_quotation WHERE for_cus_req = $reqID AND type = '$type'";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    return $row['count'];
+}
+
+function getRequestsCount($conn, $reqID, $type)
+{
+    $sql = "SELECT COUNT(*) AS count FROM request_supplier_quotation WHERE for_cus_req = $reqID AND product_type = '$type'";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    return $row['count'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +43,7 @@ require_once './controllers/getRequestDetails.php';
                 <div class="page-title">Quotation Request</div>
             </div>
         </div>
-        <div class="flex-container-profile" style="height: 95%;">
+        <div class="flex-container-profile">
             <div class="about">
                 <div class="personal-info">
                     <div class="personal-info-heading">
@@ -49,8 +66,8 @@ require_once './controllers/getRequestDetails.php';
                         <div class="prof-data"><?php echo $theme ?></div>
                     </div>
                     <div class="prof-all">
-                        <div class="prof-name-50">Tentative Date:</div>
-                        <div class="prof-data"><?php echo $date ?></div>
+                        <div class="prof-name-50">Tentative Dates:</div>
+                        <div class="prof-data"><?php echo "$date_from - $date_to"  ?></div>
                     </div>
                     <div class="prof-all">
                         <div class="prof-name-50">Time:</div>
@@ -59,6 +76,10 @@ require_once './controllers/getRequestDetails.php';
                     <div class="prof-all">
                         <div class="prof-name-50">Budget (Rs.):</div>
                         <div class="prof-data"><?php echo "$budget1 $budget2" ?></div>
+                    </div>
+                    <div class="prof-all">
+                        <div class="prof-name-50">Remarks:</div>
+                        <div class="prof-data"><?php echo "$remarks" ?></div>
                     </div>
 
                     <div class="personal-info-heading" style="width: 50%; margin-top: 40px;">
@@ -100,7 +121,13 @@ require_once './controllers/getRequestDetails.php';
                                 <div class='personal-info-heading'>
                                     Food & Beverages
                                 </div>
-                                <a href='Suppliers.php?type=foodbev&reqID=$reqID'>Find Suppliers</a>
+                                <div class='actionBtn btnFindSupplier'>
+                                    <a href='Suppliers.php?type=foodbev&reqID=$reqID' class='rejected'>Find Suppliers</a>
+                                </div>
+                            </div>
+                            <div class='quotation-count'>
+                                Quotation(s) : &emsp;Requested -  " . getRequestsCount($conn, $reqID, "foodbev") . " 
+                                &emsp; |  &emsp; Recieved - " . getQuotationCount($conn, $reqID, "foodbev") . " 
                             </div>
                             <div class='prof-all'>
                                 <div class='prof-name'>Available In:</div>
@@ -131,7 +158,13 @@ require_once './controllers/getRequestDetails.php';
                                 <div class='personal-info-heading'>
                                     Venue
                                 </div>
-                                <a href='Suppliers.php?type=venue&reqID=$reqID'>Find Suppliers</a>
+                                <div class='actionBtn btnFindSupplier'>
+                                    <a href='Suppliers.php?type=venue&reqID=$reqID' class='rejected'>Find Suppliers</a>
+                                </div>
+                            </div>
+                            <div class='quotation-count'>
+                                Quotation(s) : &emsp;Requested -  " . getRequestsCount($conn, $reqID, "venue") . "
+                                &emsp; |  &emsp; Recieved - " . getQuotationCount($conn, $reqID, "venue") . "
                             </div>
                             <div class='prof-all'>
                                 <div class='prof-name'>Type:</div>
@@ -155,7 +188,13 @@ require_once './controllers/getRequestDetails.php';
                                 <div class='personal-info-heading'>
                                     Photography & Videography
                                 </div>
-                                <a href='Suppliers.php?type=pv&reqID=$reqID'>Find Suppliers</a>
+                                <div class='actionBtn btnFindSupplier'>
+                                    <a href='Suppliers.php?type=pv&reqID=$reqID' class='rejected'>Find Suppliers</a>
+                                </div>
+                            </div>
+                            <div class='quotation-count'>
+                                Quotation(s) : &emsp;Requested -  " . getRequestsCount($conn, $reqID, "photo") . " 
+                                &emsp; |  &emsp; Recieved - " . getQuotationCount($conn, $reqID, "photo") . " 
                             </div>
                             <div class='prof-all'>
                                 <div class='prof-name'>Photography:</div>
@@ -183,7 +222,13 @@ require_once './controllers/getRequestDetails.php';
                                 <div class='personal-info-heading'>
                                     Sound & Lighting
                                 </div>
-                                <a href='Suppliers.php?type=sl&reqID=$reqID'>Find Suppliers</a>
+                                <div class='actionBtn btnFindSupplier'>
+                                    <a href='Suppliers.php?type=sl&reqID=$reqID' class='rejected'>Find Suppliers</a>
+                                </div>
+                            </div>
+                            <div class='quotation-count'>
+                                Quotation(s) : &emsp;Requested -  " . getRequestsCount($conn, $reqID, "deco") . " 
+                                &emsp; |  &emsp; Recieved - " . getQuotationCount($conn, $reqID, "deco") . " 
                             </div>
                             <div class='prof-all'>
                                 <div class='prof-name'>Sound Type:</div>

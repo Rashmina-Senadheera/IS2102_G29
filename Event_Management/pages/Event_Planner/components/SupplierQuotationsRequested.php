@@ -27,7 +27,10 @@
                                 </a>";
                     }
                 } else {
-                    echo "<div class='no-requests'>No quotation requested</div>";
+                    echo "<div class='no-records'>
+                            No Records Found
+                            <img src='../../images/no-record.png' alt='No Requests'>
+                        </div>";
                 }
             }
             ?>

@@ -77,10 +77,10 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         if ($conn->query($sql) === TRUE) {
             $_SESSION['success'] = "Quotation Request sent successfully";
             unset($_SESSION['error']);
-            header("location: ../Suppliers.php");
+            header("location: ../Request-view.php?reqID=$forCusReq");
         } else {
             $_SESSION['error'] = "Error: " . $sql . "<br>" . $conn->error;
-            header("location: ../Suppliers.php");
+            header("location: ../Request-view.php?reqID=$forCusReq");
         }
     }
 }

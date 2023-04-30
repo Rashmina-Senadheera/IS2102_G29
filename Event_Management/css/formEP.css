@@ -231,7 +231,8 @@
     margin-top: 20px;
 }
 
-.action input[type="submit"] {
+.action input[type="submit"],
+.action.btnSend button {
     padding: .5em;
     width: 40%;
     font-weight: 500;

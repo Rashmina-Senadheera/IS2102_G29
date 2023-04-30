@@ -1,7 +1,7 @@
 <?php
-include('eventplanner_sidenav.php');
-include('eventplanner_header.php');
-include('../controllers/commonFunctions.php');
+require_once('eventplanner_sidenav.php');
+require_once('eventplanner_header.php');
+require_once('../controllers/commonFunctions.php');
 ?>
 
 <!DOCTYPE html>
@@ -33,30 +33,34 @@ include('../controllers/commonFunctions.php');
         <div class="ps-list">
             <div class='grid-main' id='rs-list'>
                 <div class="cards">
-                    <div class='ps-card-title' id='title'>
-                        <div class='rs-title t2'></div>
-                        <div class='rs-title'>Requested On</div>
-                        <div class='rs-title'>Event Type</div>
-                        <div class='rs-title'>Participants</div>
-                        <div class='rs-title'>Theme</div>
-                        <div class='rs-title'>Tentative Dates</div>
-                        <div class='rs-title'>Budget (Rs.)</div>
-                        <div class='rs-title t2'></div>
-                    </div>
 
                     <?php
-                    $sql = "SELECT * FROM request_ep_quotation WHERE status = 'pending'";
+                    $sql = "SELECT * FROM cust_req_general AS c, request_ep_quotation AS r WHERE c.request_id = r.request_id AND status = 'pending' AND r.EP_id = $_SESSION[user_id]";
+                    // $sql = "SELECT * FROM cust_req_general";
                     $result = mysqli_query($conn, $sql);
                     if (mysqli_num_rows($result) > 0) {
+                    ?>
+                        <div class='ps-card-title' id='title'>
+                            <div class='rs-title t2'></div>
+                            <div class='rs-title'>Requested On</div>
+                            <div class='rs-title'>Event Type</div>
+                            <div class='rs-title'>Participants</div>
+                            <div class='rs-title'>Theme</div>
+                            <div class='rs-title'>Tentative Dates</div>
+                            <div class='rs-title'>Budget (Rs.)</div>
+                            <div class='rs-title t2'></div>
+                        </div>
+                    <?php
                         while ($row = mysqli_fetch_assoc($result)) {
                             $request_id = !empty($row['request_id']) ? $row['request_id'] : "Not Set";
-                            $reqdate = !empty($row['requested_on']) ? $row['requested_on'] : "Not Set";
+                            $reqdate = !empty($row['req_date']) ? $row['req_date'] : "Not Set";
                             $event_type = !empty($row['event_type']) ? $row['event_type'] : "Not Set";
-                            $no_of_guests = !empty($row['no_of_guests']) ? $row['no_of_guests'] : "Not Set";
+                            $no_of_guests = !empty($row['no_of_pax']) ? $row['no_of_pax'] : "Not Set";
                             $theme = !empty($row['theme']) ? $row['theme'] : "Not Set";
-                            $date = !empty($row['date']) ? $row['date'] : "Not Set";
-                            $budget1 = !empty($row['budget_min']) ? $row['budget_min'] : "0";
-                            $budget2 = !empty($row['budget_max']) ? "- " . $row['budget_max'] : " ";
+                            $date1 = !empty($row['from_date']) ? $row['from_date'] : "Not Set";
+                            $date = !empty($row['to_date']) ? $date1 . " to " . $row['to_date'] : $date1;
+                            $budget1 = !empty($row['min_budget']) ? formatCurrency($row['min_budget']) : "0";
+                            $budget2 = !empty($row['max_budget']) ? "- " . formatCurrency($row['max_budget']) : " ";
                             $customer_id = $row['customer_id'];
 
                             echo "
@@ -109,7 +113,10 @@ include('../controllers/commonFunctions.php');
                                     </div>";
                         }
                     } else {
-                        echo "No requests found";
+                        echo "<div class='no-records'>
+                                No Quotation Requests
+                                <img src='../../images/no-record.png' alt='No Requests'>
+                            </div>";
                     }
                     ?>
                 </div>
@@ -126,21 +133,20 @@ include('../controllers/commonFunctions.php');
                     Are you sure you want to decline this request?
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="./controllers/declineRequest.php">
-                        <div class="decline-reason">
-                            <input hidden type="text" name="request_id" id="modal_request_id">
-                            <input hidden type="text" name="customer_id" id="modal_customer_id">
-                            <label for="reason">Reason</label>
-                            <textarea id="reason" name="reason" rows="4" cols="50" required></textarea>
-                        </div>
-                        <div class="actionBtn">
-                            <button type="button" onclick="closeModal()" class="rejected" id="modal_cancel" style="margin-left: 0;">
-                                Cancel
-                            </button>
-                            <button type="submit" class="accepted" style="margin-left: 0;">
-                                Yes, Decline
-                            </button>
-                        </div>
+                    <div class="decline-reason">
+                        <input hidden type="text" name="request_id" id="modal_request_id">
+                        <input hidden type="text" name="customer_id" id="modal_customer_id">
+                        <label for="reason">Reason</label>
+                        <textarea id="reason" name="reason" rows="4" cols="50" required></textarea>
+                    </div>
+                    <div class="actionBtn">
+                        <button type="button" onclick="closeModal()" class="rejected" id="modal_cancel" style="margin-left: 0;">
+                            Cancel
+                        </button>
+                        <button type="submit" class="accepted" style="margin-left: 0;">
+                            Yes, Decline
+                        </button>
+                    </div>
                     </form>
                 </div>
             </div>

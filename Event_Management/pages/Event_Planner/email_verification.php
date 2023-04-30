@@ -1,7 +1,7 @@
 <?php
-include('../constants.php');
-include('eventplanner_header.php');
-include('../controllers/commonFunctions.php');
+require_once('../constants.php');
+require_once('eventplanner_header.php');
+require_once('../controllers/commonFunctions.php');
 
 $sendOTP = false;
 if (isset($_SESSION['email']) && isset($_SESSION['user_name']) && isset($_SESSION['from_page'])) {

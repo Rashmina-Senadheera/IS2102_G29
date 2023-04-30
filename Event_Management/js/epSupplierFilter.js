@@ -14,7 +14,7 @@ function setTypes() {
     var type7 = document.getElementById("Florists").checked;
     var type8 = document.getElementById("Decoration").checked;
     var type9 = document.getElementById("Lighting").checked;
-    var type10 = document.getElementById("Audio/Video").checked;
+    var type10 = document.getElementById("AudioVideo").checked;
 
 
     if (type1) {
@@ -54,7 +54,7 @@ function setTypes() {
         first = false;
     }
     if (type10) {
-        type += first ? 'Audio/Video' : ',Audio/Video';
+        type += first ? 'ent' : ',ent';
         first = false;
     }
 

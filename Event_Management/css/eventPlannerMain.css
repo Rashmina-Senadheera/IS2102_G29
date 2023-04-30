@@ -113,6 +113,20 @@ hr {
     transition: all 0.5s ease;
 }
 
+.no-records {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    margin-top: 20px;
+    color: #666666;
+}
+
+.no-records img {
+    height: 250px;
+}
 
 
 /********* Table *********/
@@ -467,7 +481,15 @@ label {
     width: 100%;
     padding: 1rem;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    text-align: center;
+}
+
+.modal-body .decline-reason #formErrors {
+    color: red;
+    font-size: .9rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-align: center;
 }
 
 .modal-footer {
@@ -590,7 +612,7 @@ label {
 .tab button {
     background-color: inherit;
     float: left;
-    border:  1px solid #ccc;
+    border: 1px solid #ccc;
     outline: none;
     cursor: pointer;
     padding: 8px 16px;
@@ -618,4 +640,25 @@ label {
     padding: 6px 12px;
     /* border: 1px solid #ccc; */
     border-top: none;
+}
+
+/* Quotation count in request view page */
+.quotation-count {
+    /* background: #eeeeee; */
+    color: #490258;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px 10px;
+    margin-left: 20px;
+    border-radius: 5px;
+    /* text-align: center; */
+}
+
+/* Find supplier button in request view page */
+.btnFindSupplier {
+    margin: 0;
+}
+
+.btnFindSupplier a {
+    text-decoration: none;
 }

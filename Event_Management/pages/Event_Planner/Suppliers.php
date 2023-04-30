@@ -15,15 +15,16 @@
     // Start output buffering
     ob_start();
 
-    include('eventplanner_sidenav.php');
-    include('eventplanner_header.php');
-    include('../controllers/commonFunctions.php');
+    require_once('eventplanner_sidenav.php');
+    require_once('eventplanner_header.php');
+    require_once('../controllers/commonFunctions.php');
 
     // get the request id if it is set
     if (isset($_GET['reqID'])) {
         $reqID = $_GET['reqID'];
         setcookie("quotation_for", $reqID);
     } else {
+        $reqID = '0';
         setcookie("quotation_for", 0);
     }
 
@@ -55,9 +56,9 @@
                     if ($type == "foodbev") {
                         $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = 'foodbev'";
                     } else if ($type == "pv") {
-                        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = 'photography' OR `type` = 'videography'";
+                        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = 'photo' OR `type` = 'video'";
                     } else if ($type == "sl") {
-                        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = 'lighting' OR `type` = 'sound'";
+                        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = 'deco' OR `type` = 'deco'";
                     } else {
                         $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = '$type'";
                     }
@@ -92,18 +93,21 @@
                                     <a href="./Supplier-more-info.php?id=' . $productID . '" class="view-supplier">View</a>
                                 </li>
                                 <li>
-                                    <a href="./request-quotation.php?id=' . $productID . '" class="request">Request a Quotation</a>
+                                    <a href="./request-quotation.php?id=' . $productID . '&reqID=' . $reqID . '" class="request">Request a Quotation</a>
                                 </li>
                             </ul>
                         </div>';
                     }
                 } else {
-                    echo "No supplier found";
+                    echo "<div class='no-records'>
+                            No Supplier Found
+                            <img src='../../images/no-record.png' alt='No Requests'>
+                        </div>";
                 }
                 ?>
 
             </div>
-            <?php include 'components/SuppliersFilter.php'; ?>
+            <?php require_once 'components/SuppliersFilter.php'; ?>
         </div>
     </div>
     <script src="../../js/epSupplierFilter.js"></script>

@@ -1,4 +1,4 @@
-<?php include('../constants.php');
+<?php require_once('../constants.php');
 
 // check user already logged in
 if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && !isset($_SESSION['userStatus'])) {

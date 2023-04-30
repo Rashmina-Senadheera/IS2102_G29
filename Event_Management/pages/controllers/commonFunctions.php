@@ -96,11 +96,11 @@ function sendEmail($to, $name, $subject, $message)
     }
 }
 
-function showSessionMessage($error)
+function showSessionMessage($type)
 {
-    if (isset($_SESSION[$error])) {
-        $tempErr = $_SESSION[$error];
-        unset($_SESSION[$error]);
+    if (isset($_SESSION[$type])) {
+        $tempErr = $_SESSION[$type];
+        unset($_SESSION[$type]);
         return $tempErr;
     }
 }
@@ -118,4 +118,28 @@ function checkInput($data)
 function formatCurrency($number)
 {
     return number_format($number, 2, '.', ',');
+}
+
+// format date
+function formatDate($date)
+{
+    return date('d M Y', strtotime($date));
+}
+
+// format date
+function formatDateTime($date)
+{
+    return date('d M Y h:i A', strtotime($date));
+}
+
+// format date
+function formatTime($date)
+{
+    return date('h:i', strtotime($date));
+}
+
+// format date
+function formatDateDefault($date)
+{
+    return date('Y-m-d', strtotime($date));
 }
