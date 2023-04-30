@@ -53,6 +53,7 @@
     padding-bottom: 10px;
     background-color: #f9f9f9;
 }
+
 .input-background {
     border-radius: .5rem;
     padding-left: 10px;
@@ -98,7 +99,9 @@
     border: none;
     font-weight: 500;
 }
-
+.input-value#acc {
+    font-weight: normal;
+}
 .add-service-btn {
     padding: 5px 15px;
     background-color: #fff;
@@ -124,14 +127,26 @@
     z-index: -1;
 }
 
-.inputfile+label {
-    padding: 5px 15px;
+.inputfile+label{
+    width: calc(100%/3 - 10px);
+    height: 100px;
+    padding: 30px 0;
     background-color: #fff;
     border-radius: .5rem;
     color: #3a0247;
     border: 1px #3a0247 solid;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 28px;
+    text-align: center;
+}
+
+.imgPreview {
+    display: none;
+    width: calc(100%/3 - 10px);
+    height: 100px;
+    padding: 0;
+    border-radius: .5rem;
+    cursor: pointer;
 }
 
 .inputfile:focus+label,
@@ -181,13 +196,14 @@
     color: #fff;
     font-weight: 700;
     position: relative;
-    top: -76px;
+    top: -35px;
     right: 30px;
     text-align: center;
     /* line-height: 24px; */
-    padding: 0 5px;
+    padding: 0;
     z-index: 1;
     cursor: pointer;
+    display: none;
 }
 
 .form-title {
@@ -215,7 +231,8 @@
     margin-top: 20px;
 }
 
-.action input[type="submit"] {
+.action input[type="submit"],
+.action.btnSend button {
     padding: .5em;
     width: 40%;
     font-weight: 500;
@@ -241,7 +258,7 @@
     margin-top: 10px;
     font-weight: 600;
     font-size: 16px;
-    border: 1px solid #e5e5e5;
+    border: 2px solid #a0a0a0;
     border-radius: .5rem;
     padding: 20px;
 }

@@ -1,0 +1,266 @@
+<?php
+include('../constants.php');
+include('supplier_sidenav.php');
+include('header.php');
+include('../controllers/commonFunctions.php');
+
+//check if there is a id in the url
+if (isset($_GET['id'])) {
+    $id = checkInput($_GET['id']);
+    $sql = "SELECT * FROM request_supplier_quotation WHERE request_id = $id";
+    $result = mysqli_query($conn, $sql);
+
+    // check if the id is valid
+    if (mysqli_num_rows($result) > 0) {
+        $general_details = mysqli_fetch_assoc($result);
+        $p_title = $general_details['product_title'];
+        $remarks = $general_details['remarks'];
+        $event_type = $general_details['event_type'];
+        $hours = $general_details['hours'];
+        $date = $general_details['date'];
+        $hours = $general_details['hours'];
+        $urgency = $general_details['urgency'];
+        $no_of_participants = $general_details['no_of_participants'];
+        $psId = $general_details['psId'];
+        $ep_id = $general_details['EP_id'];
+        // $type = $general_details['type'];
+        // $img_sql = "SELECT `image` FROM supplier_product_images WHERE `product_id` = $id";
+        // $img_result = mysqli_query($conn, $img_sql);
+
+        //get other details according to the type
+        $sql = "SELECT * FROM sup_product_general WHERE product_id = $psId";
+        $result = mysqli_query($conn, $sql);
+
+        // check if the id is valid
+        if (mysqli_num_rows($result) > 0) {
+            $general_details = mysqli_fetch_assoc($result);
+            $title = $general_details['title'];
+            $description = $general_details['description'];
+            $other_details = $general_details['other_details'];
+            $budget_min = $general_details['budget_min'];
+            $budget_max = $general_details['budget_max'];
+            $type = $general_details['type'];
+            $img_sql = "SELECT `image` FROM supplier_product_images WHERE `product_id` = $psId LIMIT 1";
+            $img_result = mysqli_query($conn, $img_sql);
+            $img_row = mysqli_fetch_assoc($img_result);
+            $img = $img_row['image'];
+
+            // get other details according to the type
+            $more_details = "SELECT * FROM supplier_" . $type . "  WHERE product_id = $psId";
+
+            // check if the query is successful
+            if ($more_result = mysqli_query($conn, $more_details)) {
+                $more_details = mysqli_fetch_assoc($more_result);
+
+                $suitable_for = !empty($more_details['suitable_for']) ? $more_details['suitable_for'] : "";
+                $locations = !empty($more_details['locations']) ? $more_details['locations'] : "";
+                $provide = !empty($more_details['provide']) ? $more_details['provide'] : "";
+                $type_of_flowers = !empty($more_details['type_of_flowers']) ? $more_details['type_of_flowers'] : "";
+                $height = !empty($more_details['height']) ? $more_details['height'] : "";
+                $quantity = !empty($more_details['quantity']) ? $more_details['quantity'] : "";
+                $catered_for = !empty($more_details['catered_for']) ? $more_details['catered_for'] : "";
+                $transport = !empty($more_details['transport']) ? $more_details['transport'] : "";
+                $available_as = !empty($more_details['available_as']) ? $more_details['available_as'] : "";
+                $available_for = !empty($more_details['available_for']) ? $more_details['available_for'] : "";
+                $transport_type = !empty($more_details['type']) ? $more_details['type'] : "";
+                $brand = !empty($more_details['brand']) ? $more_details['brand'] : "";
+                $model = !empty($more_details['model']) ? $more_details['model'] : "";
+                $venloc = !empty($more_details['venloc']) ? $more_details['venloc'] : "";
+                $venlocation = !empty($more_details['venlocation']) ? $more_details['venlocation'] : "";
+                $ventype = !empty($more_details['ventype']) ? $more_details['ventype'] : "";
+                $maxCap = !empty($more_details['maxCap']) ? $more_details['maxCap'] : "";
+                $minCap = !empty($more_details['minCap']) ? $more_details['minCap'] : "";
+            }
+        }
+    } else {
+        header("Location: 404.php");
+    }
+} else {
+    header("Location: 404.php");
+}
+
+?>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='../../css/supplierMain.css'>
+    <link rel="stylesheet" href="../../css/profileEP.css">
+    <link rel="stylesheet" href="../css/quote-view.css">
+</head>
+
+<body>
+    <!-- Show success message -->
+    <?php
+    if (isset($_SESSION['success'])) {
+        echo '<div class="success-message">' . showSessionMessage("success") . '</div>';
+    }
+    ?>
+    <!-- <div class="gridMain"> -->
+    <div class='container-main'>
+        <div class='flex-container-main'>
+            <div class="title-search">
+                <div class='searchSec'>
+                    <div class='page-title'><?php echo $p_title; ?></div>
+                </div>
+            </div>
+        </div>
+        <div class="flex-container-profile" style="height: 90%;">
+            <div class="about" style="margin-top: 0px;">
+                <div class="personal-info">
+                    <div class="personal-info-heading" style="width: 90%;">
+                        Product/Service Details
+                    </div>
+                    <div class="prof-all">
+                        <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($img) . '" id="about-img" ">' ?>
+                    </div>
+                    <div class="prof-all">
+                        <div class="prof-name-50">Location:</div>
+                        <div class="prof-data"><?php echo $venlocation; ?></div>
+                    </div>
+                    <div class="prof-all">
+                        <div class="prof-name-50">Max Participants:</div>
+                        <div class="prof-data"><?php echo $maxCap; ?></div>
+                    </div>
+                    <div class="prof-all">
+                        <div class="prof-name-50">Min Participants:</div>
+                        <div class="prof-data"><?php echo $minCap; ?></div>
+                    </div>
+                    <div class="prof-all">
+                        <div class="prof-name-50">Catered for:</div>
+                        <div class="prof-data"><?php echo $venloc; ?></div>
+                    </div>
+                    <div class="personal-info-heading-avail" style="width: 90%;">
+                        Availability on Requested Date
+                    </div>
+                    <div class="actionBtn" id="avail">
+                        <button type="button" class="available" id="avail" style="margin-left: 0;">
+                            Available
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="other" id="quote" style="margin-top: 0px;margin-right:0px;">
+
+                <div class="personal-info" style="margin-bottom: 0px; margin-top: 5px;">
+                    <div class="personal-info-heading" id="quoteb" style="width: 90%;">
+                        Quotation Event Details
+                    </div>
+                    <div class="prof-all">
+                        <div class="prof-name-50">Event Type:</div>
+                        <div class="prof-data"><?php echo $event_type; ?></div>
+                    </div>
+                    <div class="prof-all">
+                        <div class="prof-name-50">Participants:</div>
+                        <div class="prof-data"><?php echo $no_of_participants; ?></div>
+                    </div>
+                    <div class="prof-all">
+                        <div class="prof-name-50">Hours:</div>
+                        <div class="prof-data"><?php echo $hours; ?></div>
+                    </div>
+                    <div class="prof-all">
+                        <div class="prof-name-50">Tentative Date:</div>
+                        <div class="prof-data"><?php echo $date; ?></div>
+                    </div>
+                    <div class="prof-all">
+                        <div class="prof-name-50">Remarks:</div>
+                        <div class="prof-data"><?php echo $remarks; ?></div>
+                    </div>
+                    <div class="prof-all">
+                        <div class="prof-name-50">Urgency:</div>
+                        <div class="prof-data" id="urg"><?php echo $urgency; ?></div>
+                    </div>
+                    <div class="actionBtn">
+                        <button type="button" id="btnDecline" class="rejected" style="margin-left: 0;">
+                            Decline
+                        </button>
+                        <a href="SendEventPlannerQuote.php?id=<?php echo $id; ?>">
+                            <button type="button" class="accepted" style="margin-left: 0;">
+                                Send Quotation
+                            </button>
+                        </a>
+                    </div>
+                </div>
+                <div class="personal-info" id="quote" style="margin-top: 0px;">
+                    <div class="personal-info-heading" style="width: 90%;">
+                        Event Planner Profile
+                    </div>
+                    <div class="prof-all">
+                        <div class="prof-name-20">Name:</div>
+                        <div class="contact">Chandana Sooriyabandara</div>
+                    </div>
+                    <div class="prof-all">
+                        <div class="prof-name-20">Contact :</div>
+                        <div class="contact">
+                            <i class="fa-solid fa-envelope" id="qu-con"></i>hhshaminf@gmail.com
+                            <i class="fa-solid fa-phone" id="qu-conm"></i>0777931062
+                            <i class="fa-brands fa-rocketchat" id="qu-conme"></i><a href="Messages.php"> <b>Message</b> <a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- The Modal -->
+    <div id="kModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-decline">
+            <div class="modal-header">
+                <span class="close1">&times;</span>
+                Are you sure you want to decline this request?
+            </div>
+            <div class="modal-body">
+                <div class="actionBtn">
+                    <button type="button" id="cancelde" class="rejected" style="margin-left: 0;">
+                        Cancel
+                    </button>
+                    <a href="SendCustomerQuotation.php">
+                        <button type="button" class="accepted" style="margin-left: 0;">
+                            Yes, Decline
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- </div> -->
+
+</body>
+
+<script>
+    // Get the modal
+    var modal = document.getElementById("kModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close1")[0];
+
+    // When the user clicks the button, open the modal 
+    btnDecline.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    cancelde.onclick = function() {
+        modal.style.display = "none";
+    }
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+
+</html>

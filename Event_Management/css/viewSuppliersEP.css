@@ -6,13 +6,14 @@
     z-index: 1;
     display: flex;
     flex-wrap: wrap;
-    margin: 10px 0;
-    flex: 80%;
+    margin: 10px 15px 10px 0px;
+    /* flex: 80%; */
 }
 
 .suppliers-cards-container .card {
     position: relative;
-    width: 220px;
+    /* width: 220px; */
+    width: calc(100% / 5 - 20px);
     height: 300px;
     padding: 8px 8px 0 8px;
     background: rgba(255, 255, 255, 0.05);
@@ -39,7 +40,7 @@
 
 .suppliers-cards-container .card .content .imgBx {
     position: relative;
-    width: 150px;
+    width: 100%;
     height: 150px;
     overflow: hidden;
 }
@@ -151,5 +152,32 @@
 
 .gridMain {
     display: flex;
-    padding-right: 0;
+}
+
+/* media query to max size 1600px */
+@media (max-width: 1600px) {
+    .suppliers-cards-container .card {
+        width: calc(100% / 4 - 20px);
+    }
+}
+
+/* media query to max size 1200px */
+@media (max-width: 1200px) {
+    .suppliers-cards-container .card {
+        width: calc(100% / 3 - 20px);
+    }
+}
+
+/* media query to max size 992px */
+@media (max-width: 992px) {
+    .suppliers-cards-container .card {
+        width: calc(100% / 2 - 20px);
+    }
+}
+
+/* media query to max size 768px */
+@media (max-width: 768px) {
+    .suppliers-cards-container .card {
+        width: calc(100% / 1 - 20px);
+    }
 }

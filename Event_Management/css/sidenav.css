@@ -13,6 +13,7 @@
     width: 240px;
     background: #1f0027;
     transition: all 0.5s ease;
+    overflow-y: auto;
 }
 
 .sidebar.active {
@@ -88,9 +89,8 @@
 }
 
 .sidebar .nav-links .log_out {
-    position: absolute;
+    position: relative;
     bottom: 0;
-    width: 100%;
 }
 
 .home-section {
@@ -400,4 +400,21 @@ nav .profile-details i {
     .sidebar.active~.home-section nav .profile-details {
         display: none;
     }
+}
+
+li.log_out button#btnlogOut:hover {
+    background: #490258;
+}
+button#btnlogOut {
+    width: 100%;
+    background: #1f0027;
+    color: white;
+    padding: 5px;
+    display: flex;
+    border: none;
+    font-size: 17px;
+}
+.sidebar .nav-links .log_out {
+    bottom: 0;
+    width: 100%;
 }

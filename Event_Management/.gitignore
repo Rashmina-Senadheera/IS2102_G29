@@ -1,2 +1,5 @@
 vendor
 .env
+
+# File to check session variables
+variableCheck.php

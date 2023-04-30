@@ -1,53 +1,12 @@
-.ps-card {
-    margin: 10px;
-    padding: 10px;
-    display: flex;
-    flex-direction: row;
-    border-bottom: 1px rgb(182, 182, 182) solid;
-}
-
-.ps-card-img {
-    flex: 10%;
-}
-
-a#btn {
-    text-decoration: none;
-    color: white;
-}
-
-.ps-card-desc {
-    flex: 60%;
-    padding: 10px;
-    padding-top: 0px;
-}
-
-.ps-card-btn {
-    flex: 20%;
-    display: flex;
-    flex-direction: column;
-}
-
-.ps-card-img img {
-    width: 150px;
-    height: 100px;
-}
-
-.ps-list {
-    display: flex;
-    flex-direction: row;
-}
-
-.grid-main#ps-list {
-    flex: 75%;
-}
 
 .filter {
     border-radius: 0.5rem;
     margin: 20px 0 20px 0;
     padding: 20px;
     box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
-    flex: 20%;
+    /* flex: 20%; */
     height: 500px;
+    /* width: fit-content; */
 }
 
 .filter-heading {
