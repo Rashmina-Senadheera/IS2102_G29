@@ -26,7 +26,7 @@ require_once('../controllers/commonFunctions.php');
                     </div>
                 </div>
             </div>
-        <div class="flex-container-profile" style="height: 90%;">
+        <div class="flex-container-profile">
             <div class="other" id="quote" style="margin-top: 0px;">
                 
                 <div class="personal-info" style="margin-bottom: 0px; margin-top: 5px;">

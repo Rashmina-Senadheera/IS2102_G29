@@ -43,7 +43,7 @@ function getRequestsCount($conn, $reqID, $type)
                 <div class="page-title">Quotation Request</div>
             </div>
         </div>
-        <div class="flex-container-profile" style="height: 95%;">
+        <div class="flex-container-profile">
             <div class="about">
                 <div class="personal-info">
                     <div class="personal-info-heading">
