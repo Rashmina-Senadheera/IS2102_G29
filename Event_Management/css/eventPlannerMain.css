@@ -113,6 +113,20 @@ hr {
     transition: all 0.5s ease;
 }
 
+.no-records {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    margin-top: 20px;
+    color: #666666;
+}
+
+.no-records img {
+    height: 250px;
+}
 
 
 /********* Table *********/

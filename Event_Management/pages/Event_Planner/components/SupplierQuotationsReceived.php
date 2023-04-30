@@ -72,7 +72,10 @@
                                 </div>";
                     }
                 } else {
-                    echo "<div class='no-requests'>No quotation received</div>";
+                    echo "<div class='no-records'>
+                            No Quotations Received
+                            <img src='../../images/no-record.png' alt='No Requests'>
+                        </div>";
                 }
             }
             ?>

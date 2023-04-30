@@ -99,7 +99,10 @@
                         </div>';
                     }
                 } else {
-                    echo "No supplier found";
+                    echo "<div class='no-records'>
+                            No Supplier Found
+                            <img src='../../images/no-record.png' alt='No Requests'>
+                        </div>";
                 }
                 ?>
 
