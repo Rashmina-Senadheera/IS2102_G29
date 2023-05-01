@@ -54,7 +54,7 @@ if ($conn->connect_error) {
         <div class="searchSec">
             <div class="page-title"> Order Requests</div>
             <div class="input-container">
-                <input class="input-field" type="text" placeholder="Search requests" name="search">
+                <input class="input-field" type="text" id="myInput" onkeyup="searchFilter()" placeholder="Search by names" name="search">
                 <i class="fa fa-search icon"></i>
             </div>
             <button type="submit" class="srcButton">Search</button>
@@ -111,7 +111,26 @@ if ($conn->connect_error) {
         </table>
     </div>
 </div>
-
+<script>
+function searchFilter() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("example");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
 
 </body>
 
