@@ -36,48 +36,68 @@ include('customer_header.php');
 
 <body>
 <div class="grid-container-payments">
-        <div class="gridSearch">
-            <div class="searchSec">
-                <div class="page-title"> Order Requests </div>
-                <div class="input-container">
-                    <input class="input-field" type="text" placeholder="Search requests" name="search">
-                    <i class="fa fa-search icon"></i>
-                </div>
-                <button type="submit" class="srcButton">Search</button>
+    <div class="gridSearch">
+        <div class="searchSec">
+            <div class="page-title"> Order Requests</div>
+            <div class="input-container">
+                <input class="input-field" type="text" placeholder="Search requests" name="search">
+                <i class="fa fa-search icon"></i>
             </div>
-        </div>
-        <div class="gridMain">
-            <table id="example" class="display">
-                <thead>
-                    <tr>
-                        <th>Reqest Date</th>
-                        <th>Event Planner Name</th>
-                        <th>Event Planner Email</th>
-                        <th>Event Type</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>2023-01-01</td>
-                        <td>Sanath</td>
-                        <td>sanath@gmail.com</td>
-                        <td>Wedding</td>
-                        <td>Accepted</td>
-                        <td class="tCenter menu">&#10247
-                            <ul>
-                                <li>
-                                    <a href="order-view.php">View</a>
-                                </li>
-                            </ul>
-                            </td>
-                        </tr>
-                </tbody>
-            </table>
+            <button type="submit" class="srcButton">Search</button>
         </div>
     </div>
-    
-  
+    <div class="gridMain">
+        <table id="example" class="display">
+            <thead>
+            <tr>
+                <th>Reqest Date</th>
+                <th>Event Planner Name</th>
+                <th>Event Planner Email</th>
+                <th>Event Type</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+
+            $sql = "select id, request_date, planner_name, planner_email, event_type, `status` from quotation";
+            $result = $conn->query($sql);
+
+
+            // output data of each row
+            while ($row = $result->fetch_assoc()) {
+
+                ?>
+
+                <tr onclick="myFunction()">
+                    <td><?php echo $row['request_date'] ?></td>
+                    <td><?php echo $row['planner_name'] ?></td>
+                    <td><?php echo $row['planner_email'] ?></td>
+                    <td><?php echo $row['event_type'] ?></td>
+                    <td><?php echo $row['status'] ?></td>
+
+                    <script>
+                    function myFunction() {
+                    location.replace("order-view.php?id=<?php echo $row['id'] ?>")
+                    }
+                    </script>
+
+                    <td class="tCenter menu">
+                        <ul>                           
+                        </ul>
+                    </td>
+                </tr>
+
+                <?php
+            }
+
+            $conn->close();
+            ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+
 
 </body>
 
