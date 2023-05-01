@@ -33,6 +33,20 @@ include('customer_header.php');
         });
     </script>
 </head>
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "eventra";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+?>
 
 <body>
 <div class="grid-container-payments">
