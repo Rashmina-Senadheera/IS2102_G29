@@ -9,24 +9,22 @@ if (isset($_GET['id'])) {
     $id = checkInput($_GET['id']);
     $sql = "SELECT * FROM request_supplier_quotation WHERE request_id = $id";
     $result = mysqli_query($conn, $sql);
+    
 
     // check if the id is valid
     if (mysqli_num_rows($result) > 0) {
         $general_details = mysqli_fetch_assoc($result);
-        $req_id = $general_details['request_id'];
-        $for_cus_req = $general_details['for_cus_req'];
         $p_title = $general_details['product_title'];
         $remarks = $general_details['remarks'];
         $event_type = $general_details['event_type'];
         $hours = $general_details['hours'];
-        $requested_on = $general_details['requested_on'];
         $date = $general_details['date'];
         $hours = $general_details['hours'];
         $urgency = $general_details['urgency'];
         $no_of_participants = $general_details['no_of_participants'];
         $psId = $general_details['psId'];
         $ep_id = $general_details['EP_id'];
-        $pID = $general_details['psId'];
+        $requested_on = $general_details['requested_on'];
     } else {
         header("Location: 404.php");
     }
@@ -55,6 +53,23 @@ if (isset($_GET['id'])) {
             <div class="form-description">The Event Planner has requested the quotation for the following details.</div>
 
             <div class="formSection" id="quote">General
+                <?php 
+                    $sql1 = "SELECT request_supplier_quotation.date 
+                            FROM supplier_booking JOIN request_supplier_quotation 
+                            ON supplier_booking.EP_quotation_id=request_supplier_quotation.request_id 
+                            WHERE request_supplier_quotation.psId = $psId 
+                            AND request_supplier_quotation.date = '$date'";
+                    $result1 = mysqli_query($conn, $sql1);
+                    if (mysqli_num_rows($result1) > 0){
+                        $availability = 0;
+                    }
+                    else{
+                        $availability = 1;
+                    }
+                
+                ?>
+                
+
                 <div class="row">
                     <div class="input-50">
                         <label class="input-label">Request For:</label>
@@ -65,6 +80,15 @@ if (isset($_GET['id'])) {
                         <div class="input-value"><?php echo $requested_on; ?></div>
                     </div>
 
+                </div>
+                <div class="row" >
+                    <div class="input input-background"
+                    <?php if($availability) echo "id='avail'"; else echo "id='notavail'"; ?>>
+                        <label class="input-label">Availability on Requested Date:
+                        </label>
+                        <div class="input-value"
+                        ><?php if($availability) echo "Available"; else echo "Not Available"; ?></div>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="input-50">

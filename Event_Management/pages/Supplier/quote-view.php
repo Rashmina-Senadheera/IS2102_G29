@@ -8,6 +8,7 @@ include('../controllers/commonFunctions.php');
 if (isset($_GET['id'])) {
     $id = checkInput($_GET['id']);
     $sql = "SELECT * FROM request_supplier_quotation WHERE request_id = $id";
+    
     $result = mysqli_query($conn, $sql);
 
     // check if the id is valid
@@ -138,7 +139,21 @@ if (isset($_GET['id'])) {
                     </div>
                     <div class="actionBtn" id="avail">
                         <button type="button" class="available" id="avail" style="margin-left: 0;">
-                            Available
+                        <?php 
+                           $sql1 = "SELECT request_supplier_quotation.date 
+                                    FROM supplier_booking JOIN request_supplier_quotation 
+                                    ON supplier_booking.EP_quotation_id=request_supplier_quotation.request_id 
+                                    WHERE request_supplier_quotation.psId = $psId 
+                                    AND request_supplier_quotation.date = '$date'";
+                            $result1 = mysqli_query($conn, $sql1);
+                            if (mysqli_num_rows($result1) > 0){
+                                echo "Not Available";
+                            }
+                            else{
+                                echo "Available";
+                            }
+                        
+                        ?>
                         </button>
                     </div>
                 </div>
@@ -169,10 +184,6 @@ if (isset($_GET['id'])) {
                         <div class="prof-name-50">Remarks:</div>
                         <div class="prof-data"><?php echo $remarks; ?></div>
                     </div>
-                    <div class="prof-all">
-                        <div class="prof-name-50">Urgency:</div>
-                        <div class="prof-data" id="urg"><?php echo $urgency; ?></div>
-                    </div>
                     <div class="actionBtn">
                         <button type="button" id="btnDecline" class="rejected" style="margin-left: 0;">
                             Decline
@@ -185,18 +196,31 @@ if (isset($_GET['id'])) {
                     </div>
                 </div>
                 <div class="personal-info" id="quote" style="margin-top: 0px;">
+                    <?php 
+                        $sql1 = "SELECT * FROM user WHERE user_id= $ep_id";
+                        $result1 = mysqli_query($conn, $sql1);
+                        if (mysqli_num_rows($result1) > 0){
+                            $user_details = mysqli_fetch_assoc($result1);
+                            $name = $user_details['name'];
+                            $email = $user_details['email'];
+                        }
+                        else{
+                            echo "Available";
+                        }
+                    
+                    ?>
                     <div class="personal-info-heading" style="width: 90%;">
                         Event Planner Profile
                     </div>
                     <div class="prof-all">
                         <div class="prof-name-20">Name:</div>
-                        <div class="contact">Chandana Sooriyabandara</div>
+                        <div class="contact"><?php echo $name;?></div>
                     </div>
                     <div class="prof-all">
                         <div class="prof-name-20">Contact :</div>
                         <div class="contact">
-                            <i class="fa-solid fa-envelope" id="qu-con"></i>hhshaminf@gmail.com
-                            <i class="fa-solid fa-phone" id="qu-conm"></i>0777931062
+                            <i class="fa-solid fa-envelope" id="qu-con"></i><?php echo $email;?>
+                            <!-- <i class="fa-solid fa-phone" id="qu-conm"></i>0777931062 -->
                             <i class="fa-brands fa-rocketchat" id="qu-conme"></i><a href="Messages.php"> <b>Message</b> <a>
                         </div>
                     </div>

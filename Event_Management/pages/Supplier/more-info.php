@@ -49,6 +49,8 @@ if (isset($_GET['id'])) {
             $ventype = !empty($more_details['ventype']) ? $more_details['ventype'] : "";
             $maxCap = !empty($more_details['maxCap']) ? $more_details['maxCap'] : "";
             $minCap = !empty($more_details['minCap']) ? $more_details['minCap'] : "";
+            $type_light = !empty($more_details['type_light']) ? $more_details['type_light'] : "";
+            $type_sound = !empty($more_details['type_sound']) ? $more_details['type_sound'] : "";
         } else {
             echo "Error: " . $more_details . "<br>" . mysqli_error($conn);
         }
@@ -200,14 +202,6 @@ if (isset($_GET['id'])) {
                             </div>
                         <?php } ?>
 
-                        <?php if($type == 'deco') {?>
-                            <div class="prof-all-p">
-                                <div class="prof-name-p">Suitable for </div>
-                                <div class="prof-data"><?php echo $suitable_for;?></div>
-                            </div>
-
-                        <?php } ?>
-
                         <?php if($type == 'photo') {?>
                             <div class="prof-all-p">
                                 <div class="prof-name-p">Suitable for </div>
@@ -226,11 +220,35 @@ if (isset($_GET['id'])) {
                             </div>
                         <?php } ?>
 
+                        <?php if($type == 'light') {?>
+                            <div class="prof-all-p">
+                                <div class="prof-name-p">Type of Light  </div>
+                                <div class="prof-data"><?php echo $type_light ;?></div>
+                            </div>
+                        <?php } ?>
+
+                        <?php if($type == 'sound') {?>
+                            <div class="prof-all-p">
+                                <div class="prof-name-p">Type of Sound  </div>
+                                <div class="prof-data"><?php echo $type_sound ;?></div>
+                            </div>
+                        <?php } ?>
+
+                        <div class="prof-all-p">
+                            <div class="prof-name-p">Minimum Budget</div>
+                            <div class="prof-data"><?php echo $budget_min;?></div>
+                        </div>
+
+                        <div class="prof-all-p">
+                            <div class="prof-name-p">Maximum Budget</div>
+                            <div class="prof-data"><?php echo $budget_max;?></div>
+                        </div>
+
                         <div class="prof-all-e">
                             <a href="product-edit.php?id=<?php echo $id;?>" class="custom-button-e" id="ed">
                                 Edit
                             </a>
-                            <button type="button" class="custom-button-e" id="del">Delete</button>
+                            <button type="button"class="custom-button-e" id="del" onclick="deleteProduct()" >Delete</button>
                         </div>
                     </div>
                     </div>
@@ -238,6 +256,32 @@ if (isset($_GET['id'])) {
             </div>
         </div>
     </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-decline">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                Are you sure you want to delete this product?
+            </div>
+            <div class="modal-body">
+                <div class="actionBtn">
+                    <button type="button" class="rejected" id ="rejected" style="margin-left: 0;">
+                        Cancel
+                    </button>
+                    <a href="controllers/delete.php?id=<?php echo $id;?>">
+                        <button type="button" class="accepted" id ="deleted" style="margin-left: 0;">
+                            Yes, Delete
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- </div> -->
+
     <script>
     var slideIndex = 1;
     showDivs(slideIndex);
@@ -255,6 +299,20 @@ if (isset($_GET['id'])) {
         x[i].style.display = "none";  
     }
     x[slideIndex-1].style.display = "block";  
+    }
+
+    var modal = document.getElementById("myModal");
+    var btnDelete = document.getElementById("del");
+    var span = document.getElementsByClassName("close")[0];
+
+    btnDelete.onclick = function() {
+        modal.style.display = "block";
+    }
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+    rejected.onclick = function() {
+        modal.style.display = "none";
     }
     </script>
 </body>
