@@ -22,10 +22,10 @@
     // get the request id if it is set
     if (isset($_GET['reqID'])) {
         $reqID = $_GET['reqID'];
-        setcookie("quotation_for", $reqID);
+        // setcookie("quotation_for", $reqID);
     } else {
         $reqID = '0';
-        setcookie("quotation_for", 0);
+        // setcookie("quotation_for", 0);
     }
 
     // Send the output buffer to the browser and turn off output buffering

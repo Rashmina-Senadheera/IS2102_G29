@@ -24,8 +24,6 @@
                         $cost = formatCurrency($row['cost']);
                         $status = $row['status'];
 
-                        
-
                         echo "<div class='ps-card'>
                                     <div class='ps-card-desc' id='rs'>
                                         <a class='rs-title t2' href='Request-view.php?reqID=1' id='a-card'>

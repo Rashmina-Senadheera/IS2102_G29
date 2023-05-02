@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id']) || empty($_GET['i
     echo "<script>window.location.href = '404.php'</script>";
 } else {
     // get reqID from cookie
-    $reqID = $_COOKIE['quotation_for'];
+    // $reqID = $_COOKIE['quotation_for'];
 
     // get the product or service details
     $psId = $_GET['id'];
@@ -49,7 +49,11 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id']) || empty($_GET['i
 
     <body>
         <div class="main-body">
-            <div class="form-card2">
+            <?php if (isset($reqID) && !empty($reqID)) {
+                require_once './components/CustomerRequestDetails.php';
+            } ?>
+
+            <div class="form-card scrollable">
                 <div class="searchSec">
                     <div class="page-title">Request Quotation for <?php echo $psTitle ?></div>
                 </div>
@@ -170,6 +174,10 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id']) || empty($_GET['i
                                             <input type="checkbox" id="food_need_as" name="food_need_as" value="Buffet" <?php echo $isBuffet; ?>>
                                             <label for="" class="input-ps-label-opt">Buffet</label>
                                         </div>
+                                        <div class="check-bx-opt">
+                                            <input type="checkbox" id="food_need_as" name="food_need_as" value="Other" <?php echo $isOther; ?>>
+                                            <label for="" class="input-ps-label-opt">Other</label>
+                                        </div>
                                     </div>
                                 <?php } ?>
                             </div>
@@ -177,23 +185,23 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id']) || empty($_GET['i
                                 <label for="" class="input-label" id='check'>Need For <span>*</span></label>
                                 <div class="check-bx">
                                     <div class="check-bx-opt">
-                                        <input type="checkbox" id="need_for" name="need_for" value="Breakfast"<?php echo $isBreakfast; ?>>
+                                        <input type="checkbox" id="need_for" name="need_for" value="Breakfast" <?php echo $isBreakfast; ?>>
                                         <label for="" class="input-ps-label-opt">Breakfast</label>
                                     </div>
                                     <div class="check-bx-opt">
-                                        <input type="checkbox" id="need_for" name="need_for" value="Lunch"<?php echo $isLunch; ?>>
+                                        <input type="checkbox" id="need_for" name="need_for" value="Lunch" <?php echo $isLunch; ?>>
                                         <label for="" class="input-ps-label-opt">Lunch</label>
                                     </div>
                                     <div class="check-bx-opt">
-                                        <input type="checkbox" id="need_for" name="need_for" value="Dinner"<?php echo $isDinner; ?>>
+                                        <input type="checkbox" id="need_for" name="need_for" value="Dinner" <?php echo $isDinner; ?>>
                                         <label for="" class="input-ps-label-opt">Dinner</label>
                                     </div>
                                     <div class="check-bx-opt">
-                                        <input type="checkbox" id="need_for" name="need_for" value="Brunch"<?php echo $isBrunch; ?>>
+                                        <input type="checkbox" id="need_for" name="need_for" value="Brunch" <?php echo $isBrunch; ?>>
                                         <label for="" class="input-ps-label-opt">Brunch</label>
                                     </div>
                                     <div class="check-bx-opt">
-                                        <input type="checkbox" id="need_for" name="need_for" value="High-Tea"<?php echo $isHighTea; ?>>
+                                        <input type="checkbox" id="need_for" name="need_for" value="High-Tea" <?php echo $isHighTea; ?>>
                                         <label for="" class="input-ps-label-opt">High-Tea</label>
                                     </div>
                                 </div>
