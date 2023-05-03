@@ -1,6 +1,14 @@
 <?php
 
 include_once '../../constants.php';
+
+// get the request id if it is set
+if (isset($_GET['reqID'])) {
+    $reqID = $_GET['reqID'];
+} else {
+    $reqID = '0';
+}
+
 if (isset($_GET['type'])) {
     $type = $_GET['type'];
     $search = $_GET['search'];
@@ -57,7 +65,7 @@ if (mysqli_num_rows($result) > 0) {
                         <a href="./Supplier-more-info.php?id=' . $productID . '" class="view-supplier">View</a>
                     </li>
                     <li>
-                        <a href="./request-quotation.php?id=' . $productID . '" class="request">Request a Quotation</a>
+                        <a href="./request-quotation.php?id=' . $productID . '&reqID=' . $reqID . '" class="request">Request a Quotation</a>
                     </li>
                 </ul>
             </div>';

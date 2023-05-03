@@ -287,11 +287,6 @@
     color: #fff;
 }
 
-.scrollable {
-    overflow-y: scroll;
-    height: 85vh;
-}
-
 .btnSend {
     width: 100%;
 }

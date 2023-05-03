@@ -112,7 +112,7 @@ hr {
         'search'
         'main';
     gap: 10px;
-    padding: 10px 0 10px 20px;
+    padding: 10px 0 0px 20px;
 }
 
 .grid-container-profile {
@@ -143,12 +143,21 @@ hr {
     width: 100%;
     margin-top: 20px;
     color: #666666;
+    padding-bottom: 40px;
 }
 
 .no-records img {
     height: 250px;
 }
 
+.scrollable {
+    overflow-y: scroll;
+    height: 85vh;
+}
+
+.suppliers-cards-container.scrollable {
+    height: 80vh;
+}
 
 /********* Table *********/
 table {
@@ -585,7 +594,7 @@ label {
     font-weight: 500;
     padding: 15px;
     color: #fff;
-    background-color: green;
+    background-color: #04AA6D;
     text-align: center;
 }
 
