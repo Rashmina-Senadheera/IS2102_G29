@@ -166,7 +166,11 @@ $id = $_GET['id'];
                     <br>
                     <center>
                         <a href="order.php">
-                            <button type="submit" class="srcButton">Back</button>
+                            <button type="submit" class="srcButton" data-inline="true">Back</button>
+                        </a>
+                        <a href="quotationView.php">
+                            <button type="submit" class="srcButton" data-inline="true">View Quotation</button>
+                        </a>
                     </center>
                 </div>
             </div>
