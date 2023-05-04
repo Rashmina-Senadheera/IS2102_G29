@@ -3,13 +3,15 @@ include_once("../constants.php");
 
 include('customer_sidenav.php');
 include('customer_header.php');
-include('header.php');
+// include('header.php');
 include('../controllers/commonFunctions.php');
 $evt_planner_id = checkInput($_GET['evt_planner_id']) ;
 if(isset($evt_planner_id)){
     $_SESSION['evt_id'] = $evt_planner_id;
 
 }
+// $evt_planner_id = 
+
 
 ?>
 <main>

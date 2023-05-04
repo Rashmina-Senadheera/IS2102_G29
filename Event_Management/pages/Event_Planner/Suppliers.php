@@ -22,10 +22,10 @@
     // get the request id if it is set
     if (isset($_GET['reqID'])) {
         $reqID = $_GET['reqID'];
-        setcookie("quotation_for", $reqID);
+        // setcookie("quotation_for", $reqID);
     } else {
         $reqID = '0';
-        setcookie("quotation_for", 0);
+        // setcookie("quotation_for", 0);
     }
 
     // Send the output buffer to the browser and turn off output buffering
@@ -40,15 +40,10 @@
         <div class="gridSearch">
             <div class="searchSec">
                 <div class="page-title"> Supplier Products & Services </div>
-                <!-- <div class="input-container">
-                    <input class="input-field" type="text" placeholder="Search suppliers" name="search">
-                    <i class="fa fa-search icon"></i>
-                </div>
-                <button type="submit" class="srcButton">Search</button> -->
             </div>
         </div>
-        <div class="gridMain">
-            <div class="suppliers-cards-container" id="supplier_items">
+        <div class="gridSuppliers">
+            <div class="suppliers-cards-container scrollable" id="supplier_items">
 
                 <?php
                 if (isset($_GET['type'])) {

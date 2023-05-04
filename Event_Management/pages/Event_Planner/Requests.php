@@ -28,11 +28,17 @@ require_once('../controllers/commonFunctions.php');
         <div class="gridSearch">
             <div class="searchSec">
                 <div class="page-title"> Quotation Requests </div>
+                <div class="input-container">
+                    <input class="input-field" type="text" placeholder="Search Request" name="search">
+                    <i class="fa fa-search icon"></i>
+                </div>
+                <button type="submit" class="srcButton">Search</button>
             </div>
         </div>
-        <div class="ps-list">
-            <div class='grid-main' id='rs-list'>
-                <div class="cards">
+        <div class="gridMain">
+            <div class="ps-list">
+                <div class='grid-main' id='rs-list'>
+                    <div class="cards">
 
                     <?php
                     $sql = "SELECT * FROM cust_req_general AS c, request_ep_quotation AS r WHERE c.request_id = r.request_id AND r.status = 'pending' AND r.EP_id = $_SESSION[user_id]";
@@ -63,7 +69,7 @@ require_once('../controllers/commonFunctions.php');
                             $budget2 = !empty($row['max_budget']) ? "- " . formatCurrency($row['max_budget']) : " ";
                             $customer_id = $row['customer_id'];
 
-                            echo "
+                                echo "
                                     <div class='ps-card'>
                                         <div class='ps-card-desc' id='rs'>
                                             <a class='rs-title t2' href='Request-view.php?reqID=$request_id' id='a-card'>
@@ -111,14 +117,15 @@ require_once('../controllers/commonFunctions.php');
                                             </div>
                                         </div>
                                     </div>";
-                        }
-                    } else {
-                        echo "<div class='no-records'>
+                            }
+                        } else {
+                            echo "<div class='no-records'>
                                 No Quotation Requests
                                 <img src='../../images/no-record.png' alt='No Requests'>
                             </div>";
-                    }
-                    ?>
+                        }
+                        ?>
+                    </div>
                 </div>
             </div>
         </div>

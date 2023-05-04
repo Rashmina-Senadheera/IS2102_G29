@@ -46,9 +46,9 @@ switch ($event_type) {
 /*********** food and beverages ***********/
 if ($psType == "foodbev") {
     if ($result_food->num_rows > 0) {
-        $food_row = $result_food->fetch_assoc();
-        $food_available_in = $food_row['available_in'];
-        $food_available_at = $food_row['available_at'];
+        // $food_row = $result_food->fetch_assoc();
+        // $food_available_in = $food_row['available_in'];
+        // $food_available_at = $food_row['available_at'];
 
         // need as
         switch ($food_available_in) {
@@ -66,6 +66,9 @@ if ($psType == "foodbev") {
                 break;
             case 'Bulk':
                 $isBulk = 'checked';
+                break;
+            case 'Other':
+                $isOther = 'checked';
                 break;
         }
 

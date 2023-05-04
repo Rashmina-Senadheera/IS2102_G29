@@ -55,9 +55,9 @@ require_once('eventplanner_header.php');
                     <span class="fa fa-star"></span>
                 </div>
                 <div class="feedback-message">Offer more variety in food options: It can be helpful to provide a range of food options to cater to different dietary restrictions and preferences. This could include vegetarian, vegan, gluten-free, and other options.</div>
-                <div class="reply-btn">
+                <!-- <div class="reply-btn">
                     <button type="button" class="reply">Reply <i class='bx bx-send'></i></button>
-                </div>
+                </div> -->
             </div>
             <div class="feedback">
                 <div class="feedback-rating">Rating: 
@@ -68,9 +68,9 @@ require_once('eventplanner_header.php');
                     <span class="fa fa-star"></span>
                 </div>
                 <div class="feedback-message">Improve communication with attendees: It's important to keep attendees informed about important details such as the schedule, location, and any changes to the event. Consider using a variety of communication channels, such as email, text, and social media, to reach as many people as possible.</div>
-                <div class="reply-btn">
+                <!-- <div class="reply-btn">
                     <button type="button" class="reply">Reply <i class='bx bx-send'></i></button>
-                </div>
+                </div> -->
             </div>
             <div class="feedback">
                 <div class="feedback-rating">Rating: 
@@ -81,9 +81,9 @@ require_once('eventplanner_header.php');
                     <span class="fa fa-star starChecked"></span>
                 </div>
                 <div class="feedback-message">Consider offering additional activities: In addition to the main event, consider offering additional activities or attractions to keep attendees engaged. This could include break-out sessions, networking opportunities, or recreational activities.</div>
-                <div class="reply-btn">
+                <!-- <div class="reply-btn">
                     <button type="button" class="reply">Reply <i class='bx bx-send'></i></button>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

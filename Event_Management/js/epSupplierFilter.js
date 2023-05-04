@@ -3,7 +3,7 @@ function setTypes() {
     let type = '&type=';
 
     // to check if it is the first type. If it is, then we don't need to add a comma before it.
-    let first = true; 
+    let first = true;
 
     var type1 = document.getElementById("Venue").checked;
     var type2 = document.getElementById("Entertainment").checked;
@@ -61,7 +61,7 @@ function setTypes() {
     return type;
 }
 
-function showResult() {
+function showResult(reqID) {
     // if (str.length == 0) {
     //     document.getElementById("supplier_items").innerHTML = "";
     //     return;
@@ -75,6 +75,6 @@ function showResult() {
     }
 
     // filter by type and search
-    xmlhttp.open("GET", "components/SuppliersItems.php?search=" + str + setTypes(), true);
+    xmlhttp.open("GET", "components/SuppliersItems.php?reqID=" + reqID + "&search=" + str + setTypes(), true);
     xmlhttp.send();
 }
