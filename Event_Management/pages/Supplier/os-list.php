@@ -3,6 +3,8 @@
     include( 'supplier_sidenav.php' );
     include( 'header.php' );
     if(isset($_SESSION['user_name'])){
+
+       $id = $_SESSION['user_id'];
 ?>
 
 <!DOCTYPE html>
@@ -30,8 +32,6 @@
             <div class ='grid-main' id='rs-list'>
                 <div class="cards" >
                     <div class='ps-card-title' id='title'>
-                            <div class='rs-card-img'>
-                            </div>
                             <div class='ps-card-desc' id="rs">
                                 <div class='rs-title'>Order Request</div>
                                 <div class='rs-title' id = 'tit'>Quotation Number</div>
@@ -39,33 +39,52 @@
                                 <div class='rs-title' id = 'tit'>Requested </div>
                             </div>
                         </div>
+
+                        <?php
+                        $sql = "SELECT * FROM supplier_booking 
+                                JOIN supplier_quotation 
+                                ON supplier_booking.EP_quotation_id = supplier_quotation.req_id 
+                                JOIN request_supplier_quotation
+                                ON supplier_booking.EP_quotation_id = request_supplier_quotation.request_id 
+                                WHERE supplier_booking.supplier_id = $id ";
+                        $result = mysqli_query($conn, $sql);
+
+                        if (mysqli_num_rows($result) > 0) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $title  = $row['title'];
+                                $type  = $row['type'];
+                                $cost  = $row['cost'];
+                                $date  = $row['date'];
+                                $EP_id   = $row['EP_id '];
+
+
+                                $sql1 = "SELECT * FROM supplier_booking JOIN user ON supplier_booking.EP_id = user.user_id WHERE supplier_booking.EP_id = $EP_id AND supplier_booking.EP_quotation_id = $request_id; ";
+                                $result1 = mysqli_query($conn, $sql1);
+                                
+                                if (mysqli_num_rows($result1) > 0) {
+                                    while ($row = mysqli_fetch_assoc($result1)) {
+                                        $ep = $row['name'];
+                                    }
+                                }
+                                echo 
+                                "<a href='quote-view.php?id=".$request_id."' id='a-card'>
+                                    <div class='ps-card'>
+                                        <div class='ps-card-desc' id='rs'>
+                                            <div class='rs-title' id = 'rid'>".$request_id."</div>
+                                            <div class='rs-title'>".$title."</div>
+                                            <div class='rs-type'>".$ep."</div>
+                                            <div class='rs-type'>".$date."</div>
+                                            <div class='rs-type'>".$type."</div>
+                                            <div class='rs-type'>".$cost ."</div>
+                                        </div>
+                                    </div>
+                                </a> " ;
+                        } }else {
+                            echo "No Requests for Quoatations found";
+                        }
+                    ?>
                         
-                    <a href='order-view.php' id='a-card'>
-                        <div class='ps-card'>
-                            <div class='rs-card-img'>
-                                <img src= "../../images/S1.jpeg" alt="">
-                            </div>
-                            <div class='ps-card-desc' id="rs">
-                                <div class='rs-title'>Order Bravo Event Productions Hall</div>
-                                <div class='rs-type'>#Q0010</div>
-                                <div class='rs-type'>Wedding</div>
-                                <div class='rs-type' id="urg">2 weeks ago</div>
-                            </div>
-                        </div>
-                    </a> 
-                    <a href='more-info.php?id=' id='a-card'>
-                        <div class='ps-card'>
-                            <div class='rs-card-img'>
-                                <img src= "../../images/S2.jpg" alt="">
-                            </div>
-                            <div class='ps-card-desc' id="rs">
-                                <div class='rs-title'>Order Aluthge Banquet Hall</div>
-                                <div class='rs-type'>#Q0123</div>
-                                <div class='rs-type'>Birthday</div>
-                                <div class='rs-type'> 2 days ago</div>
-                            </div>
-                        </div>
-                    </a> 
+
                 </div>         
             </div>
             <div class="filter">

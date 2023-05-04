@@ -35,7 +35,7 @@ require_once('../controllers/commonFunctions.php');
                 <div class="cards">
 
                     <?php
-                    $sql = "SELECT * FROM cust_req_general AS c, request_ep_quotation AS r WHERE c.request_id = r.request_id AND status = 'pending' AND r.EP_id = $_SESSION[user_id]";
+                    $sql = "SELECT * FROM cust_req_general AS c, request_ep_quotation AS r WHERE c.request_id = r.request_id AND r.status = 'pending' AND r.EP_id = $_SESSION[user_id]";
                     // $sql = "SELECT * FROM cust_req_general";
                     $result = mysqli_query($conn, $sql);
                     if (mysqli_num_rows($result) > 0) {

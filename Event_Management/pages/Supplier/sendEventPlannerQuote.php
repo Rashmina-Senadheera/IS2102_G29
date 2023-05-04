@@ -6,8 +6,8 @@ include('../controllers/commonFunctions.php');
 
 //check if there is a id in the url
 if (isset($_GET['id'])) {
-    $id = checkInput($_GET['id']);
-    $sql = "SELECT * FROM request_supplier_quotation WHERE request_id = $id";
+    $req_id = checkInput($_GET['id']);
+    $sql = "SELECT * FROM request_supplier_quotation WHERE request_id = $req_id";
     $result = mysqli_query($conn, $sql);
     
 
@@ -25,6 +25,19 @@ if (isset($_GET['id'])) {
         $psId = $general_details['psId'];
         $ep_id = $general_details['EP_id'];
         $requested_on = $general_details['requested_on'];
+        $for_cus_req = $general_details['for_cus_req'];
+
+        $sql1 = "SELECT * FROM sup_product_general WHERE product_id = $psId ";
+        $result1 = mysqli_query($conn, $sql1);
+
+        if (mysqli_num_rows($result1) > 0){
+            $more_details = mysqli_fetch_assoc($result1);
+            $product_title = $more_details['title'];
+            $product_descript = $more_details['description'];
+            $product_type = $more_details['type'];
+        }
+
+
     } else {
         header("Location: 404.php");
     }
@@ -125,10 +138,7 @@ if (isset($_GET['id'])) {
                 <div class="form-description">The following will be provided for the request from the Event planner.</div>
 
                 <div class="row">
-                    <input type="hidden" name="title" value='<?php echo $p_title; ?>' required />
-                    <input type="hidden" name="ep_id" value='<?php echo $ep_id; ?>' required />
-                    <input type="hidden" name="req_id" value='<?php echo $req_id; ?>' required />
-                    <input type="hidden" name="ptype" value = '<?php echo $id; ?>' required/>
+
                     <div class="row">
                         <?php if (isset($_SESSION['success'])) { 
                             echo '<p class="success">' . showSessionMessage("success") . '</p>';
@@ -137,10 +147,16 @@ if (isset($_GET['id'])) {
                             <p class="success"><i class="fa-solid fa-check"></i><?php echo $_GET['successs']; ?></p>
                         <?php } ?>
                     </div>
-                    <input type="hidden" name="product_id" value='<?php echo $psId; ?>' required />
-                    <input type="hidden" name="for_cus_req" value='<?php echo $for_cus_req; ?>' required />
+
+                    <input type="hidden" name="title" value='<?php echo $product_title; ?>' required />
+                    <input type="hidden" name="pdescript" value='<?php echo $product_descript; ?>' required /> 
+                    <input type="hidden" name="ptype" value='<?php echo $product_type; ?>' required />
+                    <input type="hidden" name="ep_id" value='<?php echo $ep_id; ?>' required />
+                    <input type="hidden" name="req_id" value='<?php echo $req_id; ?>' required />
+                    <input type="hidden" name="for_cus_req" value = '<?php echo $for_cus_req; ?>' required/>
+
                     <div class="input">
-                        <label class="input-label">Event Planner's Cost</label>
+                        <label class="input-label">Event Planner's Cost <?php echo $product_type;?></label>
                         <input type="number" class="input-field" name="cost" placeholder="Cost" />
                     </div>
                     <div class="row">
