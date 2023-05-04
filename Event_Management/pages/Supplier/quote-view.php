@@ -8,6 +8,7 @@ include('../controllers/commonFunctions.php');
 if (isset($_GET['id'])) {
     $id = checkInput($_GET['id']);
     $sql = "SELECT * FROM request_supplier_quotation WHERE request_id = $id";
+    
     $result = mysqli_query($conn, $sql);
 
     // check if the id is valid
@@ -136,9 +137,24 @@ if (isset($_GET['id'])) {
                     <div class="personal-info-heading-avail" style="width: 90%;">
                         Availability on Requested Date
                     </div>
+                    <?php 
+                    $sql1 = "SELECT request_supplier_quotation.date 
+                            FROM supplier_booking JOIN request_supplier_quotation 
+                            ON supplier_booking.EP_quotation_id=request_supplier_quotation.request_id 
+                            WHERE request_supplier_quotation.psId = $psId 
+                            AND request_supplier_quotation.date = '$date'";
+                    $result1 = mysqli_query($conn, $sql1);
+                    if (mysqli_num_rows($result1) > 0){
+                        $availability = 0;
+                    }
+                    else{
+                        $availability = 1;
+                    }
+                    ?>
                     <div class="actionBtn" id="avail">
-                        <button type="button" class="available" id="avail" style="margin-left: 0;">
-                            Available
+                        <button type="button" class="available" style="margin-left: 0;"
+                        <?php if($availability) echo "id='avail'"; else echo "id='notavail'"; ?>>
+                            <?php if($availability) echo "Available"; else echo "Not Available"; ?>
                         </button>
                     </div>
                 </div>
@@ -169,12 +185,9 @@ if (isset($_GET['id'])) {
                         <div class="prof-name-50">Remarks:</div>
                         <div class="prof-data"><?php echo $remarks; ?></div>
                     </div>
-                    <div class="prof-all">
-                        <div class="prof-name-50">Urgency:</div>
-                        <div class="prof-data" id="urg"><?php echo $urgency; ?></div>
-                    </div>
                     <div class="actionBtn">
-                        <button type="button" id="btnDecline" class="rejected" style="margin-left: 0;">
+                        <button type="button" id="btnDecline" class="rejected" style="margin-left: 0;"
+                        onclick="<?php echo 'declineRequest(' . $id . ', ' . $ep_id. ')'; ?>">
                             Decline
                         </button>
                         <a href="SendEventPlannerQuote.php?id=<?php echo $id; ?>">
@@ -185,18 +198,32 @@ if (isset($_GET['id'])) {
                     </div>
                 </div>
                 <div class="personal-info" id="quote" style="margin-top: 0px;">
+                    <?php 
+                        $sql1 = "SELECT * FROM user WHERE user_id= $ep_id";
+                        $result1 = mysqli_query($conn, $sql1);
+                        if (mysqli_num_rows($result1) > 0){
+                            $user_details = mysqli_fetch_assoc($result1);
+                            $name = $user_details['name'];
+                            $email = $user_details['email'];
+                        }
+                        else{
+                            echo "Available";
+                        }
+                    
+                    ?>
+                    
                     <div class="personal-info-heading" style="width: 90%;">
                         Event Planner Profile
                     </div>
                     <div class="prof-all">
                         <div class="prof-name-20">Name:</div>
-                        <div class="contact">Chandana Sooriyabandara</div>
+                        <div class="contact"><?php echo $name;?></div>
                     </div>
                     <div class="prof-all">
                         <div class="prof-name-20">Contact :</div>
                         <div class="contact">
-                            <i class="fa-solid fa-envelope" id="qu-con"></i>hhshaminf@gmail.com
-                            <i class="fa-solid fa-phone" id="qu-conm"></i>0777931062
+                            <i class="fa-solid fa-envelope" id="qu-con"></i><?php echo $email;?>
+                            <!-- <i class="fa-solid fa-phone" id="qu-conm"></i>0777931062 -->
                             <i class="fa-brands fa-rocketchat" id="qu-conme"></i><a href="Messages.php"> <b>Message</b> <a>
                         </div>
                     </div>
@@ -207,60 +234,38 @@ if (isset($_GET['id'])) {
     </div>
 
     <!-- The Modal -->
-    <div id="kModal" class="modal">
+    <div id="myModal" class="modal">
+
         <!-- Modal content -->
         <div class="modal-decline">
             <div class="modal-header">
-                <span class="close1">&times;</span>
+                <span class="close">&times;</span>
                 Are you sure you want to decline this request?
             </div>
             <div class="modal-body">
-                <div class="actionBtn">
-                    <button type="button" id="cancelde" class="rejected" style="margin-left: 0;">
-                        Cancel
-                    </button>
-                    <a href="SendCustomerQuotation.php">
-                        <button type="button" class="accepted" style="margin-left: 0;">
+                <form method="POST" action="./controllers/declineQuote.php">
+                    <div class="decline-reason">
+                        <input hidden type="text" name="request_id" id="modal_request_id">
+                        <input hidden type="text" name="customer_id" id="modal_customer_id">
+                        <label for="reason">Reason</label>
+                        <textarea id="reason" name="reason" rows="4" cols="50" required></textarea>
+                    </div>
+                    <div class="actionBtn">
+                        <button type="button" onclick="closeModal()" class="rejected" id="modal_cancel" style="margin-left: 0;">
+                            Cancel
+                        </button>
+                        <button type="submit" class="accepted" style="margin-left: 0;">
                             Yes, Decline
                         </button>
-                    </a>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
     <!-- </div> -->
 
 </body>
+<script src="../../js/supplierQuote.js"></script>
 
-<script>
-    // Get the modal
-    var modal = document.getElementById("kModal");
-
-    // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
-
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close1")[0];
-
-    // When the user clicks the button, open the modal 
-    btnDecline.onclick = function() {
-        modal.style.display = "block";
-    }
-
-    cancelde.onclick = function() {
-        modal.style.display = "none";
-    }
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-</script>
 
 </html>

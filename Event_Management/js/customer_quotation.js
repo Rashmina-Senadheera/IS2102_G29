@@ -334,7 +334,7 @@ function clearRadioButtons(array){
 
 const quote_form = document.querySelector(".quote_form"),
 submit_btn = document.querySelector(".btn-submit"),
-error_txt = document.querySelector(".error_txt"),
+error_txt = document.querySelectorAll(".error_txt"),
 fields_error = document.querySelector(".fields_error"),
 event_type_error = document.querySelector(".event_type_error"),
 no_pax_error = document.querySelector(".no_pax_error"),
@@ -387,7 +387,7 @@ submit_btn.onclick = ()=>{
                         venueNeeded.forEach(function(node){
                             node.classList.remove('needed');
                         });
-                       
+                        venueInputbox.style.display="none"
 
 
                         foodNeeded.forEach(function(node){

@@ -13,20 +13,14 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     // define variables and set to empty values
     $date = date("Y-m-d");
     $title = checkInput($_POST['title']);
-    $description = checkInput($_POST['description']);
+    $p_description = checkInput($_POST['pdescript']);
+    $ptype = checkInput($_POST['ptype']);
+    $supplier_id = $_SESSION['user_id'];
     $cost = checkInput($_POST['cost']);
     $status = "pending";
-    $supplier_id = $_SESSION['user_id'];
     $ep_id = checkInput($_POST['ep_id']);
     $req_id = checkInput($_POST['req_id']);
-    $product_id = checkInput($_POST['product_id']);
     $for_cus_req = checkInput($_POST['for_cus_req']);
-
-    // get product type
-    $sql = "SELECT type FROM sup_product_general WHERE product_id = $product_id";
-    $result = $conn->query($sql);
-    $row = $result->fetch_assoc();
-    $type = $row['type'];
 
     $sql = "INSERT INTO  supplier_quotation(date, title, description, cost, type, status, supplier_id, ep_id, req_id, for_cus_req) VALUES(?,?,?,?,?,?,?,?,?,?)";
 
@@ -37,9 +31,9 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         // Set parameters
         $param_date = $date;
         $param_title = $title;
-        $param_description = $description;
+        $param_description = $p_description;
         $param_cost = $cost;
-        $param_type = $type;
+        $param_type = $ptype;
         $param_status = $status;
         $param_supplier_id = $supplier_id;
         $param_ep_id = $ep_id;
@@ -56,16 +50,9 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
 
             header("location: ../quote-view.php?id=$req_id");
         } else {
-            $_SESSION['error'] = "Something went wrong. Please try again later.";
-            echo "<script>history.go(-1);</script>";
-            if ($stmt->execute()) {
-            // Redirect package services page
-                $_SESSION['success'] = "Package added successfully".$package_id;
-                header("location: ../sendEventPlannerQuote.php?");
-            } else {
-                $_SESSION['error'] =  "Something went wrong. Please try again later.";
-            }
-            $stmt->close();
+            $_SESSION['error'] = "Error: " . $conn->error;
+            echo "<script> window.history.go(-1); </script>";
+            exit();
 
         }
         $conn->close();

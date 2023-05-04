@@ -9,7 +9,7 @@
     
     // $event_type = $no_pax = $theme = $from_date = $to_date = $min_budget = $max_budget = $from_time=$to_time = $venue = $venue_type = $indoor = $outdoor = $indoor_remarks = $outdoor_remarks = $food = $food_availability=$food_pref = $food_remarks =$sound = $sound_type = $light = $light_type = $sound_light_remarks = $photo = $photo_pref = $video = $video_pref = $photo_video_remarks = "";
 
-    $evt_id = showSessionMessage('evt_id');
+    $evt_id = $_SESSION['evt_id'];
     $cust_id = $_SESSION['user_id'];
 
     $event_type = mysqli_real_escape_string($conn,checkInput($_POST['event-type']));

@@ -310,3 +310,7 @@ i#qu-conme {
 .prof-data#urg {
     color: rgb(255, 0, 0);
 }
+
+button#notavail {
+    background-color: rgb(250, 81, 81);
+}

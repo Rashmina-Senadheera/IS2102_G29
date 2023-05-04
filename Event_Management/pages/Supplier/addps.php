@@ -49,7 +49,7 @@
                             <a href="form-venue.php?product_type=foodbev" id="btn">
                             <li class = "header" id="ps-item-add">
                                 <div class="ps-cat-desc" id='item'>
-                                    <div class="ps-cat-item">Catering & Beverages</div>
+                                    <div class="ps-cat-item">Food & Beverages</div>
                                     <i class='bx bx-chevron-right' id="item"></i>
                                 </div>
                             </li></a>
@@ -74,10 +74,10 @@
                                     <i class='bx bx-chevron-right' id="item"></i>
                                 </div>
                             </li></a>
-                            <a href="form-venue.php?product_type=other" id="btn">
+                            <a href="form-venue.php?product_type=light" id="btn">
                             <li id="ps-item-add">
                                 <div class="ps-cat-desc" id='item'>
-                                    <div class="ps-cat-item">Other</div>
+                                    <div class="ps-cat-item">Light</div>
                                     <i class='bx bx-chevron-right' id="item"></i>
                                 </div>
                             </li></a>
@@ -102,6 +102,13 @@
                             <li class = "header" id="ps-item-add">
                                 <div class="ps-cat-desc" id='item'>
                                     <div class="ps-cat-item">Entertainment</div>
+                                    <i class='bx bx-chevron-right' id="item"></i>
+                                </div>
+                            </li></a>
+                            <a href="form-venue.php?product_type=sound" id="btn">
+                            <li class = "header" id="ps-item-add">
+                                <div class="ps-cat-desc" id='item'>
+                                    <div class="ps-cat-item">Sound</div>
                                     <i class='bx bx-chevron-right' id="item"></i>
                                 </div>
                             </li></a>

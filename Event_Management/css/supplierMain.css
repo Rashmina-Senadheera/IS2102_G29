@@ -608,3 +608,6 @@ canvas#myChart {
   background-color: green;
   text-align: center;
 }
+.decline-reason {
+    padding: 20px;
+}
