@@ -6,8 +6,8 @@
     z-index: 1;
     display: flex;
     flex-wrap: wrap;
-    margin: 10px 15px 10px 0px;
-    /* flex: 80%; */
+    margin: 10px 15px 0px 0px;
+    flex: 80%;
 }
 
 .suppliers-cards-container .card {
@@ -150,8 +150,10 @@
     cursor: pointer;
 }
 
-.gridMain {
+.gridSuppliers {
     display: flex;
+    margin-right: 1vw;
+    margin-left: 5px;
 }
 
 /* media query to max size 1600px */

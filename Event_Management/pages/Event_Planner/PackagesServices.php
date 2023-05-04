@@ -76,10 +76,10 @@ require_once('../controllers/commonFunctions.php');
                                     </div>
                                     <ul class="sci">
                                         <li>
-                                            <a href="PackagesServices-edit.php?packageId=' . $packageID . '">Edit</a>
+                                            <a class="edit-package" href="PackagesServices-edit.php?packageId=' . $packageID . '">Edit</a>
                                         </li>
                                         <li>
-                                            <button type="button" id="btnDelete" onclick="declineRequest()">
+                                            <button class="delete-package" type="button" onclick="declineRequest()">
                                                 Delete
                                             </button>
                                         </li>

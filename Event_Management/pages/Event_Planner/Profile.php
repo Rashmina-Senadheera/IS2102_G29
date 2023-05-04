@@ -20,7 +20,7 @@ require_once('eventplanner_header.php');
         <div class="flex-container-profile">
             <div class="about">
                 <div class="image">
-                    <img src="../../images/EP1.jpg" alt="Profile Picture">
+                    <img src="../../images/defaultPP.jpg" alt="Profile Picture">
                 </div>
                 <div class="profile-bio">
                     <div class="profile-name">
@@ -89,14 +89,6 @@ require_once('eventplanner_header.php');
                             <div class="prof-data">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam consequatur voluptatibus official doloremque Voluptatem voluptate quidem dolorem inventore repudiandae accusamus quas consequuntur molestiae natus necessitatibus quae.</div>
                         </div>
                     </div>
-                </div>
-                <div class="p-s-info">
-                    <main role="main">
-                        <div class="personal-info-heading">
-                            Packages & Services
-                        </div>
-                        <a href="#"><span class="tag tag-javascript tag-lg">#ListOfEventTypes</span></a>
-                    </main>
                 </div>
             </div>
         </div>
