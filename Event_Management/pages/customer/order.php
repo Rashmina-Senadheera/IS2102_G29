@@ -74,7 +74,12 @@ if ($conn->connect_error) {
             <tbody>
             <?php
 
-            $sql = "select id, request_date, planner_name, planner_email, event_type, `status` from quotation";
+            $sql = "select * 
+                    from cust_req_general 
+                    JOIN request_ep_quotation 
+                    ON cust_req_general.request_id = request_ep_quotation.request_id 
+                    JOIN user 
+                    ON request_ep_quotation.EP_id = user.user_id";
             $result = $conn->query($sql);
 
 
@@ -84,15 +89,15 @@ if ($conn->connect_error) {
                 ?>
 
                 <tr onclick="myFunction()">
-                    <td><?php echo $row['request_date'] ?></td>
-                    <td><?php echo $row['planner_name'] ?></td>
-                    <td><?php echo $row['planner_email'] ?></td>
+                    <td><?php echo $row['req_date'] ?></td>
+                    <td><?php echo $row['name'] ?></td>
+                    <td><?php echo $row['email'] ?></td>
                     <td><?php echo $row['event_type'] ?></td>
                     <td><?php echo $row['status'] ?></td>
 
                     <script>
                     function myFunction() {
-                    location.replace("order-view.php?id=<?php echo $row['id'] ?>")
+                    location.replace("order-view.php?id=<?php echo $row['request_id'] ?>")
                     }
                     </script>
 
