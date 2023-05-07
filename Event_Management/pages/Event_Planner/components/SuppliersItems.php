@@ -25,16 +25,16 @@ if (isset($_GET['type'])) {
 
     // different sql queries for different search and type combinations
     if ($search != "" && $type != "") {
-        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE (`title` LIKE '%" . $search . "%' OR `description` LIKE '%" . $search . "%') AND (" . $dbTypes . ")";
+        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE (`title` LIKE '%" . $search . "%' OR `description` LIKE '%" . $search . "%') AND (" . $dbTypes . ") ORDER BY RAND()";
     } else if ($search == "" && $type != "") {
-        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE " . $dbTypes;
+        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE " . $dbTypes . " ORDER BY RAND()";
     } else if ($search != "" && $type == "") {
-        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `title` LIKE '%" . $search . "%' OR `description` LIKE '%" . $search . "%'";
+        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `title` LIKE '%" . $search . "%' OR `description` LIKE '%" . $search . "%' ORDER BY RAND()";
     } else {
-        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general";
+        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general ORDER BY RAND()";
     }
 } else {
-    $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general";
+    $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general  ORDER BY RAND()";
 }
 
 $result = mysqli_query($conn, $sql);
