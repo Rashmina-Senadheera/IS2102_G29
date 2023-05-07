@@ -48,10 +48,20 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id']) || empty($_GET['i
     </head>
 
     <body>
+        <?php
+        if (isset($_SESSION['success'])) {
+            echo '<div class="success-message">' . showSessionMessage("success") . '</div>';
+        } else if (isset($_SESSION['error'])) {
+            echo '<div class="error-message">' . showSessionMessage("error") . '</div>';
+        }
+        ?>
         <div class="main-body">
             <?php if (isset($reqID) && !empty($reqID)) {
                 require_once './components/CustomerRequestDetails.php';
-            } ?>
+            } else {
+                $reqID = 0;
+            }
+            ?>
 
             <div class="form-card scrollable">
                 <div class="searchSec">

@@ -5,6 +5,7 @@ require_once('../controllers/commonFunctions.php');
 
 //check if there is a id in the url
 if (isset($_GET['id'])) {
+    $reqID = isset($_GET['reqID']) && !empty($_GET['reqID']) ? $_GET['reqID'] : 0;
     $id = checkInput($_GET['id']);
     $sql = "SELECT * FROM sup_product_general WHERE product_id = $id";
     $result = mysqli_query($conn, $sql);
@@ -105,7 +106,7 @@ if (isset($_GET['id'])) {
                     <div class="sm-all-p">
                         <div class="sm-name">
                             <div class="actionBtn">
-                                <button type="button" class="accepted" style="margin-left: 0;" onclick="window.location='./request-quotation.php?id=<?php echo $id ?>';">
+                                <button type="button" class="accepted" style="margin-left: 0;" onclick="window.location='./request-quotation.php?id=<?php echo $id ?>&reqID=<?php echo $reqID ?>';">
                                     Request a Quotation
                                 </button>
                             </div>

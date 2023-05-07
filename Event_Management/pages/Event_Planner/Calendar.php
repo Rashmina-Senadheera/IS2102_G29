@@ -1,6 +1,11 @@
 <?php
 require_once('eventplanner_sidenav.php');
 require_once('eventplanner_header.php');
+
+$epID = $_SESSION['user_id'];
+$sql = "SELECT * FROM ep_booking WHERE EP_id = $epID";
+$result = mysqli_query($conn, $sql);
+$result = mysqli_fetch_all($result, MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -16,11 +21,45 @@ require_once('eventplanner_header.php');
     <link href='../../vendor/fullcalendar/main.css' rel='stylesheet' />
     <script src='../../vendor/fullcalendar/main.js'></script>
     <script>
+        var rawEvents = <?php echo json_encode($result); ?>;
+        var events = [];
+        for (var i = 0; i < rawEvents.length; i++) {
+            var event = {
+                id: rawEvents[i].booking_id,
+                title: rawEvents[i].description,
+                date: rawEvents[i].date,
+                description: rawEvents[i].description,
+                url: 'CustomerQuotations.php?qID=' + rawEvents[i].prepare_id,
+            }
+            events.push(event);
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
-                height: 600, 
+                height: 600,
+                editable: false,
+                events: events,
+                headerToolbar: {
+                    left: "prev,next today",
+                    center: "title",
+                    right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth"
+                },
+                views: {
+                    dayGridMonth: {
+                        buttonText: "Month"
+                    },
+                    timeGridWeek: {
+                        buttonText: "Week"
+                    },
+                    timeGridDay: {
+                        buttonText: "Day"
+                    },
+                    listMonth: {
+                        buttonText: "List"
+                    }
+                },
             });
             calendar.render();
         });

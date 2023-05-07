@@ -34,6 +34,8 @@
     // Show success message if it is set
     if (isset($_SESSION['success'])) {
         echo '<div class="success-message">' . showSessionMessage("success") . '</div>';
+    } else if (isset($_SESSION['error'])) {
+        echo '<div class="error-message">' . showSessionMessage("error") . '</div>';
     }
     ?>
     <div class="grid-container-payments">
@@ -85,7 +87,7 @@
                             <ul class="sci">
                                 <li>
                                     <!-- <a href="" class="view-supplier">View</a> -->
-                                    <a href="./Supplier-more-info.php?id=' . $productID . '" class="view-supplier">View</a>
+                                    <a href="./Supplier-more-info.php?id=' . $productID . '&reqID=' . $reqID . '" class="view-supplier">View</a>
                                 </li>
                                 <li>
                                     <a href="./request-quotation.php?id=' . $productID . '&reqID=' . $reqID . '" class="request">Request a Quotation</a>
