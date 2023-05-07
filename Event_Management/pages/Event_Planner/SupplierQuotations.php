@@ -55,7 +55,7 @@ if (!empty($_GET['reqID'])) {
             </div>
 
             <div id="Received" class="tabcontent">
-                <?php include_once('components/SupplierQuotationsReceived.php'); ?>
+                <?php require_once('components/SupplierQuotationsReceived.php'); ?>
             </div>
 
             <div id="Requested" class="tabcontent">

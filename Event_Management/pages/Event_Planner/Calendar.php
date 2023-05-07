@@ -23,13 +23,18 @@ $result = mysqli_fetch_all($result, MYSQLI_ASSOC);
     <script>
         var rawEvents = <?php echo json_encode($result); ?>;
         var events = [];
+        var color = '#2196F3';
         for (var i = 0; i < rawEvents.length; i++) {
+            if(rawEvents[i].status == 'Accepted') {
+                color = '#04AA6D';
+            }
             var event = {
                 id: rawEvents[i].booking_id,
                 title: rawEvents[i].description,
                 date: rawEvents[i].date,
                 description: rawEvents[i].description,
                 url: 'CustomerQuotations.php?qID=' + rawEvents[i].prepare_id,
+                color: color,
             }
             events.push(event);
         }
