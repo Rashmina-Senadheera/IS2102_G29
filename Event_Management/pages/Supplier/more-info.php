@@ -244,12 +244,30 @@ if (isset($_GET['id'])) {
                             <div class="prof-data"><?php echo $budget_max;?></div>
                         </div>
 
-                        <div class="prof-all-e">
-                            <a href="product-edit.php?id=<?php echo $id;?>" class="custom-button-e" id="ed">
+                        <?php
+                        $sql = "SELECT * FROM request_supplier_quotation WHERE status='Completed' AND psId = $id";
+                        $result = mysqli_query($conn, $sql);
+
+                        if (! mysqli_num_rows($result) > 0) {
+                            echo '
+                            <div class="prof-all-e">
+                            <a href="product-edit.php?id='.$id.'?>" class="custom-button-e" id="ed">
                                 Edit
                             </a>
                             <button type="button"class="custom-button-e" id="del" onclick="deleteProduct()" >Delete</button>
-                        </div>
+                        </div>';
+                        }else{
+                          
+                          echo '
+                            <div class="prof-all-e">
+                                <div class = "restrict">
+                                    Cant Edit or Update Product : Quotation given ! 
+                                </div>
+                            </div>
+                         ' ; 
+                        }
+                        ?>
+
                     </div>
                     </div>
                 </div>

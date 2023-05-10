@@ -465,7 +465,7 @@ p.success{
     flex-shrink: 0;
     width: 100%;
     justify-content: flex-start;
-    /* margin: 0 -10px; */
+    margin-bottom: 10px;
 }
 .row#img{
   margin-top: 15px;
@@ -831,4 +831,7 @@ input[type=file]::file-selector-button:hover {
 }
 .input-background#avail{
 	background: #dff2bf;
+}
+.row#val{
+  flex-direction: column;
 }

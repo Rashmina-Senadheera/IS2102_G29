@@ -48,12 +48,18 @@
                             $image_sql = "SELECT * FROM supplier_product_images WHERE product_id = $product_id LIMIT 1";
                             $image_result = $conn->query($image_sql);
                             $image_row = $image_result->fetch_assoc();
-                            $packageImage = $image_row['image'];
+                            $packageImage = isset($image_row['image']) ? $image_row['image'] : 0;
                     ?>
                     <a href='more-info.php?id=<?php echo $row["product_ID"];?>' id='a-card'>
                         <div class='ps-card'>
                             <div class='ps-card-img'>
-                                <img src= "data:image/jpeg;base64,<?php echo base64_encode($packageImage);?> " alt="">
+                                <img src= <?php 
+                                if (!$packageImage){
+                                    echo "../../images/imageNot.png";
+                                }else{
+                                    echo "data:image/jpeg;base64,".base64_encode($packageImage);
+                                }
+                                ?>> 
                             </div>
                             <div class='ps-card-desc'>
                                 <div class='ps-title'><?php echo $row["title"];?></div>

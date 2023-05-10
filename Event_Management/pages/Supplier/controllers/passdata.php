@@ -22,9 +22,8 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                 {  
                     $arr .= $val.",";  
                 } 
-        return $arr;
+            return $arr;      
     }
-
 
 
     $title = validate($_POST['title']);
@@ -37,21 +36,17 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     $ptype = validate($_POST['ptype']);
 
     if($ptype == 'venue'){
-        $venueIn = validate($_POST['venueIn']);
-        $location = validate($_POST['location']);
-        $maxCap = validate($_POST['maxCap']);
-        $minCap = validate($_POST['minCap']);
-        $type = validate($_POST['type']);
+        $venueIn = $_POST['venueIn'];
+        $location = $_POST['location'];
+        $maxCap = $_POST['maxCap'];
+        $minCap = $_POST['minCap'];
+        $type = $_POST['type'];
     }
     if($ptype == 'foodbev'){
-        $cater_transport = validate($_POST['cater-transport']);
-        $cater_type_a = $_POST['cater-type'];
-        $available_as_fb_a = $_POST['available-as-fb'];
-        $available_for_fb_a = $_POST['available-for-fb'];
-
-        $available_for_fb = makeArray($available_for_fb,$available_for_fb_a); 
-        $cater_type = makeArray($cater_type,$cater_type_a); ; 
-        $available_as_fb = makeArray($available_as_fb,$available_as_fb_a ); 
+        isset($_POST['cater-transport']) ? $cater_transport = $_POST['cater-transport'] : $cater_transport = "";
+        isset($_POST['cater-type']) ? $cater_type = makeArray($cater_type,$_POST['cater-type']) : $cater_type = "";
+        isset($_POST['available-for-fb']) ? $available_for_fb = makeArray($available_for_fb,$_POST['available-for-fb']): $available_for_fb = "";
+        isset($_POST['available-as-fb']) ? $available_as_fb = makeArray($available_as_fb,$_POST['available-as-fb'] ): $available_as_fb = "";
         
     }
     if($ptype == 'transport'){
@@ -63,45 +58,115 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         $floral_type = validate($_POST['floral-type']);
         $floral_height = validate($_POST['floral-height']);
         $floral_quant = validate($_POST['floral-quant']);
-        $floral_for = validate($_POST['type-floral']);
+        isset($_POST['type-floral']) ? $floral_for = $_POST['type-floral'] : $floral_for = "";
     }
     if($ptype == 'deco'){
-        $deco_type_a = $_POST['type-deco'];
-        $deco_type = makeArray($deco_type, $deco_type_a);
+        isset($_POST['type-deco']) ? $deco_type = makeArray($deco_type,$_POST['type-deco']) : $deco_type = "";
     }
     if($ptype == 'photo'){
-        $photo_in = validate($_POST['photo-in']);
-        $type_photo = validate($_POST['type-photo']);
+        isset($_POST['photo-in']) ? $photo_in = makeArray($photo_in,$_POST['photo-in']) : $photo_in = "";
+        isset($_POST['type-photo']) ? $type_photo = makeArray($type_photo,$_POST['type-photo']) : $type_photo = "";
     }
     if($ptype == 'ent'){
-        $type_ent = validate($_POST['type-ent']);
+        isset($_POST['type-ent']) ? $type_ent = makeArray($type_ent,$_POST['type-ent']) : $type_ent = "";
     }
     if($ptype == 'sound'){
-        $type_sound_a = $_POST['type-sound'];
-        $type_sound = makeArray($type_sound,$type_sound_a); 
+        isset($_POST['type-sound']) ? $type_sound = makeArray($type_sound,$_POST['type-sound']) : $type_sound = "";
     }
     if($ptype == 'light'){
-        $type_light_a = $_POST['type-light'];
-        $type_light = makeArray($type_light,$type_light_a); 
+        isset($_POST['type-light']) ? $type_light = makeArray($type_light,$_POST['type-light']) : $type_light = "";
     }
 
 
-
-    // Validation patters
     $onlyPositiveNumbers = "/^[1-9][0-9]*$/";
 
-    // Validate package name
+    // Validation patters
     if (empty($title)) {
-        $_SESSION['error-title'] = "Error";
+        $_SESSION['error-title'] = "Enter the title - Can't be empty";
     }
-    if (empty($cater_transport)) {
-        $_SESSION['error-title'] = "Error";
+    if (empty($descript)) {
+        $_SESSION['error-descript'] = "Enter the description - Can't be empty";
     }
 
+    if (empty($maxBudget) || empty($minBudget) ) {
+        if (empty($maxBudget) && empty($minBudget) ){
+            $_SESSION['error-Budget'] = "Enter the Budget - Can't be empty"; 
+        }else if (empty($minBudget)){
+            $_SESSION['error-Budget'] = "Enter the Minimum Budget - Can't be empty"; 
+        }else{
+            $_SESSION['error-Budget'] = "Enter the Maximum Budget - Can't be empty";
+        }
+    } else if ($maxBudget <=  $minBudget ) {
+           $_SESSION['error-Budget'] = "Maximum Budget has to be greater than Minimum Budget";
+    } else if ((!preg_match($onlyPositiveNumbers, $maxBudget)) || (!preg_match($onlyPositiveNumbers, $minBudget))) {
+         $_SESSION['error-Budget'] = "Budget must be a positive number";
+    }
+
+
+    if($ptype == 'venue' ) {
+        if (empty($venueIn)) {
+            $_SESSION['error-venueIn'] = "Choose a Value";
+        } 
+        if (empty($location)) {
+            $_SESSION['error-venloc'] = "Enter a Location";
+        } 
+        if (empty($type)) {
+            $_SESSION['error-ventype'] = "Enter a Type" ;
+        } 
+
+        if (empty($maxCap) || empty($minCap) ) {
+            if (empty($maxCap) && empty($minCap) ){
+                $_SESSION['error-capacity'] = "Enter the Capacity- Can't be empty"; 
+            }else if (empty($minCap)){
+                $_SESSION['error-capacity'] = "Enter the Minimum Capacity - Can't be empty"; 
+            }else{
+                $_SESSION['error-capacity'] = "Enter the Maximum Capacity - Can't be empty";
+            }
+        } else if ($maxCap <=  $minCap ) {
+            $_SESSION['error-capacity'] = "Maximum Capacity has to be greater than Minimum Capacity";
+        }else if ((!preg_match($onlyPositiveNumbers, $maxCap)) || (!preg_match($onlyPositiveNumbers, $minCap))) {
+            $_SESSION['error-Budget'] = "Capacity must be a positive number";
+        }   
+    }
+
+    if($ptype == 'florist') {   
+        if (!empty($floral_quant) && !preg_match($onlyPositiveNumbers, $floral_quant)) {
+            $_SESSION['error-flowQuantity'] = "Quantity must be a positive number";
+        }
+    }
+    if($ptype == 'foodbev') {   
+        if (empty($cater_transport)) {
+            $_SESSION['error-catTransport'] = "Choose an Option";
+        }
+    }
+    if($ptype == 'transport') {   
+        if (empty($transport_type)) {
+            $_SESSION['error-tansportType'] = "Choose an Option";
+        }
+    }
+    if($ptype == 'light') {   
+        if (empty($type_light)) {
+            $_SESSION['error-lightType'] = "Choose an Option";
+        }
+    }
+    if($ptype == 'sound') {   
+        if (empty($type_sound)) {
+            $_SESSION['error-soundType'] = "Choose an Option";
+        }
+    }
+
+    // Validate package name
     // If there are any errors go back
     if (
         isset($_SESSION['error-title']) ||
-        isset($_SESSION['error-descript'])
+        isset($_SESSION['error-descript']) ||
+        isset($_SESSION['error-Budget']) || 
+        ( $ptype == 'venue'         &&  ( isset($_SESSION['error-venueIn']) || isset($_SESSION['error-venloc']) || isset($_SESSION['error-ventype']) ||  isset($_SESSION['error-capacity'])) ) || 
+        ( $ptype == 'foodbev'       &&  ( isset($_SESSION['error-catTransport']) ) ) || 
+        ( $ptype == 'transport'     &&  ( isset($_SESSION['error-tansportType']) ) ) || 
+        ( $ptype == 'light'     &&  ( isset($_SESSION['error-lightType']) ) ) || 
+        ( $ptype == 'sound'     &&  ( isset($_SESSION['error-soundType']) ) ) || 
+        ( $ptype == 'florist'     &&  ( isset($_SESSION['error-flowQuantity']) ) )
     ) {
         echo "<script> history.back(); </script>";
     } else {
@@ -112,7 +177,6 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         //,venloc,venlocation,ventype,maxCap,minCap,?,?,?,?,?
 
         if ($stmt = $conn->prepare($sql)) {
-
 
             // Bind variables to the prepared statement as parameters
             $stmt->bind_param('issssii',$sup_ID, $param_title, $param_descript,$param_other,$param_ptype,$param_minBudget,$param_maxBudget);
@@ -244,6 +308,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                 header("location: ../form-venue.php?product_type=".$ptype);
             } else {
                 $_SESSION['error'] =  "Something went wrong. Please try again later.";
+                header("location: ../form-venue.php?product_type=".$ptype);
             }
 
             // Close statement

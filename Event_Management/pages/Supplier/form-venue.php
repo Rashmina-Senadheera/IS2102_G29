@@ -57,28 +57,30 @@
             <?php if (isset($_SESSION['success'])) { 
                  echo '<p class="success">' . showSessionMessage("success") . '</p>';
             }?>
-            <?php if (isset($_GET['successs'])) { ?>
-                <p class="success"><i class="fa-solid fa-check"></i><?php echo $_GET['successs']; ?></p>
-            <?php } ?>
+            <?php if (isset($_SESSION['error'])) { 
+                 echo '<p class="error">' . showSessionMessage("error") . '</p>';
+            } ?>
           </div>
 
           <div class="comp">
 
             <input type="hidden" name="ptype" value = '<?php echo $pid; ?>' required/>
 
-            <div class="row">
+            <div class="row" id="val">
               <div class="input-ps">
                 <label for="" class="input-ps-label"  >Title <span>*</span></label>
-                <input type="text" placeholder="Full Name" name="title" class="input-ps-in" required/>
+                <input type="text" placeholder="Full Name" name="title" class="input-ps-in" />
               </div>
+              <div class="formInputError"><?php echo showSessionMessage('error-title') ?></div>
             </div>
 
-            <div class="row">
+            <div class="row" id="val">
               <div class="input-ps">
                 <label for="" class="input-ps-label">Description <span>*</span></label>
                 <textarea  name="descript" class="input-ps-in" id='txt-area' required spellcheck="true">
                 </textarea>
               </div>
+              <div class="formInputError"><?php echo showSessionMessage('error-descript') ?></div>
             </div>
 
           </div>
@@ -86,27 +88,31 @@
           <!-- Venue Optional Parameters -->
           <?php if($pid == 'venue') {?>
 
-            <div class="row">
+            <div class="row" id="val">
               <div class="input-ps">
-                <label for="" class="input-ps-label">Venue in <span>*</span></label>
-                <select name="venueIn" id="type" required>
+                <label for="" class="input-ps-label">Venue in <span>*</span> </label>
+                <select name="venueIn" id="type" >
+                  <option ></option>
                   <option value="indoor">Indoor</option>
                   <option value="outdoor">Outdoor</option>
                 </select>
               </div>
+              <div class="formInputError"><?php echo showSessionMessage('error-venueIn') ?></div>
             </div>
 
-            <div class="row">
+            <div class="row" id="val" >
               <div class="input-ps" >
                 <label for="" class="input-ps-label">Location <span>*</span> </label>
-                <input type="text" placeholder="Full Name" name="location" class="input-ps-in" required/>
+                <input type="text" placeholder="Full Name" name="location" class="input-ps-in" />
               </div>
+              <div class="formInputError"><?php echo showSessionMessage('error-venloc') ?></div>
             </div>
 
-            <div class="row">
+            <div class="row" id="val">
               <div class="input-ps">
-                <label for="" class="input-ps-label" >Type <span>*</span></label>
-                <select name="type" id="type" required>
+                <label for="" class="input-ps-label" >Type <span>*</span> </label>
+                <select name="type" id="type" >
+                  <option ></option>
                   <option value="Banquet Halls">Banquet Halls</option>
                   <option value="Conference Halls">Conference Halls</option>
                   <option value="Stadium">Stadium</option>
@@ -117,11 +123,12 @@
                   <option value="other">other (Museums, aquariums, zoos , gallery)</option>
                 </select>
               </div>
+              <div class="formInputError"><?php echo showSessionMessage('error-ventype') ?></div>
             </div>
 
             <div class="row">
               <div class="input-ps">
-                <label for="" class="input-ps-label" >Capacity </label>
+                <label for="" class="input-ps-label" >Capacity <span>*</span> </label>
               </div>
             </div>
             <div class= "row">
@@ -133,11 +140,11 @@
                   <div class="price-input">
                     <div class="field">
                       <span>Min</span>
-                      <input type="number" class="input-min" name="minCap" value="2500">
+                      <input type="number" class="input-min" name="minCap" >
                     </div>
                     <div class="field">
                       <span>Max</span>
-                      <input type="number" class="input-max" name="maxCap" value="7500">
+                      <input type="number" class="input-max" name="maxCap" >
                     </div>
                   </div>
                   <div class="slider">
@@ -149,6 +156,7 @@
                   </div>
                 </div>
               </div>
+              <div class="formInputError"><?php echo showSessionMessage('error-capacity') ?></div>
             </div>
 
           <?php } ?>
@@ -157,10 +165,11 @@
           <!-- Transport Optional Parameters -->
           <?php if($pid == 'transport') {?>
 
-            <div class="row">
+            <div class="row" id="val">
               <div class="input-ps">
                 <label for="" class="input-ps-label">Type</label>
                 <select name="transport_type" id="type">
+                  <option></option>
                   <option value="Car">Car</option>
                   <option value="Motorbike">Motorbike</option>
                   <option value="Bicycle">Bicycle</option>
@@ -170,6 +179,7 @@
                   <option value="Jeep">Jeep</option>
                 </select>
               </div>
+              <div class="formInputError"><?php echo showSessionMessage('error-tansportType') ?></div>
             </div>
 
             <div class="row">
@@ -218,7 +228,9 @@
                     <label for="" class="input-ps-label-opt">Not Provided</label>
                   </div>
                 </div>
+                <div class="formInputError"><?php echo showSessionMessage('error-catTransport') ?></div>
               </div>
+              
             </div>
 
             <div class="row" id='check'>
@@ -295,11 +307,12 @@
               </div>
             </div>
 
-            <div class="row" >
+            <div class="row" id="val" >
               <div class="input-ps">
                 <label for="" class="input-ps-label">Quantity of Flowers</label>
                 <input type="text" placeholder="type" name='floral-quant' class="input-ps-in"/>
               </div>
+              <div class="formInputError"><?php echo showSessionMessage('error-flowQuantity') ?></div>
             </div>
 
             <div class="row" id='check'>
@@ -346,7 +359,7 @@
           <!-- Lights Optional Parameters  -->
           <?php if($pid == 'light') {?>
 
-            <div class="row" >
+            <div class="row" id ="val" >
               <div class="input-ps" id='check'>
                 <label for="" class="input-ps-label" id='check'>Type of Light </label>
                 <div class="check-bx">
@@ -372,6 +385,7 @@
                   </div>
                 </div>
               </div>
+              <div class="formInputError"><?php echo showSessionMessage('error-lightType') ?></div>
             </div>
 
           <?php } ?>
@@ -379,7 +393,7 @@
           <!-- Sounds Optional Parameters  -->
           <?php if($pid == 'sound') {?>
 
-            <div class="row" id="images">
+            <div class="row" id="val">
               <div class="input-ps" id='check'>
                 <label for="" class="input-ps-label" id='check'>Type of Sound </label>
                 <div class="check-bx">
@@ -401,6 +415,7 @@
                   </div>
                 </div>
               </div>
+              <div class="formInputError"><?php echo showSessionMessage('error-soundType') ?></div>
             </div>
 
           <?php } ?>
@@ -476,7 +491,7 @@
           <div class="row" id="images">
             <div class="input-ps">
 
-              <label class="input-label" >Images <span class="desc">(Maximum 6 images)</span></label>
+              <label class="input-label" >Images<span class="desc">(Maximum 6 images)</span>  </label>
 
               <div class="row" id="img">
 
@@ -515,13 +530,14 @@
               </div>
               <output id="imgResult"></output>
             </div>
+            <div class="formInputError"><?php echo showSessionMessage('error-images') ?></div>
           </div>
           <!-- Images Upload end -->
           
           <!-- other details-->
           <div class="row">
             <div class="input-ps">
-              <label for="" class="input-ps-label">Other Details <span>*</span></label>
+              <label for="" class="input-ps-label">Other Details</label>
               <textarea  name="other" class="input-ps-in" id='other' required spellcheck="true">
               </textarea>
             </div>
@@ -529,28 +545,30 @@
 
           <div class="row">
               <div class="input-ps">
-                <label for="" class="input-ps-label" >Budget </label>
+                <label for="" class="input-ps-label" >Budget <span>*</span></label>
               </div>
           </div>
 
-            <div class= "row">
+            <div class= "row" id="val">
               <div class="input-ps">    
                 <div class="wrapper">
                   <header>
-                    <p> Enter min and max Budget </p>
+                    <p> Enter min and max Budget</p>
                   </header>
                   <div class="budget-input">
                     <div class="field">
                       <span>Min</span>
-                      <input type="number" class="input-min" name="minBudget" value="2500">
+                      <input type="number" class="input-min" name="minBudget" >
                     </div>
                     <div class="field">
                       <span>Max</span>
-                      <input type="number" class="input-max" name="maxBudget" value="7500">
+                      <input type="number" class="input-max" name="maxBudget" >
                     </div>
                   </div>
                 </div>
               </div>
+              <div class="formInputError"><?php echo showSessionMessage('error-Budget') ?></div>
+              <div class="formInputError"><?php echo showSessionMessage('error-Budget') ?></div>
             </div>
           <!-- other details end -->
 
