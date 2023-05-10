@@ -19,6 +19,8 @@
     </head>
         
     <body>
+
+        
         <div class = 'container-main'>
             <div class = 'flex-container-main'>
                 <div class="title-search">
@@ -35,11 +37,22 @@
             </div>
         <div class="ps-list">
             <div class ='grid-main' id='ps-list'>
-                <div class="cards">
+                <div class="cards"id="supplier_items">
                     <?php
-                        $sql = "SELECT V.product_ID,V.title,V.description
-                                FROM sup_product_general V 
-                                WHERE V.supplier_ID = $id";
+                        if (isset($_GET['type'])) {
+                            $type = $_GET['type'];
+                            if ($type == "foodbev") {
+                                $sql = "SELECT `product_ID`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = 'foodbev'  AND supplier_ID = $id";
+                            } else if ($type == "pv") {
+                                $sql = "SELECT `product_ID`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = 'photo' OR `type` = 'video'  AND supplier_ID = $id";
+                            } else if ($type == "sl") {
+                                $sql = "SELECT `product_ID`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = 'deco' OR `type` = 'deco'  AND supplier_ID = $id";
+                            } else {
+                                $sql = "SELECT `product_ID`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = '$type' AND supplier_ID = $id ";
+                            }
+                        } else {
+                            $sql = "SELECT `product_ID`, `title`, `description`, `type` FROM sup_product_general";
+                        }
 
                         $result = $conn->query($sql);
                         if ($result->num_rows > 0) {
@@ -70,65 +83,18 @@
                     
                     <?php 
                         ;}
+                        } else {
+                            echo "<div class='no-records'>
+                                    No Supplier Found
+                                    <img src='../../images/no-record.png' alt='No Requests'>
+                                </div>";
                         }
                     ?> 
                 </div>
             </div>
-            <div class="filter">
-                <div class="search">
-                    <div class = 'input-container'>
-                        <input class = 'input-field-filter' type = 'text' placeholder = 'Search payments' name = 'search'>
-                        <i class = 'fa fa-search icon'></i>
-                    </div>
-                </div>
-                <div class="status">
-                    <div class="filter-heading">Filter by Status</div>
-                    <div class="status-list">
-                        <ul>
-                            <li><a href="#">
-                                <div class="status-list-icon" id="in"><i class='bx bx-play-circle'></i></div>
-                                <div class="li-heading" id="in">Active</div>
-                            </a></li>
-                            <li><a href="#">
-                                <div class="status-list-icon" id="out"><i class='bx bx-pause-circle'></i></i></div>
-                                <div class="li-heading" id="out">Suspended</div>
-                            </a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="category">
-                    <div class="filter-heading">Filter by Category</div>
-                    <div class="category-list">
-                        <ul>
-                            <li><input type="checkbox">All</li>
-                            <li><input type="checkbox">Venue</li>
-                            <li><input type="checkbox">Entertainment</li>
-                            <li><input type="checkbox">Catering</li>
-                            <li><input type="checkbox">Photography</li>
-                            <li><input type="checkbox">Transport</li>
-                            <li><input type="checkbox">Beverages</li>
-                            <li><input type="checkbox">Florists</li>
-                            <li><input type="checkbox">Decoration</li>
-                            <li><input type="checkbox">Lighting</li>
-                            <li><input type="checkbox">Audio/Vedio</li>
-                        </ul>
-                    </div>
-                    <div class="sort">
-                    <div class="filter-heading">Filter by Date</div>
-                    <div class="sort-list">
-                        <ul>
-                            <li>
-                                <select name="date" id="date-sort">
-                                    <option value="oldest">Oldest on Top</option>
-                                    <option value="newest">Newest on Top</option>
-                                </select>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            <?php require_once 'components/productFilter.php'; ?>
         </div>
-        
+        <script src="../../js/productSupplierFilter.js"></script>
     </body>
 
 </html>
