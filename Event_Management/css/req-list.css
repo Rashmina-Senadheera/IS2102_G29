@@ -1,0 +1,159 @@
+.ps-card {
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px rgb(182, 182, 182) solid;
+}
+
+.ps-card-img {
+    flex: 10%;
+}
+
+a#btn {
+    text-decoration: none;
+    color: white;
+}
+
+.ps-card-desc {
+    flex: 60%;
+    padding-top: 0px;
+}
+
+.ps-card-btn {
+    flex: 20%;
+    display: flex;
+    flex-direction: column;
+}
+
+.ps-card-img img {
+    width: 150px;
+    height: 100px;
+}
+
+.rs-card-img img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.ps-list {
+    display: flex;
+    flex-direction: row;
+}
+
+.grid-main#rs-list {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+}
+
+.ps-title {
+    font-weight: bold;
+}
+
+.rs-title {
+    font-size: 13px;
+    font-weight: bold;
+    padding: 0px 20px 0px 20px;
+    width: calc((100%-150px)/6);
+}
+
+.rs-type {
+    color: rgb(53, 52, 52);
+    font-size: 12px;
+    padding: 0px 20px 0px 20px;
+    width: calc((100%-150px)/6);
+    position: relative;
+}
+
+.rs-title.sq, .rs-type.sq {
+    width: calc((100%-150px)/5);
+}
+
+.rs-type.t2, .rs-title.t2 {
+    width: 75px;
+}
+
+.ps-type {
+    color: rgb(53, 52, 52);
+    font-size: 15px;
+}
+
+.ps-date {
+    color: rgb(148, 148, 148);
+    font-size: 13px;
+}
+
+.cards {
+    flex: 1;
+    width: 100%;
+    flex-grow: 1;
+}
+
+.ps-card-desc#rs {
+    display: flex;
+    flex-direction: row;
+}
+
+.ps-card-title {
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px rgb(182, 182, 182) solid;
+    flex-grow: 1;
+}
+
+.ps-card:hover {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+a#a-card {
+    text-decoration: none;
+    color: black;
+}
+
+.rs-type ul {
+    position: absolute;
+    display: none;
+    width: 150px;
+    top: 20px;
+    right: 10px;
+    margin: 0;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    border-radius: .5rem;
+    z-index: 100;
+    list-style-type: none;
+}
+
+.rs-type ul li a,
+.rs-type ul li button {
+    padding: 7px;
+    display: block;
+    text-decoration: none;
+    border-radius: .5rem;
+    color: #555;
+    font-size: 12px;
+    background-color: #fff;
+    border: none;
+    width: 100%;
+}
+
+.rs-type ul li a.destructive:hover,
+.rs-type ul li button.destructive:hover {
+    background-color: #d92800;
+}
+
+.rs-type ul li a:hover,
+.rs-type ul li button:hover {
+    background-color: #3a0247;
+    color: white;
+}
+
+.rs-type.menu:hover ul,
+.rs-type.menu:focus ul {
+    display: block;
+}

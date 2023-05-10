@@ -102,8 +102,29 @@
     color: grey
 }
 
-.my-packages-container .card:hover .sci li a {
-    color: black
+.edit-package{
+    color: blue;
+}
+
+.delete-package{
+    color: #f44336;
+}
+
+.my-packages-container .card .sci li button {
+    text-decoration: none;
+    color: grey;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.my-packages-container .card:hover .sci li a.edit-package{
+    color: #3a0247
+}
+
+.my-packages-container .card:hover .sci li button.delete-package {
+    color: #f44336
 }
 
 .add-new-section {
