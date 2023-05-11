@@ -278,3 +278,37 @@ i.bx.bx-plus-circle {
     min-width: 5%;
     max-width: 5%;
 }
+p.success{
+    margin-bottom: 20px;
+    background-color: rgb(157, 252, 157);
+    padding: 5px;
+    width: 95%;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1rem;
+    padding-bottom: 5px;
+    align-self: center;
+}
+.ps-card-mes {
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px rgb(182, 182, 182) solid;
+}
+img#noRecords{
+    margin: auto;
+    width: 100px;
+}
+.no-records{
+    border: rgb(240, 240, 240) 1px solid;
+    padding: 20px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.message-noRecords{
+    margin: auto;
+}

@@ -86,19 +86,6 @@
                         <i class = 'fa fa-search icon'></i>
                     </div>
                 </div>
-                <div class="status">
-                    <div class="filter-heading">Filter by Status</div>
-                    <div class="status-list">
-                        <ul>
-                            <li><a href="#">
-                                <div class="li-heading" id="out">Urgent</div>
-                            </a></li>
-                            <li><a href="#">
-                                <div class="li-heading" id="in">Not Urgent</div>
-                            </a></li>
-                        </ul>
-                    </div>
-                </div>
                 <div class="category">
                     <div class="filter-heading">Filter by Category</div>
                     <div class="category-list">

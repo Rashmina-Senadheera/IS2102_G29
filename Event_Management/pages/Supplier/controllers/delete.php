@@ -22,8 +22,8 @@
             // Attempt to execute the prepared statement
             if ($stmt->execute()) {
                 // Redirect package services page
-                $_SESSION['success'] = "Product Deleted Successfully".$p_id;
-                header("location: ../form-venue.php?product_type=".$ptype);
+                $_SESSION['success'] = "Product # ".$p_id." Deleted";
+                header("location: ../ps-list.php?product_type=".$ptype);
             } else {
                 $_SESSION['error'] =  "Something went wrong. Please try again later.";
             }
