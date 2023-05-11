@@ -1,10 +1,4 @@
-<?php
-    include('../constants.php');
-    include( 'supplier_sidenav.php' );
-    include( 'header.php' );
-    $id = $_SESSION['user_id'];
-    if(isset($_SESSION['user_name'])){
-?>
+
 
 <!DOCTYPE html>
 <html>
@@ -17,6 +11,19 @@
         <link rel = 'stylesheet' href = '../../css/supplierMain.css'>
         <link rel = 'stylesheet' href = '../../css/ps-list.css'>
     </head>
+    <?php
+        ob_start();
+
+        include('../constants.php');
+        include( 'supplier_sidenav.php' );
+        include( 'header.php' );
+        include('../controllers/commonFunctions.php');
+        $id = $_SESSION['user_id'];
+
+        ob_end_flush();
+    ?>
+
+    
         
     <body>
 
@@ -38,6 +45,14 @@
         <div class="ps-list">
             <div class ='grid-main' id='ps-list'>
                 <div class="cards"id="supplier_items">
+                    <div class='.ps-card-message'>
+                        <?php if (isset($_SESSION['success'])) { 
+                            echo '<p class="success">' . showSessionMessage("success") . '</p>';
+                        }?>
+                        <?php if (isset($_SESSION['error'])) { 
+                            echo '<p class="error">' . showSessionMessage("error") . '</p>';
+                        } ?>
+                    </div>
                     <?php
                         if (isset($_GET['type'])) {
                             $type = $_GET['type'];
@@ -51,42 +66,41 @@
                                 $sql = "SELECT `product_ID`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = '$type' AND supplier_ID = $id ";
                             }
                         } else {
-                            $sql = "SELECT `product_ID`, `title`, `description`, `type` FROM sup_product_general";
+                            $sql = "SELECT `product_ID`, `title`, `description`, `type` FROM sup_product_general WHERE supplier_ID = $id ";
                         }
 
                         $result = $conn->query($sql);
-                        if ($result->num_rows > 0) {
-                        while($row = $result->fetch_assoc()) {
-                            $product_id = $row['product_ID'];
-                            $image_sql = "SELECT * FROM supplier_product_images WHERE product_id = $product_id LIMIT 1";
-                            $image_result = $conn->query($image_sql);
-                            $image_row = $image_result->fetch_assoc();
-                            $packageImage = isset($image_row['image']) ? $image_row['image'] : 0;
-                    ?>
-                    <a href='more-info.php?id=<?php echo $row["product_ID"];?>' id='a-card'>
-                        <div class='ps-card'>
-                            <div class='ps-card-img'>
-                                <img src= <?php 
-                                if (!$packageImage){
-                                    echo "../../images/imageNot.png";
-                                }else{
-                                    echo "data:image/jpeg;base64,".base64_encode($packageImage);
-                                }
-                                ?>> 
+                        if (mysqli_num_rows($result) > 0) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $product_id = $row['product_ID'];
+                                $image_sql = "SELECT * FROM supplier_product_images WHERE product_id = $product_id LIMIT 1";
+                                $image_result = $conn->query($image_sql);
+                                $image_row = $image_result->fetch_assoc();
+                                $packageImage = isset($image_row['image']) ? $image_row['image'] : 0;
+                        ?>
+                        <a href='more-info.php?id=<?php echo $row["product_ID"];?>' id='a-card'>
+                            <div class='ps-card'>
+                                <div class='ps-card-img'>
+                                    <img src= <?php 
+                                    if (!$packageImage){
+                                        echo "../../images/imageNot.png";
+                                    }else{
+                                        echo "data:image/jpeg;base64,".base64_encode($packageImage);
+                                    }
+                                    ?>> 
+                                </div>
+                                <div class='ps-card-desc'>
+                                    <div class='ps-title'><?php echo $row["title"];?></div>
+                                    <div class='ps-type'><?php echo $row["description"];?></div>
+                                </div>
                             </div>
-                            <div class='ps-card-desc'>
-                                <div class='ps-title'><?php echo $row["title"];?></div>
-                                <div class='ps-type'><?php echo $row["description"];?></div>
-                            </div>
-                        </div>
-                    </a> 
-                    
+                        </a> 
                     <?php 
-                        ;}
+                        }
                         } else {
                             echo "<div class='no-records'>
-                                    No Supplier Found
-                                    <img src='../../images/no-record.png' alt='No Requests'>
+                                    <img src='../../images/notFound.jpg' alt='No Requests' id='noReports'>
+                                    <div class='message-noRecords'> No Products Found </div>  
                                 </div>";
                         }
                     ?> 
@@ -98,10 +112,3 @@
     </body>
 
 </html>
-
-<?php
- }else{
-    header("Location:sign_in.php?");
-    exit();
- }
-?>

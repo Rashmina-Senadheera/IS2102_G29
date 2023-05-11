@@ -61,7 +61,20 @@ function setTypes() {
     return type;
 }
 
-function showResult(reqID) {
+function setBudget() {
+     let budget = "&budget=";
+     var min = document.getElementById("min").checked;
+     var max = document.getElementById("max").checked;
+     if (min) {
+       budget += "ASC";
+     }
+     if (max) {
+       budget += "DESC";
+     }
+     return budget;
+}
+
+function showResult() {
     // if (str.length == 0) {
     //     document.getElementById("supplier_items").innerHTML = "";
     //     return;
@@ -75,6 +88,6 @@ function showResult(reqID) {
     }
 
     // filter by type and search
-    xmlhttp.open("GET", "components/SuppliersItems.php?reqID=" + reqID + "&search=" + str + setTypes(), true);
+    xmlhttp.open("GET", "components/SuppliersItems.php?&search=" + str + setTypes() + setBudget(), true);
     xmlhttp.send();
 }

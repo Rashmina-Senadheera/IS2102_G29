@@ -304,11 +304,11 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                 }
 
                 // Redirect package services page
-                $_SESSION['success'] = "Package added successfully".$package_id;
-                header("location: ../form-venue.php?product_type=".$ptype);
+                $_SESSION['success'] = "Product added successfully".$package_id;
+                header("location: ../ps-list.php?product_type=".$ptype);
             } else {
                 $_SESSION['error'] =  "Something went wrong. Please try again later.";
-                header("location: ../form-venue.php?product_type=".$ptype);
+                header("location: ../ps-list.php?product_type=".$ptype);
             }
 
             // Close statement
