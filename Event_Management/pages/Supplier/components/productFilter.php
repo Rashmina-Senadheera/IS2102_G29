@@ -27,7 +27,7 @@
         <div class="filter-heading">Filter by Budget </div>
         <div class="category-list">
             <ul>
-                <li><input type="radio" name="supType" onchange="showResult()" id="min" value="min">Mini to Max Cost</li>
+                <li><input type="radio" name="supType" onchange="showResult()" id="min" value="min">Min to Max Cost</li>
                 <li><input type="radio" name="supType" onchange="showResult()" id="max" value="max">Max to Min Cost</li>
             </ul>
         </div>
