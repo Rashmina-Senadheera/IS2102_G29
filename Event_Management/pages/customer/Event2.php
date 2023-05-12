@@ -29,7 +29,7 @@ $sql = "SELECT * FROM events_c WHERE id=?";
     <div class="grid-container-payments">
         <div class="gridSearch">
             <div class="searchSec">
-                <div class="page-title"> Chathu's Gender Reveal </div>
+                <div class="page-title"><?php echo $row['eventtype'] ?></div>
                 <div class="input-container">
                 </div>
             </div>
@@ -39,12 +39,12 @@ $sql = "SELECT * FROM events_c WHERE id=?";
                      <div class="personal-info">
                         <center><img src="../../images/event2.jpg" style="width:550px; height:300px;"></center><br>
                         <center>Ten little fingers, ten little toes, two little eyes and one little nose, boy or a girl, no-one knows! Pink or blue, our dream came true! Blue or pink, what do you think? We're tickled pink and happy to say, a little princess is on her way!</center><br><br>
-                        <center><b>Event Planner:</b> <?php echo $row['name']; ?><br>
-                                <b>Event Type:</b> Gender Reveal<br>
-                                <b>Theme:</b> Classic<br>
-                                <b>Date:</b> 2022-02-06<br><br>
-                                <a href="Events.php"><button type="submit" class="srcButton"  data-inline="true">Back</button></a>
-                        <a href="Feedback.php?name=<?php echo $row['name']; ?>"><button type="submit" class="srcButton"  data-inline="true">Give FeedBack</button></a></center>
+                        <center><b>Event Planner:</b><?php echo $row['planner_name'] ?><br>
+                                <b>Event Type:</b><?php echo $row['event_type'] ?><br>
+                                <b>Theme:</b> <?php echo $row['venue'] ?><br>
+                                <b>Date:</b> <?php echo $row['date_from'] ?><br><br>
+                                <a href="OngoingEvents.php"><button type="submit" class="srcButton"  data-inline="true">Back</button></a>
+                        </center>
                     </div>
                 </div>
             </div>

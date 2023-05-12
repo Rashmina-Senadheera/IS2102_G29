@@ -65,7 +65,7 @@ $row = $result->fetch_assoc()
                                 <b>Theme:</b> <?php echo $row['venue'] ?><br>
                                 <b>Date:</b> <?php echo $row['date_from'] ?><br><br>
                         <a href="CompletedEvents.php"><button type="submit" class="srcButton"  data-inline="true">Back</button></a>
-                        <a href="Feedback.php?name= "><button type="submit" class="srcButton"  data-inline="true">Give FeedBack</button></a></center> 
+                        <a href="Feedback.php?name= <?php echo $row['planner_name']; ?>"><button type="submit" class="srcButton"  data-inline="true">Give FeedBack</button></a></center> 
                         
                     </div>
                 </div>
