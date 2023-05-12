@@ -42,13 +42,13 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
 
         // Attempt to execute the prepared statement
         if ($stmt->execute()) {
-            $_SESSION['success'] = "Quotation sent successfully";
+            $_SESSION['success'] = "Quotation sent successfully".$req_id;
 
             // Update the status of the request
             $sql = "UPDATE request_supplier_quotation SET status = 'Completed' WHERE request_id = $req_id";
             $conn->query($sql);
 
-            header("location: ../quote-view.php?id=$req_id");
+            header("location: ../rs-list.php");
         } else {
             $_SESSION['error'] = "Error: " . $conn->error;
             echo "<script> window.history.go(-1); </script>";

@@ -18,7 +18,7 @@
 }
 
 .about {
-    flex: 0.5;
+    flex: 0.35;
     margin: 1.3rem;
     box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
     width: 100px;
@@ -26,9 +26,9 @@
 }
 
 .other {
-    flex: 1;
     display: flex;
     flex-direction: column;
+    border-radius: .5rem;
 
 }
 
@@ -121,6 +121,13 @@
     flex-direction: row;
     border-bottom: 1px rgb(238, 238, 238) solid;
     margin: 13px;
+    font-size: 12px;
+}
+.prof-all#avail {
+    font-size: 13px;
+    font-weight: bold;
+    border: none;
+    margin-top: 20px;
 }
 
 .prof-name {
@@ -130,6 +137,12 @@
 .prof-name-50 {
     flex: 50%;
 }
+.prof-name-50#avail {
+    width: 20%;
+    margin: auto;
+}
+
+
 
 .prof-data {
     flex: 60%;
@@ -241,6 +254,8 @@
 img#about-img {
     width: 250px;
     height: 150px;
+    margin: auto;
+    margin-bottom: 5px;
 }
 
 .personal-info-heading-avail {
@@ -264,13 +279,26 @@ img#about-img {
     padding: 5px 2rem;
 }
 
+.actionBtn#notavail {
+    margin-top: 0px;
+    justify-content: left;
+}
 .actionBtn#avail {
     margin-top: 0px;
-    margin: 0px;
+    justify-content: center;
+    width: 100%;
+}
+.times{
+    font-size: 11px;
+    margin-left: 20px;
+    font-weight: bold;
+    border-bottom: solid 1px rgb(250, 81, 81) ;
 }
 
 .other#quote {
     box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
+    flex: 0.6;
+    height: 95%;
 }
 
 .personal-info#quote {
@@ -313,4 +341,9 @@ i#qu-conme {
 
 button#notavail {
     background-color: rgb(250, 81, 81);
+}
+
+.availTime{
+    display: flex;
+    flex-direction: row;
 }

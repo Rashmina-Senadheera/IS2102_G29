@@ -12,7 +12,7 @@ if (isset($_GET['id'])) {
     include( 'header.php' );
 
     $productId = $_GET['id'];
-    $sql = "SELECT * FROM sup_product_general WHERE product_id = $productId";
+    $sql = "SELECT * FROM sup_product_general WHERE product_id = $productId ;";
 
     // execute query and check if successful
     if ($result = $conn->query($sql)) {

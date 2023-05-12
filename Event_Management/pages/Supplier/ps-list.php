@@ -44,7 +44,7 @@
             </div>
         <div class="ps-list">
             <div class ='grid-main' id='ps-list'>
-                <div class="cards"id="supplier_items">
+                <div class="cards" id="supplier_items" data-current-page="1" aria-live="polite">
                     <div class='.ps-card-message'>
                         <?php if (isset($_SESSION['success'])) { 
                             echo '<p class="success">' . showSessionMessage("success") . '</p>';
@@ -78,7 +78,7 @@
                                 $image_row = $image_result->fetch_assoc();
                                 $packageImage = isset($image_row['image']) ? $image_row['image'] : 0;
                         ?>
-                        <a href='more-info.php?id=<?php echo $row["product_ID"];?>' id='a-card'>
+                        <a href='more-info.php?id=<?php echo $row["product_ID"];?>' id='a-card' class="item">
                             <div class='ps-card'>
                                 <div class='ps-card-img'>
                                     <img src= <?php 
@@ -90,8 +90,39 @@
                                     ?>> 
                                 </div>
                                 <div class='ps-card-desc'>
+                                    <div class='ps-ptype'><?php 
+                                    switch($row["type"]){
+                                        case 'venue':
+                                            echo "Venue";
+                                            break;
+                                        case 'foodbev':
+                                            echo "Catering";
+                                            break;
+                                        case 'transport':
+                                            echo "Transport";
+                                            break;
+                                        case 'florist':
+                                            echo "Floral Deco ";
+                                            break;
+                                        case 'deco':
+                                            echo "Decorations ";
+                                            break;
+                                        case 'photo':
+                                            echo "Photography ";
+                                            break;
+                                        case 'ent':
+                                            echo "Entertainment ";
+                                            break;
+                                        case 'other':
+                                            echo "Other ";
+                                            break;
+                                        default:
+                                            echo $row["type"];
+                                    }
+                                    ?></div>
                                     <div class='ps-title'><?php echo $row["title"];?></div>
                                     <div class='ps-type'><?php echo $row["description"];?></div>
+                                    
                                 </div>
                             </div>
                         </a> 
@@ -105,10 +136,24 @@
                         }
                     ?> 
                 </div>
+                  <nav class="pagination-container">
+                    <button class="pagination-button" id="prev-button" aria-label="Previous page" title="Previous page">
+                    &lt;
+                    </button>
+
+                    <div id="pagination-numbers">
+
+                    </div>
+
+                    <button class="pagination-button" id="next-button" aria-label="Next page" title="Next page">
+                    &gt;
+                    </button>
+                </nav>
             </div>
             <?php require_once 'components/productFilter.php'; ?>
         </div>
         <script src="../../js/productSupplierFilter.js"></script>
+        <script src="../../js/supPagination.js"></script>
     </body>
 
 </html>
