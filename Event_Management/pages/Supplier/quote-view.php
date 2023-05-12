@@ -7,7 +7,12 @@ include('../controllers/commonFunctions.php');
 //check if there is a id in the url
 if (isset($_GET['id'])) {
     $id = checkInput($_GET['id']);
-    $sql = "SELECT * FROM request_supplier_quotation WHERE request_id = $id";
+    $sql = "SELECT * 
+                FROM request_supplier_quotation r
+                JOIN sup_product_general p
+                ON r.psId = p.product_id
+                WHERE r.status='Pending' 
+                AND r.request_id = $id";
     
     $result = mysqli_query($conn, $sql);
 
@@ -91,7 +96,7 @@ if (isset($_GET['id'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='../../css/supplierMain.css'>
-    <link rel="stylesheet" href="../../css/profileEP.css">
+    <link rel="stylesheet" href="../../css/profileSup.css">
     <link rel="stylesheet" href="../css/quote-view.css">
 </head>
 
@@ -107,7 +112,7 @@ if (isset($_GET['id'])) {
         <div class='flex-container-main' id="quote">
             <div class="title-search" id="quote">
                 <div class='searchSec'>
-                    <div class='page-title' id="quote" > Quoatation for <?php echo $p_title; ?></div>
+                    <div class='page-title' id="quote" > Quoatation for <?php echo $title; ?></div>
                 </div>
             </div>
         </div>
@@ -382,6 +387,7 @@ if (isset($_GET['id'])) {
                         <input hidden type="text" name="request_id" id="modal_request_id">
                         <input hidden type="text" name="customer_id" id="modal_customer_id">
                         <label for="reason">Reason</label>
+                        <>
                         <textarea id="reason" name="reason" rows="4" cols="50" required ></textarea>
                     </div>
                     <div class="actionBtn">

@@ -9,6 +9,9 @@
     width: 95%;
     font-size: 13px;
 }
+.flex-container-profile#product{
+    height: 90%;
+}
 .about{
     flex: 0.5;
     margin: 1.3rem;
@@ -16,6 +19,15 @@
     width: 100px;
     border-radius: .5rem;
 }
+.about#product{
+   box-shadow:0 1px 10px 0 rgb(0 0 0 / 20%); 
+   margin-top: 10px;
+}
+.info#product{
+   box-shadow:0 1px 10px 0 rgb(0 0 0 / 20%); 
+   margin-top: 10px;
+}
+
 .other{
     flex: 1;
     display: flex;

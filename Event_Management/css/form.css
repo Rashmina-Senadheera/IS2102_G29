@@ -713,6 +713,10 @@ p.success{
     overflow-y: scroll;
     height: 85vh;
 }
+.scrollable#quote {
+    overflow-y: hidden;
+    height: 85vh;
+}
 
 .btnSend {
     width: 100%;
@@ -828,10 +832,64 @@ input[type=file]::file-selector-button:hover {
 
 .input-background#notavail{
 	background: #ffd2d2;
+  width: 95%;
+  font-size: 13px;
 }
 .input-background#avail{
 	background: #dff2bf;
+  width: 95%;
+  font-size: 13px;
 }
 .row#val{
   flex-direction: column;
+}
+
+.input-label#supQuote{
+  font-size: 13px;
+}
+.input-value#supQuote{
+  font-size: 13px;
+  font-weight: bold;
+}
+.input-value#supQuoteR{
+  font-size: 13px;
+  font-weight: bold;
+  height: 50px;
+}
+.namePro{
+  font-size: 10px;
+}
+.input-50#supQuote{
+  margin-bottom: 1px;
+  padding-bottom: 10px;
+}
+.row#supQuote{
+  margin-bottom: 1px;
+  margin-top: 2px;
+  gap: 2px;
+}
+.input-50#other{
+  display: flex;
+  flex-direction: row;
+  width: 95%;
+  font-size: 13px;
+  background-color: white;
+  margin-bottom: 0px;
+  padding-bottom: 3px;
+}
+.input-label#other{
+  width: 50%;
+  padding: 5px;
+  font-size: 13px;
+}
+.input-value#other{
+  width: 50%;
+  padding: 5px;
+  font-size: 13px;
+}
+.input#supQuote {
+    margin-bottom: 1px;
+}
+input#quoteB {
+    margin: 0px;
 }
