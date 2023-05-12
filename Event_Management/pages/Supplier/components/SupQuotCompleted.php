@@ -43,7 +43,7 @@
 
                 
                 echo 
-                "<a href='quote-view.php?id=".$request_id."' id='a-card'>
+                "<a href='quote-view-complete.php?id=".$request_id."' id='a-card'>
                     <div class='ps-card'>
                         <div class='ps-card-desc' id='rs'>
                             <div class='rs-title' id = 'rid'>#Q".$request_id."</div>

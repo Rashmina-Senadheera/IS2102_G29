@@ -11,7 +11,9 @@ if (isset($_GET['id'])) {
                 FROM request_supplier_quotation r
                 JOIN sup_product_general p
                 ON r.psId = p.product_id
-                WHERE r.status='Pending' 
+                JOIN supplier_quotation b 
+                ON b.req_id = r.request_id 
+                WHERE r.status='Completed' 
                 AND r.request_id = $id";
     
     $result = mysqli_query($conn, $sql);
@@ -29,11 +31,8 @@ if (isset($_GET['id'])) {
         $no_of_participants = $general_details['no_of_participants'];
         $psId = $general_details['psId'];
         $ep_id = $general_details['EP_id'];
-        $catered_for = $general_details['catered_for'];
-        $transport = $general_details['transport'];
-        $bev_need_as = $general_details['bev_need_as'];
-        $food_need_as = $general_details['food_need_as'];
-        $need_for = $general_details['need_for'];
+        $cost = $general_details['cost'];
+        $remarks = $general_details['remarks_quote'];
         // $type = $general_details['type'];
         // $img_sql = "SELECT `image` FROM supplier_product_images WHERE `product_id` = $id";
         // $img_result = mysqli_query($conn, $img_sql);
@@ -240,73 +239,65 @@ if (isset($_GET['id'])) {
                             <div class="prof-data"><?php echo $budget_min ." - ". $budget_max; ?></div>
                         </div>
 
-                        
-
-
-                        <?php 
-                        $sql1 = "SELECT request_supplier_quotation.date 
-                                FROM supplier_booking JOIN request_supplier_quotation 
-                                ON supplier_booking.EP_quotation_id=request_supplier_quotation.request_id 
-                                WHERE request_supplier_quotation.psId = $psId 
-                                AND request_supplier_quotation.date = '$date'";
-                        $result1 = mysqli_query($conn, $sql1);
-                        if (mysqli_num_rows($result1) > 0){
-                            $availability = 0;
-                        }
-                        else{
-                            $availability = 1;
-                        }
-                        ?>
                         <div class="prof-all" id='avail'>
-                            <div class="prof-name-50"  id='avail'>Orders on Requested Date  </div>
+                            <div class="prof-name-50"  id='avail'>Quotation Submitted for date & time  </div>
                         </div>
 
                         <div class="availTime">
-                            <div class="actionBtn" 
-                            <?php if($availability) echo "id='avail'"; else echo "id='notavail'"; ?>>
-                                <button type="button" class="available" style="margin-left: 0;"
-                                <?php if($availability) echo "id='avail'"; else echo "id='notavail'"; ?>>
-                                    <?php if($availability) echo "None"; else echo "Exist Between"; ?>
+                            <div class="actionBtn" id='notavail'>
+                                <button type="button" class="orderDT" style="margin-left: 0;">
+                                    <?php echo $date; ?>
                                 </button>
                             </div>
-                            <div>
-                        <?php 
-                            
-                            if(!$availability){
-                                
-                                $sql2 = "SELECT c.from_time , c.to_time  
-                                FROM supplier_booking b JOIN request_supplier_quotation r
-                                ON b.EP_quotation_id = r.request_id 
-                                JOIN cust_req_general c
-                                ON r.for_cus_req = c.request_id 
-                                WHERE r.psId = $psId 
-                                AND r.date = '$date'";
-                                
-                                $result2 = mysqli_query($conn, $sql2);
+                            <div class="actionBtn" id='notavail'>
+                                <button type="button" class="orderDT" style="margin-left: 0;">
+                                    <?php 
+                                        
+                                        $sql2 = "SELECT c.from_time , c.to_time  
+                                        FROM supplier_booking b JOIN request_supplier_quotation r
+                                        ON b.EP_quotation_id = r.request_id 
+                                        JOIN cust_req_general c
+                                        ON r.for_cus_req = c.request_id 
+                                        WHERE r.request_id = $id";
+                                        
+                                        $result2 = mysqli_query($conn, $sql2);
 
-                                if (mysqli_num_rows($result2) > 0){
-                                    while ($row = mysqli_fetch_assoc($result2)) {
-                                        $from_time =date('g:ia', strtotime($row['from_time']));
-                                        $to_time =date('g:ia', strtotime($row['to_time']));
-                                        echo "<div class='times'>".$from_time ."- ". $to_time."</div>";
-                                    }
-                                }
-                                else{
-                                    echo "bababaa";
-                                }
+                                        if (mysqli_num_rows($result2) > 0){
+                                            while ($row = mysqli_fetch_assoc($result2)) {
+                                                $from_time =date('g:ia', strtotime($row['from_time']));
+                                                $to_time =date('g:ia', strtotime($row['to_time']));
+                                                echo $from_time ."- ". $to_time;
+                                            }
+                                        }
+                                        else{
+                                            echo "bababaa";
+                                        }
 
-                            }
-                        ?>
+                                    ?>
+                                </button>
+                            </div>
                         </div>
-                        </div>
-                            
-
                 </div>
             </div>
-            <div class="other" id="quote" style="margin-top: 0px;margin-right:0px; overflow-y:scroll;">
+            <div class="other" id="quote" style="margin-top: 0px;margin-right:0px;">
 
-                <div class="personal-info" style="margin-bottom: 0px; margin-top: 5px;">
-                    <div class="personal-info-heading" id="quoteb" style="width: 90%;">
+
+                <div class="personal-info" id="quotecost" style="margin-bottom: 0px; margin-top: 15px;">
+                    <div class="personal-info-heading" id="quoteC" style="width: 100%;">
+                        Quotation Provided
+                    </div>
+                    <div class="prof-all">
+                        <div class="prof-name-50" id="quotecost"> Quoted Cost:</div>
+                        <div class="prof-data" id="quotecost" ><?php echo $cost; ?></div>
+                    </div>
+                    <div class="prof-all">
+                        <div class="prof-name-50">Remarks:</div>
+                        <div class="prof-data"><?php echo $remarks; ?></div>
+                    </div>
+                </div>
+
+                <div class="personal-info" id="quotecost"  style="margin-bottom: 0px; margin-top: 19px;">
+                    <div class="personal-info-heading" id="quoteD" style="width: 100%; ">
                         Quotation Event Details
                     </div>
                     <div class="prof-all">
@@ -322,49 +313,13 @@ if (isset($_GET['id'])) {
                         <div class="prof-data"><?php echo $hours; ?></div>
                     </div>
                     <div class="prof-all">
-                        <div class="prof-name-50">Tentative Date:</div>
+                        <div class="prof-name-50">Event Date:</div>
                         <div class="prof-data"><?php echo $date; ?></div>
                     </div>
-
-                    <?php if($type == 'foodbev') {?>
-                        <div class="prof-all">
-                            <div class="prof-name-50">Catered for:</div>
-                            <div class="prof-data"><?php echo $catered_for; ?></div>
-                        </div>
-                        <div class="prof-all">
-                            <div class="prof-name-50">Transport :</div>
-                            <div class="prof-data"><?php echo $transport; ?></div>
-                        </div>
-                        <div class="prof-all">
-                            <div class="prof-name-50">Beverages Need As:</div>
-                            <div class="prof-data"><?php echo $bev_need_as; ?></div>
-                        </div>
-                        <div class="prof-all">
-                            <div class="prof-name-50">Food Need As:</div>
-                            <div class="prof-data"><?php echo $food_need_as; ?></div>
-                        </div>
-                        <div class="prof-all">
-                            <div class="prof-name-50">Need For:</div>
-                            <div class="prof-data"><?php echo $need_for; ?></div>
-                        </div>
-                    <?php } ?>
                     <div class="prof-all">
                         <div class="prof-name-50">Remarks:</div>
                         <div class="prof-data"><?php echo $remarks; ?></div>
                     </div>
-                    <div class="actionBtn">
-                        <button type="button" id="btnDecline" class="rejected" style="margin-left: 0;"
-                        onclick="<?php echo 'declineRequest(' . $id . ', ' . $ep_id. ')'; ?>">
-                            Decline
-                        </button>
-                        <a href="SendEventPlannerQuote.php?id=<?php echo $id; ?>">
-                            <button type="button" class="accepted" style="margin-left: 0;">
-                                Send Quotation
-                            </button>
-                        </a>
-                    </div>
-                </div>
-                <div class="personal-info" id="quote" style="margin-top: 0px;">
                     <?php 
                         $sql1 = "SELECT * FROM user WHERE user_id= $ep_id";
                         $result1 = mysqli_query($conn, $sql1);
@@ -378,20 +333,16 @@ if (isset($_GET['id'])) {
                         }
                     
                     ?>
-                    
-                    <div class="personal-info-heading" style="width: 90%;">
-                        Event Planner Profile
+                    <div class="prof-all">
+                        <div class="prof-name-50">Event Planner Name:</div>
+                        <div class="prof-data"><?php echo $name;?></div>
                     </div>
                     <div class="prof-all">
-                        <div class="prof-name-20">Name:</div>
-                        <div class="contact"><?php echo $name;?></div>
-                    </div>
-                    <div class="prof-all">
-                        <div class="prof-name-20">Contact :</div>
-                        <div class="contact">
-                            <i class="fa-solid fa-envelope" id="qu-con"></i><?php echo $email;?>
+                        <div class="prof-name-50">Contact :</div>
+                        <div class="prof-data" style = "display:flex; flex-direction :column">
+                           <div><i class="fa-solid fa-envelope" id="qu-con"></i><?php echo $email;?></div>
                             <!-- <i class="fa-solid fa-phone" id="qu-conm"></i>0777931062 -->
-                            <i class="fa-brands fa-rocketchat" id="qu-conme"></i><a href="Messages.php"> <b>Message</b> <a>
+                            <div><i class="fa-brands fa-rocketchat" id="qu-conme" style = "margin:10px;margin-left:0px; "></i><a href="Messages.php"> <b>Message</b> <a></div>
                         </div>
                     </div>
                 </div>

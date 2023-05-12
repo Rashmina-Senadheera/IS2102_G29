@@ -38,10 +38,12 @@
 
                 <div class='.ps-card-message'>
                         <?php if (isset($_SESSION['success'])) { 
-                            echo '<p class="success">' . showSessionMessage("success") . '</p>';
+                            echo '<p class="success" id="quote">' . showSessionMessage("success") . '</p>';
+                            echo "<script>setTimeout(() => window.location.reload(), 700);</script>"; 
                         }?>
                         <?php if (isset($_SESSION['error'])) { 
-                            echo '<p class="error">' . showSessionMessage("error") . '</p>';
+                            echo '<p class="error" id="quote">' . showSessionMessage("error") . '</p>';
+                            echo "<script>setTimeout(() => window.location.reload(), 700);</script>"; 
                         } ?>
                 </div>
 
