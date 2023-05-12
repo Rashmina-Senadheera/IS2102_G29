@@ -121,7 +121,7 @@ if (isset($_GET['id'])) {
 
                         <?php if($type == 'venue') {?>
                             <div class="prof-all-p">
-                                <div class="prof-name-p">Catered For</div>
+                                <div class="prof-name-p">Venue In</div>
                                 <div class="prof-data"><?php echo $venloc;?></div>
                             </div>
                             <div class="prof-all-p">
@@ -251,7 +251,7 @@ if (isset($_GET['id'])) {
                         if (! mysqli_num_rows($result) > 0) {
                             echo '
                             <div class="prof-all-e">
-                            <a href="product-edit.php?id='.$id.'?>" class="custom-button-e" id="ed">
+                            <a href="product-edit.php?id='.$id.'" class="custom-button-e" id="ed">
                                 Edit
                             </a>
                             <button type="button"class="custom-button-e" id="del" onclick="deleteProduct()" >Delete</button>

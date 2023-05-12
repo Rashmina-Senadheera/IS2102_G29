@@ -90,8 +90,39 @@
                                     ?>> 
                                 </div>
                                 <div class='ps-card-desc'>
+                                    <div class='ps-ptype'><?php 
+                                    switch($row["type"]){
+                                        case 'venue':
+                                            echo "Venue";
+                                            break;
+                                        case 'foodbev':
+                                            echo "Catering";
+                                            break;
+                                        case 'transport':
+                                            echo "Transport";
+                                            break;
+                                        case 'florist':
+                                            echo "Floral Deco ";
+                                            break;
+                                        case 'deco':
+                                            echo "Decorations ";
+                                            break;
+                                        case 'photo':
+                                            echo "Photography ";
+                                            break;
+                                        case 'ent':
+                                            echo "Entertainment ";
+                                            break;
+                                        case 'other':
+                                            echo "Other ";
+                                            break;
+                                        default:
+                                            echo $row["type"];
+                                    }
+                                    ?></div>
                                     <div class='ps-title'><?php echo $row["title"];?></div>
                                     <div class='ps-type'><?php echo $row["description"];?></div>
+                                    
                                 </div>
                             </div>
                         </a> 

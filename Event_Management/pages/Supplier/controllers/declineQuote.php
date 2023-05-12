@@ -40,11 +40,11 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
             //     sendEmail($customerEmail, $customerName, $subject, $message);
             // }
 
-            $_SESSION['success'] = "Request declined successfully";
-            header("location: ../quote-view.php?id={$requestID}");
+            $_SESSION['success'] = "Request declined successfully".$requestID;
+            header("location: ../rs-list.php");
         } else {
             $_SESSION['error'] = "Something went wrong. Please try again";
-            header("location: ../quote-view.php?id={$requestID}");
+            header("location: ../rs-list.php");
         }
     }
 }
