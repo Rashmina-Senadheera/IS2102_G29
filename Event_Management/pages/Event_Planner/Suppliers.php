@@ -71,12 +71,17 @@
                         $img_sql = "SELECT `image` FROM supplier_product_images WHERE `product_id` = " . $row['product_id'] . " LIMIT 1";
                         $img_result = mysqli_query($conn, $img_sql);
                         $img_row = mysqli_fetch_assoc($img_result);
-                        $img = $img_row['image'];
+                        $img = isset($img_row['image']) ? $img_row['image'] : null;
+
                         echo '<div class="card">
                             <div class="content">
-                                <div class="imgBx">
-                                    <img src="data:image/jpeg;base64,' . base64_encode($img) . '">
-                                </div>
+                                <div class="imgBx">';
+                        if ($img != null) {
+                            echo '<img src="data:image/jpeg;base64,' . base64_encode($img) . '">';
+                        } else {
+                            echo '<img src="../../images/Suppliers/supplier_default.jpg" class="mySlides" alt="">';
+                        }
+                        echo '  </div>
                                 <div class="contentBx">
                                     <h3>' . $title . '</h3>
                                     <span>' . $description . '</span>

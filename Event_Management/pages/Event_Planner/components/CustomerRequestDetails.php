@@ -64,7 +64,7 @@ function getQuotationDetails($reqID, $conn, $type)
             </div>
             <div class="input-50">
                 <label class="input-label">Theme:</label>
-                <div class="input-value"><?php echo $theme ?></div>
+                <div class="input-value"><?php echo ucwords($theme) ?></div>
             </div>
         </div>
         <div class="row">
@@ -122,7 +122,7 @@ function getQuotationDetails($reqID, $conn, $type)
 
     if ($result_venue->num_rows > 0) {
         $venue_row = $result_venue->fetch_assoc();
-        $venue_type = $venue_row['venue'];
+        $venue_type = ucwords($venue_row['venue']);
         $venue_remarks = !empty($venue_row['remarks']) ? $venue_row['remarks'] : "No remarks";
 
         echo "<div class='formSection quotation'>Venue

@@ -58,15 +58,18 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id']) || empty($_GET['i
         <div class="main-body">
             <?php if (isset($reqID) && !empty($reqID)) {
                 require_once './components/CustomerRequestDetails.php';
+                $hours = timeDiff($time_from, $time_to);
             } else {
                 $reqID = 0;
+                $theme = $no_of_guests = $hours = '';
             }
             ?>
 
             <div class="form-card scrollable">
                 <div class="searchSec">
-                    <div class="page-title">Request Quotation for <?php echo $psTitle ?></div>
+                    <div class="page-title">Request Quotation for <?php echo $psTitle . ' (' . ucwords(showSupType($psType)) . ') ' ?></div>
                 </div>
+
                 <form action="controllers/sendQuotationRequest.php" method="POST">
                     <input type="hidden" name="psId" value="<?php echo $psId ?>">
                     <input type="hidden" name="psTitle" value="<?php echo $psTitle ?>">
@@ -232,11 +235,11 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id']) || empty($_GET['i
                         <div class="row">
                             <div class="input width-50" id="noOfParticipants">
                                 <label class="input-label">Number of Participants <span>*</span></label>
-                                <input name="no_of_participants" type="number" class="input-field" required />
+                                <input name="no_of_participants" type="number" class="input-field" value="<?php echo $no_of_guests; ?>" required />
                             </div>
                             <div class="input width-50" id="hours">
                                 <label class="input-label">Hours</label>
-                                <input name="hours" type="number" class="input-field" placeholder="Approximately" />
+                                <input name="hours" type="number" class="input-field" placeholder="Approximately"  value="<?php echo $hours; ?>" />
                             </div>
                         </div>
 
@@ -244,11 +247,11 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id']) || empty($_GET['i
                         <div class="row">
                             <div class="input width-50" id="noOfParticipants">
                                 <label class="input-label">Number of Participants <span>*</span></label>
-                                <input name="no_of_participants" type="number" class="input-field" required />
+                                <input name="no_of_participants" type="number" class="input-field" value="<?php echo $no_of_guests; ?>" required />
                             </div>
                             <div class="input width-50" id="hours">
                                 <label class="input-label">Hours</label>
-                                <input name="hours" type="number" class="input-field" placeholder="Approximately" />
+                                <input name="hours" type="number" class="input-field" placeholder="Approximately" value="<?php echo $hours; ?>" />
                             </div>
                         </div>
 
@@ -256,7 +259,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id']) || empty($_GET['i
                         <div class="row">
                             <div class="input width-50" id="theme">
                                 <label class="input-label">Theme <span>*</span></label>
-                                <input name="theme" type="text" class="input-field" required />
+                                <input name="theme" type="text" class="input-field" value="<?php echo $theme ?>" required />
                             </div>
                         </div>
                         <div class="row" id='check'>
@@ -288,6 +291,49 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id']) || empty($_GET['i
                             </div>
                         </div>
 
+                    <?php } else if ($psType == "light") { ?>
+                        <div class="row">
+                            <div class="input width-50" id="theme">
+                                <label class="input-label">Theme</label>
+                                <input name="theme" type="text" class="input-field" value="<?php echo $theme ?>" />
+                            </div>
+                        </div>
+
+                    <?php } else if ($psType == "sound") { ?>
+                        <div class="row">
+                            <div class="input width-50" id="theme">
+                                <label class="input-label">Theme</label>
+                                <input name="theme" type="text" class="input-field" value="<?php echo $theme ?>" />
+                            </div>
+                            <div class="input width-50" id="hours">
+                                <label class="input-label">Hours</label>
+                                <input name="hours" type="number" class="input-field" placeholder="Approximately" value="<?php echo $hours; ?>" />
+                            </div>
+                        </div>
+                        <div class="row" id='check'>
+                            <div class="input-ps" id='check'>
+                                <label for="" class="input-label" id='check'>Type of Sound <span>*</span></label>
+                                <div class="check-bx">
+                                    <div class="check-bx-opt">
+                                        <input type="checkbox" id="sound_type" name="sound_type" value="DJ">
+                                        <label for="" class="input-ps-label-opt">DJ</label>
+                                    </div>
+                                    <div class="check-bx-opt">
+                                        <input type="checkbox" id="sound_type" name="sound_type" value="Live Music">
+                                        <label for="" class="input-ps-label-opt">Live Music</label>
+                                    </div>
+                                    <div class="check-bx-opt">
+                                        <input type="checkbox" id="sound_type" name="sound_type" value="Band">
+                                        <label for="" class="input-ps-label-opt">Band</label>
+                                    </div>
+                                    <div class="check-bx-opt">
+                                        <input type="checkbox" id="sound_type" name="sound_type" value="Other">
+                                        <label for="" class="input-ps-label-opt">Other</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     <?php } else if ($psType == "photo") { ?>
                         <div class="row">
                             <div class="input width-50" id="hours">
@@ -295,8 +341,8 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id']) || empty($_GET['i
                                 <input name="hours" type="number" class="input-field" placeholder="Approximately" />
                             </div>
                             <div class="input width-50 hide" id="theme">
-                                <label class="input-label">Theme <span>*</span></label>
-                                <input name="theme" type="text" class="input-field" />
+                                <label class="input-label">Theme</label>
+                                <input name="theme" type="text" class="input-field" value="<?php echo $theme ?>" />
                             </div>
                         </div>
                         <div class="row" id='check'>
