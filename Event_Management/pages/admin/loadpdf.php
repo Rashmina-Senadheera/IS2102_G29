@@ -1,16 +1,7 @@
 <?php 
     // $html = file_get_contents('pdf.php');
     require 'dompdf/autoload.inc.php';
-    $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $date = date("jS \of F Y");
-        // $img = file_get_contents('../images/report1.png' );
-        // $imgbase64 = base64_encode($img);
-        // Create connection
-        $conn = mysqli_connect($servername,$username,$password) or die(mysqli_error($conn));
-        $db_select = mysqli_select_db($conn, 'pdf') or die(mysqli_error($conn));
-        // $html = "<img src='report1.png' />"; 
+        $date = date('j-m-Y');
         $html = '<!DOCTYPE html>
         <html lang="en">
         <head>
@@ -91,7 +82,7 @@
                 }
         
             </style>
-        </head>
+                </head>
         <body>
             <div class="report_header">
             <img src="http://localhost/file_struct/Event_Management/images/logo.png" class="logo"/>
@@ -107,6 +98,8 @@
         
         
         ';
+        
+       
         if(isset($_POST['viewpdf'])){
             if(!empty($_POST['image'])){
                 $imgData = $_POST['image'];
