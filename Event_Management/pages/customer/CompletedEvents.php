@@ -2,7 +2,7 @@
 session_start();
 include('customer_sidenav.php');
 include('customer_header.php');
-include('db_conn.php');
+
 ?>
 
 <!DOCTYPE html>
@@ -59,7 +59,7 @@ if ($conn->connect_error) {
             <div class="suppliers-cards-container" id="supplier_items">
                 <?php
 
-                $sql = "select id, eventtype, info, planner_email, event_type, `status` from com_events where status='Completed'";
+                $sql = "SELECT * FROM `cust_req_general` where status='Completed'";
 
                 $result = $conn->query($sql);
 
@@ -75,15 +75,15 @@ if ($conn->connect_error) {
                                 </div>
 
                                 <div class="contentBx">
-                                    <h3><?php echo $row['eventtype'] ?><br><span>
-                                            <?php echo $row['info'] ?>
+                                    <h3><?php echo $row['event_type'] ?><br><span>
+                                            
                                         </span></h3>
                                 </div>
                             </div>
                             <ul class="sci">
                                 <li>
 
-                                    <a href="Event1.php?id=<?php echo $row['id'] ?>">View</a>
+                                    <a href="Event1.php?id=<?php echo $row['request_id'] ?>">View</a>
                                 </li>
                             </ul>
                         </div>
