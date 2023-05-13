@@ -47,7 +47,7 @@ if ($conn->connect_error) {
             <div class="suppliers-cards-container" id="supplier_items">
                 <?php
 
-                $sql = "select id, eventtype, info, planner_email, event_type, `status` from quotation where status='Accepted'";
+$sql = "select id, event_type, info, planner_email, `status` from com_events where status='Completed'";
                 $result = $conn->query($sql);
                 if (mysqli_num_rows($result) > 0){
 

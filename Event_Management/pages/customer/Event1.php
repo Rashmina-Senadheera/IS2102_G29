@@ -39,7 +39,7 @@ if ($conn->connect_error) {
 }
 
 $id = $_GET['id'];
-$sql = "select * from quotation where id = '$id'";
+$sql = "select * from com_events where id = '$id'";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc()
 
@@ -62,7 +62,7 @@ $row = $result->fetch_assoc()
                         <center><?php echo $row['info'] ?></center><br><br>
                         <center><b>Event Planner:</b><?php echo $row['planner_name'] ?><br>
                                 <b>Event Type:</b><?php echo $row['event_type'] ?><br>
-                                <b>Theme:</b> <?php echo $row['venue'] ?><br>
+                                <!-- <b>Theme:</b> <?php echo $row['venue'] ?><br> -->
                                 <b>Date:</b> <?php echo $row['date_from'] ?><br><br>
                         <a href="CompletedEvents.php"><button type="submit" class="srcButton"  data-inline="true">Back</button></a>
                         <a href="Feedback.php?name= <?php echo $row['planner_name']; ?>"><button type="submit" class="srcButton"  data-inline="true">Give FeedBack</button></a></center> 
