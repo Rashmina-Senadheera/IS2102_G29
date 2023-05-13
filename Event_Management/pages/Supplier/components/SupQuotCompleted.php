@@ -16,8 +16,6 @@
                 request_supplier_quotation r
                 JOIN supplier_quotation q
                 ON r.request_id = q.req_id 
-                JOIN sup_product_general p
-                ON r.psId = p.product_id
                 WHERE r.status='Completed' AND 
                 supplierId = $id";
 
@@ -43,7 +41,7 @@
 
                 
                 echo 
-                "<a href='quote-view.php?id=".$request_id."' id='a-card'>
+                "<a href='quote-view-complete.php?id=".$request_id."' id='a-card'>
                     <div class='ps-card'>
                         <div class='ps-card-desc' id='rs'>
                             <div class='rs-title' id = 'rid'>#Q".$request_id."</div>

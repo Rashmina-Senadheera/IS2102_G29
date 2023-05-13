@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
             $param_ep_id = $ep_id;
             $param_req_id = $req_id;
             $param_for_cus_req = $for_cus_req;
-             $param_remarks = $remarks_quote;
+            $param_remarks = $remarks_quote;
 
             
 

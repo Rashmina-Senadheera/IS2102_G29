@@ -29,6 +29,11 @@ if (isset($_GET['id'])) {
         $no_of_participants = $general_details['no_of_participants'];
         $psId = $general_details['psId'];
         $ep_id = $general_details['EP_id'];
+        $catered_for = $general_details['catered_for'];
+        $transport = $general_details['transport'];
+        $bev_need_as = $general_details['bev_need_as'];
+        $food_need_as = $general_details['food_need_as'];
+        $need_for = $general_details['need_for'];
         // $type = $general_details['type'];
         // $img_sql = "SELECT `image` FROM supplier_product_images WHERE `product_id` = $id";
         // $img_result = mysqli_query($conn, $img_sql);
@@ -298,7 +303,7 @@ if (isset($_GET['id'])) {
 
                 </div>
             </div>
-            <div class="other" id="quote" style="margin-top: 0px;margin-right:0px;">
+            <div class="other" id="quote" style="margin-top: 0px;margin-right:0px; overflow-y:scroll;">
 
                 <div class="personal-info" style="margin-bottom: 0px; margin-top: 5px;">
                     <div class="personal-info-heading" id="quoteb" style="width: 90%;">
@@ -320,6 +325,29 @@ if (isset($_GET['id'])) {
                         <div class="prof-name-50">Tentative Date:</div>
                         <div class="prof-data"><?php echo $date; ?></div>
                     </div>
+
+                    <?php if($type == 'foodbev') {?>
+                        <div class="prof-all">
+                            <div class="prof-name-50">Catered for:</div>
+                            <div class="prof-data"><?php echo $catered_for; ?></div>
+                        </div>
+                        <div class="prof-all">
+                            <div class="prof-name-50">Transport :</div>
+                            <div class="prof-data"><?php echo $transport; ?></div>
+                        </div>
+                        <div class="prof-all">
+                            <div class="prof-name-50">Beverages Need As:</div>
+                            <div class="prof-data"><?php echo $bev_need_as; ?></div>
+                        </div>
+                        <div class="prof-all">
+                            <div class="prof-name-50">Food Need As:</div>
+                            <div class="prof-data"><?php echo $food_need_as; ?></div>
+                        </div>
+                        <div class="prof-all">
+                            <div class="prof-name-50">Need For:</div>
+                            <div class="prof-data"><?php echo $need_for; ?></div>
+                        </div>
+                    <?php } ?>
                     <div class="prof-all">
                         <div class="prof-name-50">Remarks:</div>
                         <div class="prof-data"><?php echo $remarks; ?></div>
@@ -363,7 +391,7 @@ if (isset($_GET['id'])) {
                         <div class="contact">
                             <i class="fa-solid fa-envelope" id="qu-con"></i><?php echo $email;?>
                             <!-- <i class="fa-solid fa-phone" id="qu-conm"></i>0777931062 -->
-                            <i class="fa-brands fa-rocketchat" id="qu-conme"></i><a href="Messages.php"> <b>Message</b> <a>
+                            <i class="fa-brands fa-rocketchat" id="qu-conme"></i><a href="Messages.php?supplier_id=<?php echo $ep_id;?>"> <b>Message</b> <a>
                         </div>
                     </div>
                 </div>

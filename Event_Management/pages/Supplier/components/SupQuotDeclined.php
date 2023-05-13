@@ -37,7 +37,7 @@
                 $decline_reason = $row['ep_notes'];
                 
                 echo 
-                "<a href='quote-view.php?id=".$request_id."' id='a-card'>
+                "<a href='quote-view-decline.php?id=".$request_id."' id='a-card'>
                     <div class='ps-card'>
                         <div class='ps-card-desc' id='rs'>
                             <div class='rs-title' id = 'rid'>#Q".$request_id."</div>

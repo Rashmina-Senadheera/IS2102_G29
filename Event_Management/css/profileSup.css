@@ -141,6 +141,13 @@
     width: 20%;
     margin: auto;
 }
+.prof-name-50#quotecost {
+    font-weight: bold;
+}
+.prof-data#quotecost {
+    font-weight: bold;
+    font-size: 15px;
+}
 
 
 
@@ -347,3 +354,38 @@ button#notavail {
     display: flex;
     flex-direction: row;
 }
+button.orderDT {
+    font-size: 12px;
+    font-weight: bold;
+    background-color: #f8e0fd;
+    border: none;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    padding: 5px 2rem;
+}
+.personal-info#quotecost{
+    border: 1px #66426d solid;
+    border-radius: .5rem;
+    width: 90%;
+}
+.personal-info-heading#quoteC{
+    margin-top: 0px;
+    background-color: #490258;
+    color: white;
+    margin: 0px;
+    border: 1px #490258 solid;
+    border-radius: .4rem;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.personal-info-heading#quoteD{
+    margin-top: 0px;
+    background: rgb(226, 226, 226);
+    margin: 0px;
+    border-radius: .4rem;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+

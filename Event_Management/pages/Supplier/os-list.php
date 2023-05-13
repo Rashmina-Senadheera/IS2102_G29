@@ -33,53 +33,46 @@
                 <div class="cards" >
                     <div class='ps-card-title' id='title'>
                             <div class='ps-card-desc' id="rs">
-                                <div class='rs-title'>Order Request</div>
-                                <div class='rs-title' id = 'tit'>Quotation Number</div>
-                                <div class='rs-title' id = 'tit'>Event Type </div>
-                                <div class='rs-title' id = 'tit'>Requested </div>
+                                <div class='rs-title' id = 'oid' >Order</div>
+                                <div class='rs-title' id = 'oid' >Quotation</div>
+                                <div class='rs-title' id = 'tit'>Event Date </div>
+                                <div class='rs-title' id = 'tit'>Event Planner </div>
+                                <div class='rs-title' id = 'tit'>Cost </div>
+                                <div class='rs-title' id = 'tit'>Status </div>
                             </div>
                         </div>
 
                         <?php
-                        $sql = "SELECT * FROM supplier_booking 
-                                JOIN supplier_quotation 
-                                ON supplier_booking.EP_quotation_id = supplier_quotation.req_id 
-                                JOIN request_supplier_quotation
-                                ON supplier_booking.EP_quotation_id = request_supplier_quotation.request_id 
-                                WHERE supplier_booking.supplier_id = $id ";
-                        $result = mysqli_query($conn, $sql);
+                        
+                        $sql1 = "SELECT *, b.status AS orderStatus
+                                FROM supplier_booking b
+                                JOIN supplier_quotation q
+                                ON b.supplier_quote_id = q.quotation_id
+                                JOIN request_supplier_quotation r 
+                                ON b.EP_quotation_id= r.request_id 
+                                JOIN User u
+                                ON u.user_id = b.supplier_id
+                                WHERE b.supplier_id = $id; ";
 
-                        if (mysqli_num_rows($result) > 0) {
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                $title  = $row['title'];
-                                $type  = $row['type'];
-                                $cost  = $row['cost'];
-                                $date  = $row['date'];
-                                $EP_id   = $row['EP_id '];
-
-
-                                $sql1 = "SELECT * FROM supplier_booking JOIN user ON supplier_booking.EP_id = user.user_id WHERE supplier_booking.EP_id = $EP_id AND supplier_booking.EP_quotation_id = $request_id; ";
-                                $result1 = mysqli_query($conn, $sql1);
-                                
-                                if (mysqli_num_rows($result1) > 0) {
-                                    while ($row = mysqli_fetch_assoc($result1)) {
-                                        $ep = $row['name'];
-                                    }
-                                }
+                        $result1 = mysqli_query($conn, $sql1);
+                        
+                        if (mysqli_num_rows($result1) > 0) {
+                            while ($row = mysqli_fetch_assoc($result1)) {
                                 echo 
-                                "<a href='quote-view.php?id=".$request_id."' id='a-card'>
+                                "<a href='order-view.php?id=".$row['booking_id']."' id='a-card'>
                                     <div class='ps-card'>
                                         <div class='ps-card-desc' id='rs'>
-                                            <div class='rs-title' id = 'rid'>".$request_id."</div>
-                                            <div class='rs-title'>".$title."</div>
-                                            <div class='rs-type'>".$ep."</div>
-                                            <div class='rs-type'>".$date."</div>
-                                            <div class='rs-type'>".$type."</div>
-                                            <div class='rs-type'>".$cost ."</div>
+                                            <div class='rs-title' id = 'rid' style='max-width:12%;min-width:12%;''>".$row['booking_id']."</div>
+                                            <div class='rs-title' id = 'rid' style='max-width:12%;min-width:12%;'>".$row['EP_id']."</div>
+                                            <div class='rs-type'>".$row['date']."</div>
+                                            <div class='rs-type'>".$row['name']."</div>
+                                            <div class='rs-type'>".$row['cost']."</div>
+                                            <div class='rs-type'>".$row['orderStatus']."</div>
                                         </div>
                                     </div>
                                 </a> " ;
-                        } }else {
+                            }
+                        } else {
                             echo "No Requests for Quoatations found";
                         }
                     ?>
@@ -87,58 +80,9 @@
 
                 </div>         
             </div>
-            <div class="filter">
-                <div class="search">
-                    <div class = 'input-container'>
-                        <input class = 'input-field-filter' type = 'text' placeholder = 'Search payments' name = 'search'>
-                        <i class = 'fa fa-search icon'></i>
-                    </div>
-                </div>
-                <div class="status">
-                    <div class="filter-heading">Filter by Status</div>
-                    <div class="status-list">
-                        <ul>
-                            <li><a href="#">
-                                <div class="li-heading" id="out">Urgent</div>
-                            </a></li>
-                            <li><a href="#">
-                                <div class="li-heading" id="in">Not Urgent</div>
-                            </a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="category">
-                    <div class="filter-heading">Filter by Category</div>
-                    <div class="category-list">
-                        <ul>
-                            <li><input type="checkbox">All</li>
-                            <li><input type="checkbox">Venue</li>
-                            <li><input type="checkbox">Entertainment</li>
-                            <li><input type="checkbox">Catering</li>
-                            <li><input type="checkbox">Photography</li>
-                            <li><input type="checkbox">Transport</li>
-                            <li><input type="checkbox">Beverages</li>
-                            <li><input type="checkbox">Florists</li>
-                            <li><input type="checkbox">Decoration</li>
-                            <li><input type="checkbox">Lighting</li>
-                            <li><input type="checkbox">Audio/Vedio</li>
-                        </ul>
-                    </div>
-                    <div class="sort">
-                    <div class="filter-heading">Filter by Date</div>
-                    <div class="sort-list">
-                        <ul>
-                            <li>
-                                <select name="date" id="date-sort">
-                                    <option value="oldest">Oldest on Top</option>
-                                    <option value="newest">Newest on Top</option>
-                                </select>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            <?php require_once 'components/productFilter.php'; ?>
         </div>
+        
     </body>
 
 </html>

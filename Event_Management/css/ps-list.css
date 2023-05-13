@@ -66,7 +66,7 @@ a#btn {
 
 .grid-main#ps-list {
     flex: 75%;
-    height: 72vh;
+    height: 70vh;
     overflow-y: scroll;
     margin-bottom: 5px;
     padding-bottom: 5px;
@@ -97,7 +97,8 @@ a#btn {
     color: rgb(124, 124, 122);
     margin: 10px;
     margin-bottom: 0px;
-    font-size: 15px;
+    font-size: 13px;
+    margin-top: 11px;
 }
 
 .status-list ul {
@@ -156,6 +157,7 @@ a#btn {
     list-style: none;
     margin: 20px;
     margin-top: 3px;
+    margin-bottom: 2px;
 }
 
 .category-list ul li {
@@ -327,6 +329,11 @@ i.bx.bx-plus-circle {
     min-width: 8%;
     max-width: 8%;
 }
+.rs-title#oid{
+    min-width: 12%;
+    max-width: 12%;
+    padding-left:4px ;
+}
 p.success{
     margin-bottom: 20px;
     background-color: rgb(157, 252, 157);
@@ -338,6 +345,14 @@ p.success{
     font-size: 1rem;
     padding-bottom: 5px;
     align-self: center;
+}
+p.success#quote{
+    margin: auto;
+    margin-bottom: 0px;
+    margin-top: 5px;
+    width: 50%;
+    background-color: rgb(119 255 119);;
+
 }
 .ps-card-mes {
     margin: 10px;
@@ -361,6 +376,8 @@ img#noRecords{
 .message-noRecords{
     margin: auto;
 }
+
+/********* Pagination *********/
 .hidden {
   display: none;
 }

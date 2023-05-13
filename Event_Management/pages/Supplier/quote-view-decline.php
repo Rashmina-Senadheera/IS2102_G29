@@ -8,13 +8,11 @@ include('../controllers/commonFunctions.php');
 if (isset($_GET['id'])) {
     $id = checkInput($_GET['id']);
     $sql = "SELECT * 
-            FROM supplier_booking b
-            JOIN supplier_quotation q
-            ON b.supplier_quote_id = q.quotation_id
-            JOIN request_supplier_quotation r 
-            ON b.EP_quotation_id= r.request_id
-            WHERE b.booking_id = $id ";
-
+                FROM request_supplier_quotation r
+                JOIN sup_product_general p
+                ON r.psId = p.product_id
+                WHERE r.status='declined' 
+                AND r.request_id = $id";
     
     $result = mysqli_query($conn, $sql);
 
@@ -31,10 +29,7 @@ if (isset($_GET['id'])) {
         $no_of_participants = $general_details['no_of_participants'];
         $psId = $general_details['psId'];
         $ep_id = $general_details['EP_id'];
-        $cost = $general_details['cost'];
-        $remarks = $general_details['remarks_quote'];
-        $payment_id = $general_details['payment_id'];
-        $supplier_id = $general_details['supplier_id'];
+        $ep_notes = $general_details['ep_notes'];
         // $type = $general_details['type'];
         // $img_sql = "SELECT `image` FROM supplier_product_images WHERE `product_id` = $id";
         // $img_result = mysqli_query($conn, $img_sql);
@@ -118,7 +113,7 @@ if (isset($_GET['id'])) {
         <div class='flex-container-main' id="quote">
             <div class="title-search" id="quote">
                 <div class='searchSec'>
-                    <div class='page-title' id="quote" > Order for <?php echo $title; ?></div>
+                    <div class='page-title' id="quote" > Quoatation for <?php echo $title; ?></div>
                 </div>
             </div>
         </div>
@@ -241,66 +236,46 @@ if (isset($_GET['id'])) {
                             <div class="prof-data"><?php echo $budget_min ." - ". $budget_max; ?></div>
                         </div>
 
-                        <div class="prof-all" id='avail'>
-                            <div class="prof-name-50"  id='avail'>Order for date & time  </div>
-                        </div>
-
-                        <div class="availTime">
-                            <div class="actionBtn" id='notavail'>
-                                <button type="button" class="orderDT" style="margin-left: 0;">
-                                    <?php echo $date; ?>
-                                </button>
-                            </div>
-                            <div class="actionBtn" id='notavail'>
-                                <button type="button" class="orderDT" style="margin-left: 0;">
-                                    <?php 
-                                        
-                                        $sql2 = "SELECT c.from_time , c.to_time  
-                                        FROM supplier_booking b JOIN request_supplier_quotation r
-                                        ON b.EP_quotation_id = r.request_id 
-                                        JOIN cust_req_general c
-                                        ON r.for_cus_req = c.request_id 
-                                        WHERE r.request_id = $id";
-                                        
-                                        $result2 = mysqli_query($conn, $sql2);
-
-                                        if (mysqli_num_rows($result2) > 0){
-                                            while ($row = mysqli_fetch_assoc($result2)) {
-                                                $from_time =date('g:ia', strtotime($row['from_time']));
-                                                $to_time =date('g:ia', strtotime($row['to_time']));
-                                                echo $from_time ."- ". $to_time;
-                                            }
-                                        }
-                                        else{
-                                            echo "bababaa";
-                                        }
-
-                                    ?>
-                                </button>
-                            </div>
-                        </div>
                 </div>
             </div>
             <div class="other" id="quote" style="margin-top: 0px;margin-right:0px;">
 
 
                 <div class="personal-info" id="quotecost" style="margin-bottom: 0px; margin-top: 15px;">
-                    <div class="personal-info-heading" id="quoteC" style="width: 100%;">
-                        Order Details 
+                    <div class="personal-info-heading" id="quoteC" style="width: 100%; background-color:rgb(250, 81, 81);border:none;">
+                        Quotation Declined
                     </div>
                     <div class="prof-all">
-                        <div class="prof-name-50" id="quotecost">  Cost:</div>
-                        <div class="prof-data" id="quotecost" ><?php echo $cost; ?></div>
+                        <div class="prof-name-50" id="quotecost"> Reason for Declining:</div>
+                        <div class="prof-data" id="quotecost" ><?php echo $ep_notes; ?></div>
+                    </div>
+                </div>
+
+                <div class="personal-info" id="quotecost"  style="margin-bottom: 0px; margin-top: 19px;">
+                    <div class="personal-info-heading" id="quoteD" style="width: 100%; ">
+                        Quotation Event Details
+                    </div>
+                    <div class="prof-all">
+                        <div class="prof-name-50">Event Type:</div>
+                        <div class="prof-data"><?php echo $event_type; ?></div>
+                    </div>
+                    <div class="prof-all">
+                        <div class="prof-name-50">Participants:</div>
+                        <div class="prof-data"><?php echo $no_of_participants; ?></div>
+                    </div>
+                    <div class="prof-all">
+                        <div class="prof-name-50">Hours:</div>
+                        <div class="prof-data"><?php echo $hours; ?></div>
+                    </div>
+                    <div class="prof-all">
+                        <div class="prof-name-50">Event Date:</div>
+                        <div class="prof-data"><?php echo $date; ?></div>
                     </div>
                     <div class="prof-all">
                         <div class="prof-name-50">Remarks:</div>
                         <div class="prof-data"><?php echo $remarks; ?></div>
                     </div>
-                    <div class="prof-all">
-                        <div class="prof-name-50">Payment ID:</div>
-                        <div class="prof-data"><?php echo $payment_id; ?></div>
-                    </div>
-                     <?php 
+                    <?php 
                         $sql1 = "SELECT * FROM user WHERE user_id= $ep_id";
                         $result1 = mysqli_query($conn, $sql1);
                         if (mysqli_num_rows($result1) > 0){
@@ -325,22 +300,6 @@ if (isset($_GET['id'])) {
                             <div><i class="fa-brands fa-rocketchat" id="qu-conme" style = "margin:10px;margin-left:0px; "></i><a href="Messages.php?supplier_id=<?php echo $ep_id;?>"> <b>Message</b> <a></div>
                         </div>
                     </div>
-                </div>
-
-                <div class="personal-info" id="quotecost"  style="margin-bottom: 0px; margin-top: 19px;">
-                    <div class="personal-info-heading" id="quoteD" style="width: 100%; ">
-                        Quotation Event Details
-                    </div>
-                    <div class="prof-all">
-                        <div class="prof-name-50">Event Type:</div>
-                        <div class="prof-data"><?php echo $event_type; ?></div>
-                    </div>
-                    <div class="prof-all">
-                        <div class="prof-name-50">Remarks:</div>
-                        <div class="prof-data"><?php echo $remarks; ?></div>
-                    </div>
-                   
-                    
                 </div>
             </div>
         </div>

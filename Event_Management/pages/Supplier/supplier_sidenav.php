@@ -65,7 +65,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['
             <li>
                 <a href="os-list.php">
                     <i class='bx bx-coin-stack'></i>
-                    <span class="links_name">Order Requests</span>
+                    <span class="links_name">Orders</span>
                 </a>
             </li>
             <li>
@@ -123,7 +123,6 @@ if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['
     </div>
     <!-- The Modal -->
     <div id="logModal" class="logmodal">
-
         <!-- Modal content -->
         <div class="modal-decline">
             <div class="modal-header">
