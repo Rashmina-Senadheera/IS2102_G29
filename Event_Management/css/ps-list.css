@@ -66,7 +66,7 @@ a#btn {
 
 .grid-main#ps-list {
     flex: 75%;
-    height: 72vh;
+    height: 70vh;
     overflow-y: scroll;
     margin-bottom: 5px;
     padding-bottom: 5px;

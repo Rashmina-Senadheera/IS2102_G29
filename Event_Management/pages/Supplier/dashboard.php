@@ -109,34 +109,39 @@
                     <canvas id="myChart" style="width:100%;"></canvas>
 
                 <script>
-                var xyValues = [
-                    <?php 
-                        $sql = "SELECT COUNT(r.request_id) AS countQ ,p.product_id AS title FROM request_supplier_quotation r JOIN sup_product_general p ON r.psId = p.product_id GROUP BY p.title;";
-                        $result = mysqli_query($conn, $sql);
-                        if (mysqli_num_rows($result) > 0) {
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                echo "{x:".$row['title'].", y:".$row['countQ']."},";
-                            }
+                    
+                    <?php
+                    $sql = "SELECT COUNT(r.request_id) AS countQ ,p.product_id AS title FROM request_supplier_quotation r JOIN sup_product_general p ON r.psId = p.product_id GROUP BY p.title;";
+                    $result = mysqli_query($conn, $sql);
+                    $a=array("");
+                    $b=array(0);
+                    
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            array_push($a,"#P".$row['title']);
+                            array_push($b,$row['countQ']);
                         }
-
+                    }
                     ?>
-                    ];
+                    var xValues = <?php echo json_encode($a); ?>;
+                    var yValues = <?php echo json_encode($b); ?>;
+                    var barColors = "#3a0247" ;
 
                     new Chart("myChart", {
-                    type: "scatter",
+                    type: "bar",
                     data: {
-                    datasets: [{
-                        pointRadius: 4,
-                        pointBackgroundColor: "rgb(0,0,255)",
-                        data: xyValues
-                    }]
+                        labels: xValues,
+                        datasets: [{
+                        backgroundColor: barColors,
+                        data: yValues
+                        }]
                     },
-                    options: {
-                    legend: {display: false},
-                    scales: {
-                        xAxes: [{ticks: {min: 50, max:90}}],
-                        yAxes: [{ticks: {min: 0, max:5}}],
-                    }
+                      options: {
+                        legend: {display: false},
+                        title: {
+                        display: true,
+                        text: ""
+                        }
                     }
                     });
                 </script>
