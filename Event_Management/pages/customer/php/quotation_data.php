@@ -3,7 +3,7 @@
     require_once('../../controllers/commonFunctions.php');
     date_default_timezone_set('Asia/Colombo');
     $req_date = date('d-m-Y');
-    $date = strtotime($req_date);
+    $current_date = strtotime($req_date);
     $event_type_fill = $no_pax_fill= $theme_fill = $date_fill= $budget_fill= $time_fill=  FALSE;
     global $error;
     
@@ -15,9 +15,9 @@
     $event_type = mysqli_real_escape_string($conn,checkInput($_POST['event-type']));
     $no_pax = mysqli_real_escape_string($conn,checkInput($_POST['no-pax']));
     $theme = mysqli_real_escape_string($conn,checkInput($_POST['theme']));
-    $from_date = mysqli_real_escape_string($conn,checkInput($_POST['from-date']));
+    $date = mysqli_real_escape_string($conn,checkInput($_POST['date']));
     // $from_date = date('Y-m-d',strtotime($from_date)) ;
-    $to_date = mysqli_real_escape_string($conn,checkInput($_POST['to-date']));
+    
     $min_budget = mysqli_real_escape_string($conn,checkInput($_POST['min-budget']));
     $max_budget = mysqli_real_escape_string($conn,checkInput($_POST['max-budget']));
     $from_time = mysqli_real_escape_string($conn,checkInput($_POST['from-time']));
@@ -63,23 +63,17 @@
 
 
     //date
-    if(!empty($from_date) && !empty($to_date)){
-        if(strtotime($from_date) > $date){
-            if(strtotime($to_date) > $date  && strtotime($to_date) > strtotime($from_date)){
+    if(!empty($date)){
+        if(strtotime($date) > $current_date){
+            
                 $date_fill = TRUE;
             
-            }
-            else{
-                echo "to_date_error";
-                $date_fill = FALSE;
-
-                // $error = TRUE;
-
-            }
+            
+            
             
         }
         else{
-            echo " from_date_error";
+            echo " today_date_error";
             // $error = TRUE;
             $date_fill = FALSE;
 
@@ -492,9 +486,9 @@
 
     if($event_type_fill && $no_pax_fill && $theme_fill && $date_fill && $time_fill && $budget_fill ){
         if($error == FALSE){
-        $sql1 = "INSERT INTO `cust_req_general`(`event_type`, `no_of_pax`, `theme`, `from_date`, `to_date`, `min_budget`, `max_budget`, `from_time`, `to_time`, `remarks`) VALUES (?,?,?,?,?,?,?,?,?,?) ";
+        $sql1 = "INSERT INTO `cust_req_general`(`event_type`, `no_of_pax`, `theme`, `date`, `min_budget`, `max_budget`, `from_time`, `to_time`, `remarks`) VALUES (?,?,?,?,?,?,?,?,?) ";
         $stmt1 = $conn->prepare($sql1);
-        $stmt1->bind_param("sissssssss",$event_type,$no_pax,$theme,$from_date,$to_date,$min_budget,$max_budget,$from_time,$to_time,$additional_remarks);
+        $stmt1->bind_param("sisssssss",$event_type,$no_pax,$theme,$date,$min_budget,$max_budget,$from_time,$to_time,$additional_remarks);
         $res1 = $stmt1->execute();
         $id = mysqli_insert_id($conn);
         if($res1){

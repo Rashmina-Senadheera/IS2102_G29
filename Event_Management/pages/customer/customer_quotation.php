@@ -58,15 +58,13 @@ if(isset($evt_planner_id)){
                     
                     
                     <div class="date">
-                        <label>From</label>
-                        <input type="date" name="from-date" required>
-                        <label>To</label>
-                        <input type="date" name="to-date" required>
+                        
+                        <input type="date" name="date" required>
+                        
                     </div>
                     <div class="error_txt date_error">Date is Required</div>
-                    <div class="error_txt from_date_error">Invalid From Date</div>
-                    <div class="error_txt to_date_error">Invalid To Date</div>
-                </div>
+                    <div class="error_txt today_date_error">Date is Invalid</div>
+                 </div>
 
                 
 

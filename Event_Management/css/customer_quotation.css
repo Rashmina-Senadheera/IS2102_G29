@@ -466,14 +466,14 @@ p {
 .error_txt {
     color: red;
     font-size: 15px;
+    display: none;
 }
 .fields_error,
 .no_pax_error,
 .event_type_error,
 .theme_error,
 .date_error,
-.from_date_error,
-.to_date_error,
+.today_date_error,
 .budget_error,
 .min_budget_error,
 .time_error,

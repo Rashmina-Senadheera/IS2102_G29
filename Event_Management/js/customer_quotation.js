@@ -340,11 +340,10 @@ event_type_error = document.querySelector(".event_type_error"),
 no_pax_error = document.querySelector(".no_pax_error"),
 theme_error = document.querySelector(".theme_error"),
 date_error = document.querySelector(".date_error"),
+today_date_error = document.querySelector(".today_date_error"),
 budget_error = document.querySelector(".budget_error"),
 min_budget_error = document.querySelector(".min_budget_error"),
 time_error = document.querySelector(".time_error"),
-from_date_error = document.querySelector(".from_date_error"),
-to_date_error = document.querySelector(".to_date_error"),
 indoor_remarks_error = document.querySelector(".indoor_remarks_error"),
 outdoor_remarks_error = document.querySelector(".outdoor_remarks_error"),
 venue_type_error = document.querySelector(".venue_type_error"),
@@ -386,11 +385,11 @@ submit_btn.onclick = ()=>{
                         no_pax_error.style.display = "none";
                         theme_error.style.display = "none";
                         date_error.style.display = "none";
-                        from_date_error.style.display = "none";
-                        to_date_error.style.display = "none";
+                        today_date_error.style.display = "none";
                         budget_error.style.display = "none";
                         min_budget_error.style.display = "none";
                         time_error.style.display = "none";
+                        // error_txt.style.display = "none";
                         
 
                         //venue
@@ -456,24 +455,14 @@ submit_btn.onclick = ()=>{
                         date_error.style.display = "none";
                     }
 
-                    //from and to date
-                    if(dataArr.includes("from_date_error")){
-                        from_date_error.style.display = "block";
+                    if(dataArr.includes("today_date_error")){
+                        today_date_error.style.display = "block";
                     }
                     else{
-                        from_date_error.style.display = "none";
-                        
-
+                        today_date_error.style.display = "none";
                     }
 
-                    //to date
-                    if(dataArr.includes("to_date_error")){
-                        to_date_error.style.display = "block";
-                    }
-                    else{
-                        to_date_error.style.display = "none";
-                        
-                    }
+                    
 
                     //budget
                     if(dataArr.includes("budget_error")){
