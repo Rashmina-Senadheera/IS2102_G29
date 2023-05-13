@@ -59,7 +59,7 @@ if ($conn->connect_error) {
             <div class="suppliers-cards-container" id="supplier_items">
                 <?php
 
-                $sql = "select id, eventtype, info, planner_email, event_type, `status` from quotation where status='Completed'";
+                $sql = "select id, eventtype, info, planner_email, event_type, `status` from com_events where status='Completed'";
 
                 $result = $conn->query($sql);
 
