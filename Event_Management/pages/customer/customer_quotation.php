@@ -3,7 +3,7 @@ include_once("../constants.php");
 // include_once("../../css/customer_quotation.css");
 include('customer_sidenav.php');
 include('customer_header.php');
-include('header.php');
+// include('header.php');
 include('../controllers/commonFunctions.php');
 $evt_planner_id = checkInput($_GET['evt_planner_id']) ;
 if(isset($evt_planner_id)){
@@ -362,7 +362,7 @@ if(isset($evt_planner_id)){
             
         <div class="submit-btn">
         <input type="submit" value="Submit" class="btn-submit">
-        <div class="success">Data sent successfully</div>
+        <div class="success" id="success">Data sent successfully</div>
         </div>
 
 

@@ -355,7 +355,7 @@ s_l_error = document.querySelector(".s_l_error"),
 s_l_remarks_error = document.querySelector(".s_l_remarks_error"),
 p_v_remarks_error = document.querySelector(".p_v_remarks_error"),
 p_v_error = document.querySelector(".p_v_error"),
-success = document.querySelector(".success");
+success = document.querySelector("#success");
 
 var data;
 var dataArr;
@@ -368,6 +368,7 @@ quote_form.onsubmit = (e)=>{
 }
 
 submit_btn.onclick = ()=>{
+    
     let xhr = new XMLHttpRequest(); //XML object
     xhr.open("POST", "../customer/php/quotation_data.php", true);
     
@@ -380,14 +381,27 @@ submit_btn.onclick = ()=>{
                 if(dataArr.includes("success")){
                         // alert("Success");
                         quote_form.reset();
-                        error_txt.style.display = "none";
                         success.style.display = "block";
+                        event_type_error.style.display = "none";
+                        no_pax_error.style.display = "none";
+                        theme_error.style.display = "none";
+                        date_error.style.display = "none";
+                        from_date_error.style.display = "none";
+                        to_date_error.style.display = "none";
+                        budget_error.style.display = "none";
+                        min_budget_error.style.display = "none";
+                        time_error.style.display = "none";
+                        
 
                         //venue
                         venueNeeded.forEach(function(node){
                             node.classList.remove('needed');
                         });
-                        venueInputbox.style.display="none"
+                        // venueInputbox.style.display="none";
+                        venueInputbox.forEach(function(node){
+                            node.style.display="none";
+                            
+                        });
 
 
                         foodNeeded.forEach(function(node){
