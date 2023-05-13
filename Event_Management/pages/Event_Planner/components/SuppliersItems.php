@@ -51,9 +51,13 @@ if (mysqli_num_rows($result) > 0) {
         $img = $img_row['image'];
         echo '<div class="card">
                 <div class="content">
-                    <div class="imgBx">
-                        <img src="data:image/jpeg;base64,' . base64_encode($img) . '">
-                    </div>
+                    <div class="imgBx">';
+        if ($img != null) {
+            echo '<img src="data:image/jpeg;base64,' . base64_encode($img) . '">';
+        } else {
+            echo '<img src="../../images/Suppliers/supplier_default.jpg" class="mySlides" alt="">';
+        }
+        echo '  </div>
                     <div class="contentBx">
                         <h3>' . $title . '</h3>
                         <span>' . $description . '</span>
