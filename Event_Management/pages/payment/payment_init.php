@@ -37,13 +37,15 @@ if(!empty($request->createCheckoutSession)){
     $cusId = $request->cus_Id;
     $epQuotId = $request->ep_QuotId;
     $supQuoteId = $request->sup_QuotId;
+    $reqId = $request->req_Id;
 
     $params = array(
         'epId' => $epId,
         'supId' => $supId,
         'cusId' => $cusId,
         'epQuotId' => $epQuotId,
-        'supQuotId' => $supQuoteId
+        'supQuotId' => $supQuoteId,
+        'reqId' => $reqId
         
     );
     

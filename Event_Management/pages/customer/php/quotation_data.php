@@ -486,7 +486,7 @@
 
     if($event_type_fill && $no_pax_fill && $theme_fill && $date_fill && $time_fill && $budget_fill ){
         if($error == FALSE){
-        $sql1 = "INSERT INTO `cust_req_general`(`event_type`, `no_of_pax`, `theme`, `date`, `min_budget`, `max_budget`, `from_time`, `to_time`, `remarks`) VALUES (?,?,?,?,?,?,?,?,?) ";
+        $sql1 = "INSERT INTO `cust_req_general`(`event_type`, `no_of_pax`, `theme`, `event_date`, `min_budget`, `max_budget`, `from_time`, `to_time`, `remarks`) VALUES (?,?,?,?,?,?,?,?,?) ";
         $stmt1 = $conn->prepare($sql1);
         $stmt1->bind_param("sisssssss",$event_type,$no_pax,$theme,$date,$min_budget,$max_budget,$from_time,$to_time,$additional_remarks);
         $res1 = $stmt1->execute();

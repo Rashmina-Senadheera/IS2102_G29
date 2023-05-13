@@ -27,6 +27,7 @@ if(!empty($_GET['session_id'])){
     $cus_id = $_GET['cusId'];
     $epQuotId = $_GET['epQuotId'];
     $supQuotId = $_GET['supQuotId'];
+    $reqId = $_GET['reqId'];
      
     // Fetch transaction data from the database if already exists 
     $sqlQ = "SELECT * FROM transactions WHERE stripe_checkout_session_id = ?"; 
@@ -140,10 +141,13 @@ if(!empty($_GET['session_id'])){
     
     $sql_sup_booking = "INSERT INTO `supplier_booking`( `EP_id`, `supplier_id`, `EP_quotation_id`, `supplier_quote_id`, `payment_id`,`status`) VALUES ('$ep_id','$sup_id','$epQuotId','$supQuotId','$payment_id','$status')"; 
     $sql_ep_booking = "INSERT INTO `ep_booking`(`customer_id`, `EP_id`, `ep_quot_id`, `payment_id`) VALUES ('$cus_id','$ep_id','$epQuotId','$payment_id')";
+    $cus_req = "UPDATE`cust_req_general` SET `status`='$status' WHERE request_id=$reqId";
     $res = mysqli_query($conn,$sql_sup_booking);
     $res1 = mysqli_query($conn,$sql_ep_booking);
+    $res2 = mysqli_query($conn,$cus_req);
 
-    if($res && $res1){
+
+    if($res && $res1 && $res2){
         echo "<script> location.replace('http://localhost/file_struct/Event_Management/pages/customer/OngoingEvents.php'); </script>";
     }else{
         echo "Not";
