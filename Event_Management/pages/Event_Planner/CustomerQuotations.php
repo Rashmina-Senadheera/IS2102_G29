@@ -53,14 +53,51 @@ if (isset($_GET['page'])) {
             </div>
 
             <div id="Accepted" class="tabcontent">
-                <?php require_once('components/CustomerQuotationsAccepted.php'); ?>
+                <?php
+                $sql = "SELECT e.*, u.name, c.event_type, SUM(ei.cost) AS sCost
+                FROM ep_quotation e, user u, cust_req_general c, ep_quotation_items ei 
+                WHERE 
+                e.epId = '$_SESSION[user_id]' AND 
+                e.cusId = u.user_id AND 
+                e.reqId = c.request_id AND
+                e.qId = ei.qId AND
+                e.status = 'Accepted'
+                GROUP BY e.qId
+                ORDER BY e.qId DESC";
+
+                include('components/CustomerQuotationsRow.php'); ?>
             </div>
-            
+
             <div id="Pending" class="tabcontent">
-                <?php require_once('components/CustomerQuotationsPending.php'); ?>
+                <?php
+                $sql = "SELECT e.*, u.name, c.event_type, SUM(ei.cost) AS sCost
+                FROM ep_quotation e, user u, cust_req_general c, ep_quotation_items ei 
+                WHERE 
+                e.epId = '$_SESSION[user_id]' AND 
+                e.cusId = u.user_id AND 
+                e.reqId = c.request_id AND
+                e.qId = ei.qId AND
+                e.status = 'pending'
+                GROUP BY e.qId
+                ORDER BY e.qId DESC";
+
+                include('components/CustomerQuotationsRow.php'); ?>
             </div>
 
             <div id="Declined" class="tabcontent">
+                <?php
+                $sql = "SELECT e.*, u.name, c.event_type, SUM(ei.cost) AS sCost
+                FROM ep_quotation e, user u, cust_req_general c, ep_quotation_items ei 
+                WHERE 
+                e.epId = '$_SESSION[user_id]' AND 
+                e.cusId = u.user_id AND 
+                e.reqId = c.request_id AND
+                e.qId = ei.qId AND
+                e.status = 'declined'
+                GROUP BY e.qId
+                ORDER BY e.qId DESC";
+
+                include('components/CustomerQuotationsRow.php'); ?>
             </div>
         </div>
     </div>

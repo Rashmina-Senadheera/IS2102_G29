@@ -31,10 +31,9 @@ if (isset($_GET['reqID']) && !empty($_GET['reqID'])) {
                 $budget2 = !empty($row['max_budget']) ? "- " . formatCurrency($row['max_budget']) : " ";
                 $requested_on = !empty($row['req_date']) ? $row['req_date'] : "Not Set";
 
-                // $customerID = $row['customer_id'];
-                $customerID = 46;
+                $customerID = $row['customer_id'];
                 $getUser_sql = "SELECT `name`, `email` FROM user WHERE user_id = " . $customerID;
-                $getPhone_sql = "SELECT phone_number FROM user_phone WHERE user_id = " . $row['customer_id'];
+                $getPhone_sql = "SELECT phone_number FROM user_phone WHERE user_id = " . $customerID;
 
                 $getUser_result = $conn->query($getUser_sql);
                 $getPhone_result = $conn->query($getPhone_sql);

@@ -1,5 +1,5 @@
 <?php
-function getQuotationDetails($reqID, $conn, $type)
+function getQuotationDetails($reqID, $conn, $type, $type2 = null)
 {
     // display supplier quotations related to this event
     $sql = "SELECT s.*, r.psId
@@ -7,6 +7,14 @@ function getQuotationDetails($reqID, $conn, $type)
             WHERE s.for_cus_req = '$reqID' AND 
             type = '$type' AND 
             s.req_id = r.request_id";
+
+    if ($type2 != null) {
+        $sql = "SELECT s.*, r.psId
+            FROM supplier_quotation s, request_supplier_quotation r
+            WHERE s.for_cus_req = '$reqID' AND 
+            (type = '$type' OR type = '$type2') AND 
+            s.req_id = r.request_id";
+    }
 
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
@@ -28,7 +36,7 @@ function getQuotationDetails($reqID, $conn, $type)
                 $setFunction = "setVenueCost";
             } else if ($type == "photo") {
                 $setFunction = "setPVCost";
-            } else if ($type == "ent") {
+            } else if ($type == "sound" || $type == "light") {
                 $setFunction = "setSLCost";
             }
 
@@ -192,7 +200,7 @@ function getQuotationDetails($reqID, $conn, $type)
                                 <div class='input-value'>$sl_remarks</div>
                             </div>
                         </div>";
-        getQuotationDetails($reqID, $conn, "ent");
+        getQuotationDetails($reqID, $conn, "sound", "light");
         echo "</div>";
     }
     ?>
