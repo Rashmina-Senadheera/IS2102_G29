@@ -1,4 +1,5 @@
 <?php
+require_once('../constants.php');
 require_once('eventplanner_sidenav.php');
 require_once('eventplanner_header.php');
 require_once('../controllers/commonFunctions.php');
@@ -15,9 +16,7 @@ $supplier_id = mysqli_real_escape_string($conn,$_GET['supplier_id']);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../css/viewSuppliersEP.css">
-    <link rel="stylesheet" href="../../css/filterEP.css">
-    <link rel="stylesheet" href="../../css/eventPlannerMain.css">
+   
     <link rel="stylesheet" href="../../css/chat.css">
     <script src="https://kit.fontawesome.com/bf10032598.js" crossorigin="anonymous"></script>
 </head>
@@ -27,8 +26,6 @@ $supplier_id = mysqli_real_escape_string($conn,$_GET['supplier_id']);
     <?php
     if (isset($_SESSION['success'])) {
         echo '<div class="success-message">' . showSessionMessage("success") . '</div>';
-    } else if (isset($_SESSION['error'])) {
-        echo '<div class="error-message">' . showSessionMessage("error") . '</div>';
     }
     ?>
     <div class="grid-container-payments" style="height: calc(100%-60px); ">
@@ -53,7 +50,7 @@ $supplier_id = mysqli_real_escape_string($conn,$_GET['supplier_id']);
                                     <div class="details" onclick="showDetails(this)" id="message" data-id="<?php echo $row['user_id']; ?>" data-name="<?php echo $row['name']; ?>">
                                         
                                         <span><?php echo $row['name']; ?></span>
-                                        <p><?php echo $row['user_id']; ?></p>
+                                        <p class="role" style="font-size: 12px;"><?php echo ucfirst($row['role']); ?></p>
                                         
                                     </div>
                                 </div>
