@@ -31,6 +31,27 @@ if (json_last_error() !== JSON_ERROR_NONE) {
 if(!empty($request->createCheckoutSession)){ 
     // Convert product price to cent 
     $stripeAmount = round($request->productPrice*100, 2); 
+
+    $epId = $request->ep_Id;
+    $supId = $request->sup_Id;
+    $cusId = $request->cus_Id;
+    $epQuotId = $request->ep_QuotId;
+    $supQuoteId = $request->sup_QuotId;
+
+    $params = array(
+        'epId' => $epId,
+        'supId' => $supId,
+        'cusId' => $cusId,
+        'epQuotId' => $epQuotId,
+        'supQuotId' => $supQuoteId
+        
+    );
+    
+    // Encode the array as a query string
+    $queryString = http_build_query($params);
+    
+    // Append the query string to the URL
+    // $url = 'https://example.com/page.php?' . $queryString;
  
     // Create new Checkout Session for the order 
     try { 
@@ -49,7 +70,7 @@ if(!empty($request->createCheckoutSession)){
                 'quantity' => 1 
             ]], 
             'mode' => 'payment', 
-            'success_url' => STRIPE_SUCCESS_URL.'?session_id={CHECKOUT_SESSION_ID}', 
+            'success_url' => STRIPE_SUCCESS_URL.'?session_id={CHECKOUT_SESSION_ID}&'.$queryString, 
             'cancel_url' => STRIPE_CANCEL_URL, 
         ]); 
     } catch(Exception $e) {  

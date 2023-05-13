@@ -292,7 +292,7 @@ if(isset($_GET['id'])){
 
                     <div class="input">
                         <label class="input-label">Total Cost</label>
-                        <input type="text" class="input-field" name="packageName" id="total_cost" placeholder="Cost" value=""  />
+                        <input type="text" class="input-field" name="packageName" id="total_cost" placeholder="Cost" value=""  disabled/>
                     </div>
                     <div class="row">
                         <div class="input">
@@ -300,6 +300,36 @@ if(isset($_GET['id'])){
                             <textarea class="input-field" rows="5" name="description" disabled>This quotation is valid only for 10 days. If you want to book, please contact us within 10 days.</textarea>
                         </div>
                     </div>
+
+                    <?php
+                    $sql_id = "SELECT * 
+                    from cust_req_general 
+                    JOIN ep_quotation 
+                    ON cust_req_general.request_id = ep_quotation.reqId 
+                    JOIN ep_quotation_items
+                    ON ep_quotation_items.qId = ep_quotation.qId
+                    JOIN supplier_quotation
+                    ON supplier_quotation.quotation_id = ep_quotation_items.supQuotId
+                    WHERE cust_req_general.request_id = $id";
+
+                    $result_id = $conn->query($sql_id);
+
+                    $row9 = $result_id->fetch();
+
+                    if($row9){
+                        ?>
+                        <div class="input">
+                        <input type="text" class="input-field" name="epId" id="epId" placeholder="Cost" value="<?php if($row9){ echo $row9['epId']; }else{ echo "None" ;}?>"  disabled/>
+                        <input type="text" class="input-field" name="supId" id="supId" placeholder="Cost" value="<?php if($row9){ echo $row9['supplier_id']; }else{ echo "None" ;}?>"  disabled/>
+                        <input type="text" class="input-field" name="cusId" id="cusId" placeholder="Cost" value="<?php if($row9){ echo $row9['cusId']; }else{ echo "None" ;}?>"  disabled/>
+                        <input type="text" class="input-field" name="epQuotId" id="epQuotId" placeholder="Cost" value="<?php if($row9){ echo $row9['qId']; }else{ echo "None" ;}?>"  disabled/>
+                        <input type="text" class="input-field" name="supQuotId" id="supQuotId" placeholder="Cost" value="<?php if($row9){ echo $row9['quotation_id']; }else{ echo "None" ;}?>"  disabled/>
+                        
+                    </div>
+                        <?php
+                    }
+                    
+                    ?>
                     <!-- <div class="action btnSend">
                         <div class="spinner hidden" id="spinner"></div>
                         <input type="submit" value="Book Event Planner" class="action-button payButton" id="payButton buttonText"/>
@@ -368,6 +398,11 @@ if(isset($_GET['id'])){
 const createCheckoutSession = function (stripe) {
     let cost = document.querySelector("#total_cost").value;
     let advance_cost = cost*0.5;
+    let epId= document.querySelector("#epId").value;
+    let supId= document.querySelector("#supId").value;
+    let cusId = document.querySelector('#cusId').value;
+    let epQuotId= document.querySelector("#epQuotId").value;
+    let supQuotId= document.querySelector("#supQuotId").value;
         
     return fetch("../payment/payment_init.php", {
         method: "POST",
@@ -376,6 +411,11 @@ const createCheckoutSession = function (stripe) {
         },
         body: JSON.stringify({
             createCheckoutSession: 1,
+            ep_Id : epId,
+            sup_Id : supId,
+            cus_Id : cusId,
+            ep_QuotId : epQuotId,
+            sup_QuotId : supQuotId,
             event : "Birthday",
             productID : "DP12345",
             productPrice : advance_cost,

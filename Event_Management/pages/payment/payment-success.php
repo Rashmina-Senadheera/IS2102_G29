@@ -22,7 +22,11 @@ $status = 'error';
 if(!empty($_GET['session_id'])){ 
     $session_id = $_GET['session_id']; 
     // $session_id = 18; 
-
+    $ep_id = $_GET['epId'];
+    $sup_id = $_GET['supId'];
+    $cus_id = $_GET['cusId'];
+    $epQuotId = $_GET['epQuotId'];
+    $supQuotId = $_GET['supQuotId'];
      
     // Fetch transaction data from the database if already exists 
     $sqlQ = "SELECT * FROM transactions WHERE stripe_checkout_session_id = ?"; 
@@ -129,10 +133,26 @@ if(!empty($_GET['session_id'])){
 } 
 ?>
 
-<?php if(!empty($payment_id)){ echo "<script> location.replace('http://localhost/file_struct/Event_Management/pages/customer/OngoingEvents.php'); </script>" ?>
+<?php if(!empty($payment_id)){ 
+    
+    $status = "Ongoing";
+    
+    
+    $sql_sup_booking = "INSERT INTO `supplier_booking`( `EP_id`, `supplier_id`, `EP_quotation_id`, `supplier_quote_id`, `payment_id`,`status`) VALUES ('$ep_id','$sup_id','$epQuotId','$supQuotId','$payment_id','$status')"; 
+    $sql_ep_booking = "INSERT INTO `ep_booking`(`customer_id`, `EP_id`, `ep_quot_id`, `payment_id`) VALUES ('$cus_id','$ep_id','$epQuotId','$payment_id')";
+    $res = mysqli_query($conn,$sql_sup_booking);
+    $res1 = mysqli_query($conn,$sql_ep_booking);
+
+    if($res && $res1){
+        echo "<script> location.replace('http://localhost/file_struct/Event_Management/pages/customer/OngoingEvents.php'); </script>";
+    }else{
+        echo "Not";
+    }
+      ?>
     
     
 <?php }else{ ?>
     <h1 class="error">Your Payment been failed!</h1>
     <p class="error"><?php echo $statusMsg; ?></p>
 <?php } ?>
+
