@@ -48,12 +48,10 @@
                 <?php
                 if (isset($_GET['type'])) {
                     $type = $_GET['type'];
-                    if ($type == "foodbev") {
-                        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = 'foodbev' ORDER BY RAND()";
-                    } else if ($type == "pv") {
-                        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = 'photo' OR `type` = 'video' ORDER BY RAND()";
+                    if ($type == "pv") {
+                        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = 'photo' ORDER BY RAND()";
                     } else if ($type == "sl") {
-                        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = 'deco' OR `type` = 'deco' ORDER BY RAND()";
+                        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = 'sound' OR `type` = 'light' ORDER BY RAND()";
                     } else {
                         $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = '$type' ORDER BY RAND()";
                     }
@@ -89,7 +87,6 @@
                             </div>
                             <ul class="sci">
                                 <li>
-                                    <!-- <a href="" class="view-supplier">View</a> -->
                                     <a href="./Supplier-more-info.php?id=' . $productID . '&reqID=' . $reqID . '" class="view-supplier">View</a>
                                 </li>
                                 <li>

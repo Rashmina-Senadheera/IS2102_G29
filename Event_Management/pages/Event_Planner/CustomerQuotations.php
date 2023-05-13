@@ -55,8 +55,9 @@ if (isset($_GET['page'])) {
             <div id="Accepted" class="tabcontent">
                 <?php require_once('components/CustomerQuotationsAccepted.php'); ?>
             </div>
-
+            
             <div id="Pending" class="tabcontent">
+                <?php require_once('components/CustomerQuotationsPending.php'); ?>
             </div>
 
             <div id="Declined" class="tabcontent">

@@ -2,17 +2,25 @@
 require_once '../controllers/commonFunctions.php';
 require_once './controllers/getRequestDetails.php';
 
-function getQuotationCount($conn, $reqID, $type)
+function getQuotationCount($conn, $reqID, $type, $type2 = null)
 {
-    $sql = "SELECT COUNT(*) AS count FROM supplier_quotation WHERE for_cus_req = $reqID AND type = '$type'";
+    if ($type2 != null) {
+        $sql = "SELECT COUNT(*) AS count FROM supplier_quotation WHERE for_cus_req = $reqID AND (type = '$type' OR type = '$type2')";
+    } else {
+        $sql = "SELECT COUNT(*) AS count FROM supplier_quotation WHERE for_cus_req = $reqID AND type = '$type'";
+    }
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
     return $row['count'];
 }
 
-function getRequestsCount($conn, $reqID, $type)
+function getRequestsCount($conn, $reqID, $type, $type2 = null)
 {
-    $sql = "SELECT COUNT(*) AS count FROM request_supplier_quotation WHERE for_cus_req = $reqID AND product_type = '$type'";
+    if ($type2 != null) {
+        $sql = "SELECT COUNT(*) AS count FROM request_supplier_quotation WHERE for_cus_req = $reqID AND (product_type = '$type' OR product_type = '$type2')";
+    } else {
+        $sql = "SELECT COUNT(*) AS count FROM request_supplier_quotation WHERE for_cus_req = $reqID AND product_type = '$type'";
+    }
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
     return $row['count'];
@@ -43,6 +51,17 @@ function getRequestsCount($conn, $reqID, $type)
         <div class="gridSearch" style="margin-top: 10px;">
             <div class="searchSec">
                 <div class="page-title">Quotation Request</div>
+                <?php
+                $epID = $_SESSION['user_id'];
+                $chkData = formatDateDefault($event_date);
+                $booking_sql = "SELECT booking_id FROM ep_booking WHERE EP_id = $epID AND date = '$chkData'";
+                $booking_result = $conn->query($booking_sql);
+                if ($booking_result->num_rows > 0) {
+                    echo '<div class="ep-availability unavailable">You have an event on this day! Please check before confirming.</div>';
+                } else {
+                    echo '<div class="ep-availability available">You do not have any event on this day!</div>';
+                }
+                ?>
             </div>
         </div>
         <div class="flex-container-profile">
@@ -69,7 +88,7 @@ function getRequestsCount($conn, $reqID, $type)
                     </div>
                     <div class="prof-all">
                         <div class="prof-name-50">Tentative Dates:</div>
-                        <div class="prof-data"><?php echo "$date_from - $date_to"  ?></div>
+                        <div class="prof-data"><?php echo "$event_date"  ?></div>
                     </div>
                     <div class="prof-all">
                         <div class="prof-name-50">Time:</div>
@@ -250,11 +269,11 @@ function getRequestsCount($conn, $reqID, $type)
                             <div class='quotation-count'>
                                 Quotation(s) : &emsp;
                                 <a href='SupplierQuotations.php?page=requested&reqID=$reqID'>
-                                Requested -  " . getRequestsCount($conn, $reqID, "deco") . " 
+                                Requested -  " . getRequestsCount($conn, $reqID, "sound", "light") . " 
                                 </a>
                                 &emsp; |  &emsp; 
                                 <a href='SupplierQuotations.php?page=received&reqID=$reqID'>
-                                    Recieved - " . getQuotationCount($conn, $reqID, "deco") . " 
+                                    Recieved - " . getQuotationCount($conn, $reqID, "sound", "light") . " 
                                 </a>
                             </div>
                             <div class='prof-all'>
