@@ -44,6 +44,7 @@ $sql = "SELECT * FROM events_c WHERE id=?";
                                 <b>Theme:</b> <?php echo $row['venue'] ?><br>
                                 <b>Date:</b> <?php echo $row['date_from'] ?><br><br>
                                 <a href="OngoingEvents.php"><button type="submit" class="srcButton"  data-inline="true">Back</button></a>
+                                <a href="Payments.php"><button type="submit" class="srcButton"  data-inline="true">Complete Payment</button></a>
                         </center>
                     </div>
                 </div>

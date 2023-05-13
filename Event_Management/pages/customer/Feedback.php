@@ -82,6 +82,6 @@ include('customer_header.php');
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="../../feedback.js"></script>
+<script src="../../js/feedback.js"></script>
 </body>
 </html>
