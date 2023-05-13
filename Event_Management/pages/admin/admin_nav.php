@@ -53,6 +53,12 @@
                     <span class="links_name">Profile</span>
                 </a>
             </li>
+            <li>
+                <a href="inquiries.php">
+                    <i class='bx bx-user'></i>
+                    <span class="links_name">Inquiries</span>
+                </a>
+            </li>
  
            
             <li class="log_out">
