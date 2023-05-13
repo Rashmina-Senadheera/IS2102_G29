@@ -376,6 +376,8 @@ img#noRecords{
 .message-noRecords{
     margin: auto;
 }
+
+/********* Pagination *********/
 .hidden {
   display: none;
 }
