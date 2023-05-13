@@ -22,6 +22,8 @@ require_once('../controllers/commonFunctions.php');
     <?php
     if (isset($_SESSION['success'])) {
         echo '<div class="success-message">' . showSessionMessage("success") . '</div>';
+    } else if (isset($_SESSION['error'])) {
+        echo '<div class="error-message">' . showSessionMessage("error") . '</div>';
     }
     ?>
     <div class="grid-container-payments">

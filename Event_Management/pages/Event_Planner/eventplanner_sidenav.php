@@ -38,6 +38,12 @@ if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['
         </div>
         <ul class="nav-links">
             <li>
+                <a href=<?php echo SITEURL . 'pages/event_planner/dashboard.php'  ?>>
+                    <i class='bx bx-pie-chart-alt-2'></i>
+                    <span class="links_name">Dashboard</span>
+                </a>
+            </li>
+            <li>
                 <a href=<?php echo SITEURL . 'pages/event_planner/Requests.php'  ?>>
                     <i class='bx bx-list-ul'></i>
                     <span class="links_name">Requests</span>

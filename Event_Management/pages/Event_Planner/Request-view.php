@@ -35,6 +35,8 @@ function getRequestsCount($conn, $reqID, $type)
     <?php
     if (isset($_SESSION['success'])) {
         echo '<div class="success-message">' . showSessionMessage("success") . '</div>';
+    } else if (isset($_SESSION['error'])) {
+        echo '<div class="error-message">' . showSessionMessage("error") . '</div>';
     }
     ?>
     <div class="container-profile" style="padding-left: 20px;">
@@ -126,8 +128,14 @@ function getRequestsCount($conn, $reqID, $type)
                                 </div>
                             </div>
                             <div class='quotation-count'>
-                                Quotation(s) : &emsp;Requested -  " . getRequestsCount($conn, $reqID, "foodbev") . " 
-                                &emsp; |  &emsp; Recieved - " . getQuotationCount($conn, $reqID, "foodbev") . " 
+                                Quotation(s) : &emsp;
+                                <a href='SupplierQuotations.php?page=requested&reqID=$reqID'>
+                                Requested -  " . getRequestsCount($conn, $reqID, "foodbev") . " 
+                                </a>
+                                &emsp; |  &emsp; 
+                                <a href='SupplierQuotations.php?page=received&reqID=$reqID'>
+                                    Recieved - " . getQuotationCount($conn, $reqID, "foodbev") . " 
+                                </a>
                             </div>
                             <div class='prof-all'>
                                 <div class='prof-name'>Available In:</div>
@@ -163,8 +171,14 @@ function getRequestsCount($conn, $reqID, $type)
                                 </div>
                             </div>
                             <div class='quotation-count'>
-                                Quotation(s) : &emsp;Requested -  " . getRequestsCount($conn, $reqID, "venue") . "
-                                &emsp; |  &emsp; Recieved - " . getQuotationCount($conn, $reqID, "venue") . "
+                                Quotation(s) : &emsp;
+                                <a href='SupplierQuotations.php?page=requested&reqID=$reqID'>
+                                Requested -  " . getRequestsCount($conn, $reqID, "venue") . " 
+                                </a>
+                                &emsp; |  &emsp; 
+                                <a href='SupplierQuotations.php?page=received&reqID=$reqID'>
+                                    Recieved - " . getQuotationCount($conn, $reqID, "venue") . " 
+                                </a>
                             </div>
                             <div class='prof-all'>
                                 <div class='prof-name'>Type:</div>
@@ -193,8 +207,15 @@ function getRequestsCount($conn, $reqID, $type)
                                 </div>
                             </div>
                             <div class='quotation-count'>
-                                Quotation(s) : &emsp;Requested -  " . getRequestsCount($conn, $reqID, "photo") . " 
-                                &emsp; |  &emsp; Recieved - " . getQuotationCount($conn, $reqID, "photo") . " 
+
+                                Quotation(s) : &emsp;
+                                <a href='SupplierQuotations.php?page=requested&reqID=$reqID'>
+                                Requested -  " . getRequestsCount($conn, $reqID, "photo") . " 
+                                </a>
+                                &emsp; |  &emsp; 
+                                <a href='SupplierQuotations.php?page=received&reqID=$reqID'>
+                                    Recieved - " . getQuotationCount($conn, $reqID, "photo") . " 
+                                </a>
                             </div>
                             <div class='prof-all'>
                                 <div class='prof-name'>Photography:</div>
@@ -227,8 +248,14 @@ function getRequestsCount($conn, $reqID, $type)
                                 </div>
                             </div>
                             <div class='quotation-count'>
-                                Quotation(s) : &emsp;Requested -  " . getRequestsCount($conn, $reqID, "deco") . " 
-                                &emsp; |  &emsp; Recieved - " . getQuotationCount($conn, $reqID, "deco") . " 
+                                Quotation(s) : &emsp;
+                                <a href='SupplierQuotations.php?page=requested&reqID=$reqID'>
+                                Requested -  " . getRequestsCount($conn, $reqID, "deco") . " 
+                                </a>
+                                &emsp; |  &emsp; 
+                                <a href='SupplierQuotations.php?page=received&reqID=$reqID'>
+                                    Recieved - " . getQuotationCount($conn, $reqID, "deco") . " 
+                                </a>
                             </div>
                             <div class='prof-all'>
                                 <div class='prof-name'>Sound Type:</div>

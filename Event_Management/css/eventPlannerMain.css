@@ -515,7 +515,7 @@ label {
 }
 
 .modal-body .decline-reason #formErrors {
-    color: red;
+    color: #ff9800;
     font-size: .9rem;
     font-weight: bold;
     margin-bottom: 1rem;
@@ -595,6 +595,15 @@ label {
     padding: 15px;
     color: #fff;
     background-color: #04AA6D;
+    text-align: center;
+}
+
+.error-message {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 15px;
+    color: #fff;
+    background-color: #f44336;
     text-align: center;
 }
 

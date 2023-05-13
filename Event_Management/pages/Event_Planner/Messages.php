@@ -27,6 +27,8 @@ $supplier_id = mysqli_real_escape_string($conn,$_GET['supplier_id']);
     <?php
     if (isset($_SESSION['success'])) {
         echo '<div class="success-message">' . showSessionMessage("success") . '</div>';
+    } else if (isset($_SESSION['error'])) {
+        echo '<div class="error-message">' . showSessionMessage("error") . '</div>';
     }
     ?>
     <div class="grid-container-payments" style="height: calc(100%-60px); ">

@@ -19,7 +19,7 @@ if (isset($_SESSION['role'])) {
         } else if (role === 'customer') {
             location.replace('event_planners.php');
         } else if (role === 'event_planner') {
-            location.replace('Event_Planner/Requests.php');
+            location.replace('Event_Planner/dashboard.php');
         } else if (role === 'supplier') {
             location.replace('Supplier/dashboard.php');
         }

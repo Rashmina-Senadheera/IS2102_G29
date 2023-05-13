@@ -3,7 +3,11 @@
         <div class="cards">
 
             <?php
-            $sql = "SELECT * FROM supplier_quotation WHERE ep_id='$_SESSION[user_id]' ORDER BY quotation_id DESC";
+            if(!empty($reqID)) {
+                $sql = "SELECT * FROM supplier_quotation WHERE ep_id='$_SESSION[user_id]' AND for_cus_req='$reqID' ORDER BY quotation_id DESC";
+            } else {
+                $sql = "SELECT * FROM supplier_quotation WHERE ep_id='$_SESSION[user_id]' ORDER BY quotation_id DESC";
+            }
 
             if ($result = $conn->query($sql)) {
                 if ($result->num_rows > 0) {

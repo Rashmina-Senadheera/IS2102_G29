@@ -2,7 +2,12 @@
 function getQuotationDetails($reqID, $conn, $type)
 {
     // display supplier quotations related to this event
-    $sql = "SELECT * FROM supplier_quotation WHERE for_cus_req = '$reqID' AND type = '$type'";
+    $sql = "SELECT s.*, r.psId
+            FROM supplier_quotation s, request_supplier_quotation r
+            WHERE s.for_cus_req = '$reqID' AND 
+            type = '$type' AND 
+            s.req_id = r.request_id";
+
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         echo "<div class='row'>
@@ -12,6 +17,7 @@ function getQuotationDetails($reqID, $conn, $type)
 
         while ($row = $result->fetch_assoc()) {
             $qid = $row['quotation_id'];
+            $pid = $row['psId'];
             $title = $row['title'];
             $cost = $row['cost'];
 
@@ -26,7 +32,7 @@ function getQuotationDetails($reqID, $conn, $type)
                 $setFunction = "setSLCost";
             }
 
-            echo "<tr onClick='$setFunction(`$qid`, `$title`, `$cost`)'>
+            echo "<tr onClick='$setFunction(`$qid`, `$pid`, `$title`, `$cost`)'>
                 <td>$title</td>
                 <td>Rs. " . formatCurrency($cost) . "</td>
             </tr>";

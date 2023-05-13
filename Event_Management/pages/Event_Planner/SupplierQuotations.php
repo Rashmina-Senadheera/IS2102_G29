@@ -2,6 +2,28 @@
 require_once('eventplanner_sidenav.php');
 require_once('eventplanner_header.php');
 require_once('../controllers/commonFunctions.php');
+
+$isReceived = $isRequested = $isDeclined = "";
+if (isset($_GET['page'])) {
+    $page = $_GET['page'];
+    if ($page == "received") {
+        $isReceived = 'id="defaultOpen"';
+    } else if ($page == "requested") {
+        $isRequested = 'id="defaultOpen"';
+    } else if ($page == "declined") {
+        $isDeclined = 'id="defaultOpen"';
+    } else {
+        $isReceived = 'id="defaultOpen"';
+    }
+} else {
+    $isReceived = 'id="defaultOpen"';
+}
+
+if (!empty($_GET['reqID'])) {
+    $reqID = $_GET['reqID'];
+} else {
+    $reqID = 0;
+}
 ?>
 
 <!DOCTYPE html>
@@ -27,9 +49,9 @@ require_once('../controllers/commonFunctions.php');
         </div>
         <div class="gridMain">
             <div class="tab">
-                <button class="tablinks" onclick="openTab(event, 'Received')" id="defaultOpen">Received</button>
-                <button class="tablinks" onclick="openTab(event, 'Requested')">Requested</button>
-                <button class="tablinks" onclick="openTab(event, 'Declined')">Declined</button>
+                <button class="tablinks" onclick="openTab(event, 'Received')" <?php echo $isReceived ?>>Received</button>
+                <button class="tablinks" onclick="openTab(event, 'Requested')" <?php echo $isRequested ?>>Requested</button>
+                <button class="tablinks" onclick="openTab(event, 'Declined')" <?php echo $isDeclined ?>>Declined</button>
             </div>
 
             <div id="Received" class="tabcontent">

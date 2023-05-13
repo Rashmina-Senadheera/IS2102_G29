@@ -32,6 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     unset($_SESSION['warning-venue']);
 
     if ($runFood) {
+        $foodBevqId = checkInput($_POST['foodBevqId']);
         $foodBevId = checkInput($_POST['foodBevId']);
         $foodBevName = checkInput($_POST['foodBevName']);
         $foodBevCost = checkInput($_POST['foodBevCost']);
@@ -44,6 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     }
 
     if ($runVenue) {
+        $venueqId = checkInput($_POST['venueqId']);
         $venueId = checkInput($_POST['venueId']);
         $venueName = checkInput($_POST['venueName']);
         $venueCost = checkInput($_POST['venueCost']);
@@ -56,6 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     }
 
     if ($runPV) {
+        $pvqId = checkInput($_POST['pvqId']);
         $pvId = checkInput($_POST['pvId']);
         $pvName = checkInput($_POST['pvName']);
         $pvCost = checkInput($_POST['pvCost']);
@@ -68,6 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     }
 
     if ($runSL) {
+        $slqId = checkInput($_POST['slqId']);
         $slId = checkInput($_POST['slId']);
         $slName = checkInput($_POST['slName']);
         $slCost = checkInput($_POST['slCost']);
@@ -98,9 +102,9 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
 
         // check if ep_quotation is inserted
         if (!empty($last_id)) {
-            $sql = "INSERT INTO `ep_quotation_items`(`qId`, `type`, `name`, `cost`) VALUES (?,?,?,?)";
+            $sql = "INSERT INTO `ep_quotation_items`(`qId`, `type`, `name`, `cost`, `productId`, `supQuotId`) VALUES (?,?,?,?,?,?)";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("issd", $param_id, $param_type, $param_name, $param_cost);
+            $stmt->bind_param("issd", $param_id, $param_type, $param_name, $param_cost, $param_productId, $param_supQuotId);
             $param_id = $last_id;
 
             if ($runFood) {
@@ -111,6 +115,8 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                     $param_name = $foodBevName;
                 }
                 $param_cost = $foodBevCost;
+                $param_productId = $foodBevId;
+                $param_supQuotId = $foodBevqId;
                 $stmt->execute();
             }
             if ($runVenue) {
@@ -121,6 +127,8 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                     $param_name = $venueName;
                 }
                 $param_cost = $venueCost;
+                $param_productId = $venueId;
+                $param_supQuotId = $venueqId;
                 $stmt->execute();
             }
             if ($runPV) {
@@ -131,6 +139,8 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                     $param_name = $pvName;
                 }
                 $param_cost = $pvCost;
+                $param_productId = $pvId;
+                $param_supQuotId = $pvqId;
                 $stmt->execute();
             }
             if ($runSL) {
@@ -141,6 +151,8 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                     $param_name = $slName;
                 }
                 $param_cost = $slCost;
+                $param_productId = $slId;
+                $param_supQuotId = $slqId;
                 $stmt->execute();
             }
         }
