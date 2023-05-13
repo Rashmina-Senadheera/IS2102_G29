@@ -391,7 +391,7 @@ if (isset($_GET['id'])) {
                         <div class="contact">
                             <i class="fa-solid fa-envelope" id="qu-con"></i><?php echo $email;?>
                             <!-- <i class="fa-solid fa-phone" id="qu-conm"></i>0777931062 -->
-                            <i class="fa-brands fa-rocketchat" id="qu-conme"></i><a href="Messages.php"> <b>Message</b> <a>
+                            <i class="fa-brands fa-rocketchat" id="qu-conme"></i><a href="Messages.php?supplier_id=<?php echo $ep_id;?>"> <b>Message</b> <a>
                         </div>
                     </div>
                 </div>

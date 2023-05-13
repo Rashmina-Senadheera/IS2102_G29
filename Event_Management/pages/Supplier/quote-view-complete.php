@@ -294,6 +294,31 @@ if (isset($_GET['id'])) {
                         <div class="prof-name-50">Remarks:</div>
                         <div class="prof-data"><?php echo $remarks; ?></div>
                     </div>
+                     <?php 
+                        $sql1 = "SELECT * FROM user WHERE user_id= $ep_id";
+                        $result1 = mysqli_query($conn, $sql1);
+                        if (mysqli_num_rows($result1) > 0){
+                            $user_details = mysqli_fetch_assoc($result1);
+                            $name = $user_details['name'];
+                            $email = $user_details['email'];
+                        }
+                        else{
+                            echo "Available";
+                        }
+                    
+                    ?>
+                    <div class="prof-all">
+                        <div class="prof-name-50">Event Planner Name:</div>
+                        <div class="prof-data"><?php echo $name;?></div>
+                    </div>
+                    <div class="prof-all">
+                        <div class="prof-name-50">Contact :</div>
+                        <div class="prof-data" style = "display:flex; flex-direction :column">
+                           <div><i class="fa-solid fa-envelope" id="qu-con"></i><?php echo $email;?></div>
+                            <!-- <i class="fa-solid fa-phone" id="qu-conm"></i>0777931062 -->
+                            <div><i class="fa-brands fa-rocketchat" id="qu-conme" style = "margin:10px;margin-left:0px; "></i><a href="Messages.php?supplier_id=<?php echo $ep_id;?>"> <b>Message</b> <a></div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="personal-info" id="quotecost"  style="margin-bottom: 0px; margin-top: 19px;">
@@ -320,31 +345,7 @@ if (isset($_GET['id'])) {
                         <div class="prof-name-50">Remarks:</div>
                         <div class="prof-data"><?php echo $remarks; ?></div>
                     </div>
-                    <?php 
-                        $sql1 = "SELECT * FROM user WHERE user_id= $ep_id";
-                        $result1 = mysqli_query($conn, $sql1);
-                        if (mysqli_num_rows($result1) > 0){
-                            $user_details = mysqli_fetch_assoc($result1);
-                            $name = $user_details['name'];
-                            $email = $user_details['email'];
-                        }
-                        else{
-                            echo "Available";
-                        }
-                    
-                    ?>
-                    <div class="prof-all">
-                        <div class="prof-name-50">Event Planner Name:</div>
-                        <div class="prof-data"><?php echo $name;?></div>
-                    </div>
-                    <div class="prof-all">
-                        <div class="prof-name-50">Contact :</div>
-                        <div class="prof-data" style = "display:flex; flex-direction :column">
-                           <div><i class="fa-solid fa-envelope" id="qu-con"></i><?php echo $email;?></div>
-                            <!-- <i class="fa-solid fa-phone" id="qu-conm"></i>0777931062 -->
-                            <div><i class="fa-brands fa-rocketchat" id="qu-conme" style = "margin:10px;margin-left:0px; "></i><a href="Messages.php"> <b>Message</b> <a></div>
-                        </div>
-                    </div>
+                   
                 </div>
             </div>
         </div>

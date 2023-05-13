@@ -16,8 +16,6 @@
                 request_supplier_quotation r
                 JOIN supplier_quotation q
                 ON r.request_id = q.req_id 
-                JOIN sup_product_general p
-                ON r.psId = p.product_id
                 WHERE r.status='Completed' AND 
                 supplierId = $id";
 

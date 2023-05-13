@@ -97,7 +97,8 @@ a#btn {
     color: rgb(124, 124, 122);
     margin: 10px;
     margin-bottom: 0px;
-    font-size: 15px;
+    font-size: 13px;
+    margin-top: 11px;
 }
 
 .status-list ul {
@@ -156,6 +157,7 @@ a#btn {
     list-style: none;
     margin: 20px;
     margin-top: 3px;
+    margin-bottom: 2px;
 }
 
 .category-list ul li {
@@ -326,6 +328,11 @@ i.bx.bx-plus-circle {
 .rs-title#rid{
     min-width: 8%;
     max-width: 8%;
+}
+.rs-title#oid{
+    min-width: 12%;
+    max-width: 12%;
+    padding-left:4px ;
 }
 p.success{
     margin-bottom: 20px;

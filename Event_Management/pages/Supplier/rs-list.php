@@ -31,9 +31,9 @@
             <div class ='grid-main' id='rs-list'>
 
                 <div class="tab">
-                    <button class="tablinks" onclick="openTab(event, 'Pending')" id="defaultOpen">Pending</button>
-                    <button class="tablinks" onclick="openTab(event, 'Completed')">Completed</button>
-                    <button class="tablinks" onclick="openTab(event, 'Declined')">Declined</button>
+                    <button class="tablinks" onclick="openTab(event, 'Pending')" id="defaultOpen" data-value="Pending">Pending</button>
+                    <button class="tablinks" onclick="openTab(event, 'Completed')" data-value="Completed">Completed</button>
+                    <button class="tablinks" onclick="openTab(event, 'Declined')" data-value="Declined">Declined</button>
                 </div>
 
                 <div class='.ps-card-message'>
@@ -80,7 +80,7 @@
         // Get the element with id="defaultOpen" and click on it
         document.getElementById("defaultOpen").click();
     </script>
-    <script src="../../js/productSupplierFilter.js"></script>
+    <script src="../../js/quoteSupplierFilter.js"></script>
 
 
 </html>
