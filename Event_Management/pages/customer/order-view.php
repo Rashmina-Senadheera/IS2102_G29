@@ -18,17 +18,17 @@ include('customer_header.php');
 <body>
 
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "eventra";
+// $servername = "localhost";
+// $username = "root";
+// $password = "";
+// $dbname = "eventra";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+// // Create connection
+// $conn = new mysqli($servername, $username, $password, $dbname);
+// // Check connection
+// if ($conn->connect_error) {
+//     die("Connection failed: " . $conn->connect_error);
+// }
 
 $id = $_GET['id'];
 
@@ -42,14 +42,15 @@ $id = $_GET['id'];
                 General Details
             </div>
             <?php
-            $sql = "select * 
+            $sql = "SELECT * 
                     from cust_req_general 
                     JOIN request_ep_quotation 
                     ON cust_req_general.request_id = request_ep_quotation.request_id 
                     JOIN user 
-                    ON request_ep_quotation.EP_id = user.user_id";
+                    ON request_ep_quotation.EP_id = user.user_id
+                    WHERE cust_req_general.request_id = $id ";
             $result = $conn->query($sql);
-            $row = $result->fetch_assoc();
+            $row = $result->fetch();
 
             $sql_food = "SELECT * FROM cust_req_food WHERE request_id = $id";
             $sql_venue = "SELECT * FROM cust_req_venue WHERE request_id = $id";
@@ -61,10 +62,10 @@ $id = $_GET['id'];
             $result_pv = $conn->query($sql_pv);
             $result_sl = $conn->query($sql_sl);
 
-            $row1 = $result_food->fetch_assoc();
-            $row2 = $result_venue->fetch_assoc();
-            $row3 = $result_pv->fetch_assoc();
-            $row4 = $result_sl->fetch_assoc();
+            $row1 = $result_food->fetch();
+            $row2 = $result_venue->fetch();
+            $row3 = $result_pv->fetch();
+            $row4 = $result_sl->fetch();
             ?>
             <div>
                 <div class="sm-all">
@@ -116,71 +117,74 @@ $id = $_GET['id'];
                     </div>
                     <div class="prof-all">
                         <div class="prof-name">Location:</div>
-                        <div class="prof-data"><?php echo $row2['venue'] ?></div>
+                        <div class="prof-data">
+                            <?php 
+                        if($row2){echo $row2['venue'];} else{ echo "None";}                   
+                         ?></div>
                     </div>
                     <div class="prof-all">
                         <div class="prof-name">Remarks:</div>
-                        <div class="prof-data"><?php echo $row2['remarks'] ?></div>
+                        <div class="prof-data"><?php if($row2){echo $row2['remarks']; }else{ echo "None" ;}  ?></div>
                     </div>
                     <div class="profile-name">
                         Food & Beverages
                     </div>
                     <div class="prof-all">
                         <div class="prof-name">Available in:</div>
-                        <div class="prof-data"><?php echo $row1['available_in'] ?></div>
+                        <div class="prof-data"><?php if($row1){ echo $row1['available_in']; }else{ echo "None" ;}  ?></div>
                     </div>
                     <div class="prof-all">
                         <div class="prof-name">Available at:</div>
-                        <div class="prof-data"><?php echo $row1['available_at'] ?></div>
+                        <div class="prof-data"><?php if($row1){ echo $row1['available_at']; }else{ echo "None" ;}  ?></div>
                     </div>
                     <div class="prof-all">
                         <div class="prof-name">Preferences:</div>
-                        <div class="prof-data"><?php echo $row1['preferences'] ?></div>
+                        <div class="prof-data"><?php if($row1){ echo $row1['preferences']; }else{ echo "None" ;} ?></div>
                     </div>
                     <div class="prof-all">
                         <div class="prof-name">Remarks:</div>
-                        <div class="prof-data"><?php echo $row1['remarks'] ?></div>
+                        <div class="prof-data"><?php if($row1){ echo $row1['remarks']; }else{ echo "None" ;} ?></div>
                     </div>
                     <div class="profile-name">
                         Sound & Lightning
                     </div>
                     <div class="prof-all">
                         <div class="prof-name">Sound Type:</div>
-                        <div class="prof-data"><?php echo $row4['sound_type'] ?></div>
+                        <div class="prof-data"><?php if($row4){  echo $row4['sound_type']; }else{ echo "None" ;} ?></div>
                     </div>
                     <div class="prof-all">
-                        <div class="prof-name">Light:</div>
-                        <div class="prof-data"><?php echo $row4['light_type'] ?></div>
+                        <div class="prof-name">Light Type:</div>
+                        <div class="prof-data"><?php if($row4){ echo $row4['light_type']; }else{ echo "None" ;}  ?></div>
                     </div>
                     <!-- <div class="prof-all">
                         <div class="prof-name">Light Type:</div>
-                        <div class="prof-data"><?php echo $row4['light_type'] ?></div>
+                        <div class="prof-data"><?php if($row4){ echo $row4['light_type']; }else{ echo "None" ;}  ?></div>
                     </div> -->
                     <div class="prof-all">
                         <div class="prof-name">Remarks:</div>
-                        <div class="prof-data"><?php echo $row4['remarks'] ?></div>
+                        <div class="prof-data"><?php  if($row4){ echo $row4['remarks']; }else{ echo "None" ;}  ?></div>
                     </div>
                     <div class="profile-name">
                         Photography & Videography
                     </div>
                     <div class="prof-all">
                         <div class="prof-name">Photography Preferences:</div>
-                        <div class="prof-data"><?php echo $row3['photo_pref'] ?></div>
+                        <div class="prof-data"><?php   if($row3){ echo $row3['photo_pref']; }else{ echo "None" ;} ?></div>
                     </div>
                     <div class="prof-all">
                         <div class="prof-name">Videography Preferences:</div>
-                        <div class="prof-data"><?php echo $row3['video_pref'] ?></div>
+                        <div class="prof-data"><?php if($row3){ echo $row3['video_pref']; }else{ echo "None" ;}  ?></div>
                     </div>
                     <div class="prof-all">
                         <div class="prof-name">Remarks:</div>
-                        <div class="prof-data"><?php echo $row3['remarks'] ?></div>
+                        <div class="prof-data"><?php if($row3){ echo $row3['remarks']; }else{ echo "None" ;}  ?></div>
                     </div>
                     <br>
                     <center>
                         <a href="order.php">
                             <button type="submit" class="srcButton" data-inline="true">Back</button>
                         </a>
-                        <a href="quotationView.php">
+                        <a href="quotationView.php?id=<?php echo $id ?>">
                             <button type="submit" class="srcButton" data-inline="true">View Quotation</button>
                         </a>
                     </center>

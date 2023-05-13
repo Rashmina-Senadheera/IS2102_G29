@@ -88,12 +88,13 @@ if ($conn->connect_error) {
 
                 ?>
 
-                <tr onclick="myFunction()">
+                <tr data-href="order-view.php?id=<?php echo $row['request_id'] ?>">
                     <td><?php echo $row['req_date'] ?></td>
                     <td><?php echo $row['name'] ?></td>
                     <td><?php echo $row['email'] ?></td>
                     <td><?php echo $row['event_type'] ?></td>
                     <td><?php echo $row['status'] ?></td>
+                    <td><?php echo $row['request_id']  ?></td>
 
                     <script>
                     function myFunction() {
@@ -135,6 +136,18 @@ function searchFilter() {
     }       
   }
 }
+
+
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const rows = document.querySelectorAll("tr[data-href]");
+            rows.forEach( row => {
+                row.addEventListener("click", ()=>{
+                    window.location.href = row.dataset.href;
+                });
+            });
+        });
+    
 </script>
 
 </body>
