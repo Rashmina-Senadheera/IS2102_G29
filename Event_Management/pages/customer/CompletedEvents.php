@@ -12,7 +12,8 @@ include('db_conn.php');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../css/eventPlannerMain.css">
-    <link rel="stylesheet" href="../../css/eventPlannerMyevents.css">
+    <!-- <link rel="stylesheet" href="../../css/eventPlannerMyevents.css"> -->
+    <link rel="stylesheet" href="../../css/viewSuppliersEP.css">
 <style>
     .imgbx:hover{
         transform: scale(1.1);
@@ -54,8 +55,8 @@ if ($conn->connect_error) {
                 <button type="submit" class="srcButton">Search</button>
             </div>
         </div>
-        <div class="gridMain">
-            <div class="my-events-container">
+        <div class="gridSuppliers">
+            <div class="suppliers-cards-container" id="supplier_items">
                 <?php
 
                 $sql = "select id, eventtype, info, planner_email, event_type, `status` from quotation where status='Completed'";
