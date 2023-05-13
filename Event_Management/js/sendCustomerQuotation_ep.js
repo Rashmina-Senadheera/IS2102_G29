@@ -1,26 +1,30 @@
-function setFoodBevCost(id, name, cost) {
-    document.getElementById('foodBevId').value = id;
+function setFoodBevCost(qid, pid, name, cost) {
+    document.getElementById('foodBevqId').value = qid;
+    document.getElementById('foodBevId').value = pid;
     document.getElementById('foodBevCost').value = cost;
     document.getElementById('foodBevName').value = name;
     calcTotalCost();
 }
 
-function setVenueCost(id, name, cost) {
-    document.getElementById('venueId').value = id;
+function setVenueCost(qid, pid, name, cost) {
+    document.getElementById('venueqId').value = qid;
+    document.getElementById('venueId').value = pid;
     document.getElementById('venueCost').value = cost;
     document.getElementById('venueName').value = name;
     calcTotalCost();
 }
 
-function setPVCost(id, name, cost) {
-    document.getElementById('pvId').value = id;
+function setPVCost(qid, pid, name, cost) {
+    document.getElementById('pvqId').value = qid;
+    document.getElementById('pvId').value = pid;
     document.getElementById('pvCost').value = cost;
     document.getElementById('pvName').value = name;
     calcTotalCost();
 }
 
-function setSLCost(id, name, cost) {
-    document.getElementById('slId').value = id;
+function setSLCost(qid, pid, name, cost) {
+    document.getElementById('slqId').value = qid;
+    document.getElementById('slId').value = pid;
     document.getElementById('slCost').value = cost;
     document.getElementById('slName').value = name;
     calcTotalCost();
