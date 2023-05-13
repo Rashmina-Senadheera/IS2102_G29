@@ -42,7 +42,7 @@ $id = $_GET['id'];
                 General Details
             </div>
             <?php
-            $sql = "SELECT * 
+            $sql = "SELECT *
                     from cust_req_general 
                     JOIN request_ep_quotation 
                     ON cust_req_general.request_id = request_ep_quotation.request_id 
@@ -82,7 +82,7 @@ $id = $_GET['id'];
                 </div>
                 <div class="sm-all">
                     <div class="sm-name">Tentative date:</div>
-                    <div class="sm-link">From: <?php echo $row['from_date'] ?> <br> To : <?php echo $row['to_date'] ?></div>
+                    <div class="sm-link"><?php echo $row['event_date'] ?> </div>
                 </div>
                 <div class="sm-all">
                     <div class="sm-name">Budget:</div>

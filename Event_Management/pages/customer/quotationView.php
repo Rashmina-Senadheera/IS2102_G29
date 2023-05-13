@@ -69,7 +69,7 @@ if(isset($_GET['id'])){
                 <div class="row">
                     <div class="input-50">
                         <label class="input-label">Requested On:</label>
-                        <div class="input-value"><?php echo $row['from_date'] ?></div>
+                        <div class="input-value"><?php echo $row['req_date'] ?></div>
                     </div>
                     <div class="input-50">
                         <label class="input-label">Event Type:</label>
@@ -89,7 +89,7 @@ if(isset($_GET['id'])){
                 <div class="row">
                     <div class="input-50">
                         <label class="input-label">Tentative Date:</label>
-                        <div class="input-value">From: <?php echo $row['from_date'] ?> <br> To : <?php echo $row['to_date'] ?></div>
+                        <div class="input-value"><?php echo $row['event_date'] ?> </div>
                     </div>
                     <div class="input-50">
                         <label class="input-label">Budget:</label>
@@ -324,6 +324,7 @@ if(isset($_GET['id'])){
                         <input type="text" class="input-field" name="cusId" id="cusId" placeholder="Cost" value="<?php if($row9){ echo $row9['cusId']; }else{ echo "None" ;}?>"  disabled/>
                         <input type="text" class="input-field" name="epQuotId" id="epQuotId" placeholder="Cost" value="<?php if($row9){ echo $row9['qId']; }else{ echo "None" ;}?>"  disabled/>
                         <input type="text" class="input-field" name="supQuotId" id="supQuotId" placeholder="Cost" value="<?php if($row9){ echo $row9['quotation_id']; }else{ echo "None" ;}?>"  disabled/>
+                        <input type="text" class="input-field" name="reqId" id="reqId" placeholder="Cost" value="<?php echo $id; ?>"  disabled/>
                         
                     </div>
                         <?php
@@ -403,6 +404,8 @@ const createCheckoutSession = function (stripe) {
     let cusId = document.querySelector('#cusId').value;
     let epQuotId= document.querySelector("#epQuotId").value;
     let supQuotId= document.querySelector("#supQuotId").value;
+    let reqId= document.querySelector("#reqId").value;
+
         
     return fetch("../payment/payment_init.php", {
         method: "POST",
@@ -416,6 +419,7 @@ const createCheckoutSession = function (stripe) {
             cus_Id : cusId,
             ep_QuotId : epQuotId,
             sup_QuotId : supQuotId,
+            req_Id : reqId,
             event : "Birthday",
             productID : "DP12345",
             productPrice : advance_cost,
