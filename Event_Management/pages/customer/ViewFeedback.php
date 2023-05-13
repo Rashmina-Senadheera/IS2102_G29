@@ -92,15 +92,15 @@ include('customer_header.php');
                                     <?php
                                 } 
                             ?></td>
-                            <td class="tCenter menu">&#10247
+                            <td class="tCenter menu">
                             <ul>
-                                <li>
+                                <!-- <li>
                                     <a href="#">Edit</a>
                                 </li>
                                 <li>
                                     <a href="#">Delete</a>
                                 </li>
-                            </ul>
+                            </ul> -->
                         </td>
                         <?php
                     }

@@ -120,7 +120,7 @@ require_once('../controllers/commonFunctions.php');
         </div>
 
         <div class="form-card scrollable">
-            <form method="POST" action="controllers/addNewPackage.php" enctype="multipart/form-data">
+            <form method="POST" action="controllers/Payments.php" enctype="multipart/form-data">
                 <div class="form-title">Quotation</div>
                 <!-- <div class="form-description"></div> -->
                 <div class="row">
@@ -142,6 +142,10 @@ require_once('../controllers/commonFunctions.php');
                             <input type="text" class="input-field" name="packageName" placeholder="Supplier Name / Product Name" value="Gunasinghe Catering" disabled />
                             <input type="text" class="input-field" name="packageName" placeholder="Cost" style="margin-top: 5px;" value="251000" disabled />
                         </div>
+                    </div>
+                    <div class="input">
+                        <label class="input-label">Total Cost</label>
+                        <input type="text" class="input-field" name="packageName" placeholder="Cost" value="453000" disabled />
                     </div>
                     <div class="row">
                         <div class="input">

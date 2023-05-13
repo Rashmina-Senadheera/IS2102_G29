@@ -159,3 +159,8 @@ a#ed{
     border-radius: 0.7rem;
     object-fit: cover;
 }
+.restrict{
+    background-color: rgb(245, 187, 187);
+    padding: 2px 10px 2px 10px;
+    border-radius: 10px;
+}

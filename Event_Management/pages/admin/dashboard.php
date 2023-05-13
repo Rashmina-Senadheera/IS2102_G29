@@ -76,74 +76,68 @@
             
             </div>
         </div>
-        <!-- <div class="charts_area">
-            <div class="pie">
-            <canvas id="pieChart"></canvas>
-            </div>
-            <div class="bar">
-            <canvas id="barChart"></canvas>
-            </div>
-        </div>
-            <script>
-            const ctx = document.getElementById('pieChart');
-            const bar = document.getElementById('barChart');
 
-            new Chart(ctx, {
-                type: 'pie',
-                data: {
-                labels: <?php //echo json_encode($roles)?>,
-                datasets: [{
-                    label: ' ',
-                    data: <?php //echo json_encode($amount)?>,
-                    borderWidth: 1,
-                    
-                }]
-                },
-                options: {
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                    },
-                }
-            });
-
-            new Chart(bar, {
-                type: 'bar',
-                data: {
-                labels: <?php //echo json_encode($roles)?>,
-                datasets: [{
-                    label: ' ',
-                    data: <?php //echo json_encode($amount)?>,
-                    borderWidth: 1,
-                    
-                }]
-                },
-                options: {
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                    },
-                }
-            });
-            </script>
-             -->
-             <!-- <table class="details_table">
+        <table class="details_table">
                     <thead>
                     <tr>
                         <th>ID</th>
                         <th >Name</th>
                         <th >Email</th>
-                        <th>Actions </th>
+                        <th>Message</th>
+                        <th>Subject</th>
+                        <th> </th>
+                        
                     </tr>
                     </thead>
                     <tbody class="table_body">
+                        <?php 
+                           $sql = "SELECT * FROM `complaints` WHERE replied= 0 ORDER BY date ASC LIMIT 3 ";
+                           $res = mysqli_query($conn,$sql);
+                           if($res==TRUE){
+                               $count = mysqli_num_rows($res);
+                               $num = 1;
+                               $output = "";
+                               if($count >0){
+                                   while($rows = mysqli_fetch_assoc($res)){
+                                        $id = $rows['id'];
+                                       $name = $rows['name'];
+                                       $email = $rows['email'];
+                                       $subject = $rows['subject'];
+                                       $message = $rows['remarks'];
+                                       
+                       
+                                       $output .=  '
+                                                    <tr data-href="reply_inquiry.php?id='.$id.'">
+                                                    
+                                                   <td>'.$num++.'</td>
+                                                   <td>'.$name.'</td>
+                                                   <td>'.$email .'</td>
+                                                   <td>'.$message.'</td> 
+                                                   <td>'.$subject.'</td>    
+                                                   <td>'.$id.'</td> 
+                                                   ';
+                                   }
+                               }
+                               echo $output;
+                           }
+                        
+                        ?>
                     
                     </tbody>
                     
-                </table> -->
+                </table>
+       
     </main>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const rows = document.querySelectorAll("tr[data-href]");
+            rows.forEach( row => {
+                row.addEventListener("click", ()=>{
+                    window.location.href = row.dataset.href;
+                });
+            });
+        });
+    </script>
 
 </body>
 </html>

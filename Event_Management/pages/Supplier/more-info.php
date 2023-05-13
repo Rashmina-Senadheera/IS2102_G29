@@ -77,8 +77,15 @@ if (isset($_GET['id'])) {
 
 <body>
     <div class="container-profile">
-        <div class="flex-container-profile">
-            <div class="about">
+        <div class='flex-container-main' id="product">
+            <div class="title-search" id="product">
+                <div class='searchSec'>
+                    <div class='page-title' id="quote" ><?php echo $title; ?></div>
+                </div>
+            </div>
+        </div>
+        <div class="flex-container-profile" id="product">
+            <div class="about" id ="product">
                 <div class="image">
                     <?php
                         if ($img_result->num_rows > 0) {
@@ -96,10 +103,7 @@ if (isset($_GET['id'])) {
                     <button class="display-left" onclick="plusDivs(-1)">&#10094;</button>
                     <button class="display-right" onclick="plusDivs(1)">&#10095;</button>
                 </div>
-                <div class="product-title">
-                    <div class="product-name">
-                        <?php echo $title;?>
-                    </div>    
+                <div class="product-title">  
                     <div class="product-cat">
                         <?php $title;?>
                     </div> 
@@ -112,8 +116,8 @@ if (isset($_GET['id'])) {
                     </div>
                 </div>
             </div>
-            <div class="other">
-                <div class="info">
+            <div class="other" >
+                <div class="info" id ="product">
                     <div class="personal-info">
                         <div class="personal-info-heading">
                             Product Description
@@ -121,7 +125,7 @@ if (isset($_GET['id'])) {
 
                         <?php if($type == 'venue') {?>
                             <div class="prof-all-p">
-                                <div class="prof-name-p">Catered For</div>
+                                <div class="prof-name-p">Venue In</div>
                                 <div class="prof-data"><?php echo $venloc;?></div>
                             </div>
                             <div class="prof-all-p">
@@ -244,12 +248,30 @@ if (isset($_GET['id'])) {
                             <div class="prof-data"><?php echo $budget_max;?></div>
                         </div>
 
-                        <div class="prof-all-e">
-                            <a href="product-edit.php?id=<?php echo $id;?>" class="custom-button-e" id="ed">
+                        <?php
+                        $sql = "SELECT * FROM request_supplier_quotation WHERE status='Completed' AND psId = $id";
+                        $result = mysqli_query($conn, $sql);
+
+                        if (! mysqli_num_rows($result) > 0) {
+                            echo '
+                            <div class="prof-all-e">
+                            <a href="product-edit.php?id='.$id.'" class="custom-button-e" id="ed">
                                 Edit
                             </a>
                             <button type="button"class="custom-button-e" id="del" onclick="deleteProduct()" >Delete</button>
-                        </div>
+                        </div>';
+                        }else{
+                          
+                          echo '
+                            <div class="prof-all-e">
+                                <div class = "restrict">
+                                    Cant Edit or Update Product : Quotation given ! 
+                                </div>
+                            </div>
+                         ' ; 
+                        }
+                        ?>
+
                     </div>
                     </div>
                 </div>

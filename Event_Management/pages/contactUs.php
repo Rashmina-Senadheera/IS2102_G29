@@ -6,7 +6,14 @@ if(isset($_SESSION['user_id'])){
 else{
     include('unreg_header.php');
 }
-
+function showSessionMessage($error)
+            {
+                if (isset($_SESSION[$error])) {
+                    $tempErr = $_SESSION[$error];
+                    unset($_SESSION[$error]);
+                    return $tempErr;
+                }
+            }
 ?>
 
 <body>
@@ -14,32 +21,41 @@ else{
     <h2>Contact Form</h2>
         <div class="contact-form-div">
             
-            <form action="" method="POST" class="contact-form">
+            <form action="php/contactUs.php" method="POST" class="contact-form">
                 <!-- <div class="form-in"> -->
                     <div class="row-start">
                         <div class="input-group">
-                            <label for="name">Name </label>
+                            <label for="name">Name *</label>
                             <input type="text" name="name">
+                            <div class="error"><?php echo showSessionMessage('name-error') ?></div>
                         </div>
                         <div class="input-group">
-                            <label for="email">Email </label>
+                            <label for="email">Email *</label>
                             <input type="email" name="email">
+                            <div class="error"><?php echo showSessionMessage('email-error') ?></div>
                         </div>
                     </div>
                     <div class="single-row">
                         <div class="input-group">
-                            <label for="name">Subject </label>
-                            <input type="email" name="name">
+                            <label for="name">Subject *</label>
+                            <input type="text" name="subject">
+                            <div class="error"><?php echo showSessionMessage('subject-error') ?></div>
                         </div>
                     </div>
                     <div class="single-row">
 
                         <div class="input-group">
-                        <label class="label" >Remarks</label>
-                        <textarea class="txt_remarks" rows="4" cols="20" placeholder="Any remarks regarding the 'Other' options chosen"></textarea>
+                        <label class="label" >Remarks *</label>
+                        <textarea class="txt_remarks" name="remarks" rows="4" cols="20" placeholder="..."></textarea>
+                        <div class="error"><?php echo showSessionMessage('remarks-error') ?></div>
                         </div>
                     </div>
-
+                    <div class="single-row">
+                        <div class="input-group submit_div">
+                        <input type="submit" value="Submit" class="btn-submit">
+                        <div class="success"><?php echo showSessionMessage('data-inserted') ?></div>
+                        </div>
+                    </div>
                 <!-- </div> -->
 
             </form>
@@ -47,6 +63,9 @@ else{
 
 
     </main>
+    
+        
+    
     
 </body>
 <?php 

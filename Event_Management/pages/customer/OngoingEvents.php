@@ -70,7 +70,7 @@ if ($conn->connect_error) {
                         <ul class="sci">
                             <li>
 
-                                <a href="Event1.php?id=<?php echo $row['id'] ?>">View</a>
+                                <a href="Event2.php?id=<?php echo $row['id'] ?>">View</a>
                             </li>
                         </ul>
                     </div>

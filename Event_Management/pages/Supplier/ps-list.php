@@ -1,10 +1,4 @@
-<?php
-    include('../constants.php');
-    include( 'supplier_sidenav.php' );
-    include( 'header.php' );
-    $id = $_SESSION['user_id'];
-    if(isset($_SESSION['user_name'])){
-?>
+
 
 <!DOCTYPE html>
 <html>
@@ -17,8 +11,23 @@
         <link rel = 'stylesheet' href = '../../css/supplierMain.css'>
         <link rel = 'stylesheet' href = '../../css/ps-list.css'>
     </head>
+    <?php
+        ob_start();
+
+        include('../constants.php');
+        include( 'supplier_sidenav.php' );
+        include( 'header.php' );
+        include('../controllers/commonFunctions.php');
+        $id = $_SESSION['user_id'];
+
+        ob_end_flush();
+    ?>
+
+    
         
     <body>
+
+        
         <div class = 'container-main'>
             <div class = 'flex-container-main'>
                 <div class="title-search">
@@ -35,101 +44,116 @@
             </div>
         <div class="ps-list">
             <div class ='grid-main' id='ps-list'>
-                <div class="cards">
+                <div class="cards" id="supplier_items" data-current-page="1" aria-live="polite">
+                    <div class='.ps-card-message'>
+                        <?php if (isset($_SESSION['success'])) { 
+                            echo '<p class="success">' . showSessionMessage("success") . '</p>';
+                        }?>
+                        <?php if (isset($_SESSION['error'])) { 
+                            echo '<p class="error">' . showSessionMessage("error") . '</p>';
+                        } ?>
+                    </div>
                     <?php
-                        $sql = "SELECT V.product_ID,V.title,V.description
-                                FROM sup_product_general V 
-                                WHERE V.supplier_ID = $id";
+                        if (isset($_GET['type'])) {
+                            $type = $_GET['type'];
+                            if ($type == "foodbev") {
+                                $sql = "SELECT `product_ID`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = 'foodbev'  AND supplier_ID = $id";
+                            } else if ($type == "pv") {
+                                $sql = "SELECT `product_ID`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = 'photo' OR `type` = 'video'  AND supplier_ID = $id";
+                            } else if ($type == "sl") {
+                                $sql = "SELECT `product_ID`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = 'deco' OR `type` = 'deco'  AND supplier_ID = $id";
+                            } else {
+                                $sql = "SELECT `product_ID`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = '$type' AND supplier_ID = $id ";
+                            }
+                        } else {
+                            $sql = "SELECT `product_ID`, `title`, `description`, `type` FROM sup_product_general WHERE supplier_ID = $id ";
+                        }
 
                         $result = $conn->query($sql);
-                        if ($result->num_rows > 0) {
-                        while($row = $result->fetch_assoc()) {
-                            $product_id = $row['product_ID'];
-                            $image_sql = "SELECT * FROM supplier_product_images WHERE product_id = $product_id LIMIT 1";
-                            $image_result = $conn->query($image_sql);
-                            $image_row = $image_result->fetch_assoc();
-                            $packageImage = $image_row['image'];
-                    ?>
-                    <a href='more-info.php?id=<?php echo $row["product_ID"];?>' id='a-card'>
-                        <div class='ps-card'>
-                            <div class='ps-card-img'>
-                                <img src= "data:image/jpeg;base64,<?php echo base64_encode($packageImage);?> " alt="">
+                        if (mysqli_num_rows($result) > 0) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $product_id = $row['product_ID'];
+                                $image_sql = "SELECT * FROM supplier_product_images WHERE product_id = $product_id LIMIT 1";
+                                $image_result = $conn->query($image_sql);
+                                $image_row = $image_result->fetch_assoc();
+                                $packageImage = isset($image_row['image']) ? $image_row['image'] : 0;
+                        ?>
+                        <a href='more-info.php?id=<?php echo $row["product_ID"];?>' id='a-card' class="item">
+                            <div class='ps-card'>
+                                <div class='ps-card-img'>
+                                    <img src= <?php 
+                                    if (!$packageImage){
+                                        echo "../../images/imageNot.png";
+                                    }else{
+                                        echo "data:image/jpeg;base64,".base64_encode($packageImage);
+                                    }
+                                    ?>> 
+                                </div>
+                                <div class='ps-card-desc'>
+                                    <div class='ps-ptype'><?php 
+                                    switch($row["type"]){
+                                        case 'venue':
+                                            echo "Venue";
+                                            break;
+                                        case 'foodbev':
+                                            echo "Catering";
+                                            break;
+                                        case 'transport':
+                                            echo "Transport";
+                                            break;
+                                        case 'florist':
+                                            echo "Floral Deco ";
+                                            break;
+                                        case 'deco':
+                                            echo "Decorations ";
+                                            break;
+                                        case 'photo':
+                                            echo "Photography ";
+                                            break;
+                                        case 'ent':
+                                            echo "Entertainment ";
+                                            break;
+                                        case 'other':
+                                            echo "Other ";
+                                            break;
+                                        default:
+                                            echo $row["type"];
+                                    }
+                                    ?></div>
+                                    <div class='ps-title'><?php echo $row["title"];?></div>
+                                    <div class='ps-type'><?php echo $row["description"];?></div>
+                                    
+                                </div>
                             </div>
-                            <div class='ps-card-desc'>
-                                <div class='ps-title'><?php echo $row["title"];?></div>
-                                <div class='ps-type'><?php echo $row["description"];?></div>
-                            </div>
-                        </div>
-                    </a> 
-                    
+                        </a> 
                     <?php 
-                        ;}
+                        }
+                        } else {
+                            echo "<div class='no-records'>
+                                    <img src='../../images/notFound.jpg' alt='No Requests' id='noReports'>
+                                    <div class='message-noRecords'> No Products Found </div>  
+                                </div>";
                         }
                     ?> 
                 </div>
+                  <nav class="pagination-container">
+                    <button class="pagination-button" id="prev-button" aria-label="Previous page" title="Previous page">
+                    &lt;
+                    </button>
+
+                    <div id="pagination-numbers">
+
+                    </div>
+
+                    <button class="pagination-button" id="next-button" aria-label="Next page" title="Next page">
+                    &gt;
+                    </button>
+                </nav>
             </div>
-            <div class="filter">
-                <div class="search">
-                    <div class = 'input-container'>
-                        <input class = 'input-field-filter' type = 'text' placeholder = 'Search payments' name = 'search'>
-                        <i class = 'fa fa-search icon'></i>
-                    </div>
-                </div>
-                <div class="status">
-                    <div class="filter-heading">Filter by Status</div>
-                    <div class="status-list">
-                        <ul>
-                            <li><a href="#">
-                                <div class="status-list-icon" id="in"><i class='bx bx-play-circle'></i></div>
-                                <div class="li-heading" id="in">Active</div>
-                            </a></li>
-                            <li><a href="#">
-                                <div class="status-list-icon" id="out"><i class='bx bx-pause-circle'></i></i></div>
-                                <div class="li-heading" id="out">Suspended</div>
-                            </a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="category">
-                    <div class="filter-heading">Filter by Category</div>
-                    <div class="category-list">
-                        <ul>
-                            <li><input type="checkbox">All</li>
-                            <li><input type="checkbox">Venue</li>
-                            <li><input type="checkbox">Entertainment</li>
-                            <li><input type="checkbox">Catering</li>
-                            <li><input type="checkbox">Photography</li>
-                            <li><input type="checkbox">Transport</li>
-                            <li><input type="checkbox">Beverages</li>
-                            <li><input type="checkbox">Florists</li>
-                            <li><input type="checkbox">Decoration</li>
-                            <li><input type="checkbox">Lighting</li>
-                            <li><input type="checkbox">Audio/Vedio</li>
-                        </ul>
-                    </div>
-                    <div class="sort">
-                    <div class="filter-heading">Filter by Date</div>
-                    <div class="sort-list">
-                        <ul>
-                            <li>
-                                <select name="date" id="date-sort">
-                                    <option value="oldest">Oldest on Top</option>
-                                    <option value="newest">Newest on Top</option>
-                                </select>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            <?php require_once 'components/productFilter.php'; ?>
         </div>
-        
+        <script src="../../js/productSupplierFilter.js"></script>
+        <script src="../../js/supPagination.js"></script>
     </body>
 
 </html>
-
-<?php
- }else{
-    header("Location:sign_in.php?");
-    exit();
- }
-?>
