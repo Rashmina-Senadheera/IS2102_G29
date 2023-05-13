@@ -70,7 +70,7 @@ function getQuotationDetails($reqID, $conn, $type)
         <div class="row">
             <div class="input-50">
                 <label class="input-label">Tentative Date:</label>
-                <div class="input-value"><?php echo $date ?></div>
+                <div class="input-value"><?php echo $event_date ?></div>
             </div>
             <div class="input-50">
                 <label class="input-label">Budget (Rs.):</label>

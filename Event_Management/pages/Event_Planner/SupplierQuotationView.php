@@ -1,9 +1,6 @@
 <?php
 //check if there is a id in the url
-if (isset($_GET['id'])) {
-    $reqID = isset($_GET['reqID']) && !empty($_GET['reqID']) ? $_GET['reqID'] : 0;
-    $id = $_GET['id'];
-} else {
+if (empty($_GET['qID'])) {
     header("Location: 404.php");
     exit();
 }
@@ -12,17 +9,24 @@ require_once('eventplanner_sidenav.php');
 require_once('eventplanner_header.php');
 require_once('../controllers/commonFunctions.php');
 
-$id = checkInput($id);
-require_once('./controllers/getProductDetails.php');
+$qid = $_GET['qID'];
+$sq_sql = "SELECT * 
+            FROM supplier_quotation s, request_supplier_quotation r 
+            WHERE quotation_id = $qid AND
+            s.req_id = r.request_id";
 
-// check if the user already requested a quotation for the selected event
-$sql = "SELECT * FROM request_supplier_quotation WHERE for_cus_req = $reqID AND psId = $id";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-    $alreadyRequested = true;
+// execute query and check if successful
+if ($result = $conn->query($sq_sql)) {
+    $row = $result->fetch_assoc();
+    $id = $row['psId'];
+    $supCost = formatCurrency($row['cost']);
+    $supRemarks = $row['remarks_quote'];
 } else {
-    $alreadyRequested = false;
+    header("Location: 404.php");
+    exit();
 }
+
+require_once('./controllers/getProductDetails.php');
 
 ?>
 
@@ -40,11 +44,6 @@ if ($result->num_rows > 0) {
 
 <body>
     <div class="container-profile">
-        <?php if ($alreadyRequested) { ?>
-            <div class="ep-availability unavailable" style="text-align: center;">
-                You have already requested a quotation from this supplier for the selected Customer Request.
-            </div>
-        <?php } ?>
         <div class="flex-container-profile">
             <div class="about">
                 <div class="ps-images">
@@ -77,13 +76,6 @@ if ($result->num_rows > 0) {
                 <div class="product-descript">
                     <div class="sm-all-p">
                         <div class="sm-name">
-                            <?php if (!$alreadyRequested) { ?>
-                                <div class="actionBtn">
-                                    <button type="button" class="accepted" style="margin-left: 0;" onclick="window.location='./request-quotation.php?id=<?php echo $id ?>&reqID=<?php echo $reqID ?>';">
-                                        Request a Quotation
-                                    </button>
-                                </div>
-                            <?php } ?>
                             <div class="actionBtn">
                                 <button type="button" class="rejected" style="margin-left: 0;" onclick="window.location='Messages.php';">
                                     Message Supplier
@@ -96,121 +88,137 @@ if ($result->num_rows > 0) {
             <div class="other">
                 <div class="info">
                     <div class="personal-info">
+                        <div class="sup-quotation-details">
+                            <div class="product-info-heading" id="quoteC">
+                                Quotation Details
+                            </div>
+                            <div class="prof-all">
+                                <div class="prof-name-50"> Quoted Cost:</div>
+                                <div class="prof-data" style="font-weight: 700;">Rs. <?php echo $supCost ?></div>
+                            </div>
+                            <div class="prof-all">
+                                <div class="prof-name-50"> Remarks:</div>
+                                <div class="prof-data"><?php echo $supRemarks ?></div>
+                            </div>
+                        </div>
+                        <!-- Keep some space -->
+                        <div style="margin-bottom: 50px;"></div>
+
                         <div class="product-info-heading">
                             Product / Service Description
                         </div>
                         <?php
                         if (!empty($suitable_for)) {
-                            echo '<div class="prof-all-p">
+                            echo '<div class="prof-all">
                                     <div class="prof-name-p">Suitable for</div>
                                     <div class="prof-data">' . $suitable_for . '</div>
                                 </div>';
                         }
                         if (!empty($locations)) {
-                            echo '<div class="prof-all-p">
+                            echo '<div class="prof-all">
                                     <div class="prof-name-p">Available Locations</div>
                                     <div class="prof-data">' . $locations . '</div>
                                 </div>';
                         }
                         if (!empty($provide)) {
-                            echo '<div class="prof-all-p">
+                            echo '<div class="prof-all">
                                     <div class="prof-name-p">Provide</div>
                                     <div class="prof-data">' . $provide . '</div>
                                 </div>';
                         }
                         if (!empty($type_of_flowers)) {
-                            echo '<div class="prof-all-p">
+                            echo '<div class="prof-all">
                                     <div class="prof-name-p">Type of Flowers</div>
                                     <div class="prof-data">' . $type_of_flowers . '</div>
                                 </div>';
                         }
                         if (!empty($height)) {
-                            echo '<div class="prof-all-p">
+                            echo '<div class="prof-all">
                                     <div class="prof-name-p">Height</div>
                                     <div class="prof-data">' . $height . '</div>
                                 </div>';
                         }
                         if (!empty($quantity)) {
-                            echo '<div class="prof-all-p">
+                            echo '<div class="prof-all">
                                     <div class="prof-name-p">Quantity</div>
                                     <div class="prof-data">' . $quantity . '</div>
                                 </div>';
                         }
                         if (!empty($catered_for)) {
-                            echo '<div class="prof-all-p">
+                            echo '<div class="prof-all">
                                     <div class="prof-name-p">Catered for</div>
                                     <div class="prof-data">' . $catered_for . '</div>
                                 </div>';
                         }
                         if (!empty($transport)) {
-                            echo '<div class="prof-all-p">
+                            echo '<div class="prof-all">
                                     <div class="prof-name-p">Transport Provide</div>
                                     <div class="prof-data">' . $transport . '</div>
                                 </div>';
                         }
                         if (!empty($available_as)) {
-                            echo '<div class="prof-all-p">
+                            echo '<div class="prof-all">
                                     <div class="prof-name-p">Available as</div>
                                     <div class="prof-data">' . $available_as . '</div>
                                 </div>';
                         }
                         if (!empty($available_for)) {
-                            echo '<div class="prof-all-p">
+                            echo '<div class="prof-all">
                                     <div class="prof-name-p">Available as</div>
                                     <div class="prof-data">' . $available_for . '</div>
                                 </div>';
                         }
                         if (!empty($transport_type)) {
-                            echo '<div class="prof-all-p">
+                            echo '<div class="prof-all">
                                     <div class="prof-name-p">Type of Transport</div>
                                     <div class="prof-data">' . $transport_type . '</div>
                                 </div>';
                         }
                         if (!empty($brand)) {
-                            echo '<div class="prof-all-p">
+                            echo '<div class="prof-all">
                                     <div class="prof-name-p">Brand of Vehicle</div>
                                     <div class="prof-data">' . $brand . '</div>
                                 </div>';
                         }
                         if (!empty($model)) {
-                            echo '<div class="prof-all-p">
+                            echo '<div class="prof-all">
                                     <div class="prof-name-p">Model of Vehicle</div>
                                     <div class="prof-data">' . $model . '</div>
                                 </div>';
                         }
                         if (!empty($venloc)) {
-                            echo '<div class="prof-all-p">
+                            echo '<div class="prof-all">
                                     <div class="prof-name-p">Indoor/Outdoor</div>
                                     <div class="prof-data">' . $venloc . '</div>
                                 </div>';
                         }
                         if (!empty($venlocation)) {
-                            echo '<div class="prof-all-p">
+                            echo '<div class="prof-all">
                                     <div class="prof-name-p">Location address</div>
                                     <div class="prof-data">' . $venlocation . '</div>
                                 </div>';
                         }
                         if (!empty($ventype)) {
-                            echo '<div class="prof-all-p">
+                            echo '<div class="prof-all">
                                     <div class="prof-name-p">Type of Venue</div>
                                     <div class="prof-data">' . $ventype . '</div>
                                 </div>';
                         }
                         if (!empty($maxCap)) {
-                            echo '<div class="prof-all-p">
+                            echo '<div class="prof-all">
                                     <div class="prof-name-p">Maximum Capacity</div>
                                     <div class="prof-data">' . $maxCap . ' people</div>
                                 </div>';
                         }
                         if (!empty($minCap)) {
-                            echo '<div class="prof-all-p">
+                            echo '<div class="prof-all">
                                     <div class="prof-name-p">Minimum Capacity</div>
                                     <div class="prof-data">' . $minCap . 'people</div>
                                 </div>';
                         }
 
                         ?>
-                        <div class="prof-all-p">
+                        <div class="prof-all">
                             <div class="prof-name-p">Budget Range</div>
                             <div class="prof-data"><?php echo "Rs. $budget_min - Rs. $budget_max" ?></div>
                         </div>

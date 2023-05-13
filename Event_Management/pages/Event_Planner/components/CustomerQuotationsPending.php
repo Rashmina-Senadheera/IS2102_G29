@@ -10,7 +10,7 @@
             e.cusId = u.user_id AND 
             e.reqId = c.request_id AND
             e.qId = ei.qId AND
-            e.status = 'Accepted'
+            e.status = 'pending'
             GROUP BY e.qId
             ORDER BY e.qId DESC";
 

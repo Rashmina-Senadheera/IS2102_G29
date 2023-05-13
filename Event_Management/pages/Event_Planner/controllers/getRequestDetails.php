@@ -6,7 +6,7 @@ if (isset($_GET['reqID']) && !empty($_GET['reqID'])) {
     require_once('eventplanner_sidenav.php');
     require_once('eventplanner_header.php');
 
-    $reqID = $_GET['reqID'];
+    $reqID = checkInput($_GET['reqID']);
     $sql = "SELECT * FROM cust_req_general AS c, request_ep_quotation AS r WHERE c.request_id = r.request_id AND c.request_id = $reqID";
 
     // execute query and check if successful
@@ -24,8 +24,7 @@ if (isset($_GET['reqID']) && !empty($_GET['reqID'])) {
                 // $vanue_type = !empty($row['vanue_type']) ? $row['vanue_type'] : "Not Set";
                 $no_of_guests = !empty($row['no_of_pax']) ? $row['no_of_pax'] : "Not Set";
                 $status = !empty($row['status']) ? $row['status'] : "Not Set";
-                $date_from = !empty($row['from_date']) ? formatDate($row['from_date']) : "Not Set";
-                $date_to = !empty($row['to_date']) ? formatDate($row['to_date']) : "Not Set";
+                $event_date = !empty($row['event_date']) ? formatDate($row['event_date']) : "Not Set";
                 $time_from = !empty($row['from_time']) ? formatTime($row['from_time']) : "Not Set";
                 $time_to = !empty($row['to_time']) ? formatTime($row['to_time']) : "Not Set";
                 $budget1 = !empty($row['min_budget']) ? formatCurrency($row['min_budget']) : "0";

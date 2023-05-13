@@ -104,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         if (!empty($last_id)) {
             $sql = "INSERT INTO `ep_quotation_items`(`qId`, `type`, `name`, `cost`, `productId`, `supQuotId`) VALUES (?,?,?,?,?,?)";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("issd", $param_id, $param_type, $param_name, $param_cost, $param_productId, $param_supQuotId);
+            $stmt->bind_param("issdii", $param_id, $param_type, $param_name, $param_cost, $param_productId, $param_supQuotId);
             $param_id = $last_id;
 
             if ($runFood) {

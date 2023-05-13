@@ -54,7 +54,7 @@ require_once('../controllers/commonFunctions.php');
                             <div class='rs-title'>Event Type</div>
                             <div class='rs-title'>Participants</div>
                             <div class='rs-title'>Theme</div>
-                            <div class='rs-title'>Tentative Dates</div>
+                            <div class='rs-title'>Tentative Date</div>
                             <div class='rs-title'>Budget (Rs.)</div>
                             <div class='rs-title t2'></div>
                         </div>
@@ -65,8 +65,7 @@ require_once('../controllers/commonFunctions.php');
                             $event_type = !empty($row['event_type']) ? $row['event_type'] : "Not Set";
                             $no_of_guests = !empty($row['no_of_pax']) ? $row['no_of_pax'] : "Not Set";
                             $theme = !empty($row['theme']) ? $row['theme'] : "Not Set";
-                            $date1 = !empty($row['from_date']) ? $row['from_date'] : "Not Set";
-                            $date = !empty($row['to_date']) ? $date1 . " to " . $row['to_date'] : $date1;
+                            $date = !empty($row['event_date']) ? $row['event_date'] : "Not Set";
                             $budget1 = !empty($row['min_budget']) ? formatCurrency($row['min_budget']) : "0";
                             $budget2 = !empty($row['max_budget']) ? "- " . formatCurrency($row['max_budget']) : " ";
                             $customer_id = $row['customer_id'];
@@ -75,7 +74,7 @@ require_once('../controllers/commonFunctions.php');
                                     <div class='ps-card'>
                                         <div class='ps-card-desc' id='rs'>
                                             <a class='rs-title t2' href='Request-view.php?reqID=$request_id' id='a-card'>
-                                                <div>#R$request_id</div>
+                                                <div>#CR$request_id</div>
                                             </a>
                                             <a class='rs-type' href='Request-view.php?reqID=$request_id' id='a-card'>
                                                 <div>$reqdate</div>
