@@ -143,3 +143,47 @@ function formatDateDefault($date)
 {
     return date('Y-m-d', strtotime($date));
 }
+
+// Show supplier type
+function showSupType($type)
+{
+    switch ($type) {
+        case 'deco':
+            return "Decorations";
+        case 'ent':
+            return "Entertainment";
+        case 'florist':
+            return "Floral Decorations";
+        case 'foodbev':
+            return "Food & Beverages";
+        case 'light':
+            return "Light Decorations";
+        case 'photo':
+            return "Photography";
+        case 'sound':
+            return "Sounds";
+        case 'transport':
+            return "Transport";
+        case 'venue':
+            return "Venue";
+        case 'other':
+            return "Other";
+        default:
+            return $type;
+    }
+}
+
+// Calculate time difference
+function timeDiff($start, $end)
+{
+    try {
+        $start = strtotime($start);
+        $end = strtotime($end);
+        $diff = $end - $start;
+        // convert to hours and round up to upper integer
+        $diff = ceil($diff / 3600);
+        return $diff;
+    } catch (Exception $e) {
+        return 0;
+    }
+}
