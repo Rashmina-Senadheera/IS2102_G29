@@ -52,6 +52,7 @@ ON request_ep_quotation.EP_id = user.user_id WHERE cust_req_general.request_id=$
                                 <b>Theme:</b> <?php echo $row['theme'] ?><br>
                                 <b>Date:</b> <?php echo $row['event_date'] ?><br><br>
                                 <a href="OngoingEvents.php"><button type="submit" class="srcButton"  data-inline="true">Back</button></a>
+                                <a href="Payments.php"><button type="submit" class="srcButton"  data-inline="true">Complete Payment</button></a>
                         </center>
                     </div>
                 </div>
