@@ -61,7 +61,7 @@ ON request_ep_quotation.EP_id = user.user_id WHERE cust_req_general.request_id=$
                                 <b>Theme:</b> <?php echo $row['theme'] ?><br>
                                 <b>Date:</b> <?php echo $row['event_date'] ?><br><br>
                         <a href="CompletedEvents.php"><button type="submit" class="srcButton"  data-inline="true">Back</button></a>
-                        <a href="Feedback.php?name= <?php echo $row['name']; ?>"><button type="submit" class="srcButton"  data-inline="true">Give FeedBack</button></a></center> 
+                        <a href="Feedback.php?id= <?php echo $row['request_id']; ?>"><button type="submit" class="srcButton"  data-inline="true">Give FeedBack</button></a></center> 
                         
                     </div>
                 </div>
