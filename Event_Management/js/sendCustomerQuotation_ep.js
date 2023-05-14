@@ -22,11 +22,19 @@ function setPVCost(qid, pid, name, cost) {
     calcTotalCost();
 }
 
-function setSLCost(qid, pid, name, cost) {
-    document.getElementById('slqId').value = qid;
-    document.getElementById('slId').value = pid;
-    document.getElementById('slCost').value = cost;
-    document.getElementById('slName').value = name;
+function setSCost(qid, pid, name, cost) {
+    document.getElementById('sqId').value = qid;
+    document.getElementById('sId').value = pid;
+    document.getElementById('sCost').value = cost;
+    document.getElementById('sName').value = name;
+    calcTotalCost();
+}
+
+function setLCost(qid, pid, name, cost) {
+    document.getElementById('lqId').value = qid;
+    document.getElementById('lId').value = pid;
+    document.getElementById('lCost').value = cost;
+    document.getElementById('lName').value = name;
     calcTotalCost();
 }
 
@@ -34,22 +42,25 @@ function calcTotalCost() {
     var foodBevCost = document.getElementById('foodBevCost');
     var venueCost = document.getElementById('venueCost');
     var pvCost = document.getElementById('pvCost');
-    var slCost = document.getElementById('slCost');
+    var sCost = document.getElementById('sCost');
+    var lCost = document.getElementById('lCost');
     var epCost = document.getElementById('epCost');
 
-    var foodBevCost_f, venueCost_f, pvCost_f, slCost_f, epCost_f;
+    var foodBevCost_f, venueCost_f, pvCost_f, sCost_f, lCost_f, epCost_f;
 
     foodBevCost ? foodBevCost_f = parseFloat(foodBevCost.value) : foodBevCost_f = 0;
     venueCost ? venueCost_f = parseFloat(venueCost.value) : venueCost_f = 0;
     pvCost ? pvCost_f = parseFloat(pvCost.value) : pvCost_f = 0;
-    slCost ? slCost_f = parseFloat(slCost.value) : slCost_f = 0;
+    sCost ? sCost_f = parseFloat(sCost.value) : sCost_f = 0;
+    lCost ? lCost_f = parseFloat(lCost.value) : lCost_f = 0;
     epCost ? epCost_f = parseFloat(epCost.value) : epCost_f = 0;
 
     var totalCost = 0;
     !isNaN(foodBevCost_f) ? totalCost += foodBevCost_f : totalCost += 0;
     !isNaN(venueCost_f) ? totalCost += venueCost_f : totalCost += 0;
     !isNaN(pvCost_f) ? totalCost += pvCost_f : totalCost += 0;
-    !isNaN(slCost_f) ? totalCost += slCost_f : totalCost += 0;
+    !isNaN(sCost_f) ? totalCost += sCost_f : totalCost += 0;
+    !isNaN(lCost_f) ? totalCost += lCost_f : totalCost += 0;
     !isNaN(epCost_f) ? totalCost += epCost_f : totalCost += 0;
 
     // set 2 decimal places & add , to separate thousands

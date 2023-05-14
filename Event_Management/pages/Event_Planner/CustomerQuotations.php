@@ -97,6 +97,7 @@ if (isset($_GET['page'])) {
                 GROUP BY e.qId
                 ORDER BY e.qId DESC";
 
+                $happy = 1;
                 include('components/CustomerQuotationsRow.php'); ?>
             </div>
         </div>

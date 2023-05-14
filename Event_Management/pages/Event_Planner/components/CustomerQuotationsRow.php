@@ -18,6 +18,7 @@
             <?php
                     while ($row = $result->fetch_assoc()) {
                         $qid = $row['qId'];
+                        $reqID = $row['reqId'];
                         $cusName = $row['name'];
                         $eventType = $row['event_type'];
                         $date = $row['date'];
@@ -30,22 +31,22 @@
 
                         echo "<div class='ps-card'>
                                     <div class='ps-card-desc' id='rs'>
-                                        <a class='rs-title t2' href='Request-view.php?reqID=1' id='a-card'>
+                                        <a class='rs-title t2' href='CustomerQuotationView.php?qid=$qid&reqID=$reqID' id='a-card'>
                                             <div>#CQ$qid</div>
                                         </a>
-                                        <a class='rs-type sq' href='Request-view.php?reqID=1' id='a-card'>
+                                        <a class='rs-type sq' href='CustomerQuotationView.php?qid=$qid&reqID=$reqID' id='a-card'>
                                             <div>$cusName</div>
                                         </a>
-                                        <a class='rs-type sq' href='Request-view.php?reqID=1' id='a-card'>
+                                        <a class='rs-type sq' href='CustomerQuotationView.php?qid=$qid&reqID=$reqID' id='a-card'>
                                             <div>$eventType</div>
                                         </a>
-                                        <a class='rs-type sq' href='Request-view.php?reqID=1' id='a-card'>
+                                        <a class='rs-type sq' href='CustomerQuotationView.php?qid=$qid&reqID=$reqID' id='a-card'>
                                             <div>$date</div>
                                         </a>
-                                        <a class='rs-type sq' href='Request-view.php?reqID=1' id='a-card'>
+                                        <a class='rs-type sq' href='CustomerQuotationView.php?qid=$qid&reqID=$reqID' id='a-card'>
                                             <div>$epCost</div>
                                         </a>
-                                        <a class='rs-type sq' href='Request-view.php?reqID=1' id='a-card'>
+                                        <a class='rs-type sq' href='CustomerQuotationView.php?qid=$qid&reqID=$reqID' id='a-card'>
                                             <div>$cost</div>
                                         </a>
                                     </div>
@@ -53,9 +54,12 @@
                     }
                 } else {
                     echo "<div class='no-records'>
-                            No Quotations Accepted
-                            <img src='../../images/no-record.png' alt='No Requests'>
-                        </div>";
+                            No Records Found";
+                    if (empty($happy))
+                        echo "<img src='../../images/no-record.png' alt='No Requests'>";
+                    else
+                        echo "<img src='../../images/no-record-happy.png' alt='No Requests'>";
+                    echo "</div>";
                 }
             }
             ?>

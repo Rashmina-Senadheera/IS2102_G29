@@ -67,21 +67,11 @@ require_once './controllers/getRequestDetails.php';
                     <?php if ($result_sl->num_rows > 0) { ?>
                         <div class="row">
                             <div class="input">
-                                <label class="input-label">Sounds</label>
-                                <input id="sqId" type="hidden" value="0" name="sqId" />
-                                <input id="sId" type="hidden" value="0" name="sId" />
-                                <input id="sName" type="text" class="input-field" name="sName" placeholder="Supplier Name / Product Name" />
-                                <input id="sCost" onkeyup="calcTotalCost()" onchange="calcTotalCost()" value="0" type="number" class="input-field" name="sCost" placeholder="Cost" style="margin-top: 5px;" />
-
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input">
-                                <label class="input-label">Lighting</label>
-                                <input id="lqId" type="hidden" value="0" name="lqId" />
-                                <input id="lId" type="hidden" value="0" name="lId" />
-                                <input id="lName" type="text" class="input-field" name="lName" placeholder="Supplier Name / Product Name" />
-                                <input id="lCost" onkeyup="calcTotalCost()" onchange="calcTotalCost()" value="0" type="number" class="input-field" name="lCost" placeholder="Cost" style="margin-top: 5px;" />
+                                <label class="input-label">Sound & Lighting</label>
+                                <input id="slqId" type="hidden" value="0" name="slqId" />
+                                <input id="slId" type="hidden" value="0" name="slId" />
+                                <input id="slName" type="text" class="input-field" name="slName" placeholder="Supplier Name / Product Name" />
+                                <input id="slCost" onkeyup="calcTotalCost()" onchange="calcTotalCost()" value="0" type="number" class="input-field" name="pvCost" placeholder="Cost" style="margin-top: 5px;" />
 
                             </div>
                         </div>

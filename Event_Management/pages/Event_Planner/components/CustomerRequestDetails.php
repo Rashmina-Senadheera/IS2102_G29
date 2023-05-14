@@ -17,10 +17,11 @@ function getQuotationDetails($reqID, $conn, $type, $type2 = null)
     }
 
     $result = $conn->query($sql);
+    $showType = ucwords($type);
     if ($result->num_rows > 0) {
         echo "<div class='row'>
             <div class='input'>
-                <label class='input-label'>Supplier Quotations related to this event:</label>
+                <label class='input-label'>$showType Suppliers' Quotations:</label>
                     <table class='related-quotations'>";
 
         while ($row = $result->fetch_assoc()) {
@@ -36,8 +37,10 @@ function getQuotationDetails($reqID, $conn, $type, $type2 = null)
                 $setFunction = "setVenueCost";
             } else if ($type == "photo") {
                 $setFunction = "setPVCost";
-            } else if ($type == "sound" || $type == "light") {
-                $setFunction = "setSLCost";
+            } else if ($type == "sound") {
+                $setFunction = "setSCost";
+            } else if ($type == "light") {
+                $setFunction = "setLCost";
             }
 
             echo "<tr onClick='$setFunction(`$qid`, `$pid`, `$title`, `$cost`)'>
@@ -200,7 +203,8 @@ function getQuotationDetails($reqID, $conn, $type, $type2 = null)
                                 <div class='input-value'>$sl_remarks</div>
                             </div>
                         </div>";
-        getQuotationDetails($reqID, $conn, "sound", "light");
+        getQuotationDetails($reqID, $conn, "sound");
+        getQuotationDetails($reqID, $conn, "light");
         echo "</div>";
     }
     ?>

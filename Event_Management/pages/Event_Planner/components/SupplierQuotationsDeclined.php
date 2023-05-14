@@ -43,7 +43,7 @@
                 } else {
                     echo "<div class='no-records'>
                             No Records Found
-                            <img src='../../images/no-record.png' alt='No Requests'>
+                            <img src='../../images/no-record-happy.png' alt='No Requests'>
                         </div>";
                 }
             }
