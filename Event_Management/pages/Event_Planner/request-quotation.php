@@ -97,14 +97,6 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || empty($_GET['id'])) {
                             $isDefault = 'selected';
                             $isBirthday = $isWedding = $isAnniversary = $isCompanyParty = $isCorporateEvent = $isConference = $isExhibition = $isGenderReveal = $isMusicalShow = $isSeminar = $isSportsAndCompetition = $isOther = '';
 
-                            if ($psType == "foodbev") {
-                                $isBottle = $isBulk = $isCups = $isPackets = $isBuffet = '';
-                                $isBreakfast = $isLunch = $isDinner = $isBrunch = $isHighTea = '';
-                            } else if ($psType == "venue") {
-                            } else if ($psType == "florist" || $psType == "deco") {
-                            } else if ($psType == "photo") {
-                            } else if ($psType == "ent") {
-                            }
                             if (!empty($_GET['reqID'])) {
                                 require_once './controllers/request-quotation-value-select.php';
                             }
@@ -152,27 +144,28 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || empty($_GET['id'])) {
                                                 </div>';
                                     }
                                     ?>
-                                    <!-- <div class="check-bx-opt">
-                                        <input type="checkbox" id="catered_for" name="catered_for" value="Indoor">
-                                        <label for="" class="input-ps-label-opt">Indoor Catering</label>
-                                    </div>
-                                    <div class="check-bx-opt">
-                                        <input type="checkbox" id="catered_for" name="catered_for" value="Outdoor">
-                                        <label for="" class="input-ps-label-opt">Outdoor Catering</label>
-                                    </div> -->
                                 </div>
                             </div>
                             <div class="input-ps" id='check'>
                                 <label for="" class="input-label" id='check'>Transport <span>*</span></label>
                                 <div class="check-bx">
-                                    <div class="check-bx-opt">
-                                        <input type="radio" id="transport" name="transport" value="Needed">
-                                        <label for="" class="input-ps-label-opt">Needed</label>
-                                    </div>
-                                    <div class="check-bx-opt">
-                                        <input type="radio" id="transport" name="transport" value="Not Needed">
-                                        <label for="" class="input-ps-label-opt">Not Needed</label>
-                                    </div>
+                                    <?php
+                                    if ($transport == 'Provided') {
+                                        echo '<div class="check-bx-opt">
+                                                <input type="radio" id="transport" name="transport" value="Needed" checked>
+                                                <label for="" class="input-ps-label-opt">Needed</label>
+                                            </div>
+                                            <div class="check-bx-opt">
+                                                <input type="radio" id="transport" name="transport" value="Not Needed">
+                                                <label for="" class="input-ps-label-opt">Not Needed</label>
+                                            </div>';
+                                    } else {
+                                        echo '<div class="check-bx-opt">
+                                                <input type="radio" id="transport" name="transport" value="Not Needed" checked>
+                                                <label for="" class="input-ps-label-opt">Not Needed</label>
+                                            </div>';
+                                    }
+                                    ?>
                                 </div>
                             </div>
                         </div>
@@ -182,60 +175,39 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET' || empty($_GET['id'])) {
                                 <label for="" class="input-label" id='check'>Need as <span>*</span></label>
                                 <?php if ($psType == "foodbev") { ?>
                                     <div class="check-bx">
-                                        <div class="check-bx-opt">
-                                            <input type="checkbox" id="bev_need_as" name="bev_need_as" value="Bottle" <?php echo $isBottle; ?>>
-                                            <label for="" class="input-ps-label-opt">Bottle</label>
-                                        </div>
-                                        <div class="check-bx-opt">
-                                            <input type="checkbox" id="bev_need_as" name="bev_need_as" value="In bulk" <?php echo $isBulk; ?>>
-                                            <label for="" class="input-ps-label-opt">In bulk</label>
-                                        </div>
-                                        <div class="check-bx-opt">
-                                            <input type="checkbox" id="bev_need_as" name="bev_need_as" value="Cups/Packets" <?php echo $isCups; ?>>
-                                            <label for="" class="input-ps-label-opt">Cups/Packets</label>
-                                        </div>
-                                    </div>
-                                <?php }
-                                if ($psType == "foodbev") { ?>
-                                    <div class="check-bx">
-                                        <div class="check-bx-opt">
-                                            <input type="checkbox" id="food_need_as" name="food_need_as" value="Packets" <?php echo $isPackets; ?>>
-                                            <label for="" class="input-ps-label-opt">Packets</label>
-                                        </div>
-                                        <div class="check-bx-opt">
-                                            <input type="checkbox" id="food_need_as" name="food_need_as" value="Buffet" <?php echo $isBuffet; ?>>
-                                            <label for="" class="input-ps-label-opt">Buffet</label>
-                                        </div>
-                                        <div class="check-bx-opt">
-                                            <input type="checkbox" id="food_need_as" name="food_need_as" value="Other" <?php echo $isOther; ?>>
-                                            <label for="" class="input-ps-label-opt">Other</label>
-                                        </div>
+                                        <?php
+                                        $available_as_arr = explode(",", $available_as);
+                                        for ($i = 0; $i < count($available_as_arr); $i++) {
+                                            if ($available_as_arr[$i] != '')
+                                                if($available_as_arr[$i])
+                                                echo '<div class="check-bx-opt">
+                                                        <input type="checkbox" id="food_need_as" name="food_need_as" value="' . $available_as_arr[$i] . '">
+                                                        <label for="" class="input-ps-label-opt">' . $available_as_arr[$i] . '</label>
+                                                    </div>';
+                                        }
+                                        ?>
                                     </div>
                                 <?php } ?>
                             </div>
                             <div class="input-ps" id='check'>
                                 <label for="" class="input-label" id='check'>Need For <span>*</span></label>
                                 <div class="check-bx">
-                                    <div class="check-bx-opt">
-                                        <input type="checkbox" id="need_for" name="need_for" value="Breakfast" <?php echo $isBreakfast; ?>>
-                                        <label for="" class="input-ps-label-opt">Breakfast</label>
-                                    </div>
-                                    <div class="check-bx-opt">
-                                        <input type="checkbox" id="need_for" name="need_for" value="Lunch" <?php echo $isLunch; ?>>
-                                        <label for="" class="input-ps-label-opt">Lunch</label>
-                                    </div>
-                                    <div class="check-bx-opt">
-                                        <input type="checkbox" id="need_for" name="need_for" value="Dinner" <?php echo $isDinner; ?>>
-                                        <label for="" class="input-ps-label-opt">Dinner</label>
-                                    </div>
-                                    <div class="check-bx-opt">
-                                        <input type="checkbox" id="need_for" name="need_for" value="Brunch" <?php echo $isBrunch; ?>>
-                                        <label for="" class="input-ps-label-opt">Brunch</label>
-                                    </div>
-                                    <div class="check-bx-opt">
-                                        <input type="checkbox" id="need_for" name="need_for" value="High-Tea" <?php echo $isHighTea; ?>>
-                                        <label for="" class="input-ps-label-opt">High-Tea</label>
-                                    </div>
+                                    <?php
+                                    $available_for_arr = explode(",", $available_for);
+                                    for ($i = 0; $i < count($available_for_arr); $i++) {
+                                        if ($available_for_arr[$i] != '')
+                                            if ($available_for_arr[$i] == $food_available_at)
+                                                echo '<div class="check-bx-opt">
+                                                    <input type="checkbox" id="need_for" name="need_for" value="' . $available_for_arr[$i] . '" checked>
+                                                    <label for="" class="input-ps-label-opt">' . $available_for_arr[$i] . '</label>
+                                                </div>';
+                                            else
+                                                echo '<div class="check-bx-opt">
+                                                    <input type="checkbox" id="need_for" name="need_for" value="' . $available_for_arr[$i] . '">
+                                                    <label for="" class="input-ps-label-opt">' . $available_for_arr[$i] . '</label>
+                                                </div>';
+                                    }
+                                    ?>
                                 </div>
                             </div>
                         </div>

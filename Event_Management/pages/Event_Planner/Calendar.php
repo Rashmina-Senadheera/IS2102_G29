@@ -35,7 +35,7 @@ $result = mysqli_fetch_all($result, MYSQLI_ASSOC);
             }
             var event = {
                 id: rawEvents[i].booking_id,
-                title: rawEvents[i].name + ' - ' + rawEvents[i].eType,
+                title: rawEvents[i].eType + ' - ' + rawEvents[i].name,
                 date: rawEvents[i].date,
                 url: 'CustomerQuotationView.php?qid=' + rawEvents[i].ep_quot_id + '&reqID=' + rawEvents[i].reqId,
                 color: color,
