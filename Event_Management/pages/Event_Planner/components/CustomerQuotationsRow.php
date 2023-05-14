@@ -31,10 +31,10 @@
 
                         echo "<div class='ps-card'>
                                     <div class='ps-card-desc' id='rs'>
-                                        <a class='rs-title t2' href='CustomerQuotationView.php?qid=$qid&reqID=$reqID' id='a-card'>
+                                        <a class='rs-type t2' href='CustomerQuotationView.php?qid=$qid&reqID=$reqID' id='a-card'>
                                             <div>#CQ$qid</div>
                                         </a>
-                                        <a class='rs-type sq' href='CustomerQuotationView.php?qid=$qid&reqID=$reqID' id='a-card'>
+                                        <a class='rs-title sq' href='CustomerQuotationView.php?qid=$qid&reqID=$reqID' id='a-card'>
                                             <div>$cusName</div>
                                         </a>
                                         <a class='rs-type sq' href='CustomerQuotationView.php?qid=$qid&reqID=$reqID' id='a-card'>

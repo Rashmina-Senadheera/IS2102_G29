@@ -31,8 +31,8 @@
                         $r_requested_on = $row['requested_on'];
                         echo "<div class='ps-card'>
                                 <div class='ps-card-desc' id='rs'>
-                                    <div class='rs-title t2'>#SQR$r_id</div>
-                                    <div class='rs-type sq'>$r_title</div>
+                                    <div class='rs-type t2'>#SQR$r_id</div>
+                                    <div class='rs-title sq'>$r_title</div>
                                     <div class='rs-type sq'>#CR$r_reqFor</div>
                                     <div class='rs-type sq'>$r_type</div>
                                     <div class='rs-type sq'>" . ucwords($p_type) . "</div>
