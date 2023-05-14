@@ -335,10 +335,10 @@ if(isset($_GET['id'])){
                     $supplier_QuotId = json_encode($supplier_quot_arr);
                     $supplier_Ids = json_encode($supplier_id_arr);
                     
-                    echo '<input name="supId" id="supQuotId" class="input-field" value="' . htmlspecialchars($supplier_QuotId) . '">'; 
-                    echo '<input name="supId" id="supId" class="input-field" value="' . htmlspecialchars($supplier_Ids) . '">'; 
+                    echo '<input name="supId" id="supQuotId" class="input-field" value="' . htmlspecialchars($supplier_QuotId) . '" hidden>'; 
+                    echo '<input name="supId" id="supId" class="input-field" value="' . htmlspecialchars($supplier_Ids) . '" hidden>'; 
 
-                    echo '<input type="text" class="input-field" name="reqId" id="reqId" placeholder="Cost" value="'. $id .'"  disabled />';
+                    echo '<input type="text" class="input-field" name="reqId" id="reqId" placeholder="Cost" value="'. $id .'"  disabled hidden/>';
 
                     
                     
@@ -356,9 +356,9 @@ if(isset($_GET['id'])){
                         </div>
                     </div>
                         <div class="input">
-                        <input type="text" class="input-field" name="epQuotId" id="epQuotId" placeholder="Cost" value="<?php if($row5){ echo $row5['qId']; }else{ echo "None" ;} ?>"  disabled />
-                        <input type="text" class="input-field" name="cusId" id="cusId" placeholder="Cost" value="<?php if($row5){ echo $row5['cusId']; }else{ echo "None" ;} ?>"  disabled />
-                        <input type="text" class="input-field" name="epId" id="epId" placeholder="Cost" value="<?php if($row5){ echo $row5['epId']; }else{ echo "None" ;} ?>"  disabled />
+                        <input type="text" class="input-field" name="epQuotId" id="epQuotId" placeholder="Cost" value="<?php if($row5){ echo $row5['qId']; }else{ echo "None" ;} ?>"  disabled hidden />
+                        <input type="text" class="input-field" name="cusId" id="cusId" placeholder="Cost" value="<?php if($row5){ echo $row5['cusId']; }else{ echo "None" ;} ?>"  disabled hidden/>
+                        <input type="text" class="input-field" name="epId" id="epId" placeholder="Cost" value="<?php if($row5){ echo $row5['epId']; }else{ echo "None" ;} ?>"  disabled hidden/>
                         
                     </div>
                         <?php
