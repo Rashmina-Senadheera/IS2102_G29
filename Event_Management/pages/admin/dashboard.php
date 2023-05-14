@@ -74,9 +74,11 @@
             </div>
             </a>
             
+            
             </div>
         </div>
-
+        <div class="inquiry_table">
+            <h3>Recent Inquiries</h3>
         <table class="details_table">
                     <thead>
                     <tr>
@@ -126,7 +128,7 @@
                     </tbody>
                     
                 </table>
-       
+        </div>
     </main>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
