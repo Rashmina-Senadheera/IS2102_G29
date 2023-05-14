@@ -21,22 +21,46 @@ require_once './controllers/getRequestDetails.php';
 
         <div class="form-card scrollable">
             <form id="sendCustomerQuotation" method="POST" action="controllers/sendQuotation.php">
-                <div class="form-title">Send Quotation</div>
-                <input type="hidden" name="reqID" value="<?php echo $reqID; ?>" />
-                <input type="hidden" name="cusId" value="<?php echo $customerID; ?>" />
+                <div class="form-title">Quotation Details</div>
+                <div class="form-description">These are the costs that you sent to the customer. You cannot edit the quotation after you send it.</div>
+                <?php
+                $qid = $_GET['qid'];
+
+                $sql = "SELECT q.*, sum(i.cost) AS tCost
+                        FROM ep_quotation q, ep_quotation_items i 
+                        WHERE q.qId = i.qId
+                        AND q.qId = $qid";
+                $result = mysqli_query($conn, $sql);
+                $row = mysqli_fetch_assoc($result);
+                $epCost = !empty($row['epCost']) ? $row['epCost'] : 0;
+                $tCost = !empty($row['tCost']) ? $row['tCost'] + $epCost : 0;
+                $remarks = !empty($row['remarks']) ? $row['remarks'] : "Not Set";
+
+                function getQuotationItem($conn, $qid, $type)
+                {
+                    $sql = "SELECT * FROM ep_quotation_items WHERE qId = $qid AND type = '$type'";
+                    $result = mysqli_query($conn, $sql);
+                    if (mysqli_num_rows($result) > 0) {
+                        $row = mysqli_fetch_assoc($result);
+                        return $row;
+                    } else {
+                        return null;
+                    }
+                }
+
+                ?>
                 <div class="row">
                     <div class="input">
                         <label class="input-label">Event Planner's Cost</label>
-                        <input id="epCost" onkeyup="calcTotalCost()" onchange="calcTotalCost()" value="0" type="number" class="input-field" name="epCost" placeholder="Cost" />
+                        <input id="epCost" disabled value="<?php echo $epCost ?>" type="number" class="input-field" name="epCost" placeholder="Cost" />
                     </div>
                     <?php if ($result_food->num_rows > 0) { ?>
                         <div class="row">
                             <div class="input">
                                 <label class="input-label">Food & Beverages</label>
-                                <input id="foodBevqId" type="hidden" value="0" name="foodBevqId" />
-                                <input id="foodBevId" type="hidden" value="0" name="foodBevId" />
-                                <input id="foodBevName" type="text" class="input-field" name="foodBevName" placeholder="Supplier Name / Product Name" />
-                                <input id="foodBevCost" onkeyup="calcTotalCost()" onchange="calcTotalCost()" value="0" type="number" class="input-field" name="foodBevCost" placeholder="Cost" style="margin-top: 5px;" />
+                                <?php $foodBev = getQuotationItem($conn, $qid, "foodBev"); ?>
+                                <input id="foodBevName" type="text" value="<?php echo !empty($foodBev['name']) ? $foodBev['name'] : 'Not Set' ?>" disabled class="input-field" name="foodBevName" placeholder="Supplier Name / Product Name" />
+                                <input id="foodBevCost" disabled value="<?php echo !empty($foodBev['cost']) ? $foodBev['cost'] : 0 ?>" type="number" class="input-field" name="foodBevCost" placeholder="Cost" style="margin-top: 5px;" />
                             </div>
                         </div>
                     <?php } ?>
@@ -44,10 +68,9 @@ require_once './controllers/getRequestDetails.php';
                         <div class="row">
                             <div class="input">
                                 <label class="input-label">Venue</label>
-                                <input id="venueqId" type="hidden" value="0" name="venueqId" />
-                                <input id="venueId" type="hidden" value="0" name="venueId" />
-                                <input id="venueName" type="text" class="input-field" name="venueName" placeholder="Supplier Name / Product Name" />
-                                <input id="venueCost" onkeyup="calcTotalCost()" onchange="calcTotalCost()" value="0" type="number" class="input-field" name="venueCost" placeholder="Cost" style="margin-top: 5px;" />
+                                <?php $venue = getQuotationItem($conn, $qid, "venue"); ?>
+                                <input id="venueName" type="text" value="<?php echo !empty($venue['name']) ? $venue['name'] : 'Not Set' ?>" disabled class="input-field" name="venueName" placeholder="Supplier Name / Product Name" />
+                                <input id="venueCost" disabled value="<?php echo !empty($venue['cost']) ? $venue['cost'] : 0 ?>" type="number" class="input-field" name="venueCost" placeholder="Cost" style="margin-top: 5px;" />
 
                             </div>
                         </div>
@@ -56,10 +79,9 @@ require_once './controllers/getRequestDetails.php';
                         <div class="row">
                             <div class="input">
                                 <label class="input-label">Photography & Videography</label>
-                                <input id="pvqId" type="hidden" value="0" name="pvqId" />
-                                <input id="pvId" type="hidden" value="0" name="pvId" />
-                                <input id="pvName" type="text" class="input-field" name="pvName" placeholder="Supplier Name / Product Name" />
-                                <input id="pvCost" onkeyup="calcTotalCost()" onchange="calcTotalCost()" value="0" type="number" class="input-field" name="pvCost" placeholder="Cost" style="margin-top: 5px;" />
+                                <?php $pv = getQuotationItem($conn, $qid, "photo"); ?>
+                                <input id="pvName" type="text" value="<?php echo !empty($pv['name']) ? $pv['name'] : 'Not Set' ?>" disabled class="input-field" name="pvName" placeholder="Supplier Name / Product Name" />
+                                <input id="pvCost" disabled value="<?php echo !empty($pv['cost']) ? $pv['cost'] : 0 ?>" type="number" class="input-field" name="pvCost" placeholder="Cost" style="margin-top: 5px;" />
 
                             </div>
                         </div>
@@ -67,11 +89,19 @@ require_once './controllers/getRequestDetails.php';
                     <?php if ($result_sl->num_rows > 0) { ?>
                         <div class="row">
                             <div class="input">
-                                <label class="input-label">Sound & Lighting</label>
-                                <input id="slqId" type="hidden" value="0" name="slqId" />
-                                <input id="slId" type="hidden" value="0" name="slId" />
-                                <input id="slName" type="text" class="input-field" name="slName" placeholder="Supplier Name / Product Name" />
-                                <input id="slCost" onkeyup="calcTotalCost()" onchange="calcTotalCost()" value="0" type="number" class="input-field" name="pvCost" placeholder="Cost" style="margin-top: 5px;" />
+                                <label class="input-label">Sounds</label>
+                                <?php $s = getQuotationItem($conn, $qid, "sound"); ?>
+                                <input id="sName" type="text" value="<?php echo !empty($s['name']) ? $s['name'] : 'Not Set' ?>" disabled class="input-field" name="sName" placeholder="Supplier Name / Product Name" />
+                                <input id="sCost" disabled value="<?php echo !empty($s['cost']) ? $s['cost'] : 0 ?>" type="number" class="input-field" name="sCost" placeholder="Cost" style="margin-top: 5px;" />
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input">
+                                <label class="input-label">Lighting</label>
+                                <?php $l = getQuotationItem($conn, $qid, "light"); ?>
+                                <input id="lName" type="text" value="<?php echo !empty($l['name']) ? $l['name'] : 'Not Set' ?>" disabled class="input-field" name="lName" placeholder="Supplier Name / Product Name" />
+                                <input id="lCost" disabled value="<?php echo !empty($l['cost']) ? $l['cost'] : 0 ?>" type="number" class="input-field" name="lCost" placeholder="Cost" style="margin-top: 5px;" />
 
                             </div>
                         </div>
@@ -79,51 +109,19 @@ require_once './controllers/getRequestDetails.php';
                     <div class="row">
                         <div class="input">
                             <label class="input-label">Total Cost</label>
-                            <input id="totalCost" type="text" class="input-field" name="totalCost" readonly />
+                            <input id="totalCost" value="<?php echo $tCost ?>" type="text" class="input-field" name="totalCost" readonly />
                         </div>
                     </div>
                     <div class="row">
                         <div class="input">
-                            <label class="input-label">Remarks <span class="desc">(You can specify other expenses or special notes here.)</span></label>
-                            <textarea class="input-field" rows="5" name="remarks"></textarea>
+                            <label class="input-label">Remarks <span class="desc">(Other expenses or special notes here.)</span></label>
+                            <textarea class="input-field" disabled rows="5" name="remarks"><?php echo $remarks ?></textarea>
                         </div>
                     </div>
-                    <div class="action btnSend">
-                        <!-- <input type="submit" value="Send" class="action-button" /> -->
-                        <button type="button" onclick="<?php echo 'sendCustomerQuotation()'; ?>" class="action-button" style="margin-left: 0;">
-                            Send
-                        </button>
-                    </div>
+                </div>
             </form>
         </div>
     </div>
-
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-
-        <!-- Modal content -->
-        <div class="modal-decline">
-            <div class="modal-header">
-                <span class="close">&times;</span>
-                Confirm sending the quotation to the customer?
-            </div>
-            <div class="modal-body">
-                <div class="decline-reason">
-                    <label>Please check everything before sending the quotation to the customer. You cannot modify the quotation after sending it to the customer.</label>
-                    <div id="formErrors"></div>
-                </div>
-                <div class="actionBtn">
-                    <button type="button" onclick="closeModal2()" class="rejected" id="modal_cancel" style="margin-left: 0;">
-                        Cancel
-                    </button>
-                    <button type="button" onclick="sendCustomerQuotationConfirm()" class="accepted" style="margin-left: 0;">
-                        Confirm
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
 </body>
 
 <script src="../../js/epHandleCusReq.js"></script>
