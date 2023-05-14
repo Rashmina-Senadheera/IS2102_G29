@@ -85,7 +85,7 @@
                         <th >Email</th>
                         <th>Message</th>
                         <th>Subject</th>
-                        <th> </th>
+                        
                         
                     </tr>
                     </thead>
@@ -114,7 +114,7 @@
                                                    <td>'.$email .'</td>
                                                    <td>'.$message.'</td> 
                                                    <td>'.$subject.'</td>    
-                                                   <td>'.$id.'</td> 
+                                                    
                                                    ';
                                    }
                                }

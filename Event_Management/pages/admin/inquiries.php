@@ -23,7 +23,7 @@
                                             <th >Email</th>
                                             <th>Message</th>
                                             <th>Subject</th>
-                                            <th> </th>
+                                            
                                             <th>Replied</th>
                                             
                                             
@@ -49,7 +49,6 @@
                                                     <td><?php echo $email ?></td>
                                                     <td><?php echo $message ?></td> 
                                                     <td><?php echo $subject ?></td>    
-                                                    <td><?php echo $id ?></td> 
                                                     <td><?php if($replied == 1){
                                                         echo "Yes";
                                                     } else{

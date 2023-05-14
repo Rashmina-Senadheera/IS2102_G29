@@ -40,6 +40,7 @@
         
     <div class="report_item2">
     <form method="POST" action="loadpdf.php">
+      
   <input type="text"  id="imgData" name="image" value="" hidden>
   
   <input type="submit" name="viewpdf" value="View" >
