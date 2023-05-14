@@ -36,12 +36,14 @@
           <h4 class='ps-form-title'>Add 
             <?php 
               if($pid == 'venue') { echo 'Venue';} 
-              if($pid == 'foodbev') { echo 'Catering & Beverages';}
+              if($pid == 'foodbev') { echo 'Food & Beverages';}
               if($pid == 'transport') { echo 'Transport';} 
               if($pid == 'florist') { echo 'Floral Arrangements';} 
               if($pid == 'deco') { echo 'Decorations';} 
               if($pid == 'ent') { echo 'Entertainment';} 
               if($pid == 'photo') { echo 'Photography';} 
+              if($pid == 'light') { echo 'light';} 
+              if($pid == 'sound') { echo 'sound';} 
               if($pid == 'other') { echo 'Other';} 
               
             ?>
@@ -55,28 +57,30 @@
             <?php if (isset($_SESSION['success'])) { 
                  echo '<p class="success">' . showSessionMessage("success") . '</p>';
             }?>
-            <?php if (isset($_GET['successs'])) { ?>
-                <p class="success"><i class="fa-solid fa-check"></i><?php echo $_GET['successs']; ?></p>
-            <?php } ?>
+            <?php if (isset($_SESSION['error'])) { 
+                 echo '<p class="error">' . showSessionMessage("error") . '</p>';
+            } ?>
           </div>
 
           <div class="comp">
 
             <input type="hidden" name="ptype" value = '<?php echo $pid; ?>' required/>
 
-            <div class="row">
+            <div class="row" id="val">
               <div class="input-ps">
                 <label for="" class="input-ps-label"  >Title <span>*</span></label>
-                <input type="text" placeholder="Full Name" name="title" class="input-ps-in" required/>
+                <input type="text" placeholder="Full Name" name="title" class="input-ps-in" />
               </div>
+              <div class="formInputError"><?php echo showSessionMessage('error-title') ?></div>
             </div>
 
-            <div class="row">
+            <div class="row" id="val">
               <div class="input-ps">
                 <label for="" class="input-ps-label">Description <span>*</span></label>
                 <textarea  name="descript" class="input-ps-in" id='txt-area' required spellcheck="true">
                 </textarea>
               </div>
+              <div class="formInputError"><?php echo showSessionMessage('error-descript') ?></div>
             </div>
 
           </div>
@@ -84,27 +88,31 @@
           <!-- Venue Optional Parameters -->
           <?php if($pid == 'venue') {?>
 
-            <div class="row">
+            <div class="row" id="val">
               <div class="input-ps">
-                <label for="" class="input-ps-label">Venue in <span>*</span></label>
-                <select name="venueIn" id="type" required>
+                <label for="" class="input-ps-label">Venue in <span>*</span> </label>
+                <select name="venueIn" id="type" >
+                  <option ></option>
                   <option value="indoor">Indoor</option>
                   <option value="outdoor">Outdoor</option>
                 </select>
               </div>
+              <div class="formInputError"><?php echo showSessionMessage('error-venueIn') ?></div>
             </div>
 
-            <div class="row">
+            <div class="row" id="val" >
               <div class="input-ps" >
                 <label for="" class="input-ps-label">Location <span>*</span> </label>
-                <input type="text" placeholder="Full Name" name="location" class="input-ps-in" required/>
+                <input type="text" placeholder="Full Name" name="location" class="input-ps-in" />
               </div>
+              <div class="formInputError"><?php echo showSessionMessage('error-venloc') ?></div>
             </div>
 
-            <div class="row">
+            <div class="row" id="val">
               <div class="input-ps">
-                <label for="" class="input-ps-label" >Type <span>*</span></label>
-                <select name="type" id="type" required>
+                <label for="" class="input-ps-label" >Type <span>*</span> </label>
+                <select name="type" id="type" >
+                  <option ></option>
                   <option value="Banquet Halls">Banquet Halls</option>
                   <option value="Conference Halls">Conference Halls</option>
                   <option value="Stadium">Stadium</option>
@@ -115,11 +123,12 @@
                   <option value="other">other (Museums, aquariums, zoos , gallery)</option>
                 </select>
               </div>
+              <div class="formInputError"><?php echo showSessionMessage('error-ventype') ?></div>
             </div>
 
             <div class="row">
               <div class="input-ps">
-                <label for="" class="input-ps-label" >Capacity </label>
+                <label for="" class="input-ps-label" >Capacity <span>*</span> </label>
               </div>
             </div>
             <div class= "row">
@@ -131,11 +140,11 @@
                   <div class="price-input">
                     <div class="field">
                       <span>Min</span>
-                      <input type="number" class="input-min" name="maxCap" value="2500">
+                      <input type="number" class="input-min" name="minCap" >
                     </div>
                     <div class="field">
                       <span>Max</span>
-                      <input type="number" class="input-max" name="minCap" value="7500">
+                      <input type="number" class="input-max" name="maxCap" >
                     </div>
                   </div>
                   <div class="slider">
@@ -147,6 +156,7 @@
                   </div>
                 </div>
               </div>
+              <div class="formInputError"><?php echo showSessionMessage('error-capacity') ?></div>
             </div>
 
           <?php } ?>
@@ -155,10 +165,11 @@
           <!-- Transport Optional Parameters -->
           <?php if($pid == 'transport') {?>
 
-            <div class="row">
+            <div class="row" id="val">
               <div class="input-ps">
                 <label for="" class="input-ps-label">Type</label>
                 <select name="transport_type" id="type">
+                  <option></option>
                   <option value="Car">Car</option>
                   <option value="Motorbike">Motorbike</option>
                   <option value="Bicycle">Bicycle</option>
@@ -168,6 +179,7 @@
                   <option value="Jeep">Jeep</option>
                 </select>
               </div>
+              <div class="formInputError"><?php echo showSessionMessage('error-tansportType') ?></div>
             </div>
 
             <div class="row">
@@ -195,11 +207,11 @@
                 <label for="" class="input-ps-label" id='check'>Catered for</label>
                 <div class="check-bx">
                   <div class="check-bx-opt">
-                    <input type="checkbox" id="type-venue" name="cater-type" value="Indoor">
+                    <input type="checkbox" id="type-venue" name="cater-type[]" value="Indoor">
                     <label for="" class="input-ps-label-opt">Indoor Catering</label>
                   </div>
                   <div class="check-bx-opt">
-                    <input type="checkbox" id="type-venue" name="cater-type" value="Outdoor">
+                    <input type="checkbox" id="type-venue" name="cater-type[]" value="Outdoor">
                     <label for="" class="input-ps-label-opt">Outdoor Catering</label>
                   </div>
                 </div>
@@ -216,7 +228,9 @@
                     <label for="" class="input-ps-label-opt">Not Provided</label>
                   </div>
                 </div>
+                <div class="formInputError"><?php echo showSessionMessage('error-catTransport') ?></div>
               </div>
+              
             </div>
 
             <div class="row" id='check'>
@@ -224,11 +238,11 @@
                 <label for="" class="input-ps-label" id='check'>Available as </label>
                 <div class="check-bx">
                   <div class="check-bx-opt">
-                    <input type="checkbox" id="type-venue" name="available-as-fb" value="Packets/Cups">
+                    <input type="checkbox" id="type-venue" name="available-as-fb[]" value="Packets/Cups">
                     <label for="" class="input-ps-label-opt">Packets/Cups</label>
                   </div>
                   <div class="check-bx-opt">
-                    <input type="checkbox" id="type-venue" name="available-as-fb" value="Buffet">
+                    <input type="checkbox" id="type-venue" name="available-as-fb[]" value="Buffet">
                     <label for="" class="input-ps-label-opt">Buffet</label>
                   </div>
                 </div>
@@ -237,23 +251,23 @@
                 <label for="" class="input-ps-label" id='check'>Available For </label>
                 <div class="check-bx">
                   <div class="check-bx-opt">
-                    <input type="checkbox" id="type-venue" name="available-for-fb" value="Breakfast">
+                    <input type="checkbox" id="type-venue" name="available-for-fb[]" value="Breakfast">
                     <label for="" class="input-ps-label-opt">Breakfast</label>
                   </div>
                   <div class="check-bx-opt">
-                    <input type="checkbox" id="type-venue" name="available-for-fb" value="Lunch">
+                    <input type="checkbox" id="type-venue" name="available-for-fb[]" value="Lunch">
                     <label for="" class="input-ps-label-opt">Lunch</label>
                   </div>
                   <div class="check-bx-opt">
-                    <input type="checkbox" id="type-venue" name="available-for-fb" value="Dinner">
+                    <input type="checkbox" id="type-venue" name="available-for-fb[]" value="Dinner">
                     <label for="" class="input-ps-label-opt">Dinner</label>
                   </div>
                   <div class="check-bx-opt">
-                    <input type="checkbox" id="type-venue" name="available-for-fb" value="Brunch">
+                    <input type="checkbox" id="type-venue" name="available-for-fb[]" value="Brunch">
                     <label for="" class="input-ps-label-opt">Brunch</label>
                   </div>
                   <div class="check-bx-opt">
-                    <input type="checkbox" id="type-venue" name="available-for-fb" value="High-tea">
+                    <input type="checkbox" id="type-venue" name="available-for-fb[]" value="High-tea">
                     <label for="" class="input-ps-label-opt">High-Tea</label>
                   </div>
                 </div>
@@ -286,35 +300,36 @@
               </div>
             </div>
 
-            <div class="row" id='check'>
+            <div class="row" >
               <div class="input-ps">
                 <label for="" class="input-ps-label">Height</label>
-                <input type="text" placeholder="type" name='floral-height' class="input-ps-in"/>
+                <input type="number" placeholder="type" name='floral-height' class="input-ps-in"/>
               </div>
             </div>
 
-            <div class="row" id='check'>
+            <div class="row" id="val" >
               <div class="input-ps">
                 <label for="" class="input-ps-label">Quantity of Flowers</label>
                 <input type="text" placeholder="type" name='floral-quant' class="input-ps-in"/>
               </div>
+              <div class="formInputError"><?php echo showSessionMessage('error-flowQuantity') ?></div>
             </div>
 
             <div class="row" id='check'>
-                <div class="input-ps">
-                  <label for="" class="input-ps-label" id='check'>Suitablefor</label>
-                  <div class="check-bx">
-                    <div class="check-bx-opt">
-                      <input type="checkbox" id="type-venue" name="type-floral" value="Indoor">
-                      <label for="" class="input-ps-label-opt">Indoor Events</label>
-                    </div>
-                    <div class="check-bx-opt">
-                      <input type="checkbox" id="type-venue" name="type-floral" value="Outdoor">
-                      <label for="" class="input-ps-label-opt">Outdoor Events</label>
+                  <div class="input-ps">
+                    <label for="" class="input-ps-label" id='check'>Suitablefor</label>
+                    <div class="check-bx">
+                      <div class="check-bx-opt">
+                        <input type="checkbox" id="type-venue" name="type-floral[]" value="Indoor">
+                        <label for="" class="input-ps-label-opt">Indoor Events</label>
+                      </div>
+                      <div class="check-bx-opt">
+                        <input type="checkbox" id="type-venue" name="type-floral[]" value="Outdoor">
+                        <label for="" class="input-ps-label-opt">Outdoor Events</label>
+                      </div>
                     </div>
                   </div>
-                </div>
-            </div>
+              </div>
 
           <?php } ?>
           <!-- Florists Optional Parameters end -->
@@ -327,11 +342,11 @@
                 <label for="" class="input-ps-label" id='check'>Suitablefor</label>
                 <div class="check-bx">
                   <div class="check-bx-opt">
-                    <input type="checkbox" id="type-deco" name="type-deco" value="Indoor">
+                    <input type="checkbox" id="type-deco" name="type-deco[]" value="Indoor">
                     <label for="" class="input-ps-label-opt">Indoor Events</label>
                   </div>
                   <div class="check-bx-opt">
-                    <input type="checkbox" id="type-deco" name="type-deco" value="Outdoor">
+                    <input type="checkbox" id="type-deco" name="type-deco[]" value="Outdoor">
                     <label for="" class="input-ps-label-opt">Outdoor Events</label>
                   </div>
                 </div>
@@ -340,6 +355,70 @@
 
           <?php } ?>
           <!-- Decorations Optional Parameters end -->
+
+          <!-- Lights Optional Parameters  -->
+          <?php if($pid == 'light') {?>
+
+            <div class="row" id ="val" >
+              <div class="input-ps" id='check'>
+                <label for="" class="input-ps-label" id='check'>Type of Light </label>
+                <div class="check-bx">
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="type-light[]" value="LED">
+                    <label for="" class="input-ps-label-opt">LED</label>
+                  </div>
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="type-light[]" value="SpotLight">
+                    <label for="" class="input-ps-label-opt">SpotLight</label>
+                  </div>
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="type-light[]" value="Laser">
+                    <label for="" class="input-ps-label-opt">Laser</label>
+                  </div>
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="type-light[]" value="Dimlights">
+                    <label for="" class="input-ps-label-opt">Dimlights</label>
+                  </div>
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="type-light[]" value="Other">
+                    <label for="" class="input-ps-label-opt">Other</label>
+                  </div>
+                </div>
+              </div>
+              <div class="formInputError"><?php echo showSessionMessage('error-lightType') ?></div>
+            </div>
+
+          <?php } ?>
+
+          <!-- Sounds Optional Parameters  -->
+          <?php if($pid == 'sound') {?>
+
+            <div class="row" id="val">
+              <div class="input-ps" id='check'>
+                <label for="" class="input-ps-label" id='check'>Type of Sound </label>
+                <div class="check-bx">
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="type-sound[]" value="DJ">
+                    <label for="" class="input-ps-label-opt">DJ</label>
+                  </div>
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="type-sound[]" value="Live Music">
+                    <label for="" class="input-ps-label-opt">Live Music</label>
+                  </div>
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="type-sound[]" value="Band">
+                    <label for="" class="input-ps-label-opt">Band</label>
+                  </div>
+                  <div class="check-bx-opt">
+                    <input type="checkbox" id="type-venue" name="type-sound[]" value="Other">
+                    <label for="" class="input-ps-label-opt">Other</label>
+                  </div>
+                </div>
+              </div>
+              <div class="formInputError"><?php echo showSessionMessage('error-soundType') ?></div>
+            </div>
+
+          <?php } ?>
 
           <!-- Photo Optional Parameters  -->
           <?php if($pid == 'photo') {?>
@@ -350,11 +429,11 @@
                 <label for="" class="input-ps-label" id='check'>Photographs in</label>
                 <div class="check-bx">
                   <div class="check-bx-opt">
-                    <input type="checkbox" id="type-venue" name="photo-in" value="Indoor">
+                    <input type="checkbox" id="type-venue" name="photo-in[]" value="Indoor">
                     <label for="" class="input-ps-label-opt">Indoor Events</label>
                   </div>
                   <div class="check-bx-opt">
-                    <input type="checkbox" id="type-venue" name="photo-in" value="Outdoor">
+                    <input type="checkbox" id="type-venue" name="photo-in[]" value="Outdoor">
                     <label for="" class="input-ps-label-opt">Outdoor Events</label>
                   </div>
                 </div>
@@ -366,15 +445,15 @@
                 <label for="" class="input-ps-label" id='check'>Provide </label>
                 <div class="check-bx">
                   <div class="check-bx-opt">
-                    <input type="checkbox" id="type-venue" name="type-photo" value="DVD">
+                    <input type="checkbox" id="type-venue" name="type-photo[]" value="DVD">
                     <label for="" class="input-ps-label-opt">DVD</label>
                   </div>
                   <div class="check-bx-opt">
-                    <input type="checkbox" id="type-venue" name="type-photo" value="Prints">
+                    <input type="checkbox" id="type-venue" name="type-photo[]" value="Prints">
                     <label for="" class="input-ps-label-opt">Prints</label>
                   </div>
                   <div class="check-bx-opt">
-                    <input type="checkbox" id="type-venue" name="type-photo" value="Book">
+                    <input type="checkbox" id="type-venue" name="type-photo[]" value="Book">
                     <label for="" class="input-ps-label-opt">Book</label>
                   </div>
                 </div>
@@ -391,15 +470,15 @@
                 <label for="" class="input-ps-label" id='check'>Provide </label>
                 <div class="check-bx">
                   <div class="check-bx-opt">
-                    <input type="checkbox" id="type-venue" name="type-ent" value="Music">
+                    <input type="checkbox" id="type-venue" name="type-ent[]" value="Music">
                     <label for="" class="input-ps-label-opt">Music</label>
                   </div>
                   <div class="check-bx-opt">
-                    <input type="checkbox" id="type-venue" name="type-ent" value="Dancing">
+                    <input type="checkbox" id="type-venue" name="type-ent[]" value="Dancing">
                     <label for="" class="input-ps-label-opt">Dancing</label>
                   </div>
                   <div class="check-bx-opt">
-                    <input type="checkbox" id="type-venue" name="type-ent" value="Other">
+                    <input type="checkbox" id="type-venue" name="type-ent[]" value="Other">
                     <label for="" class="input-ps-label-opt">Other</label>
                   </div>
                 </div>
@@ -409,10 +488,10 @@
           <!-- Entertainment Optional Parameters end -->
 
           <!-- Images Upload  -->
-          <div class="row">
+          <div class="row" id="images">
             <div class="input-ps">
 
-              <label class="input-label">Images <span class="desc">(Maximum 6 images)</span></label>
+              <label class="input-label" >Images<span class="desc">(Maximum 6 images)</span>  </label>
 
               <div class="row" id="img">
 
@@ -451,17 +530,46 @@
               </div>
               <output id="imgResult"></output>
             </div>
+            <div class="formInputError"><?php echo showSessionMessage('error-images') ?></div>
           </div>
           <!-- Images Upload end -->
           
           <!-- other details-->
           <div class="row">
             <div class="input-ps">
-              <label for="" class="input-ps-label">Other Details <span>*</span></label>
+              <label for="" class="input-ps-label">Other Details</label>
               <textarea  name="other" class="input-ps-in" id='other' required spellcheck="true">
               </textarea>
             </div>
           </div>
+
+          <div class="row">
+              <div class="input-ps">
+                <label for="" class="input-ps-label" >Budget <span>*</span></label>
+              </div>
+          </div>
+
+            <div class= "row" id="val">
+              <div class="input-ps">    
+                <div class="wrapper">
+                  <header>
+                    <p> Enter min and max Budget</p>
+                  </header>
+                  <div class="budget-input">
+                    <div class="field">
+                      <span>Min</span>
+                      <input type="number" class="input-min" name="minBudget" >
+                    </div>
+                    <div class="field">
+                      <span>Max</span>
+                      <input type="number" class="input-max" name="maxBudget" >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="formInputError"><?php echo showSessionMessage('error-Budget') ?></div>
+              <div class="formInputError"><?php echo showSessionMessage('error-Budget') ?></div>
+            </div>
           <!-- other details end -->
 
           <!-- action button -->
@@ -529,49 +637,53 @@
         }
 
         const rangeInput = document.querySelectorAll(".range-input input"),
-priceInput = document.querySelectorAll(".price-input input"),
-range = document.querySelector(".slider .progress");
-let priceGap = 1000;
-priceInput.forEach(input =>{
-    input.addEventListener("input", e =>{
-        let minPrice = parseInt(priceInput[0].value),
-        maxPrice = parseInt(priceInput[1].value);
-        
-        if((maxPrice - minPrice >= priceGap) && maxPrice <= rangeInput[1].max){
-            if(e.target.className === "input-min"){
-                rangeInput[0].value = minPrice;
-                range.style.left = ((minPrice / rangeInput[0].max) * 100) + "%";
-            }else{
-                rangeInput[1].value = maxPrice;
-                range.style.right = 100 - (maxPrice / rangeInput[1].max) * 100 + "%";
-            }
-        }
-    });
-});
-rangeInput.forEach(input =>{
-    input.addEventListener("input", e =>{
-        let minVal = parseInt(rangeInput[0].value),
-        maxVal = parseInt(rangeInput[1].value);
-        if((maxVal - minVal) < priceGap){
-            if(e.target.className === "range-min"){
-                rangeInput[0].value = maxVal - priceGap
-            }else{
-                rangeInput[1].value = minVal + priceGap;
-            }
-        }else{
-            priceInput[0].value = minVal;
-            priceInput[1].value = maxVal;
-            range.style.left = ((minVal / rangeInput[0].max) * 100) + "%";
-            range.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
-        }
-    });
-});
+        priceInput = document.querySelectorAll(".price-input input"),
+        range = document.querySelector(".slider .progress");
+        let priceGap = 1000;
+
+        priceInput.forEach(input =>{
+            input.addEventListener("input", e =>{
+                let minPrice = parseInt(priceInput[0].value),
+                maxPrice = parseInt(priceInput[1].value);
+                
+                if((maxPrice - minPrice >= priceGap) && maxPrice <= rangeInput[1].max){
+                    if(e.target.className === "input-min"){
+                        rangeInput[0].value = minPrice;
+                        range.style.left = ((minPrice / rangeInput[0].max) * 100) + "%";
+                    }else{
+                        rangeInput[1].value = maxPrice;
+                        range.style.right = 100 - (maxPrice / rangeInput[1].max) * 100 + "%";
+                    }
+                }
+            });
+        });
+
+        rangeInput.forEach(input =>{
+            input.addEventListener("input", e =>{
+                let minVal = parseInt(rangeInput[0].value),
+                maxVal = parseInt(rangeInput[1].value);
+                if((maxVal - minVal) < priceGap){
+                    if(e.target.className === "range-min"){
+                        rangeInput[0].value = maxVal - priceGap
+                    }else{
+                        rangeInput[1].value = minVal + priceGap;
+                    }
+                }else{
+                    priceInput[0].value = minVal;
+                    priceInput[1].value = maxVal;
+                    range.style.left = ((minVal / rangeInput[0].max) * 100) + "%";
+                    range.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
+                }
+            });
+        });
+
     </script>
 </body>
 
 </html>
 
 <?php
+
  }else{
     header("Location:sign_in.php?");
     exit();

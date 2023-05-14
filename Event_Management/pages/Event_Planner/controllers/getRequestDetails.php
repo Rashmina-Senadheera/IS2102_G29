@@ -6,7 +6,7 @@ if (isset($_GET['reqID']) && !empty($_GET['reqID'])) {
     require_once('eventplanner_sidenav.php');
     require_once('eventplanner_header.php');
 
-    $reqID = $_GET['reqID'];
+    $reqID = checkInput($_GET['reqID']);
     $sql = "SELECT * FROM cust_req_general AS c, request_ep_quotation AS r WHERE c.request_id = r.request_id AND c.request_id = $reqID";
 
     // execute query and check if successful
@@ -24,18 +24,16 @@ if (isset($_GET['reqID']) && !empty($_GET['reqID'])) {
                 // $vanue_type = !empty($row['vanue_type']) ? $row['vanue_type'] : "Not Set";
                 $no_of_guests = !empty($row['no_of_pax']) ? $row['no_of_pax'] : "Not Set";
                 $status = !empty($row['status']) ? $row['status'] : "Not Set";
-                $date_from = !empty($row['from_date']) ? formatDate($row['from_date']) : "Not Set";
-                $date_to = !empty($row['to_date']) ? formatDate($row['to_date']) : "Not Set";
+                $event_date = !empty($row['event_date']) ? formatDate($row['event_date']) : "Not Set";
                 $time_from = !empty($row['from_time']) ? formatTime($row['from_time']) : "Not Set";
                 $time_to = !empty($row['to_time']) ? formatTime($row['to_time']) : "Not Set";
                 $budget1 = !empty($row['min_budget']) ? formatCurrency($row['min_budget']) : "0";
                 $budget2 = !empty($row['max_budget']) ? "- " . formatCurrency($row['max_budget']) : " ";
                 $requested_on = !empty($row['req_date']) ? $row['req_date'] : "Not Set";
 
-                // $customerID = $row['customer_id'];
-                $customerID = 46;
+                $customerID = $row['customer_id'];
                 $getUser_sql = "SELECT `name`, `email` FROM user WHERE user_id = " . $customerID;
-                $getPhone_sql = "SELECT phone_number FROM user_phone WHERE user_id = " . $row['customer_id'];
+                $getPhone_sql = "SELECT phone_number FROM user_phone WHERE user_id = " . $customerID;
 
                 $getUser_result = $conn->query($getUser_sql);
                 $getPhone_result = $conn->query($getPhone_sql);

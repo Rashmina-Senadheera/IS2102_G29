@@ -2,7 +2,7 @@
 session_start();
 include('customer_sidenav.php');
 include('customer_header.php');
-include('db_conn.php');
+
 ?>
 
 <!DOCTYPE html>
@@ -12,8 +12,9 @@ include('db_conn.php');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../css/eventPlannerMain.css">
-    <link rel="stylesheet" href="../../css/eventPlannerMyevents.css">
-    <link rel="stylesheet" href="../../css/Custcss3.css">
+    <!-- <link rel="stylesheet" href="../../css/eventPlannerMyevents.css">
+    <link rel="stylesheet" href="../../css/Custcss3.css"> -->
+    <link rel="stylesheet" href="../../css/viewSuppliersEP.css">
 </head>
 <?php
 $servername = "localhost";
@@ -42,11 +43,11 @@ if ($conn->connect_error) {
                 <button type="submit" class="srcButton">Search</button>
             </div>
         </div>
-        <div class="gridMain">
-            <div class="my-events-container">
+        <div class="gridSuppliers">
+            <div class="suppliers-cards-container" id="supplier_items">
                 <?php
 
-                $sql = "select id, eventtype, info, planner_email, event_type, `status` from quotation where status='Accepted'";
+$sql = "SELECT * FROM `cust_req_general` where status='Ongoing'";
                 $result = $conn->query($sql);
                 if (mysqli_num_rows($result) > 0){
 
@@ -62,15 +63,15 @@ if ($conn->connect_error) {
                             </div>
 
                             <div class="contentBx">
-                                <h3><?php echo $row['eventtype'] ?><br><span>
-                                        <?php echo $row['info'] ?>
+                                <h3><?php echo $row['event_type'] ?><br><span>
+                                        
                                     </span></h3>
                             </div>
                         </div>
                         <ul class="sci">
                             <li>
 
-                                <a href="Event1.php?id=<?php echo $row['id'] ?>">View</a>
+                                <a href="Event2.php?id=<?php echo $row['request_id'] ?>">View</a>
                             </li>
                         </ul>
                     </div>

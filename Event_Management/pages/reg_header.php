@@ -60,6 +60,7 @@
                 <li class="menu_link"><a href=<?php echo SITEURL . 'pages/event_planners.php'?>>Event Planners</a></li>
                 <li class="menu_link"><a href=<?php echo SITEURL . 'pages/aboutUs.php'?>>About us</a></li>
                 <li class="menu_link"><a href=<?php echo SITEURL . 'pages/contactUs.php'?>>Contact Us</a></li>
+                <li class="menu_link"><a href=<?php echo SITEURL . 'pages/customer/OngoingEvents.php'?>>Profile</a></li>
             </ul>
             </span>
            

@@ -30,6 +30,35 @@
                 </div>
                 </div>
             </div>
+
+            <?php 
+                $sql1 = "SELECT COUNT(request_id) AS countQ 
+                        FROM request_supplier_quotation 
+                        WHERE supplierId = $id 
+                        AND status ='Pending'";
+
+                $sql2 = "SELECT COUNT(quotation_id) AS countQ 
+                        FROM supplier_quotation 
+                        WHERE supplier_id = $id ";
+                
+                $sql3 = "SELECT COUNT(product_id) AS countQ 
+                        FROM sup_product_general 
+                        WHERE supplier_ID = $id ";
+
+                $sql4 = "SELECT COUNT(booking_id) AS countQ 
+                        FROM supplier_booking 
+                        WHERE supplier_id = $id ";
+
+                function getData($sql,$conn) {
+                    $result = mysqli_query($conn, $sql);
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            return $row['countQ'];
+                        }
+                    }
+                }
+                
+            ?>
     
         <div class="ps-list">
             <div class ='grid-main' id='ps-list'>
@@ -39,8 +68,17 @@
                             <i class="fa-solid fa-handshake" id="an"></i>
                         </div>
                         <div class="an-descript">
-                            <div class="an-tit"> 4 </div>
-                            <div class="an-num">New Quotation Request</div>
+                            <div class="an-tit"> <?php echo getData($sql1,$conn);?> </div>
+                            <div class="an-num">Pending Quotations</div>
+                        </div>
+                     </div>
+                     <div class="analytics"> 
+                        <div class="icon-an">
+                            <i class="fa-solid fa-paper-plane" id="an"></i>
+                        </div>
+                        <div class="an-descript">
+                            <div class="an-tit"> <?php echo getData($sql2,$conn);?> </div>
+                            <div class="an-num">Submitted <br>Quotations</div>
                         </div>
                      </div>
                     <div class="analytics"> 
@@ -48,25 +86,17 @@
                             <i class="fa-solid fa-shop" id="an"></i>
                         </div>
                         <div class="an-descript">
-                            <div class="an-tit"> 4 </div>
-                            <div class="an-num">New Order Requests</div>
+                            <div class="an-tit"> <?php echo getData($sql3,$conn);?></div>
+                            <div class="an-num">Products <br>Listed</div>
                         </div>
                      </div>
-                    <div class="analytics"> 
-                        <div class="icon-an">
-                            <i class="fa-solid fa-paper-plane" id="an"></i>
-                        </div>
-                        <div class="an-descript">
-                            <div class="an-tit"> 9 </div>
-                            <div class="an-num">Ongoing <br>Orders</div>
-                        </div>
-                     </div>
+                    
                      <div class="analytics"> 
                         <div class="icon-an">
                             <i class="fa-solid fa-check" id ="an"></i>
                         </div>
                         <div class="an-descript">
-                            <div class="an-tit"> 9 </div>
+                            <div class="an-tit"> <?php echo getData($sql4,$conn);?></div>
                             <div class="an-num">Completed Orders</div>
                         </div>
                      </div>
@@ -78,33 +108,43 @@
                  
                     <canvas id="myChart" style="width:100%;"></canvas>
 
-<script>
-var xyValues = [
-  {x:50, y:7},
-  {x:60, y:8},
-  {x:70, y:8},
-  {x:80, y:9},
-  {x:90, y:9},
-];
+                <script>
+                    
+                    <?php
+                    $sql = "SELECT COUNT(r.request_id) AS countQ ,p.product_id AS title FROM request_supplier_quotation r JOIN sup_product_general p ON r.psId = p.product_id GROUP BY p.title;";
+                    $result = mysqli_query($conn, $sql);
+                    $a=array("");
+                    $b=array(0);
+                    
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            array_push($a,"#P".$row['title']);
+                            array_push($b,$row['countQ']);
+                        }
+                    }
+                    ?>
+                    var xValues = <?php echo json_encode($a); ?>;
+                    var yValues = <?php echo json_encode($b); ?>;
+                    var barColors = "#3a0247" ;
 
-new Chart("myChart", {
-  type: "scatter",
-  data: {
-    datasets: [{
-      pointRadius: 4,
-      pointBackgroundColor: "rgb(0,0,255)",
-      data: xyValues
-    }]
-  },
-  options: {
-    legend: {display: false},
-    scales: {
-      xAxes: [{ticks: {min: 40, max:100}}],
-      yAxes: [{ticks: {min: 6, max:10}}],
-    }
-  }
-});
-</script>
+                    new Chart("myChart", {
+                    type: "bar",
+                    data: {
+                        labels: xValues,
+                        datasets: [{
+                        backgroundColor: barColors,
+                        data: yValues
+                        }]
+                    },
+                      options: {
+                        legend: {display: false},
+                        title: {
+                        display: true,
+                        text: ""
+                        }
+                    }
+                    });
+                </script>
                 </div>
             </div>
             <div class="filter">

@@ -1,59 +1,27 @@
 <?php
+//check if there is a id in the url
+if (isset($_GET['id'])) {
+    $reqID = isset($_GET['reqID']) && !empty($_GET['reqID']) ? $_GET['reqID'] : 0;
+    $id = $_GET['id'];
+} else {
+    header("Location: 404.php");
+    exit();
+}
+
 require_once('eventplanner_sidenav.php');
 require_once('eventplanner_header.php');
 require_once('../controllers/commonFunctions.php');
 
-//check if there is a id in the url
-if (isset($_GET['id'])) {
-    $id = checkInput($_GET['id']);
-    $sql = "SELECT * FROM sup_product_general WHERE product_id = $id";
-    $result = mysqli_query($conn, $sql);
+$id = checkInput($id);
+require_once('./controllers/getProductDetails.php');
 
-    // check if the id is valid
-    if (mysqli_num_rows($result) > 0) {
-        $general_details = mysqli_fetch_assoc($result);
-        $title = $general_details['title'];
-        $description = $general_details['description'];
-        $other_details = $general_details['other_details'];
-        $budget_min = $general_details['budget_min'];
-        $budget_max = $general_details['budget_max'];
-        $type = $general_details['type'];
-        $img_sql = "SELECT `image` FROM supplier_product_images WHERE `product_id` = $id";
-        $img_result = mysqli_query($conn, $img_sql);
-
-        // get other details according to the type
-        $more_details = "SELECT * FROM supplier_" . $type . "  WHERE product_id = $id";
-
-        // check if the query is successful
-        if ($more_result = mysqli_query($conn, $more_details)) {
-            $more_details = mysqli_fetch_assoc($more_result);
-
-            $suitable_for = !empty($more_details['suitable_for']) ? $more_details['suitable_for'] : "";
-            $locations = !empty($more_details['locations']) ? $more_details['locations'] : "";
-            $provide = !empty($more_details['provide']) ? $more_details['provide'] : "";
-            $type_of_flowers = !empty($more_details['type_of_flowers']) ? $more_details['type_of_flowers'] : "";
-            $height = !empty($more_details['height']) ? $more_details['height'] : "";
-            $quantity = !empty($more_details['quantity']) ? $more_details['quantity'] : "";
-            $catered_for = !empty($more_details['catered_for']) ? $more_details['catered_for'] : "";
-            $transport = !empty($more_details['transport']) ? $more_details['transport'] : "";
-            $available_as = !empty($more_details['available_as']) ? $more_details['available_as'] : "";
-            $available_for = !empty($more_details['available_for']) ? $more_details['available_for'] : "";
-            $transport_type = !empty($more_details['type']) ? $more_details['type'] : "";
-            $brand = !empty($more_details['brand']) ? $more_details['brand'] : "";
-            $model = !empty($more_details['model']) ? $more_details['model'] : "";
-            $venloc = !empty($more_details['venloc']) ? $more_details['venloc'] : "";
-            $venlocation = !empty($more_details['venlocation']) ? $more_details['venlocation'] : "";
-            $ventype = !empty($more_details['ventype']) ? $more_details['ventype'] : "";
-            $maxCap = !empty($more_details['maxCap']) ? $more_details['maxCap'] : "";
-            $minCap = !empty($more_details['minCap']) ? $more_details['minCap'] : "";
-        } else {
-            echo "Error: " . $more_details . "<br>" . mysqli_error($conn);
-        }
-    } else {
-        header("Location: 404.php");
-    }
+// check if the user already requested a quotation for the selected event
+$sql = "SELECT * FROM request_supplier_quotation WHERE for_cus_req = $reqID AND psId = $id";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+    $alreadyRequested = true;
 } else {
-    header("Location: 404.php");
+    $alreadyRequested = false;
 }
 
 ?>
@@ -72,6 +40,11 @@ if (isset($_GET['id'])) {
 
 <body>
     <div class="container-profile">
+        <?php if ($alreadyRequested) { ?>
+            <div class="ep-availability unavailable" style="text-align: center;">
+                You have already requested a quotation from this supplier for the selected Customer Request.
+            </div>
+        <?php } ?>
         <div class="flex-container-profile">
             <div class="about">
                 <div class="ps-images">
@@ -98,17 +71,19 @@ if (isset($_GET['id'])) {
                         <?php echo $title; ?>
                     </div>
                     <div class="product-cat">
-                        <?php echo ucwords($type); ?>
+                        <?php echo ucwords(showSupType($type)); ?>
                     </div>
                 </div>
                 <div class="product-descript">
                     <div class="sm-all-p">
                         <div class="sm-name">
-                            <div class="actionBtn">
-                                <button type="button" class="accepted" style="margin-left: 0;" onclick="window.location='./request-quotation.php?id=<?php echo $id ?>';">
-                                    Request a Quotation
-                                </button>
-                            </div>
+                            <?php if (!$alreadyRequested) { ?>
+                                <div class="actionBtn">
+                                    <button type="button" class="accepted" style="margin-left: 0;" onclick="window.location='./request-quotation.php?id=<?php echo $id ?>&reqID=<?php echo $reqID ?>';">
+                                        Request a Quotation
+                                    </button>
+                                </div>
+                            <?php } ?>
                             <div class="actionBtn">
                                 <button type="button" class="rejected" style="margin-left: 0;" onclick="window.location='Messages.php';">
                                     Message Supplier
@@ -187,19 +162,19 @@ if (isset($_GET['id'])) {
                         }
                         if (!empty($transport_type)) {
                             echo '<div class="prof-all-p">
-                                    <div class="prof-name-p">Transport type</div>
+                                    <div class="prof-name-p">Type of Transport</div>
                                     <div class="prof-data">' . $transport_type . '</div>
                                 </div>';
                         }
                         if (!empty($brand)) {
                             echo '<div class="prof-all-p">
-                                    <div class="prof-name-p">Brand</div>
+                                    <div class="prof-name-p">Brand of Vehicle</div>
                                     <div class="prof-data">' . $brand . '</div>
                                 </div>';
                         }
                         if (!empty($model)) {
                             echo '<div class="prof-all-p">
-                                    <div class="prof-name-p">Model</div>
+                                    <div class="prof-name-p">Model of Vehicle</div>
                                     <div class="prof-data">' . $model . '</div>
                                 </div>';
                         }
@@ -217,7 +192,7 @@ if (isset($_GET['id'])) {
                         }
                         if (!empty($ventype)) {
                             echo '<div class="prof-all-p">
-                                    <div class="prof-name-p">Venue type</div>
+                                    <div class="prof-name-p">Type of Venue</div>
                                     <div class="prof-data">' . $ventype . '</div>
                                 </div>';
                         }
@@ -251,7 +226,7 @@ if (isset($_GET['id'])) {
                                 </div>';
                         }
                         ?>
-                        <div class="prof-all-p">
+                        <!-- <div class="prof-all-p">
                             <div class="prof-name-p">Reviews & Feedbacks</div>
                             <div class="prof-feedback">I just loved the experience. I'm so happy to share my review.have no second thought and doubt in terms of quality of food ,decor and staff behaviour and management.wonderfull place and services.
                                 <span class="fa fa-star starChecked"></span>
@@ -267,8 +242,8 @@ if (isset($_GET['id'])) {
                                 <span class="fa fa-star"></span>
                                 <span class="fa fa-star"></span>
                             </div>
-                            <!-- <div class="prof-feedback">Nice Hall with 2 Floors. The Concerns are that there are No Lift and Less Parking Facility. Otherwise this is a great place to be.</div> -->
-                        </div>
+                            <div class="prof-feedback">Nice Hall with 2 Floors. The Concerns are that there are No Lift and Less Parking Facility. Otherwise this is a great place to be.</div>
+                        </div> -->
                     </div>
                 </div>
             </div>

@@ -54,7 +54,7 @@
                             </div>
                         </div>
                         <span>
-                        <input type="submit" value="Add Customer" class="add-btn submit-form">
+                        <input type="submit" value="Add Suplier" class="add-btn submit-form">
                         <input type="hidden" value="supplier" name="role" class="role">
                         </span>
                     </form>
@@ -63,7 +63,8 @@
                     
                 </div>
                 
-          
+                <div class="error"><?php echo showSessionMessage('delete-error'); ?></div>
+                <div class="success"><?php echo showSessionMessage('user-deleted'); ?></div>
                 <table class="details_table">
                     <thead>
                     <tr>

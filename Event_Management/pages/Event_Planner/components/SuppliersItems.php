@@ -1,6 +1,14 @@
 <?php
 
 include_once '../../constants.php';
+
+// get the request id if it is set
+if (isset($_GET['reqID'])) {
+    $reqID = $_GET['reqID'];
+} else {
+    $reqID = '0';
+}
+
 if (isset($_GET['type'])) {
     $type = $_GET['type'];
     $search = $_GET['search'];
@@ -17,16 +25,16 @@ if (isset($_GET['type'])) {
 
     // different sql queries for different search and type combinations
     if ($search != "" && $type != "") {
-        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE (`title` LIKE '%" . $search . "%' OR `description` LIKE '%" . $search . "%') AND (" . $dbTypes . ")";
+        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE (`title` LIKE '%" . $search . "%' OR `description` LIKE '%" . $search . "%') AND (" . $dbTypes . ") ORDER BY RAND()";
     } else if ($search == "" && $type != "") {
-        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE " . $dbTypes;
+        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE " . $dbTypes . " ORDER BY RAND()";
     } else if ($search != "" && $type == "") {
-        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `title` LIKE '%" . $search . "%' OR `description` LIKE '%" . $search . "%'";
+        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `title` LIKE '%" . $search . "%' OR `description` LIKE '%" . $search . "%' ORDER BY RAND()";
     } else {
-        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general";
+        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general ORDER BY RAND()";
     }
 } else {
-    $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general";
+    $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general  ORDER BY RAND()";
 }
 
 $result = mysqli_query($conn, $sql);
@@ -43,9 +51,13 @@ if (mysqli_num_rows($result) > 0) {
         $img = $img_row['image'];
         echo '<div class="card">
                 <div class="content">
-                    <div class="imgBx">
-                        <img src="data:image/jpeg;base64,' . base64_encode($img) . '">
-                    </div>
+                    <div class="imgBx">';
+        if ($img != null) {
+            echo '<img src="data:image/jpeg;base64,' . base64_encode($img) . '">';
+        } else {
+            echo '<img src="../../images/Suppliers/supplier_default.jpg" class="mySlides" alt="">';
+        }
+        echo '  </div>
                     <div class="contentBx">
                         <h3>' . $title . '</h3>
                         <span>' . $description . '</span>
@@ -57,7 +69,7 @@ if (mysqli_num_rows($result) > 0) {
                         <a href="./Supplier-more-info.php?id=' . $productID . '" class="view-supplier">View</a>
                     </li>
                     <li>
-                        <a href="./request-quotation.php?id=' . $productID . '" class="request">Request a Quotation</a>
+                        <a href="./request-quotation.php?id=' . $productID . '&reqID=' . $reqID . '" class="request">Request a Quotation</a>
                     </li>
                 </ul>
             </div>';

@@ -334,17 +334,16 @@ function clearRadioButtons(array){
 
 const quote_form = document.querySelector(".quote_form"),
 submit_btn = document.querySelector(".btn-submit"),
-error_txt = document.querySelector(".error_txt"),
+error_txt = document.querySelectorAll(".error_txt"),
 fields_error = document.querySelector(".fields_error"),
 event_type_error = document.querySelector(".event_type_error"),
 no_pax_error = document.querySelector(".no_pax_error"),
 theme_error = document.querySelector(".theme_error"),
 date_error = document.querySelector(".date_error"),
+today_date_error = document.querySelector(".today_date_error"),
 budget_error = document.querySelector(".budget_error"),
 min_budget_error = document.querySelector(".min_budget_error"),
 time_error = document.querySelector(".time_error"),
-from_date_error = document.querySelector(".from_date_error"),
-to_date_error = document.querySelector(".to_date_error"),
 indoor_remarks_error = document.querySelector(".indoor_remarks_error"),
 outdoor_remarks_error = document.querySelector(".outdoor_remarks_error"),
 venue_type_error = document.querySelector(".venue_type_error"),
@@ -355,7 +354,7 @@ s_l_error = document.querySelector(".s_l_error"),
 s_l_remarks_error = document.querySelector(".s_l_remarks_error"),
 p_v_remarks_error = document.querySelector(".p_v_remarks_error"),
 p_v_error = document.querySelector(".p_v_error"),
-success = document.querySelector(".success");
+success = document.querySelector("#success");
 
 var data;
 var dataArr;
@@ -368,6 +367,7 @@ quote_form.onsubmit = (e)=>{
 }
 
 submit_btn.onclick = ()=>{
+    
     let xhr = new XMLHttpRequest(); //XML object
     xhr.open("POST", "../customer/php/quotation_data.php", true);
     
@@ -380,14 +380,27 @@ submit_btn.onclick = ()=>{
                 if(dataArr.includes("success")){
                         // alert("Success");
                         quote_form.reset();
-                        error_txt.style.display = "none";
                         success.style.display = "block";
+                        event_type_error.style.display = "none";
+                        no_pax_error.style.display = "none";
+                        theme_error.style.display = "none";
+                        date_error.style.display = "none";
+                        today_date_error.style.display = "none";
+                        budget_error.style.display = "none";
+                        min_budget_error.style.display = "none";
+                        time_error.style.display = "none";
+                        // error_txt.style.display = "none";
+                        
 
                         //venue
                         venueNeeded.forEach(function(node){
                             node.classList.remove('needed');
                         });
-                       
+                        // venueInputbox.style.display="none";
+                        venueInputbox.forEach(function(node){
+                            node.style.display="none";
+                            
+                        });
 
 
                         foodNeeded.forEach(function(node){
@@ -442,24 +455,14 @@ submit_btn.onclick = ()=>{
                         date_error.style.display = "none";
                     }
 
-                    //from and to date
-                    if(dataArr.includes("from_date_error")){
-                        from_date_error.style.display = "block";
+                    if(dataArr.includes("today_date_error")){
+                        today_date_error.style.display = "block";
                     }
                     else{
-                        from_date_error.style.display = "none";
-                        
-
+                        today_date_error.style.display = "none";
                     }
 
-                    //to date
-                    if(dataArr.includes("to_date_error")){
-                        to_date_error.style.display = "block";
-                    }
-                    else{
-                        to_date_error.style.display = "none";
-                        
-                    }
+                    
 
                     //budget
                     if(dataArr.includes("budget_error")){

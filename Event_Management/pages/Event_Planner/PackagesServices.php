@@ -20,6 +20,8 @@ require_once('../controllers/commonFunctions.php');
     <?php
     if (isset($_SESSION['success'])) {
         echo '<div class="success-message">' . showSessionMessage("success") . '</div>';
+    } else if (isset($_SESSION['error'])) {
+        echo '<div class="error-message">' . showSessionMessage("error") . '</div>';
     }
     ?>
     <div class="grid-container-payments">
@@ -76,10 +78,10 @@ require_once('../controllers/commonFunctions.php');
                                     </div>
                                     <ul class="sci">
                                         <li>
-                                            <a href="PackagesServices-edit.php?packageId=' . $packageID . '">Edit</a>
+                                            <a class="edit-package" href="PackagesServices-edit.php?packageId=' . $packageID . '">Edit</a>
                                         </li>
                                         <li>
-                                            <button type="button" id="btnDelete" onclick="declineRequest()">
+                                            <button class="delete-package" type="button" onclick="declineRequest()">
                                                 Delete
                                             </button>
                                         </li>

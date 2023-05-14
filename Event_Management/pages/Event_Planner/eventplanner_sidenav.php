@@ -38,6 +38,12 @@ if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['
         </div>
         <ul class="nav-links">
             <li>
+                <a href=<?php echo SITEURL . 'pages/event_planner/dashboard.php'  ?>>
+                    <i class='bx bx-pie-chart-alt-2'></i>
+                    <span class="links_name">Dashboard</span>
+                </a>
+            </li>
+            <li>
                 <a href=<?php echo SITEURL . 'pages/event_planner/Requests.php'  ?>>
                     <i class='bx bx-list-ul'></i>
                     <span class="links_name">Requests</span>
@@ -123,6 +129,17 @@ if (isset($_SESSION['role']) && isset($_SESSION['user_id']) && isset($_SESSION['
                 sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
             } else
                 sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+        }
+
+        function selectTab(tab) {
+            var tabcontent = document.getElementsByClassName("tabcontent");
+            var tablinks = document.getElementsByClassName("tablinks");
+            for (var i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tab).style.display = "block";
+            document.getElementById(tab + "-tab").className += " active";
         }
     </script>
 

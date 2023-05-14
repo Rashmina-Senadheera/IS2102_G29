@@ -1,65 +1,60 @@
-
 <?php
     include('admin_header.php');
     include('admin_nav.php');
 
 ?>
-<link rel="stylesheet" href="../../css/reports.css">
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<main class="reports_main">
-<div class="chart" style="width: 800px;">
-<canvas id="line-chart" width="800" height="450"></canvas>
-</div>
-<div class="filter">
-    <h3>Filter</h3>
-    <label>Select Users</label>
-    <div class="users">
-    <input type="checkbox" >
-    <label>Customers</label> 
-    <input type="checkbox" >
-    <label>Suppliers</label> 
-    <input type="checkbox" >
-    <label>Event Planners</label> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Document</title>
+</head>
+<body>
+  <main class="admin_main">
+    <div class="report_main" >
+      <div class="report_item1">
+        
+        <form action="" id="dataForm">
+          <ul>
+            <li>
+              <input type="radio" name="data" id="month" class="checkBox" value="month">
+              <label for="month">Event Planners and Quotations Received (Monthly)</label>
+            </li>
+            <li>
+              <input type="radio" name="data" id="ep" class="checkBox" value="ep">
+              <label for="ep">Event Planners and Quotations Received (Overall)</label>
+            </li>
+            <li>
+              <input type="radio" name="data" id="users" class="checkBox" value="users">
+              <label for="users">Users</label>
+            </li>
+          </ul>
+        <!-- <input type="radio" name="data" id="data2" class="checkBox">
+        <label for="data">Click2</label> -->
+        
+        </form>
+      </div>
+        
+    <div class="report_item2">
+    <form method="POST" action="loadpdf.php">
+      
+  <input type="text"  id="imgData" name="image" value="" hidden>
+  
+  <input type="submit" name="viewpdf" value="View" >
+  <input type="submit" name="downloadpdf" value="Download">
+  
+  
+  </form>
     </div>
-    <label>Select Date</label>
-    <div class="users">
-        <label>From</label>
-        <input type="date">
-        <label>To</label>
-        <input type="date">
-
+    <div class="report_item3" >
+    <canvas id="myChart" ></canvas>
     </div>
-</div>
-<script>
-new Chart(document.getElementById("line-chart"), {
-  type: 'line',
-  data: {
-    labels: ['January','February','March','April','May','June','July','August','September','October'],
-    datasets: [{ 
-        data: [86,114,106,106,107,111,133,221,783,2478],
-        label: "Customer",
-        borderColor: "#3e95cd",
-        fill: false
-      }, { 
-        data: [282,350,411,502,635,809,947,1402,3700,5267],
-        label: "Event Planner",
-        borderColor: "#8e5ea2",
-        fill: false
-      }, { 
-        data: [168,170,178,190,203,276,408,547,675,734],
-        label: "Supplier",
-        borderColor: "#3cba9f",
-        fill: false
-      }
-    ]
-  },
-  options: {
-    title: {
-      display: true,
-      text: 'Active users in 2022'
-    }
-  }
-});
-</script>
-</main>
+    </div>
+  </main>
+
+    <script src="../../js/reports.js"></script>
+</body>
+</html>

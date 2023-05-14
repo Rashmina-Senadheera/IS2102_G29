@@ -3,6 +3,8 @@
     include( 'supplier_sidenav.php' );
     include( 'header.php' );
     if(isset($_SESSION['user_name'])){
+
+       $id = $_SESSION['user_id'];
 ?>
 
 <!DOCTYPE html>
@@ -30,96 +32,57 @@
             <div class ='grid-main' id='rs-list'>
                 <div class="cards" >
                     <div class='ps-card-title' id='title'>
-                            <div class='rs-card-img'>
-                            </div>
                             <div class='ps-card-desc' id="rs">
-                                <div class='rs-title'>Order Request</div>
-                                <div class='rs-title' id = 'tit'>Quotation Number</div>
-                                <div class='rs-title' id = 'tit'>Event Type </div>
-                                <div class='rs-title' id = 'tit'>Requested </div>
+                                <div class='rs-title' id = 'oid' >Order</div>
+                                <div class='rs-title' id = 'oid' >Quotation</div>
+                                <div class='rs-title' id = 'tit'>Event Date </div>
+                                <div class='rs-title' id = 'tit'>Event Planner </div>
+                                <div class='rs-title' id = 'tit'>Cost </div>
+                                <div class='rs-title' id = 'tit'>Status </div>
                             </div>
                         </div>
+
+                        <?php
                         
-                    <a href='order-view.php' id='a-card'>
-                        <div class='ps-card'>
-                            <div class='rs-card-img'>
-                                <img src= "../../images/S1.jpeg" alt="">
-                            </div>
-                            <div class='ps-card-desc' id="rs">
-                                <div class='rs-title'>Order Bravo Event Productions Hall</div>
-                                <div class='rs-type'>#Q0010</div>
-                                <div class='rs-type'>Wedding</div>
-                                <div class='rs-type' id="urg">2 weeks ago</div>
-                            </div>
-                        </div>
-                    </a> 
-                    <a href='more-info.php?id=' id='a-card'>
-                        <div class='ps-card'>
-                            <div class='rs-card-img'>
-                                <img src= "../../images/S2.jpg" alt="">
-                            </div>
-                            <div class='ps-card-desc' id="rs">
-                                <div class='rs-title'>Order Aluthge Banquet Hall</div>
-                                <div class='rs-type'>#Q0123</div>
-                                <div class='rs-type'>Birthday</div>
-                                <div class='rs-type'> 2 days ago</div>
-                            </div>
-                        </div>
-                    </a> 
+                        $sql1 = "SELECT *, b.status AS orderStatus
+                                FROM supplier_booking b
+                                JOIN supplier_quotation q
+                                ON b.supplier_quote_id = q.quotation_id
+                                JOIN request_supplier_quotation r 
+                                ON b.EP_quotation_id= r.request_id 
+                                JOIN User u
+                                ON u.user_id = b.supplier_id
+                                WHERE b.supplier_id = $id; ";
+
+                        $result1 = mysqli_query($conn, $sql1);
+                        
+                        if (mysqli_num_rows($result1) > 0) {
+                            while ($row = mysqli_fetch_assoc($result1)) {
+                                echo 
+                                "<a href='order-view.php?id=".$row['booking_id']."' id='a-card'>
+                                    <div class='ps-card'>
+                                        <div class='ps-card-desc' id='rs'>
+                                            <div class='rs-title' id = 'rid' style='max-width:12%;min-width:12%;''>".$row['booking_id']."</div>
+                                            <div class='rs-title' id = 'rid' style='max-width:12%;min-width:12%;'>".$row['EP_id']."</div>
+                                            <div class='rs-type'>".$row['date']."</div>
+                                            <div class='rs-type'>".$row['name']."</div>
+                                            <div class='rs-type'>".$row['cost']."</div>
+                                            <div class='rs-type'>".$row['orderStatus']."</div>
+                                        </div>
+                                    </div>
+                                </a> " ;
+                            }
+                        } else {
+                            echo "No Requests for Quoatations found";
+                        }
+                    ?>
+                        
+
                 </div>         
             </div>
-            <div class="filter">
-                <div class="search">
-                    <div class = 'input-container'>
-                        <input class = 'input-field-filter' type = 'text' placeholder = 'Search payments' name = 'search'>
-                        <i class = 'fa fa-search icon'></i>
-                    </div>
-                </div>
-                <div class="status">
-                    <div class="filter-heading">Filter by Status</div>
-                    <div class="status-list">
-                        <ul>
-                            <li><a href="#">
-                                <div class="li-heading" id="out">Urgent</div>
-                            </a></li>
-                            <li><a href="#">
-                                <div class="li-heading" id="in">Not Urgent</div>
-                            </a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="category">
-                    <div class="filter-heading">Filter by Category</div>
-                    <div class="category-list">
-                        <ul>
-                            <li><input type="checkbox">All</li>
-                            <li><input type="checkbox">Venue</li>
-                            <li><input type="checkbox">Entertainment</li>
-                            <li><input type="checkbox">Catering</li>
-                            <li><input type="checkbox">Photography</li>
-                            <li><input type="checkbox">Transport</li>
-                            <li><input type="checkbox">Beverages</li>
-                            <li><input type="checkbox">Florists</li>
-                            <li><input type="checkbox">Decoration</li>
-                            <li><input type="checkbox">Lighting</li>
-                            <li><input type="checkbox">Audio/Vedio</li>
-                        </ul>
-                    </div>
-                    <div class="sort">
-                    <div class="filter-heading">Filter by Date</div>
-                    <div class="sort-list">
-                        <ul>
-                            <li>
-                                <select name="date" id="date-sort">
-                                    <option value="oldest">Oldest on Top</option>
-                                    <option value="newest">Newest on Top</option>
-                                </select>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            <?php require_once 'components/productFilter.php'; ?>
         </div>
+        
     </body>
 
 </html>

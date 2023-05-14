@@ -19,7 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     $runFood = isset($_POST['foodBevId']) ? true : false;
     $runVenue = isset($_POST['venueId']) ? true : false;
     $runPV = isset($_POST['pvId']) ? true : false;
-    $runSL = isset($_POST['slId']) ? true : false;
+    $runS = isset($_POST['sId']) ? true : false;
+    $runL = isset($_POST['lId']) ? true : false;
 
     $onlyPositiveNumbers = "/^[0-9]*$/";
 
@@ -32,6 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     unset($_SESSION['warning-venue']);
 
     if ($runFood) {
+        $foodBevqId = checkInput($_POST['foodBevqId']);
         $foodBevId = checkInput($_POST['foodBevId']);
         $foodBevName = checkInput($_POST['foodBevName']);
         $foodBevCost = checkInput($_POST['foodBevCost']);
@@ -44,6 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     }
 
     if ($runVenue) {
+        $venueqId = checkInput($_POST['venueqId']);
         $venueId = checkInput($_POST['venueId']);
         $venueName = checkInput($_POST['venueName']);
         $venueCost = checkInput($_POST['venueCost']);
@@ -56,6 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     }
 
     if ($runPV) {
+        $pvqId = checkInput($_POST['pvqId']);
         $pvId = checkInput($_POST['pvId']);
         $pvName = checkInput($_POST['pvName']);
         $pvCost = checkInput($_POST['pvCost']);
@@ -67,19 +71,33 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         }
     }
 
-    if ($runSL) {
-        $slId = checkInput($_POST['slId']);
-        $slName = checkInput($_POST['slName']);
-        $slCost = checkInput($_POST['slCost']);
+    if ($runS) {
+        $sqId = checkInput($_POST['sqId']);
+        $sId = checkInput($_POST['sId']);
+        $sName = checkInput($_POST['sName']);
+        $sCost = checkInput($_POST['sCost']);
 
-        if (!preg_match($onlyPositiveNumbers, $slCost)) {
-            $_SESSION['error-slCost'] = "Cost must be a positive number";
+        if (!preg_match($onlyPositiveNumbers, $sCost)) {
+            $_SESSION['error-sCost'] = "Cost must be a positive number";
         } else {
-            unset($_SESSION['error-slCost']);
+            unset($_SESSION['error-sCost']);
         }
     }
 
-    if (isset($_SESSION['error-foodBevCostCost']) || isset($_SESSION['error-venueCost']) || isset($_SESSION['error-pvCost']) || isset($_SESSION['error-sl'])) {
+    if ($runL) {
+        $lqId = checkInput($_POST['lqId']);
+        $lId = checkInput($_POST['lId']);
+        $lName = checkInput($_POST['lName']);
+        $lCost = checkInput($_POST['lCost']);
+
+        if (!preg_match($onlyPositiveNumbers, $lCost)) {
+            $_SESSION['error-lCost'] = "Cost must be a positive number";
+        } else {
+            unset($_SESSION['error-lCost']);
+        }
+    }
+
+    if (isset($_SESSION['error-foodBevCostCost']) || isset($_SESSION['error-venueCost']) || isset($_SESSION['error-pvCost']) || isset($_SESSION['error-sCost']) || isset($_SESSION['error-lCost'])) {
         echo "<script> window.history.go(-1); </script>";
         exit();
     } else {
@@ -98,9 +116,9 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
 
         // check if ep_quotation is inserted
         if (!empty($last_id)) {
-            $sql = "INSERT INTO `ep_quotation_items`(`qId`, `type`, `name`, `cost`) VALUES (?,?,?,?)";
+            $sql = "INSERT INTO `ep_quotation_items`(`qId`, `type`, `name`, `cost`, `productId`, `supQuotId`) VALUES (?,?,?,?,?,?)";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("issd", $param_id, $param_type, $param_name, $param_cost);
+            $stmt->bind_param("issdii", $param_id, $param_type, $param_name, $param_cost, $param_productId, $param_supQuotId);
             $param_id = $last_id;
 
             if ($runFood) {
@@ -111,6 +129,8 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                     $param_name = $foodBevName;
                 }
                 $param_cost = $foodBevCost;
+                $param_productId = $foodBevId;
+                $param_supQuotId = $foodBevqId;
                 $stmt->execute();
             }
             if ($runVenue) {
@@ -121,6 +141,8 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                     $param_name = $venueName;
                 }
                 $param_cost = $venueCost;
+                $param_productId = $venueId;
+                $param_supQuotId = $venueqId;
                 $stmt->execute();
             }
             if ($runPV) {
@@ -131,16 +153,32 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                     $param_name = $pvName;
                 }
                 $param_cost = $pvCost;
+                $param_productId = $pvId;
+                $param_supQuotId = $pvqId;
                 $stmt->execute();
             }
-            if ($runSL) {
-                $param_type = 'ent';
-                if (empty($slName)) {
+            if ($runS) {
+                $param_type = 'sound';
+                if (empty($sName)) {
                     $param_name = "Not Set";
                 } else {
-                    $param_name = $slName;
+                    $param_name = $sName;
                 }
-                $param_cost = $slCost;
+                $param_cost = $sCost;
+                $param_productId = $sId;
+                $param_supQuotId = $sqId;
+                $stmt->execute();
+            }
+            if ($runL) {
+                $param_type = 'light';
+                if (empty($lName)) {
+                    $param_name = "Not Set";
+                } else {
+                    $param_name = $lName;
+                }
+                $param_cost = $lCost;
+                $param_productId = $lId;
+                $param_supQuotId = $lqId;
                 $stmt->execute();
             }
         }

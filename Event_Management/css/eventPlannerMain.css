@@ -7,6 +7,27 @@
     font-family: 'Poppins', sans-serif;
 } */
 
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #aaa;
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #999;
+}
+
 body {
     font-family: 'Nunito';
     background: #FAFAFA;
@@ -91,7 +112,7 @@ hr {
         'search'
         'main';
     gap: 10px;
-    padding: 10px 0 10px 20px;
+    padding: 10px 0 0px 20px;
 }
 
 .grid-container-profile {
@@ -122,12 +143,21 @@ hr {
     width: 100%;
     margin-top: 20px;
     color: #666666;
+    padding-bottom: 40px;
 }
 
 .no-records img {
     height: 250px;
 }
 
+.scrollable {
+    overflow-y: scroll;
+    height: 85vh;
+}
+
+.suppliers-cards-container.scrollable {
+    height: 80vh;
+}
 
 /********* Table *********/
 table {
@@ -485,7 +515,7 @@ label {
 }
 
 .modal-body .decline-reason #formErrors {
-    color: red;
+    color: #ff9800;
     font-size: .9rem;
     font-weight: bold;
     margin-bottom: 1rem;
@@ -564,7 +594,16 @@ label {
     font-weight: 500;
     padding: 15px;
     color: #fff;
-    background-color: green;
+    background-color: #04AA6D;
+    text-align: center;
+}
+
+.error-message {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 15px;
+    color: #fff;
+    background-color: #f44336;
     text-align: center;
 }
 
@@ -661,4 +700,48 @@ label {
 
 .btnFindSupplier a {
     text-decoration: none;
+}
+
+.ep-availability.unavailable {
+    background: #f44336;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.ep-availability.available {
+    background: #04AA6D;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.sup-quotation-details  {
+    background-color: #eeeeee;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.personal-info-heading#quoteC {
+    margin-top: 0px;
+    background-color: #490258;
+    color: white;
+    margin: 0px;
+    border: 1px #490258 solid;
+    border-radius: .4rem;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.personal-info-heading#quoteD {
+    margin-top: 0px;
+    background: rgb(226, 226, 226);
+    margin: 0px;
+    border-radius: .4rem;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }

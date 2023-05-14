@@ -1,4 +1,5 @@
 <?php
+require_once('../constants.php');
 require_once('eventplanner_sidenav.php');
 require_once('eventplanner_header.php');
 require_once('../controllers/commonFunctions.php');
@@ -6,6 +7,7 @@ require_once('../controllers/commonFunctions.php');
 if(isset($_GET['supplier_id'])){
 $supplier_id = mysqli_real_escape_string($conn,$_GET['supplier_id']);
 }
+$user_id = $_SESSION['user_id'];
 ?>
 
 <!DOCTYPE html>
@@ -15,9 +17,7 @@ $supplier_id = mysqli_real_escape_string($conn,$_GET['supplier_id']);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../css/viewSuppliersEP.css">
-    <link rel="stylesheet" href="../../css/filterEP.css">
-    <link rel="stylesheet" href="../../css/eventPlannerMain.css">
+   
     <link rel="stylesheet" href="../../css/chat.css">
     <script src="https://kit.fontawesome.com/bf10032598.js" crossorigin="anonymous"></script>
 </head>
@@ -41,7 +41,12 @@ $supplier_id = mysqli_real_escape_string($conn,$_GET['supplier_id']);
                     <!-- <a href="chat.php?user_id='.$row['unique_id'].'"> -->
 
                     <?php 
-                        $sql2 = "SELECT * FROM `user` WHERE `role`= 'customer' OR `role` = 'supplier'";
+                        $sql2 = "SELECT *
+                        FROM `user`
+                        JOIN `messages` AS `sent_messages` ON `user`.`user_id` = `sent_messages`.`sender_id`
+                        JOIN `messages` AS `received_messages` ON `received_messages`.`receiver_id` = `user`.`user_id`
+                        WHERE (`user`.`role` = 'customer' OR `user`.`role` = 'supplier') AND ((sent_messages.sender_id = $user_id OR sent_messages.receiver_id = $user_id ) 
+                        OR (received_messages.sender_id = $user_id OR received_messages.receiver_id = $user_id ) )  GROUP BY user.user_id";
                         $res2 = mysqli_query($conn,$sql2);
                         if($res2){
                             while($row = mysqli_fetch_assoc($res2)){?>
@@ -51,7 +56,7 @@ $supplier_id = mysqli_real_escape_string($conn,$_GET['supplier_id']);
                                     <div class="details" onclick="showDetails(this)" id="message" data-id="<?php echo $row['user_id']; ?>" data-name="<?php echo $row['name']; ?>">
                                         
                                         <span><?php echo $row['name']; ?></span>
-                                        <p><?php echo $row['user_id']; ?></p>
+                                        <p class="role" style="font-size: 12px;"><?php echo ucfirst($row['role']); ?></p>
                                         
                                     </div>
                                 </div>

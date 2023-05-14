@@ -1,6 +1,7 @@
 <?php
 include('../constants.php');
 include('../login_access.php');
+include_once('../controllers/commonFunctions.php');
 if($_SESSION['role'] != 'admin'){
     ?>
     <script>

@@ -49,6 +49,8 @@ if (isset($_GET['id'])) {
             $ventype = !empty($more_details['ventype']) ? $more_details['ventype'] : "";
             $maxCap = !empty($more_details['maxCap']) ? $more_details['maxCap'] : "";
             $minCap = !empty($more_details['minCap']) ? $more_details['minCap'] : "";
+            $type_light = !empty($more_details['type_light']) ? $more_details['type_light'] : "";
+            $type_sound = !empty($more_details['type_sound']) ? $more_details['type_sound'] : "";
         } else {
             echo "Error: " . $more_details . "<br>" . mysqli_error($conn);
         }
@@ -75,8 +77,15 @@ if (isset($_GET['id'])) {
 
 <body>
     <div class="container-profile">
-        <div class="flex-container-profile">
-            <div class="about">
+        <div class='flex-container-main' id="product">
+            <div class="title-search" id="product">
+                <div class='searchSec'>
+                    <div class='page-title' id="quote" ><?php echo $title; ?></div>
+                </div>
+            </div>
+        </div>
+        <div class="flex-container-profile" id="product">
+            <div class="about" id ="product">
                 <div class="image">
                     <?php
                         if ($img_result->num_rows > 0) {
@@ -94,10 +103,7 @@ if (isset($_GET['id'])) {
                     <button class="display-left" onclick="plusDivs(-1)">&#10094;</button>
                     <button class="display-right" onclick="plusDivs(1)">&#10095;</button>
                 </div>
-                <div class="product-title">
-                    <div class="product-name">
-                        <?php echo $title;?>
-                    </div>    
+                <div class="product-title">  
                     <div class="product-cat">
                         <?php $title;?>
                     </div> 
@@ -110,8 +116,8 @@ if (isset($_GET['id'])) {
                     </div>
                 </div>
             </div>
-            <div class="other">
-                <div class="info">
+            <div class="other" >
+                <div class="info" id ="product">
                     <div class="personal-info">
                         <div class="personal-info-heading">
                             Product Description
@@ -119,7 +125,7 @@ if (isset($_GET['id'])) {
 
                         <?php if($type == 'venue') {?>
                             <div class="prof-all-p">
-                                <div class="prof-name-p">Catered For</div>
+                                <div class="prof-name-p">Venue In</div>
                                 <div class="prof-data"><?php echo $venloc;?></div>
                             </div>
                             <div class="prof-all-p">
@@ -200,14 +206,6 @@ if (isset($_GET['id'])) {
                             </div>
                         <?php } ?>
 
-                        <?php if($type == 'deco') {?>
-                            <div class="prof-all-p">
-                                <div class="prof-name-p">Suitable for </div>
-                                <div class="prof-data"><?php echo $suitable_for;?></div>
-                            </div>
-
-                        <?php } ?>
-
                         <?php if($type == 'photo') {?>
                             <div class="prof-all-p">
                                 <div class="prof-name-p">Suitable for </div>
@@ -226,18 +224,86 @@ if (isset($_GET['id'])) {
                             </div>
                         <?php } ?>
 
-                        <div class="prof-all-e">
-                            <a href="product-edit.php?id=<?php echo $id;?>" class="custom-button-e" id="ed">
+                        <?php if($type == 'light') {?>
+                            <div class="prof-all-p">
+                                <div class="prof-name-p">Type of Light  </div>
+                                <div class="prof-data"><?php echo $type_light ;?></div>
+                            </div>
+                        <?php } ?>
+
+                        <?php if($type == 'sound') {?>
+                            <div class="prof-all-p">
+                                <div class="prof-name-p">Type of Sound  </div>
+                                <div class="prof-data"><?php echo $type_sound ;?></div>
+                            </div>
+                        <?php } ?>
+
+                        <div class="prof-all-p">
+                            <div class="prof-name-p">Minimum Budget</div>
+                            <div class="prof-data"><?php echo $budget_min;?></div>
+                        </div>
+
+                        <div class="prof-all-p">
+                            <div class="prof-name-p">Maximum Budget</div>
+                            <div class="prof-data"><?php echo $budget_max;?></div>
+                        </div>
+
+                        <?php
+                        $sql = "SELECT * FROM request_supplier_quotation WHERE status='Completed' AND psId = $id";
+                        $result = mysqli_query($conn, $sql);
+
+                        if (! mysqli_num_rows($result) > 0) {
+                            echo '
+                            <div class="prof-all-e">
+                            <a href="product-edit.php?id='.$id.'" class="custom-button-e" id="ed">
                                 Edit
                             </a>
-                            <button type="button" class="custom-button-e" id="del">Delete</button>
-                        </div>
+                            <button type="button"class="custom-button-e" id="del" onclick="deleteProduct()" >Delete</button>
+                        </div>';
+                        }else{
+                          
+                          echo '
+                            <div class="prof-all-e">
+                                <div class = "restrict">
+                                    Cant Edit or Update Product : Quotation given ! 
+                                </div>
+                            </div>
+                         ' ; 
+                        }
+                        ?>
+
                     </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-decline">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                Are you sure you want to delete this product?
+            </div>
+            <div class="modal-body">
+                <div class="actionBtn">
+                    <button type="button" class="rejected" id ="rejected" style="margin-left: 0;">
+                        Cancel
+                    </button>
+                    <a href="controllers/delete.php?id=<?php echo $id;?>">
+                        <button type="button" class="accepted" id ="deleted" style="margin-left: 0;">
+                            Yes, Delete
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- </div> -->
+
     <script>
     var slideIndex = 1;
     showDivs(slideIndex);
@@ -255,6 +321,20 @@ if (isset($_GET['id'])) {
         x[i].style.display = "none";  
     }
     x[slideIndex-1].style.display = "block";  
+    }
+
+    var modal = document.getElementById("myModal");
+    var btnDelete = document.getElementById("del");
+    var span = document.getElementsByClassName("close")[0];
+
+    btnDelete.onclick = function() {
+        modal.style.display = "block";
+    }
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+    rejected.onclick = function() {
+        modal.style.display = "none";
     }
     </script>
 </body>

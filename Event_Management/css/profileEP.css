@@ -57,13 +57,11 @@
     margin: auto;
     margin-top: 20px;
     width: 80%;
-    height: 55%;
-
 }
 
 .image img {
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
     border-radius: 0.7rem;
     object-fit: cover;
 }
@@ -311,4 +309,8 @@ i#qu-conme {
 
 .prof-data#urg {
     color: rgb(255, 0, 0);
+}
+
+button#notavail {
+    background-color: rgb(250, 81, 81);
 }

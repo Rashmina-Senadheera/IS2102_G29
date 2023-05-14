@@ -53,6 +53,12 @@
                     <span class="links_name">Profile</span>
                 </a>
             </li>
+            <li>
+                <a href="inquiries.php">
+                    <i class="fa-solid fa-question"></i>
+                    <span class="links_name">Inquiries</span>
+                </a>
+            </li>
  
            
             <li class="log_out">

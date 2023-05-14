@@ -22,10 +22,8 @@
     // get the request id if it is set
     if (isset($_GET['reqID'])) {
         $reqID = $_GET['reqID'];
-        setcookie("quotation_for", $reqID);
     } else {
         $reqID = '0';
-        setcookie("quotation_for", 0);
     }
 
     // Send the output buffer to the browser and turn off output buffering
@@ -34,36 +32,31 @@
     // Show success message if it is set
     if (isset($_SESSION['success'])) {
         echo '<div class="success-message">' . showSessionMessage("success") . '</div>';
+    } else if (isset($_SESSION['error'])) {
+        echo '<div class="error-message">' . showSessionMessage("error") . '</div>';
     }
     ?>
     <div class="grid-container-payments">
         <div class="gridSearch">
             <div class="searchSec">
                 <div class="page-title"> Supplier Products & Services </div>
-                <!-- <div class="input-container">
-                    <input class="input-field" type="text" placeholder="Search suppliers" name="search">
-                    <i class="fa fa-search icon"></i>
-                </div>
-                <button type="submit" class="srcButton">Search</button> -->
             </div>
         </div>
-        <div class="gridMain">
-            <div class="suppliers-cards-container" id="supplier_items">
+        <div class="gridSuppliers">
+            <div class="suppliers-cards-container scrollable" id="supplier_items">
 
                 <?php
                 if (isset($_GET['type'])) {
                     $type = $_GET['type'];
-                    if ($type == "foodbev") {
-                        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = 'foodbev'";
-                    } else if ($type == "pv") {
-                        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = 'photo' OR `type` = 'video'";
+                    if ($type == "pv") {
+                        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = 'photo' ORDER BY RAND()";
                     } else if ($type == "sl") {
-                        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = 'deco' OR `type` = 'deco'";
+                        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = 'sound' OR `type` = 'light' ORDER BY RAND()";
                     } else {
-                        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = '$type'";
+                        $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general WHERE `type` = '$type' ORDER BY RAND()";
                     }
                 } else {
-                    $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general";
+                    $sql = "SELECT `product_id`, `title`, `description`, `type` FROM sup_product_general ORDER BY RAND()";
                 }
                 $result = mysqli_query($conn, $sql);
 
@@ -76,12 +69,17 @@
                         $img_sql = "SELECT `image` FROM supplier_product_images WHERE `product_id` = " . $row['product_id'] . " LIMIT 1";
                         $img_result = mysqli_query($conn, $img_sql);
                         $img_row = mysqli_fetch_assoc($img_result);
-                        $img = $img_row['image'];
+                        $img = isset($img_row['image']) ? $img_row['image'] : null;
+
                         echo '<div class="card">
                             <div class="content">
-                                <div class="imgBx">
-                                    <img src="data:image/jpeg;base64,' . base64_encode($img) . '">
-                                </div>
+                                <div class="imgBx">';
+                        if ($img != null) {
+                            echo '<img src="data:image/jpeg;base64,' . base64_encode($img) . '">';
+                        } else {
+                            echo '<img src="../../images/Suppliers/supplier_default.jpg" class="mySlides" alt="">';
+                        }
+                        echo '  </div>
                                 <div class="contentBx">
                                     <h3>' . $title . '</h3>
                                     <span>' . $description . '</span>
@@ -89,8 +87,7 @@
                             </div>
                             <ul class="sci">
                                 <li>
-                                    <!-- <a href="" class="view-supplier">View</a> -->
-                                    <a href="./Supplier-more-info.php?id=' . $productID . '" class="view-supplier">View</a>
+                                    <a href="./Supplier-more-info.php?id=' . $productID . '&reqID=' . $reqID . '" class="view-supplier">View</a>
                                 </li>
                                 <li>
                                     <a href="./request-quotation.php?id=' . $productID . '&reqID=' . $reqID . '" class="request">Request a Quotation</a>

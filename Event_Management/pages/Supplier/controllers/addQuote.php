@@ -13,62 +13,74 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     // define variables and set to empty values
     $date = date("Y-m-d");
     $title = checkInput($_POST['title']);
-    $description = checkInput($_POST['description']);
+    $p_description = checkInput($_POST['pdescript']);
+    $ptype = checkInput($_POST['ptype']);
+    $supplier_id = $_SESSION['user_id'];
     $cost = checkInput($_POST['cost']);
     $status = "pending";
-    $supplier_id = $_SESSION['user_id'];
     $ep_id = checkInput($_POST['ep_id']);
     $req_id = checkInput($_POST['req_id']);
-    $product_id = checkInput($_POST['product_id']);
     $for_cus_req = checkInput($_POST['for_cus_req']);
+    $terms= isset($_POST['terms']);
+    $remarks_quote= checkInput($_POST['description']);
 
-    // get product type
-    $sql = "SELECT type FROM sup_product_general WHERE product_id = $product_id";
-    $result = $conn->query($sql);
-    $row = $result->fetch_assoc();
-    $type = $row['type'];
+    $sql = "INSERT INTO  supplier_quotation(date, title, description, cost, type, status, supplier_id, ep_id, req_id, for_cus_req,remarks_quote) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 
-    $sql = "INSERT INTO  supplier_quotation(date, title, description, cost, type, status, supplier_id, ep_id, req_id, for_cus_req) VALUES(?,?,?,?,?,?,?,?,?,?)";
+  
+    if (empty($cost)) {
+        $_SESSION['error-cost'] = "Enter Cost";
+    }
+    if (empty($terms)) {
+        $_SESSION['error-terms'] = "Must Agree to terms and Conditions";
+    }
+    if (empty($remarks_quote)) {
+        $_SESSION['error-descript'] = "Enter Remarks";
+    }
+    
 
-    if ($stmt = $conn->prepare($sql)) {
+    // Validate package name
+    // If there are any errors go back
+    if (
+        isset($_SESSION['error-cost']) || isset($_SESSION['error-terms']) || isset($_SESSION['error-descript'])
+    ) {
+        echo "<script> history.back(); </script>";
+    } else {
+        if ($stmt = $conn->prepare($sql)) {
 
-        // Bind variables to the prepared statement as parameters
-        $stmt->bind_param('sssdssiiii', $param_date, $param_title, $param_description, $param_cost, $param_type, $param_status, $param_supplier_id, $param_ep_id, $param_req_id, $param_for_cus_req);
-        // Set parameters
-        $param_date = $date;
-        $param_title = $title;
-        $param_description = $description;
-        $param_cost = $cost;
-        $param_type = $type;
-        $param_status = $status;
-        $param_supplier_id = $supplier_id;
-        $param_ep_id = $ep_id;
-        $param_req_id = $req_id;
-        $param_for_cus_req = $for_cus_req;
+            // Bind variables to the prepared statement as parameters
+            $stmt->bind_param('sssdssiiiis', $param_date, $param_title, $param_description, $param_cost, $param_type, $param_status, $param_supplier_id, $param_ep_id, $param_req_id, $param_for_cus_req,$param_remarks);
+            // Set parameters
+            $param_date = $date;
+            $param_title = $title;
+            $param_description = $p_description;
+            $param_cost = $cost;
+            $param_type = $ptype;
+            $param_status = $status;
+            $param_supplier_id = $supplier_id;
+            $param_ep_id = $ep_id;
+            $param_req_id = $req_id;
+            $param_for_cus_req = $for_cus_req;
+            $param_remarks = $remarks_quote;
 
-        // Attempt to execute the prepared statement
-        if ($stmt->execute()) {
-            $_SESSION['success'] = "Quotation sent successfully";
+            
 
-            // Update the status of the request
-            $sql = "UPDATE request_supplier_quotation SET status = 'Completed' WHERE request_id = $req_id";
-            $conn->query($sql);
-
-            header("location: ../quote-view.php?id=$req_id");
-        } else {
-            $_SESSION['error'] = "Something went wrong. Please try again later.";
-            echo "<script>history.go(-1);</script>";
+            // Attempt to execute the prepared statement
             if ($stmt->execute()) {
-            // Redirect package services page
-                $_SESSION['success'] = "Package added successfully".$package_id;
-                header("location: ../sendEventPlannerQuote.php?");
-            } else {
-                $_SESSION['error'] =  "Something went wrong. Please try again later.";
-            }
-            $stmt->close();
+                $_SESSION['success'] = "Quotation sent successfully".$req_id;
 
+                // Update the status of the request
+                $sql = "UPDATE request_supplier_quotation SET status = 'Completed' WHERE request_id = $req_id";
+                $conn->query($sql);
+
+                header("location: ../rs-list.php");
+            } else {
+                $_SESSION['error'] = "Error: " . $conn->error;
+                echo "<script> window.history.go(-1); </script>";
+                exit();
+
+            }
+            $conn->close();
         }
-        $conn->close();
     }
 }
 ?>

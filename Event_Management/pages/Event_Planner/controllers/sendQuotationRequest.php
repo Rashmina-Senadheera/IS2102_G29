@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     }
 
     if (empty($no_of_participants)) {
-        $_SESSION['error-nop'] = "Number of participants is required";
+        $no_of_participants = 0;
     } else if (!preg_match($onlyPositiveNumbers, $no_of_participants)) {
         $_SESSION['error-nop'] = "Number of participants must be a positive number";
     } else {

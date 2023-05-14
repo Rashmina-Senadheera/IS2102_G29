@@ -86,8 +86,8 @@ textarea.input-ps-in{
   
 }
 textarea#other{
-  height: 40px;
-  margin-bottom: 0px;
+  height: 70px;
+  margin-bottom: 10px;
 }
 .title-search{
     flex: 90%;
@@ -246,7 +246,7 @@ select#type{
   margin-top: 10px;
 }
 /* neww */
-select#venueIn,#venType{
+select#venueIn,#venType,#transport_type{
   width: 100%;
   background-color: #f9f9f9;
   border: 1px solid #e5e5e5;
@@ -465,7 +465,7 @@ p.success{
     flex-shrink: 0;
     width: 100%;
     justify-content: flex-start;
-    /* margin: 0 -10px; */
+    margin-bottom: 10px;
 }
 .row#img{
   margin-top: 15px;
@@ -507,7 +507,7 @@ p.success{
 
 .input-label {
     display: block;
-    font-weight: 500;
+    font-weight: normal;
     font-size: 14px;
 }
 
@@ -713,6 +713,10 @@ p.success{
     overflow-y: scroll;
     height: 85vh;
 }
+.scrollable#quote {
+    overflow-y: hidden;
+    height: 85vh;
+}
 
 .btnSend {
     width: 100%;
@@ -722,8 +726,8 @@ p.success{
   width: 400px;
   background: #fff;
   border-radius: 10px;
-  padding: 5px;
-  margin: 10px;
+  margin-left: 10px;
+  margin-bottom: 20px;
 }
 header h2{
   font-size: 24px;
@@ -733,17 +737,19 @@ header p{
   margin-top: 5px;
   font-size: 13px;
 }
-.price-input{
+.price-input , .budget-input{
   width: 100%;
   display: flex;
-  margin: 10px 0 15px;
+  margin: 5px 0 5px;
+  font-size: 13px;
 }
-.price-input .field{
+.price-input .field  , .budget-input .field {
   display: flex;
   width: 100%;
   height: 45px;
   align-items: center;
 }
+
 .field input{
   width: 50%;
   height: 70%;
@@ -819,4 +825,71 @@ input[type=file]::file-selector-button {
 
 input[type=file]::file-selector-button:hover {
   background: #0d45a5;
+}
+.row#images{
+	margin-top: 20px;
+}
+
+.input-background#notavail{
+	background: #ffd2d2;
+  width: 95%;
+  font-size: 13px;
+}
+.input-background#avail{
+	background: #dff2bf;
+  width: 95%;
+  font-size: 13px;
+}
+.row#val{
+  flex-direction: column;
+}
+
+.input-label#supQuote{
+  font-size: 13px;
+}
+.input-value#supQuote{
+  font-size: 13px;
+  font-weight: bold;
+}
+.input-value#supQuoteR{
+  font-size: 13px;
+  font-weight: bold;
+  height: 50px;
+}
+.namePro{
+  font-size: 10px;
+}
+.input-50#supQuote{
+  margin-bottom: 1px;
+  padding-bottom: 10px;
+}
+.row#supQuote{
+  margin-bottom: 1px;
+  margin-top: 2px;
+  gap: 2px;
+}
+.input-50#other{
+  display: flex;
+  flex-direction: row;
+  width: 95%;
+  font-size: 13px;
+  background-color: white;
+  margin-bottom: 0px;
+  padding-bottom: 3px;
+}
+.input-label#other{
+  width: 50%;
+  padding: 5px;
+  font-size: 13px;
+}
+.input-value#other{
+  width: 50%;
+  padding: 5px;
+  font-size: 13px;
+}
+.input#supQuote {
+    margin-bottom: 1px;
+}
+input#quoteB {
+    margin: 0px;
 }

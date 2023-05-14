@@ -22,20 +22,28 @@ require_once('../controllers/commonFunctions.php');
     <?php
     if (isset($_SESSION['success'])) {
         echo '<div class="success-message">' . showSessionMessage("success") . '</div>';
+    } else if (isset($_SESSION['error'])) {
+        echo '<div class="error-message">' . showSessionMessage("error") . '</div>';
     }
     ?>
     <div class="grid-container-payments">
         <div class="gridSearch">
             <div class="searchSec">
                 <div class="page-title"> Quotation Requests </div>
+                <div class="input-container">
+                    <input class="input-field" type="text" placeholder="Search Request" name="search">
+                    <i class="fa fa-search icon"></i>
+                </div>
+                <button type="submit" class="srcButton">Search</button>
             </div>
         </div>
-        <div class="ps-list">
-            <div class='grid-main' id='rs-list'>
-                <div class="cards">
+        <div class="gridMain">
+            <div class="ps-list">
+                <div class='grid-main' id='rs-list'>
+                    <div class="cards">
 
                     <?php
-                    $sql = "SELECT * FROM cust_req_general AS c, request_ep_quotation AS r WHERE c.request_id = r.request_id AND status = 'pending' AND r.EP_id = $_SESSION[user_id]";
+                    $sql = "SELECT * FROM cust_req_general AS c, request_ep_quotation AS r WHERE c.request_id = r.request_id AND r.status = 'pending' AND r.EP_id = $_SESSION[user_id]";
                     // $sql = "SELECT * FROM cust_req_general";
                     $result = mysqli_query($conn, $sql);
                     if (mysqli_num_rows($result) > 0) {
@@ -46,7 +54,7 @@ require_once('../controllers/commonFunctions.php');
                             <div class='rs-title'>Event Type</div>
                             <div class='rs-title'>Participants</div>
                             <div class='rs-title'>Theme</div>
-                            <div class='rs-title'>Tentative Dates</div>
+                            <div class='rs-title'>Tentative Date</div>
                             <div class='rs-title'>Budget (Rs.)</div>
                             <div class='rs-title t2'></div>
                         </div>
@@ -57,17 +65,16 @@ require_once('../controllers/commonFunctions.php');
                             $event_type = !empty($row['event_type']) ? $row['event_type'] : "Not Set";
                             $no_of_guests = !empty($row['no_of_pax']) ? $row['no_of_pax'] : "Not Set";
                             $theme = !empty($row['theme']) ? $row['theme'] : "Not Set";
-                            $date1 = !empty($row['from_date']) ? $row['from_date'] : "Not Set";
-                            $date = !empty($row['to_date']) ? $date1 . " to " . $row['to_date'] : $date1;
+                            $date = !empty($row['event_date']) ? $row['event_date'] : "Not Set";
                             $budget1 = !empty($row['min_budget']) ? formatCurrency($row['min_budget']) : "0";
                             $budget2 = !empty($row['max_budget']) ? "- " . formatCurrency($row['max_budget']) : " ";
                             $customer_id = $row['customer_id'];
 
-                            echo "
+                                echo "
                                     <div class='ps-card'>
                                         <div class='ps-card-desc' id='rs'>
                                             <a class='rs-title t2' href='Request-view.php?reqID=$request_id' id='a-card'>
-                                                <div>#R$request_id</div>
+                                                <div>#CR$request_id</div>
                                             </a>
                                             <a class='rs-type' href='Request-view.php?reqID=$request_id' id='a-card'>
                                                 <div>$reqdate</div>
@@ -111,14 +118,15 @@ require_once('../controllers/commonFunctions.php');
                                             </div>
                                         </div>
                                     </div>";
-                        }
-                    } else {
-                        echo "<div class='no-records'>
+                            }
+                        } else {
+                            echo "<div class='no-records'>
                                 No Quotation Requests
                                 <img src='../../images/no-record.png' alt='No Requests'>
                             </div>";
-                    }
-                    ?>
+                        }
+                        ?>
+                    </div>
                 </div>
             </div>
         </div>

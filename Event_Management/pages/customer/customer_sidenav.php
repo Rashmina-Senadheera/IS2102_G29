@@ -12,25 +12,20 @@
             <span class="logo_name">Eventra</span>
         </div>
         <ul class="nav-links">
-            
-            <li>
-                <a href="customer_quotation.php">
-                    <i class='bx bx-task'></i>
-                    <span class="links_name">Quotations</span>
-                </a>
-            </li>
-            <li>
-                <a href="CompletedEvents.php">
-                    <i class="fa-solid fa-calendar"></i>
-                    <span class="links_name">Completed Events</span>
-                </a>
-            </li>
             <li>
                 <a href="OngoingEvents.php">
                     <i class="fa-regular fa-calendar"></i>
                     <span class="links_name">Ongoing Events</span>
                 </a>
             </li>
+
+            <li>
+                <a href="CompletedEvents.php">
+                    <i class="fa-solid fa-calendar"></i>
+                    <span class="links_name">Completed Events</span>
+                </a>
+            </li>
+
             <li>
                 <a href="../event_planners.php">
                     <i class="fa-solid fa-person"></i>

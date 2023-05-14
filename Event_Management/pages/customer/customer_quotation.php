@@ -1,15 +1,18 @@
 <?php 
-include_once("../constants.php");
-
-include('customer_sidenav.php');
-include('customer_header.php');
-include('header.php');
+// include_once("../constants.php");
+session_start();
+// include_once("../../css/customer_quotation.css");
+include_once('customer_sidenav.php');
+include_once('customer_header.php');
+// include('header.php');
 include('../controllers/commonFunctions.php');
 $evt_planner_id = checkInput($_GET['evt_planner_id']) ;
 if(isset($evt_planner_id)){
     $_SESSION['evt_id'] = $evt_planner_id;
 
 }
+// $evt_planner_id = 
+
 
 ?>
 <main>
@@ -56,15 +59,13 @@ if(isset($evt_planner_id)){
                     
                     
                     <div class="date">
-                        <label>From</label>
-                        <input type="date" name="from-date" required>
-                        <label>To</label>
-                        <input type="date" name="to-date" required>
+                        
+                        <input type="date" name="date" required>
+                        
                     </div>
                     <div class="error_txt date_error">Date is Required</div>
-                    <div class="error_txt from_date_error">Invalid From Date</div>
-                    <div class="error_txt to_date_error">Invalid To Date</div>
-                </div>
+                    <div class="error_txt today_date_error">Date is Invalid</div>
+                 </div>
 
                 
 
@@ -360,7 +361,7 @@ if(isset($evt_planner_id)){
             
         <div class="submit-btn">
         <input type="submit" value="Submit" class="btn-submit">
-        <div class="success">Data sent successfully</div>
+        <div class="success" id="success">Data sent successfully</div>
         </div>
 
 

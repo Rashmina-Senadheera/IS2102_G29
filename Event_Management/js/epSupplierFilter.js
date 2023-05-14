@@ -3,22 +3,22 @@ function setTypes() {
     let type = '&type=';
 
     // to check if it is the first type. If it is, then we don't need to add a comma before it.
-    let first = true; 
+    let first = true;
 
-    var type1 = document.getElementById("Venue").checked;
+    var type1 = document.getElementById("Decoration").checked;
     var type2 = document.getElementById("Entertainment").checked;
-    var type3 = document.getElementById("Catering").checked;
-    var type4 = document.getElementById("Photography").checked;
-    var type5 = document.getElementById("Transport").checked;
-    var type6 = document.getElementById("Beverages").checked;
-    var type7 = document.getElementById("Florists").checked;
-    var type8 = document.getElementById("Decoration").checked;
-    var type9 = document.getElementById("Lighting").checked;
-    var type10 = document.getElementById("AudioVideo").checked;
+    var type3 = document.getElementById("Florists").checked;
+    var type4 = document.getElementById("FoodBev").checked;
+    var type5 = document.getElementById("Lighting").checked;
+    var type6 = document.getElementById("Photography").checked;
+    var type7 = document.getElementById("Sounds").checked;
+    var type8 = document.getElementById("Transport").checked;
+    var type9 = document.getElementById("Venue").checked;
+    var type10 = document.getElementById("Other").checked;
 
 
     if (type1) {
-        type += first ? 'Venue' : ',Venue';
+        type += first ? 'deco' : ',deco';
         first = false;
     }
     if (type2) {
@@ -26,42 +26,42 @@ function setTypes() {
         first = false;
     }
     if (type3) {
-        type += first ? 'foodbev' : ',foodbev';
+        type += first ? 'florist' : ',florist';
         first = false;
     }
     if (type4) {
-        type += first ? 'photo' : ',photo';
-        first = false;
-    }
-    if (type5) {
-        type += first ? 'Transport' : ',Transport';
-        first = false;
-    }
-    if (type6) {
         type += first ? 'foodbev' : ',foodbev';
         first = false;
     }
+    if (type5) {
+        type += first ? 'light' : ',light';
+        first = false;
+    }
+    if (type6) {
+        type += first ? 'photo' : ',photo';
+        first = false;
+    }
     if (type7) {
-        type += first ? 'Florist' : ',Florist';
+        type += first ? 'sound' : ',sound';
         first = false;
     }
     if (type8) {
-        type += first ? 'Deco' : ',Deco';
+        type += first ? 'transport' : ',transport';
         first = false;
     }
     if (type9) {
-        type += first ? 'Lighting' : ',Lighting';
+        type += first ? 'venue' : ',venue';
         first = false;
     }
     if (type10) {
-        type += first ? 'ent' : ',ent';
+        type += first ? 'other' : ',other';
         first = false;
     }
 
     return type;
 }
 
-function showResult() {
+function showResult(reqID) {
     // if (str.length == 0) {
     //     document.getElementById("supplier_items").innerHTML = "";
     //     return;
@@ -75,6 +75,6 @@ function showResult() {
     }
 
     // filter by type and search
-    xmlhttp.open("GET", "components/SuppliersItems.php?search=" + str + setTypes(), true);
+    xmlhttp.open("GET", "components/SuppliersItems.php?reqID=" + reqID + "&search=" + str + setTypes(), true);
     xmlhttp.send();
 }

@@ -1,0 +1,391 @@
+.container-profile {
+    margin-left: 240px;
+    height: 90%;
+}
+
+@media (max-width:1240px) {
+    .container-profile {
+        margin-left: 60px;
+    }
+}
+
+.flex-container-profile {
+    display: flex;
+    flex-direction: row;
+    /* height: 100%; */
+    width: 100%;
+    font-size: 14px;
+}
+
+.about {
+    flex: 0.35;
+    margin: 1.3rem;
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
+    width: 100px;
+    border-radius: .5rem;
+}
+
+.other {
+    display: flex;
+    flex-direction: column;
+    border-radius: .5rem;
+
+}
+
+.info {
+    flex: 70%;
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
+    margin: 1.3rem;
+    margin-left: 0.4rem;
+    border-radius: .5rem;
+}
+
+.p-s-info {
+    flex: 30%;
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
+    margin: 1.3rem;
+    margin-left: 0.4rem;
+    margin-top: 0.4rem;
+    border-radius: .5rem;
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+.image {
+    margin: auto;
+    margin-top: 20px;
+    width: 80%;
+}
+
+.image img {
+    width: 100%;
+    /* height: 100%; */
+    border-radius: 0.7rem;
+    object-fit: cover;
+}
+
+.social-media {
+    margin: 20px;
+    margin-left: 10%;
+}
+
+.profile-bio {
+    margin: auto;
+    width: 80%;
+    margin-top: 10px;
+}
+
+.profile-name {
+    text-align: center;
+    font-weight: bolder;
+    font-size: 15px;
+}
+
+.profile-role {
+    text-align: center;
+    color: rgb(134, 134, 134);
+}
+
+.sm-all {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px rgb(224, 224, 224) solid;
+    margin: 13px;
+}
+
+.sm-logo {
+    flex: 10%;
+}
+
+.sm-logo img {
+    width: 20px;
+}
+
+.sm-name {
+    flex: 30%;
+}
+
+.sm-link {
+    flex: 50%;
+    text-align: left;
+}
+
+.personal-info {
+    margin: 15px;
+}
+
+.prof-all {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px rgb(238, 238, 238) solid;
+    margin: 13px;
+    font-size: 12px;
+}
+.prof-all#avail {
+    font-size: 13px;
+    font-weight: bold;
+    border: none;
+    margin-top: 20px;
+}
+
+.prof-name {
+    flex: 20%;
+}
+
+.prof-name-50 {
+    flex: 50%;
+}
+.prof-name-50#avail {
+    width: 20%;
+    margin: auto;
+}
+.prof-name-50#quotecost {
+    font-weight: bold;
+}
+.prof-data#quotecost {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+
+
+.prof-data {
+    flex: 60%;
+    text-align: justify;
+}
+
+.prof-feedback {
+    flex: 60%;
+    text-align: justify;
+    background-color: #f2f2f2;
+    border-radius: 0.5rem;
+    padding: 10px;
+    margin: 2px;
+
+}
+
+.personal-info-heading {
+    font-weight: bold;
+    font-size: 15px;
+    color: #490258;
+    margin: 10px;
+    padding: 4px;
+    padding-left: 6px;
+    text-align: center;
+    border-radius: .5rem;
+    background: rgb(226, 226, 226);
+    color: #490258;
+    width: 40%;
+}
+
+@media (max-width: 1200px) {
+    .sm-name {
+        /* display: none; */
+    }
+}
+
+@media (max-width: 1000px) {
+    .container-profile {
+        margin-left: 60px;
+        height: 90%;
+        /* overflow-x: hidden; */
+    }
+
+    .flex-container-profile {
+        display: flex;
+        flex-direction: column;
+        height: 1000px;
+    }
+
+    .image {
+        /* height: 30%; */
+    }
+
+    .about {
+        flex: 1;
+        width: 90%;
+        margin: auto;
+        margin-top: 6%;
+    }
+
+    .sm-name {
+        /* display: none; */
+    }
+
+    .info {
+        width: 90%;
+        margin: auto;
+        margin-top: 6%;
+    }
+
+    .profile-bio {
+        width: 100%;
+    }
+
+    .personal-info-heading {
+        width: 90%;
+    }
+}
+
+
+.tag {
+    display: inline-block;
+    border-radius: 3px;
+    padding: .2em .5em .3em;
+    border-radius: 2px;
+    background: var(--tag-bg);
+    color: var(--text-color);
+    font-weight: 600;
+    margin: .25em .1em
+}
+
+.tag-sm {
+    font-size: .7em;
+    display: inline-block;
+    letter-spacing: .15ch;
+}
+
+.tag-lg {
+    border-radius: 4px;
+    font-weight: bold;
+    background: rgb(226, 226, 226);
+    color: #490258;
+}
+
+.starChecked {
+    color: orange;
+}
+
+img#about-img {
+    width: 250px;
+    height: 150px;
+    margin: auto;
+    margin-bottom: 5px;
+}
+
+.personal-info-heading-avail {
+    font-weight: bold;
+    font-size: 15px;
+    margin: 10px;
+    padding: 4px;
+    padding-left: 6px;
+    text-align: center;
+    width: 30%;
+}
+
+.available {
+    color: #ffffff;
+    background-color: #024b18;
+    border: none;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    padding: 5px 2rem;
+}
+
+.actionBtn#notavail {
+    margin-top: 0px;
+    justify-content: left;
+}
+.actionBtn#avail {
+    margin-top: 0px;
+    justify-content: center;
+    width: 100%;
+}
+.times{
+    font-size: 11px;
+    margin-left: 20px;
+    font-weight: bold;
+    border-bottom: solid 1px rgb(250, 81, 81) ;
+}
+
+.other#quote {
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
+    flex: 0.6;
+    height: 95%;
+}
+
+.personal-info#quote {
+    margin-bottom: 0px;
+}
+
+.personal-info#quoteb {
+    margin-top: 0px;
+}
+
+i#qu-con {
+    margin-right: 10px;
+}
+
+i#qu-conm {
+    margin-left: 20px;
+    margin-right: 10px;
+}
+
+i#qu-conme {
+    margin-left: 20px;
+    margin-right: 1px;
+}
+
+.prof-name-20 {
+    flex: 20%;
+}
+
+.contact {
+    flex: 80%;
+}
+
+.prof-data-80 {
+    flex: 80%;
+}
+
+.prof-data#urg {
+    color: rgb(255, 0, 0);
+}
+
+button#notavail {
+    background-color: rgb(250, 81, 81);
+}
+
+.availTime{
+    display: flex;
+    flex-direction: row;
+}
+button.orderDT {
+    font-size: 12px;
+    font-weight: bold;
+    background-color: #f8e0fd;
+    border: none;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    padding: 5px 2rem;
+}
+.personal-info#quotecost{
+    border: 1px #66426d solid;
+    border-radius: .5rem;
+    width: 90%;
+}
+.personal-info-heading#quoteC{
+    margin-top: 0px;
+    background-color: #490258;
+    color: white;
+    margin: 0px;
+    border: 1px #490258 solid;
+    border-radius: .4rem;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.personal-info-heading#quoteD{
+    margin-top: 0px;
+    background: rgb(226, 226, 226);
+    margin: 0px;
+    border-radius: .4rem;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
