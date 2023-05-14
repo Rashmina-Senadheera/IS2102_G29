@@ -140,17 +140,19 @@ if(!empty($_GET['session_id'])){
     
     
     $sql_sup_booking = "INSERT INTO `supplier_booking`( `EP_id`, `supplier_id`, `EP_quotation_id`, `supplier_quote_id`, `payment_id`,`status`) VALUES ('$ep_id','$sup_id','$epQuotId','$supQuotId','$payment_id','$status')"; 
-    $sql_ep_booking = "INSERT INTO `ep_booking`(`customer_id`, `EP_id`, `ep_quot_id`, `payment_id`) VALUES ('$cus_id','$ep_id','$epQuotId','$payment_id')";
-    $cus_req = "UPDATE`request_ep_quotation` SET `status`='$status' WHERE request_id=$reqId";
+    $sql_ep_booking = "INSERT INTO `ep_booking`(`customer_id`, `EP_id`, `ep_quot_id`, `payment_id`,`status`) VALUES ('$cus_id','$ep_id','$epQuotId','$payment_id','$status')";
+    $cus_req = "UPDATE `request_ep_quotation` SET `status`='$status' WHERE request_id=$reqId";
+    $sup_req = "UPDATE `request_supplier_quotation` SET `status`='$status' WHERE for_cus_req=$reqId";
     $res = mysqli_query($conn,$sql_sup_booking);
     $res1 = mysqli_query($conn,$sql_ep_booking);
     $res2 = mysqli_query($conn,$cus_req);
+    $res3 = mysqli_query($conn,$sup_req);
 
 
-    if($res && $res1 && $res2){
+    if($res && $res1 && $res2 && $res3){
         echo "<script> location.replace('http://localhost/file_struct/Event_Management/pages/customer/OngoingEvents.php'); </script>";
     }else{
-        echo "Not";
+        echo "Error in inserting data";
     }
       ?>
     
