@@ -31,15 +31,15 @@
                         <div class="info-box">
                         <div class="error-text"></div>
                             <div class="box">
-                                <span class="details">Full Name</span>
+                                <span class="details">Full Name<label class="error">*</label></span>
                                 <input type="text" name="name" placeholder="Enter Name" required>
                             </div>
                             <div class="box">
-                                <span class="details">Password</span>
+                                <span class="details">Password<label class="error">*</label></span>
                                 <input type="password" name="pwd" placeholder="Enter Password" required>
                             </div>
                             <div class="box">
-                                <span class="details">Email</span>
+                                <span class="details">Email<label class="error">*</label></span>
                                 <input type="text" name="email" placeholder="Enter Email" required>
                             </div>
                             
@@ -57,7 +57,8 @@
                     </form>
                 </div>
                 
-          
+                <div class="error"><?php echo showSessionMessage('delete-error'); ?></div>
+                <div class="success"><?php echo showSessionMessage('user-deleted'); ?></div>
                 <table class="details_table">
                     <thead>
                     <tr>

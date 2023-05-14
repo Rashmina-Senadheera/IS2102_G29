@@ -621,6 +621,9 @@ margin-top: 30%;
 
     height: 90%;
 }
+.container-profile h3 {
+    margin-left: 2%;
+}
 
 @media (max-width:1240px) {
     .container-profile {
@@ -637,17 +640,18 @@ margin-top: 30%;
 }
 
 .about {
-    flex: 0.5;
+    flex: 0.8;
     margin: 1.3rem;
     box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
-    width: 100px;
+    /* width: 100px; */
     border-radius: .5rem;
 }
 
 .other {
-    flex: 1;
+    
     display: flex;
     flex-direction: column;
+    flex-basis: 60%;
 
 }
 
@@ -738,14 +742,21 @@ margin-top: 30%;
 }
 
 .personal-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin: 15px;
 }
 
 .prof-all {
     display: flex;
     flex-direction: row;
+    width: 70%;
     border-bottom: 1px rgb(238, 238, 238) solid;
     margin: 13px;
+    margin-bottom: 2%;
+
 }
 
 .prof-name {
@@ -810,8 +821,9 @@ margin-top: 30%;
     .about {
         display: flex;
         flex-direction: column;
-        flex: 1;
-        width: 90%;
+        flex-basis: 80%;
+
+        width: 80%;
         margin: auto;
         margin-top: 6%;
     }
@@ -926,4 +938,7 @@ i#qu-conme{
 .profile_main{
     margin-top: 10%;
     position: absolute;
+}
+.buttons{
+    margin-top: 5%;
 }
