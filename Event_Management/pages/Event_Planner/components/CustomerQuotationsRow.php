@@ -3,17 +3,6 @@
         <div class="cards">
 
             <?php
-            $sql = "SELECT e.*, u.name, c.event_type, SUM(ei.cost) AS sCost
-            FROM ep_quotation e, user u, cust_req_general c, ep_quotation_items ei 
-            WHERE 
-            e.epId = '$_SESSION[user_id]' AND 
-            e.cusId = u.user_id AND 
-            e.reqId = c.request_id AND
-            e.qId = ei.qId AND
-            e.status = 'pending'
-            GROUP BY e.qId
-            ORDER BY e.qId DESC";
-
             if ($result = $conn->query($sql)) {
                 if ($result->num_rows > 0) {
             ?>
@@ -22,49 +11,55 @@
                         <div class='rs-title sq'>Customer</div>
                         <div class='rs-title sq'>Event Type</div>
                         <div class='rs-title sq'>Date</div>
-                        <div class='rs-title sq'>Budget (Rs.)</div>
-                        <div class='rs-title sq'>Status</div>
+                        <div class='rs-title sq'>Event Planner Cost (Rs.)</div>
+                        <div class='rs-title sq'>Total Budget (Rs.)</div>
                         <!-- <div class='rs-title t2'></div> -->
                     </div>
             <?php
                     while ($row = $result->fetch_assoc()) {
                         $qid = $row['qId'];
+                        $reqID = $row['reqId'];
                         $cusName = $row['name'];
                         $eventType = $row['event_type'];
                         $date = $row['date'];
+                        $epCost = $row['epCost'];
                         $cost = $row['sCost'];
-                        $cost = $cost + $row['epCost'];
+                        $cost = $cost + $epCost;
                         $cost = formatCurrency($cost);
+                        $epCost = formatCurrency($epCost);
                         $status = ucwords($row['status']);
 
                         echo "<div class='ps-card'>
                                     <div class='ps-card-desc' id='rs'>
-                                        <a class='rs-title t2' href='Request-view.php?reqID=1' id='a-card'>
+                                        <a class='rs-title t2' href='CustomerQuotationView.php?qid=$qid&reqID=$reqID' id='a-card'>
                                             <div>#CQ$qid</div>
                                         </a>
-                                        <a class='rs-type sq' href='Request-view.php?reqID=1' id='a-card'>
+                                        <a class='rs-type sq' href='CustomerQuotationView.php?qid=$qid&reqID=$reqID' id='a-card'>
                                             <div>$cusName</div>
                                         </a>
-                                        <a class='rs-type sq' href='Request-view.php?reqID=1' id='a-card'>
+                                        <a class='rs-type sq' href='CustomerQuotationView.php?qid=$qid&reqID=$reqID' id='a-card'>
                                             <div>$eventType</div>
                                         </a>
-                                        <a class='rs-type sq' href='Request-view.php?reqID=1' id='a-card'>
+                                        <a class='rs-type sq' href='CustomerQuotationView.php?qid=$qid&reqID=$reqID' id='a-card'>
                                             <div>$date</div>
                                         </a>
-                                        <a class='rs-type sq' href='Request-view.php?reqID=1' id='a-card'>
-                                            <div>$cost</div>
+                                        <a class='rs-type sq' href='CustomerQuotationView.php?qid=$qid&reqID=$reqID' id='a-card'>
+                                            <div>$epCost</div>
                                         </a>
-                                        <a class='rs-type sq' href='Request-view.php?reqID=1' id='a-card'>
-                                            <div>$status</div>
+                                        <a class='rs-type sq' href='CustomerQuotationView.php?qid=$qid&reqID=$reqID' id='a-card'>
+                                            <div>$cost</div>
                                         </a>
                                     </div>
                                 </div>";
                     }
                 } else {
                     echo "<div class='no-records'>
-                            No Quotations Accepted
-                            <img src='../../images/no-record.png' alt='No Requests'>
-                        </div>";
+                            No Records Found";
+                    if (empty($happy))
+                        echo "<img src='../../images/no-record.png' alt='No Requests'>";
+                    else
+                        echo "<img src='../../images/no-record-happy.png' alt='No Requests'>";
+                    echo "</div>";
                 }
             }
             ?>

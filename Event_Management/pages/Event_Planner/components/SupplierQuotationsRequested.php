@@ -17,7 +17,7 @@
                         <div class='rs-title sq'>Product / Service</div>
                         <div class='rs-title sq'>For Request</div>
                         <div class='rs-title sq'>Event Type</div>
-                        <div class='rs-title sq'>Product Type</div>
+                        <div class='rs-title sq'>Product/Service Type</div>
                         <div class='rs-title sq'>Date</div>
                     </div>
             <?php
@@ -26,13 +26,13 @@
                         $r_title = $row['product_title'];
                         $r_reqFor = $row['for_cus_req'];
                         $r_type = $row['event_type'];
-                        $p_type = $row['product_type'];
+                        $p_type = showSupType($row['product_type']);
                         // $r_location = !empty($row['location']) ? $row['location'] : 'Not set';
                         $r_requested_on = $row['requested_on'];
                         echo "<div class='ps-card'>
                                 <div class='ps-card-desc' id='rs'>
                                     <div class='rs-title t2'>#SQR$r_id</div>
-                                    <div class='rs-type sq'>Request for $r_title</div>
+                                    <div class='rs-type sq'>$r_title</div>
                                     <div class='rs-type sq'>#CR$r_reqFor</div>
                                     <div class='rs-type sq'>$r_type</div>
                                     <div class='rs-type sq'>" . ucwords($p_type) . "</div>

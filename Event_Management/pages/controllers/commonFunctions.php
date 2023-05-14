@@ -135,7 +135,7 @@ function formatDateTime($date)
 // format date
 function formatTime($date)
 {
-    return date('h:i', strtotime($date));
+    return date('H:i', strtotime($date));
 }
 
 // format date

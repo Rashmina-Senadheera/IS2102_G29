@@ -1,5 +1,5 @@
 <?php
-function getQuotationDetails($reqID, $conn, $type)
+function getQuotationDetails($reqID, $conn, $type, $type2 = null)
 {
     // display supplier quotations related to this event
     $sql = "SELECT s.*, r.psId
@@ -8,11 +8,20 @@ function getQuotationDetails($reqID, $conn, $type)
             type = '$type' AND 
             s.req_id = r.request_id";
 
+    if ($type2 != null) {
+        $sql = "SELECT s.*, r.psId
+            FROM supplier_quotation s, request_supplier_quotation r
+            WHERE s.for_cus_req = '$reqID' AND 
+            (type = '$type' OR type = '$type2') AND 
+            s.req_id = r.request_id";
+    }
+
     $result = $conn->query($sql);
+    $showType = ucwords($type);
     if ($result->num_rows > 0) {
         echo "<div class='row'>
             <div class='input'>
-                <label class='input-label'>Supplier Quotations related to this event:</label>
+                <label class='input-label'>$showType Suppliers' Quotations:</label>
                     <table class='related-quotations'>";
 
         while ($row = $result->fetch_assoc()) {
@@ -28,8 +37,10 @@ function getQuotationDetails($reqID, $conn, $type)
                 $setFunction = "setVenueCost";
             } else if ($type == "photo") {
                 $setFunction = "setPVCost";
-            } else if ($type == "ent") {
-                $setFunction = "setSLCost";
+            } else if ($type == "sound") {
+                $setFunction = "setSCost";
+            } else if ($type == "light") {
+                $setFunction = "setLCost";
             }
 
             echo "<tr onClick='$setFunction(`$qid`, `$pid`, `$title`, `$cost`)'>
@@ -192,7 +203,8 @@ function getQuotationDetails($reqID, $conn, $type)
                                 <div class='input-value'>$sl_remarks</div>
                             </div>
                         </div>";
-        getQuotationDetails($reqID, $conn, "ent");
+        getQuotationDetails($reqID, $conn, "sound");
+        getQuotationDetails($reqID, $conn, "light");
         echo "</div>";
     }
     ?>
