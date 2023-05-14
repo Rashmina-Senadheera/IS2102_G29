@@ -47,7 +47,10 @@ if ($conn->connect_error) {
             <div class="suppliers-cards-container" id="supplier_items">
                 <?php
 
-$sql = "SELECT * FROM `cust_req_general` where status='Ongoing'";
+$sql = "SELECT * FROM `cust_req_general`
+        JOIN `request_ep_quotation`
+        ON `request_ep_quotation`.`request_id` = `cust_req_general`.`request_id`
+        where request_ep_quotation.status='Ongoing'";
                 $result = $conn->query($sql);
                 if (mysqli_num_rows($result) > 0){
 

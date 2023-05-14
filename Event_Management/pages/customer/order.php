@@ -74,7 +74,7 @@ if ($conn->connect_error) {
             <tbody>
             <?php
 
-            $sql = "select * 
+            $sql = "SELECT *, request_ep_quotation.status AS event_status
                     from cust_req_general 
                     JOIN request_ep_quotation 
                     ON cust_req_general.request_id = request_ep_quotation.request_id 
@@ -93,8 +93,8 @@ if ($conn->connect_error) {
                     <td><?php echo $row['name'] ?></td>
                     <td><?php echo $row['email'] ?></td>
                     <td><?php echo $row['event_type'] ?></td>
-                    <td><?php echo $row['status'] ?></td>
-                    <td><?php echo $row['request_id']  ?></td>
+                    <td><?php echo $row['event_status'] ?></td>
+                    
 
                     <script>
                     function myFunction() {
@@ -102,10 +102,7 @@ if ($conn->connect_error) {
                     }
                     </script>
 
-                    <td class="tCenter menu">
-                        <ul>                           
-                        </ul>
-                    </td>
+                    
                 </tr>
 
                 <?php
