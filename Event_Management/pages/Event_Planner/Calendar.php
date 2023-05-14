@@ -3,7 +3,12 @@ require_once('eventplanner_sidenav.php');
 require_once('eventplanner_header.php');
 
 $epID = $_SESSION['user_id'];
-$sql = "SELECT * FROM ep_booking WHERE EP_id = $epID";
+$sql = "SELECT e.*, u.name as name, c.event_type as eType, reqId 
+        FROM ep_booking e, user u, ep_quotation q, cust_req_general c
+        WHERE EP_id = $epID AND
+        e.ep_quot_id = q.qId AND 
+        e.customer_id = u.user_id AND 
+        q.reqId = c.request_id";
 $result = mysqli_query($conn, $sql);
 $result = mysqli_fetch_all($result, MYSQLI_ASSOC);
 ?>
@@ -25,15 +30,14 @@ $result = mysqli_fetch_all($result, MYSQLI_ASSOC);
         var events = [];
         var color = '#2196F3';
         for (var i = 0; i < rawEvents.length; i++) {
-            if(rawEvents[i].status == 'Accepted') {
+            if (rawEvents[i].status == 'Accepted') {
                 color = '#04AA6D';
             }
             var event = {
                 id: rawEvents[i].booking_id,
-                title: rawEvents[i].description,
+                title: rawEvents[i].name + ' - ' + rawEvents[i].eType,
                 date: rawEvents[i].date,
-                description: rawEvents[i].description,
-                url: 'CustomerQuotations.php?qID=' + rawEvents[i].prepare_id,
+                url: 'CustomerQuotationView.php?qid=' + rawEvents[i].ep_quot_id + '&reqID=' + rawEvents[i].reqId,
                 color: color,
             }
             events.push(event);
