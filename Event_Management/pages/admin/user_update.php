@@ -3,47 +3,66 @@
     include("admin_header.php");
     include("admin_nav.php");
     $id = mysqli_real_escape_string($conn,$_GET['id']);
-    $rows = get_details($id);
+    $row = get_details($id);
 
 ?>
 
 <body>
 <main class="admin_main">
-    <div class="info_content">
-            <div class="flex-row width-100">
-                <div class="img-grp">
-                <img src="../../images/evt_planner.jfif">
+<div class="container-profile">
+        <div class="flex-container-profile">
+            <div class="about">
+                <div class="image" id="profilePic">
+                    <img src="../../images/evt_planner.jfif" >
+                    
                 </div>
-                <div class="fields">
-                    <h3><?php echo $rows['name']; ?></h3>
-                    <div class="input-group-row">
-                        <label for="name">Email</label>
-                        <input type="text" value="<?php echo $rows['email']; ?>" name="email" >
+                <div class="profile-bio">
+                    <div class="profile-name">
+                        <p id="txtProfileName"></p>
+                        
                     </div>
-                    <div class="input-group-row">
-                        <label for="name">Contact Number 1</label>
-                        <input type="text" value="0774550849" name="num1" >
+                    
+                </div>
+                <div>
+                <form action="php/profileBackend.php"  method="POST" enctype="multipart/form-data">
+                    <div class="sm-all">
+                        <div class="center" style="color:white;">Change Picture</div>
+                        <div>&nbsp;&nbsp;<input type="file" id="myFile"  name="pp" ></div>
+                        
                     </div>
-                    <div class="input-group-row">
-                        <label for="name">Contact Number 2</label>
-                        <input type="text" value="0774550849" name="num1" >
-                    </div>
-                    <div class="input-group-row">
-                        <label for="name">Address</label>
-                        <input type="text" value="L-207 , Lankalands , Peellawatta, Andiambalama" name="address" >
-                    </div>
-                    <div class="input-group-row">
+                    <center><input class="srcButton" type="submit" id="btnProPicpdate" value="Update Profile Picture"></center>
+                </form>
+                </div>
+            </div>
+            <div class="other">
+                <div class="info">
+                    <div class="personal-info"><br >
+                    
+                        <div class="personal-info-heading">
+                            Personal Information
+                        </div>
+                       
+                        
+                        <div class="prof-all">
+                            <div class="prof-name">Full Name</div>
+                            <div class="prof-data" ><p id="txtName"><?php if($row['email']){ echo $row['name'];} else{ echo "Not Availabale";} ?></p></div>
+                        </div>
+                        <div class="prof-all">
+                            <div class="prof-name">Email</div>
+                            <div class="prof-data" ><p id="txtEmail"><?php if($row['email']){ echo $row['email'];} else{ echo "Not Availabale";} ?></p></div>
+                        </div>
+                        <div class="prof-all">
+                            <div class="prof-name">NIC</div>
+                            <div class="prof-data" ><p id="txtNIC"><?php if($row['nic']){ echo $row['nic'];} else{ echo "Not Availabale";} ?></p></div>
+                        </div>
+                        
                         <div class="buttons">
-                        <button class="btn_search">
-                            <i class="fa-solid fa-user-pen"></i>
-                            Update
-                        </button>
+                        <button id="btnEditProfile" class="srcButton" data-inline="true">Update Profile</button>
+                        <a href="Password.php"><button type="submit" class="srcButton" data-inline="true">Change Password</button></a>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            
-        
+        </div>        
     </div>
 </main>

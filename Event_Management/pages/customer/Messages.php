@@ -1,16 +1,23 @@
+
+
 <?php 
     // include_once("php/config.php");
     // if(!isset($_SESSION['unique_id'])){
     //     header('location:login.php');
     // }
+    session_start();
+    // include("../constants.php");
     include('customer_sidenav.php');
-    // include('header.php');
     include('customer_header.php');
     if(isset($_GET['evt_planner_id'])){
-    $evt_planner_id = mysqli_real_escape_string($conn,$_GET['evt_planner_id']);
+    $evt_planner_id = $_GET['evt_planner_id'];
     }
+    $user_id = $_SESSION['user_id']; 
+
+    
 
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -32,9 +39,7 @@
 <body>
     <!-- Show success message -->
     <?php
-    if (isset($_SESSION['success'])) {
-        echo '<div class="success-message">' . showSessionMessage("success") . '</div>';
-    }
+    
     ?>
     <div class="grid-container-payments" style="height: calc(100%-60px); ">
         <div class="wrapper" style="margin-top:30px">
@@ -48,17 +53,24 @@
                     <!-- <a href="chat.php?user_id='.$row['unique_id'].'"> -->
 
                     <?php 
-                        $sql2 = "SELECT * FROM `user` WHERE `role`= 'event_planner'";
-                        $res2 = mysqli_query($conn,$sql2);
+                    
+                    
+                        $sql2 = "SELECT *
+                        FROM `user`
+                        JOIN `messages` AS `sent_messages` ON `user`.`user_id` = `sent_messages`.`sender_id`
+                        JOIN `messages` AS `received_messages` ON `received_messages`.`receiver_id` = `user`.`user_id`
+                        WHERE `user`.`role` = 'event_planner' AND ((sent_messages.sender_id = $user_id OR sent_messages.receiver_id = $user_id ) 
+                        OR (received_messages.sender_id = $user_id OR received_messages.receiver_id = $user_id ) )  GROUP BY user.user_id";
+                        $res2 = $conn->query($sql2);
                         if($res2){
-                            while($row = mysqli_fetch_assoc($res2)){?>
+                            while($row = $res2->fetch()){?>
                             <div class="users-area">
                                 <div class="content">
                                     <img src="../supplier/images/Udari.jpeg" alt="">
                                     <div class="details" onclick="showDetails(this)" id="message" data-id="<?php echo $row['user_id']; ?>" data-name="<?php echo $row['name']; ?>">
                                         
                                         <span><?php echo $row['name']; ?></span>
-                                        <p><?php echo $row['user_id']; ?></p>
+                                        
                                         
                                     </div>
                                 </div>
@@ -77,7 +89,7 @@
                     
                 </div>
             </section>
-            <section class="chat-area">
+            <section class="chat-area" style="display:non">
                 <header>
                     <div class="img_name">                 
                         <!-- <img src="../supplier/images/Milindu Abeynayake.jpeg" alt=""> -->

@@ -24,7 +24,7 @@
                 
                  <div class="add-form" id="add-form">
                     <span>
-                    <label >Supplier Details </label>
+                    <label >Customer Details </label>
                     <i class="fa-solid fa-xmark close" ></i>
                     </span>
                    <form action="" method="POST" class="add" id="add">
@@ -62,6 +62,8 @@
                     
                 </div>
                 
+                <div class="error"><?php echo showSessionMessage('delete-error'); ?></div>
+                <div class="success"><?php echo showSessionMessage('user-deleted'); ?></div>
     
                 <table class="details_table">
                     <thead>

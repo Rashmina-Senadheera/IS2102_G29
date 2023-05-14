@@ -55,7 +55,7 @@
             </li>
             <li>
                 <a href="inquiries.php">
-                    <i class='bx bx-user'></i>
+                    <i class="fa-solid fa-question"></i>
                     <span class="links_name">Inquiries</span>
                 </a>
             </li>

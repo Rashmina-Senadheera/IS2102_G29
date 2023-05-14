@@ -1,8 +1,9 @@
 <?php 
-include_once("../constants.php");
+// include_once("../constants.php");
+session_start();
 // include_once("../../css/customer_quotation.css");
-include('customer_sidenav.php');
-include('customer_header.php');
+include_once('customer_sidenav.php');
+include_once('customer_header.php');
 // include('header.php');
 include('../controllers/commonFunctions.php');
 $evt_planner_id = checkInput($_GET['evt_planner_id']) ;

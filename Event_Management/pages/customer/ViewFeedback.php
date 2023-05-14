@@ -55,24 +55,14 @@ include('customer_header.php');
                 <tbody>
 
                     <?php
-                    $sName = "localhost";
-                    $uName = "root";
-                    $pass = "";
-                    $db_name = "eventra";
-
-                    // Create connection
-                    $conn = mysqli_connect($sName, $uName, $pass, $db_name);
-                    // Check connection
-                    if (!$conn) {
-                        die("Connection failed: " . mysqli_connect_error());
-                    }
+                    
 
                     // include "./db_conn.php";
-                    $sql = "SELECT * FROM `Feedback`";
+                    $sql = "SELECT * FROM `feedback`";
                     $result = $conn->query($sql);
 
-                    $result = mysqli_query($conn, $sql);
-                    while ($row = mysqli_fetch_assoc($result)) {
+                    // $result = mysqli_query($conn, $sql);
+                    while ($row = $result->fetch()) {
 
                     ?>
                         <tr>
