@@ -89,7 +89,7 @@ if(isset($_GET['id'])){
                 <div class="row">
                     <div class="input-50">
                         <label class="input-label">Tentative Date:</label>
-                        <div class="input-value"><?php echo $row['req_date'] ?> </div>
+                        <div class="input-value"><?php echo $row['event_date'] ?> </div>
                     </div>
                     <div class="input-50">
                         <label class="input-label">Budget:</label>
@@ -218,91 +218,8 @@ if(isset($_GET['id'])){
                         <input type="text" class="input-field" name="cost" id="cost" placeholder="Cost" value="<?php if($row5){ echo $row5['epCost']; }else{ echo "None" ;} ?>" disabled />
                     </div>
 
-                    <?php if($row['type'] = 'venue'){
-                        $sql_quote_venue = "SELECT * 
-                        from cust_req_general 
-                        JOIN ep_quotation 
-                        ON cust_req_general.request_id = ep_quotation.reqId 
-                        JOIN ep_quotation_items
-                        ON ep_quotation_items.qId = ep_quotation.qId
-                        WHERE cust_req_general.request_id = $id AND ep_quotation_items.type='venue'";
-
-                        $result_quote_venue = $conn->query($sql_quote_venue);
-
-                        $row6 = $result_quote_venue->fetch();
-                    ?>
-                        <div class="row">
-                        <div class="input">
-                            <label class="input-label">Venue</label>
-                            <input type="text" class="input-field" name="packageName" placeholder="Supplier Name / Product Name"  value="<?php if($row6){ echo $row6['name']; }else{ echo "None" ;} ?>" disabled/>
-                            <input type="text" class="input-field" name="cost" id="cost" placeholder="Cost" style="margin-top: 5px;"  value="<?php if($row6){ echo $row6['cost']; }else{ echo "None" ;} ?>" disabled/>
-
-                        </div>
-                    </div>
-                        
-                        <?php
-                    } ?>
-                    
-                    <?php if($row['type'] = 'foodbev'){
-                        $sql_quote_food = "SELECT * 
-                        from cust_req_general 
-                        JOIN ep_quotation 
-                        ON cust_req_general.request_id = ep_quotation.reqId 
-                        JOIN ep_quotation_items
-                        ON ep_quotation_items.qId = ep_quotation.qId
-                        WHERE cust_req_general.request_id = $id AND ep_quotation_items.type='foodbev'";
-
-                        $result_quote_food = $conn->query($sql_quote_food);
-
-                        $row7 = $result_quote_food->fetch();
-                    ?>
-                    <div class="row">
-                        <div class="input">
-                            <label class="input-label">Food & Beverages</label>
-                            <input type="text" class="input-field" name="packageName" placeholder="Supplier Name / Product Name" value="<?php if($row7){ echo $row7['name']; }else{ echo "None" ;}?>"  disabled />
-                            <input type="text" class="input-field" name="cost" id="cost" placeholder="Cost" style="margin-top: 5px;" value="<?php if($row7){ echo $row7['cost']; }else{ echo "None" ;}?>" disabled />
-                        </div>
-                    </div>
-                    <?php } ?>
-
-                    <?php if($row['type'] = 'photo'){
-                        $sql_quote_photo = "SELECT * 
-                        from cust_req_general 
-                        JOIN ep_quotation 
-                        ON cust_req_general.request_id = ep_quotation.reqId 
-                        JOIN ep_quotation_items
-                        ON ep_quotation_items.qId = ep_quotation.qId
-                        WHERE cust_req_general.request_id = $id AND ep_quotation_items.type='photo'";
-
-                        $result_quote_photo = $conn->query($sql_quote_food);
-
-                        $row8 = $result_quote_photo->fetch();
-                    ?>
-                    <div class="row">
-                        <div class="input">
-                            <label class="input-label">Photography & Videography</label>
-                            <input type="text" class="input-field" name="packageName" placeholder="Supplier Name / Product Name" value="<?php if($row8){ echo $row8['name']; }else{ echo "None" ;}?>"  disabled />
-                            <input type="text" class="input-field" name="cost" id="cost" placeholder="Cost" style="margin-top: 5px;" value="<?php if($row8){ echo $row8['cost']; }else{ echo "None" ;}?>" disabled />
-                        </div>
-                    </div>
-                    <?php } ?>
-
-
-
-
-                    <div class="input">
-                        <label class="input-label">Total Cost</label>
-                        <input type="text" class="input-field" name="packageName" id="total_cost" placeholder="Cost" value=""  disabled/>
-                    </div>
-                    <div class="row">
-                        <div class="input">
-                            <label class="input-label">Remarks <span class="desc">(Other expenses or special notes.)</span></label>
-                            <textarea class="input-field" rows="5" name="description" disabled>This quotation is valid only for 10 days. If you want to book, please contact us within 10 days.</textarea>
-                        </div>
-                    </div>
-
                     <?php
-                    $sql_id = "SELECT * 
+                    $sql_id = "SELECT *,supplier_quotation.quotation_id AS supQuotID, supplier_quotation.supplier_id AS supID
                     from cust_req_general 
                     JOIN ep_quotation 
                     ON cust_req_general.request_id = ep_quotation.reqId 
@@ -313,22 +230,139 @@ if(isset($_GET['id'])){
                     WHERE cust_req_general.request_id = $id";
 
                     $result_id = $conn->query($sql_id);
+                    $supplier_id_arr = array();
+                    $supplier_quot_arr = array();
+                    while($row9 = $result_id->fetch()){
+                        if($row9['type'] == 'foodbev'){
+                           ?>
+                            
 
-                    $row9 = $result_id->fetch();
+                        <div class="row">
+                        <div class="input">
+                            <label class="input-label">Food & Beverages</label>
+                            <input type="text" class="input-field" name="packageName" placeholder="Supplier Name / Product Name" value="<?php echo $row9['name']; ?>"  disabled />
+                            <input type="text" class="input-field" name="cost" id="cost" placeholder="Cost" style="margin-top: 5px;" value="<?php  echo $row9['cost']; ?>" disabled />
+                        </div>
+                        </div>
+                           
+                           
+                           <?php 
+                        }
+                        ?>
+                            
+                        <?php
+                        if($row9['type'] == 'foodbev'){
+                           ?>
+                            
 
-                    if($row9){
+                        <div class="row">
+                        <div class="input">
+                            <label class="input-label">Food & Beverages</label>
+                            <input type="text" class="input-field" name="packageName" placeholder="Supplier Name / Product Name" value="<?php echo $row9['name']; ?>"  disabled />
+                            <input type="text" class="input-field" name="cost" id="cost" placeholder="Cost" style="margin-top: 5px;" value="<?php  echo $row9['cost']; ?>" disabled />
+                        </div>
+                        </div>
+                           
+                           
+                           <?php 
+                        }
+                        ?>
+                        <?php 
+                        
+                        
+                        
+                        
+                        
+                        
+                        if($row9['type'] == 'light'){
+                            ?>
+                             
+ 
+                         <div class="row">
+                         <div class="input">
+                             <label class="input-label">Lighting</label>
+                             <input type="text" class="input-field" name="packageName" placeholder="Supplier Name / Product Name" value="<?php echo $row9['name']; ?>"  disabled />
+                             <input type="text" class="input-field" name="cost" id="cost" placeholder="Cost" style="margin-top: 5px;" value="<?php  echo $row9['cost']; ?>" disabled />
+                         </div>
+                     </div>
+                            
+                            
+                            <?php 
+                         }
+                         ?>
+                         <?php
+                         if($row9['type'] == 'photo'){
+                            ?>
+                             
+ 
+                         <div class="row">
+                         <div class="input">
+                             <label class="input-label">Photography & Videography</label>
+                             <input type="text" class="input-field" name="packageName" placeholder="Supplier Name / Product Name" value="<?php echo $row9['name']; ?>"  disabled />
+                             <input type="text" class="input-field" name="cost" id="cost" placeholder="Cost" style="margin-top: 5px;" value="<?php  echo $row9['cost']; ?>" disabled />
+                         </div>
+                     </div>
+                            
+                            
+                            <?php 
+                         }
+                         ?>
+                         <?php
+                          if($row9['type'] == 'sound'){
+                            ?>
+                             
+ 
+                         <div class="row">
+                         <div class="input">
+                             <label class="input-label">Sound</label>
+                             <input type="text" class="input-field" name="packageName" placeholder="Supplier Name / Product Name" value="<?php echo $row9['name']; ?>"  disabled />
+                             <input type="text" class="input-field" name="cost" id="cost" placeholder="Cost" style="margin-top: 5px;" value="<?php  echo $row9['cost']; ?>" disabled />
+                         </div>
+                     </div>
+                            
+                            
+                            <?php 
+                         }
+                         ?>
+
+
+                        <?php
+                        array_push($supplier_quot_arr, $row9['supQuotID']);
+                        array_push($supplier_id_arr, $row9['supID']);
+
+                    }
+                    // var_dump($supplier_id_arr);
+                    $supplier_QuotId = json_encode($supplier_quot_arr);
+                    $supplier_Ids = json_encode($supplier_id_arr);
+                    
+                    echo '<input name="supId" id="supQuotId" class="input-field" value="' . htmlspecialchars($supplier_QuotId) . '">'; 
+                    echo '<input name="supId" id="supId" class="input-field" value="' . htmlspecialchars($supplier_Ids) . '">'; 
+
+                    echo '<input type="text" class="input-field" name="reqId" id="reqId" placeholder="Cost" value="'. $id .'"  disabled />';
+
+                    
+                    
+
+                    
                         ?>
                         <div class="input">
-                        <input type="text" class="input-field" name="epId" id="epId" placeholder="Cost" value="<?php if($row9){ echo $row9['epId']; }else{ echo "None" ;}?>"  disabled hidden/>
-                        <input type="text" class="input-field" name="supId" id="supId" placeholder="Cost" value="<?php if($row9){ echo $row9['supplier_id']; }else{ echo "None" ;}?>"  disabled hidden/>
-                        <input type="text" class="input-field" name="cusId" id="cusId" placeholder="Cost" value="<?php if($row9){ echo $row9['cusId']; }else{ echo "None" ;}?>"  disabled hidden />
-                        <input type="text" class="input-field" name="epQuotId" id="epQuotId" placeholder="Cost" value="<?php if($row9){ echo $row9['qId']; }else{ echo "None" ;}?>"  disabled hidden/>
-                        <input type="text" class="input-field" name="supQuotId" id="supQuotId" placeholder="Cost" value="<?php if($row9){ echo $row9['quotation_id']; }else{ echo "None" ;}?>"  disabled hidden/>
-                        <input type="text" class="input-field" name="reqId" id="reqId" placeholder="Cost" value="<?php echo $id; ?>"  disabled hidden/>
+                        <label class="input-label">Total Cost</label>
+                        <input type="text" class="input-field" name="packageName" id="total_cost" placeholder="Cost" value=""  disabled/>
+                    </div>
+                    <div class="row">
+                        <div class="input">
+                            <label class="input-label">Remarks <span class="desc">(Other expenses or special notes.)</span></label>
+                            <textarea class="input-field" rows="5" name="description" disabled>This quotation is valid only for 10 days. If you want to book, please contact us within 10 days.</textarea>
+                        </div>
+                    </div>
+                        <div class="input">
+                        <input type="text" class="input-field" name="epQuotId" id="epQuotId" placeholder="Cost" value="<?php if($row5){ echo $row5['qId']; }else{ echo "None" ;} ?>"  disabled />
+                        <input type="text" class="input-field" name="cusId" id="cusId" placeholder="Cost" value="<?php if($row5){ echo $row5['cusId']; }else{ echo "None" ;} ?>"  disabled />
+                        <input type="text" class="input-field" name="epId" id="epId" placeholder="Cost" value="<?php if($row5){ echo $row5['epId']; }else{ echo "None" ;} ?>"  disabled />
                         
                     </div>
                         <?php
-                    }
+                    
                     
                     ?>
                     <!-- <div class="action btnSend">
@@ -377,8 +411,10 @@ if(isset($_GET['id'])){
         // Select payment button
         const payBtn = document.querySelector("#payButton");
 
+
         // Payment request handler
         payBtn.addEventListener("click", function (evt) {
+         
             
             
             // console.log(advance_cost);
@@ -405,7 +441,7 @@ const createCheckoutSession = function (stripe) {
     let epQuotId= document.querySelector("#epQuotId").value;
     let supQuotId= document.querySelector("#supQuotId").value;
     let reqId= document.querySelector("#reqId").value;
-
+    console.log(advance_cost);
         
     return fetch("../payment/payment_init.php", {
         method: "POST",

@@ -147,7 +147,8 @@ if(!empty($_GET['session_id'])){
     $res1 = mysqli_query($conn,$sql_ep_booking);
     $res2 = mysqli_query($conn,$cus_req);
     $res3 = mysqli_query($conn,$sup_req);
-
+    
+    
 
     if($res && $res1 && $res2 && $res3){
         echo "<script> location.replace('http://localhost/file_struct/Event_Management/pages/customer/OngoingEvents.php'); </script>";

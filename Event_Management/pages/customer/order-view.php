@@ -82,7 +82,7 @@ $id = $_GET['id'];
                 </div>
                 <div class="sm-all">
                     <div class="sm-name">Tentative date:</div>
-                    <div class="sm-link"><?php echo $row['req_date'] ?> </div>
+                    <div class="sm-link"><?php echo $row['event_date'] ?> </div>
                 </div>
                 <div class="sm-all">
                     <div class="sm-name">Budget:</div>
