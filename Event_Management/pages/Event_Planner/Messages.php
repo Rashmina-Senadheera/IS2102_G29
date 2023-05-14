@@ -7,6 +7,7 @@ require_once('../controllers/commonFunctions.php');
 if(isset($_GET['supplier_id'])){
 $supplier_id = mysqli_real_escape_string($conn,$_GET['supplier_id']);
 }
+$user_id = $_SESSION['user_id'];
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +41,12 @@ $supplier_id = mysqli_real_escape_string($conn,$_GET['supplier_id']);
                     <!-- <a href="chat.php?user_id='.$row['unique_id'].'"> -->
 
                     <?php 
-                        $sql2 = "SELECT * FROM `user` WHERE `role`= 'customer' OR `role` = 'supplier'";
+                        $sql2 = "SELECT *
+                        FROM `user`
+                        JOIN `messages` AS `sent_messages` ON `user`.`user_id` = `sent_messages`.`sender_id`
+                        JOIN `messages` AS `received_messages` ON `received_messages`.`receiver_id` = `user`.`user_id`
+                        WHERE (`user`.`role` = 'customer' OR `user`.`role` = 'supplier') AND ((sent_messages.sender_id = $user_id OR sent_messages.receiver_id = $user_id ) 
+                        OR (received_messages.sender_id = $user_id OR received_messages.receiver_id = $user_id ) )  GROUP BY user.user_id";
                         $res2 = mysqli_query($conn,$sql2);
                         if($res2){
                             while($row = mysqli_fetch_assoc($res2)){?>
