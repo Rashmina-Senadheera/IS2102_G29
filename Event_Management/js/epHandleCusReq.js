@@ -63,12 +63,20 @@ sendCustomerQuotation = () => {
             error = setErrorMessage(error, "Photography & Videography is empty!");
         }
     }
-    if (document.getElementById("slCost") || document.getElementById("slName")) {
-        let slCost = document.getElementById("slCost").value;
-        let slName = document.getElementById("slName").value;
+    if (document.getElementById("sCost") || document.getElementById("sName")) {
+        let sCost = document.getElementById("sCost").value;
+        let sName = document.getElementById("sName").value;
 
-        if (slCost == "" || slCost <= 0 || isNaN(slCost) || slName == "") {
-            error = setErrorMessage(error, "Sound & Lighting is empty!");
+        if (sCost == "" || sCost <= 0 || isNaN(sCost) || sName == "") {
+            error = setErrorMessage(error, "Sounds is empty!");
+        }
+    }
+    if (document.getElementById("lCost") || document.getElementById("lName")) {
+        let lCost = document.getElementById("lCost").value;
+        let lName = document.getElementById("lName").value;
+
+        if (lCost == "" || lCost <= 0 || isNaN(lCost) || lName == "") {
+            error = setErrorMessage(error, "Lightings is empty!");
         }
     }
 
