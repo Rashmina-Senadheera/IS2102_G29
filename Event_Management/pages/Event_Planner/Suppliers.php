@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../../css/eventPlannerMain.css">
     <link rel="stylesheet" href="../../css/viewSuppliersEP.css">
     <link rel="stylesheet" href="../../css/filterEP.css">
@@ -43,7 +44,7 @@
             </div>
         </div>
         <div class="gridSuppliers">
-            <div class="suppliers-cards-container scrollable" id="supplier_items">
+            <div class="suppliers-cards-container scrollable" id="supplier_items" data-current-page="1" aria-live="polite">
 
                 <?php
                 if (isset($_GET['type'])) {
@@ -103,11 +104,25 @@
                 }
                 ?>
 
+                <nav class="pagination-container">
+                    <button class="pagination-button" id="prev-button" aria-label="Previous page" title="Previous page">
+                        &lt;
+                    </button>
+
+                    <div id="pagination-numbers">
+
+                    </div>
+
+                    <button class="pagination-button" id="next-button" aria-label="Next page" title="Next page">
+                        &gt;
+                    </button>
+                </nav>
             </div>
             <?php require_once 'components/SuppliersFilter.php'; ?>
         </div>
     </div>
     <script src="../../js/epSupplierFilter.js"></script>
+    <script src="../../js/epSuppliersPagination.js"></script>
 </body>
 
 </html>
