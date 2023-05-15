@@ -24,7 +24,27 @@
     width: 100px;
     border-radius: .5rem;
 }
-
+div#opt {
+    flex:30%;
+}
+div#opt-match {
+    flex:30%;
+    padding: 2px;
+    text-align: center;
+    color: rgb(0, 129, 50);
+}
+div#opt-none {
+    flex:30%;
+    padding: 2px;
+    text-align: center;
+    color: rgb(122, 122, 122);
+}
+div#opt-no{
+    flex:30%;
+    padding: 2px;
+    text-align: center;
+    color: rgb(214, 22, 22);
+}
 .other {
     display: flex;
     flex-direction: column;
