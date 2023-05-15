@@ -45,7 +45,7 @@
                 </a>
             </li>      
             <li>
-                <a href="ChatWithEP.php">
+                <a href="Messages.php">
                     <i class='bx bx-message rounded detail'></i>
                     <span class="links_name">Messages</span>
                 </a>
