@@ -31,16 +31,7 @@ else{
             <h3 class="flex-row-center">Event Planner's Information</h3>
             <span class="flex-row-center information">
                 <img src="../images/evt_planner.jfif" class="evt_img">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio sequi molestiae 
-                    accusantium omnis? Aspernatur a vitae sapiente dignissimos eaque, quaerat omnis fugiat 
-                    animi ab suscipit, obcaecati mollitia itaque deserunt minus.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio sequi molestiae 
-                    accusantium omnis? Aspernatur a vitae sapiente dignissimos eaque, quaerat omnis fugiat 
-                    animi ab suscipit, obcaecati mollitia itaque deserunt minus.
-                    animi ab suscipit, obcaecati mollitia itaque deserunt minus.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio sequi molestiae 
-                    accusantium omnis? Aspernatur a vitae sapiente dignissimos eaque, quaerat omnis fugiat 
-                    animi ab suscipit, obcaecati mollitia itaque deserunt minus.</p>
+                <p>My love of organization and planning has followed me forever, and always carried over into my work. Working as a project manager in the non-profit sector, I had the opportunity to plan fundraisers and meetings for some of Portland’s most noted community leaders and stakeholders.</p>
                
             </span>
                 <span class="flex-row btns_info txt-white">
