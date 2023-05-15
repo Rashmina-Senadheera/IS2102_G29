@@ -6,6 +6,26 @@ include('../controllers/commonFunctions.php');
 
 //check if there is a id in the url
 if (isset($_GET['id'])) {
+
+    function matchProduct($provide,$ask){
+        if(!empty($ask)){
+            if (strchr($provide, $ask)) {
+                    echo '<div class="prof-data" id="opt-match"> 
+                    <i class="fa-sharp fa-solid fa-check"></i>
+                    Match product </div>';
+                }else{
+                echo '<div class="prof-data" id="opt-no"> 
+                <i class="fa-solid fa-xmark"></i>
+                Not match </div>';                                
+                }
+        }else{
+            echo '<div class="prof-data" id="opt-none"> 
+            <i class="fa-solid fa-question"></i>
+            Not specified</div>';
+        }
+    }
+    
+
     $id = checkInput($_GET['id']);
     $sql = "SELECT * 
                 FROM request_supplier_quotation r
@@ -29,11 +49,15 @@ if (isset($_GET['id'])) {
         $no_of_participants = $general_details['no_of_participants'];
         $psId = $general_details['psId'];
         $ep_id = $general_details['EP_id'];
-        $catered_for = $general_details['catered_for'];
+        $cat_for = $general_details['catered_for'];
         $transport = $general_details['transport'];
         $bev_need_as = $general_details['bev_need_as'];
         $food_need_as = $general_details['food_need_as'];
         $need_for = $general_details['need_for'];
+        $location_from = $general_details['location_from'];
+        $location_to = $general_details['location_to'];
+        $photographs_in = $general_details['photographs_in'];
+        $needs = $general_details['needs'];
         // $type = $general_details['type'];
         // $img_sql = "SELECT `image` FROM supplier_product_images WHERE `product_id` = $id";
         // $img_result = mysqli_query($conn, $img_sql);
@@ -83,6 +107,8 @@ if (isset($_GET['id'])) {
                 $minCap = !empty($more_details['minCap']) ? $more_details['minCap'] : "";
                 $sound_type = !empty($more_details['type_sound']) ? $more_details['type_sound'] : "";
                 $light_type = !empty($more_details['type_light']) ? $more_details['type_light'] : "";
+                $photo_in = !empty($more_details['photo_in']) ? $more_details['photo_in'] : "";
+                $photo_available = !empty($more_details['available']) ? $more_details['available'] : "";
             }
         }
     } else {
@@ -213,7 +239,11 @@ if (isset($_GET['id'])) {
                     <?php if($type == 'photo') {?>
                         <div class="prof-all">
                             <div class="prof-name-50">Suitable for   :</div>
-                            <div class="prof-data"><?php echo $suitable_for; ?></div>
+                            <div class="prof-data"><?php echo $photo_in; ?></div>
+                        </div>
+                        <div class="prof-all">
+                            <div class="prof-name-50">Available as  :</div>
+                            <div class="prof-data"><?php echo $photo_available; ?></div>
                         </div>
                     <?php } ?>
                     <?php if($type == 'ent') {?>
@@ -326,28 +356,145 @@ if (isset($_GET['id'])) {
                         <div class="prof-data"><?php echo $date; ?></div>
                     </div>
 
+                    <hr>
                     <?php if($type == 'foodbev') {?>
                         <div class="prof-all">
                             <div class="prof-name-50">Catered for:</div>
-                            <div class="prof-data"><?php echo $catered_for; ?></div>
+                            <div class="prof-data" id="opt"><?php echo $cat_for; ?></div>
+                            <?php 
+                                matchProduct($catered_for,$cat_for);
+                            ?>
                         </div>
                         <div class="prof-all">
                             <div class="prof-name-50">Transport :</div>
-                            <div class="prof-data"><?php echo $transport; ?></div>
+                            <div class="prof-data" id="opt"><?php echo $transport; ?></div>
+                            <?php 
+                            if(!empty($transport)){
+                                if (strcmp($transport_type, $transport)) {
+                                        echo '<div class="prof-data" id="opt-match"> 
+                                            <i class="fa-sharp fa-solid fa-check"></i>
+                                            Match product </div>';
+                                    }else{
+                                    echo '<div class="prof-data" id="opt-no"> 
+                                        <i class="fa-solid fa-xmark"></i>
+                                        Not match </div>';                                
+                                    }
+                            }else{
+                                echo '<div class="prof-data" id="opt-none"> 
+                                <i class="fa-solid fa-question"></i>
+                                Not specified</div>';
+                            }
+                            ?>
                         </div>
                         <div class="prof-all">
                             <div class="prof-name-50">Beverages Need As:</div>
-                            <div class="prof-data"><?php echo $bev_need_as; ?></div>
+                            <div class="prof-data" id="opt"><?php echo $bev_need_as; ?></div>
+                            <?php 
+                            matchProduct("none", $bev_need_as);
+                            ?>
                         </div>
                         <div class="prof-all">
                             <div class="prof-name-50">Food Need As:</div>
-                            <div class="prof-data"><?php echo $food_need_as; ?></div>
+                            <div class="prof-data" id="opt"><?php echo $food_need_as; ?></div>
+                             <?php 
+                                matchProduct($available_as, $food_need_as);
+                            ?>
                         </div>
                         <div class="prof-all">
                             <div class="prof-name-50">Need For:</div>
-                            <div class="prof-data"><?php echo $need_for; ?></div>
+                            <div class="prof-data" id="opt"><?php echo $need_for; ?></div>
+                             <?php
+                             matchProduct($available_for, $need_for);
+                            ?>
                         </div>
                     <?php } ?>
+
+                    <?php if($type == 'transport') {?>
+                        <div class="prof-all">
+                            <div class="prof-name-50">Location From:</div>
+                            <div class="prof-data" ><?php echo $location_from; ?></div>
+                        </div>
+                        <div class="prof-all">
+                            <div class="prof-name-50">Location To:</div>
+                            <div class="prof-data"><?php echo $location_to; ?></div>
+                        </div>
+                    <?php } ?> 
+
+                    <?php if($type == 'venue') {?>
+                        <div class="prof-all">
+                            <div class="prof-name-50">Participants :</div>
+                            <div class="prof-data" id="opt"><?php echo $no_of_participants; ?></div>
+                            <?php 
+                                if(!empty($no_of_participants)){
+                                    if ($maxCap>$no_of_participants && $minCap<$no_of_participants) {
+                                            echo '<div class="prof-data" id="opt-match"> 
+                                            <i class="fa-sharp fa-solid fa-check"></i>
+                                            Capacity Match </div>';
+                                        }else{
+                                        echo '<div class="prof-data" id="opt-no"> 
+                                        <i class="fa-solid fa-xmark"></i>
+                                        Capacity Not match </div>';                                
+                                        }
+                                }else{
+                                    echo '<div class="prof-data" id="opt-none"> 
+                                    <i class="fa-solid fa-question"></i>
+                                    Not specified</div>';
+                                }
+                            ?>
+                        </div>
+                    <?php } ?> 
+
+                    <?php if($type == 'florist') {?>
+                        <div class="prof-all">
+                            <div class="prof-name-50">Needed for:</div>
+                            <div class="prof-data" id="opt"><?php echo $need_for; ?></div>
+                            <?php 
+                                matchProduct($suitable_for,$need_for);
+                            ?>
+                        </div>
+                    <?php } ?>
+
+                    <?php if($type == 'deco') {?>
+                        <div class="prof-all">
+                            <div class="prof-name-50">Needed for:</div>
+                            <div class="prof-data" id="opt"><?php echo $need_for; ?></div>
+                            <?php 
+                                matchProduct($suitable_for,$need_for);
+                            ?>
+                        </div>
+                    <?php } ?>
+
+                    <?php if($type == 'photo') {?>
+                        <div class="prof-all">
+                            <div class="prof-name-50">Needed Photos for:</div>
+                            <div class="prof-data" id="opt"><?php echo $photographs_in; ?></div>
+                            <?php 
+                                matchProduct($photo_in,$photographs_in);
+                            ?>
+                        </div>
+                        <div class="prof-all">
+                            <div class="prof-name-50">Needed As:</div>
+                            <div class="prof-data" id="opt"><?php echo $needs; ?></div>
+                            <?php 
+                                matchProduct($photo_available,$needs);
+                            ?>
+                        </div>
+                    <?php } ?>
+
+                    <?php if($type == 'ent') {?>
+                        <div class="prof-all">
+                            <div class="prof-name-50">Needs:</div>
+                            <div class="prof-data" id="opt"><?php echo $needs; ?></div>
+                            <?php 
+                                matchProduct($provide,$needs);
+                            ?>
+                        </div>
+                    <?php } ?>
+
+                    
+
+
+                    <hr>
                     <div class="prof-all">
                         <div class="prof-name-50">Remarks:</div>
                         <div class="prof-data"><?php echo $remarks; ?></div>
