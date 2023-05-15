@@ -54,12 +54,10 @@ $cust_id = $_SESSION['user_id'];
             <tbody>
             <?php
 
-            $sql = "SELECT DATE(created) AS Date, event_type, name AS EP_name, item_price as full_amount, paid_amount, supplier_booking.status as status 
+            $sql = "SELECT DATE(created) AS Date, event_type, name AS EP_name, item_price as full_amount, paid_amount, ep_booking.status as status 
              FROM `transactions`  
             JOIN `ep_booking`
             ON transactions.id = ep_booking.payment_id
-            JOIN `supplier_booking`
-            ON supplier_booking.payment_id = ep_booking.payment_id
             JOIN `user`
             ON ep_booking.EP_id = user.user_id
             JOIN ep_quotation
@@ -77,7 +75,7 @@ $cust_id = $_SESSION['user_id'];
 
                 ?>
 
-                <tr data-href="order-view.php?id=<?php echo $row['request_id'] ?>">
+                <tr>
                     <td><?php echo $row['Date'] ?></td>
                     <td><?php echo $row['event_type'] ?></td>
                     <td><?php echo $row['EP_name'] ?></td>
@@ -86,11 +84,7 @@ $cust_id = $_SESSION['user_id'];
                     <td><?php echo $row['status'] ?></td>
                     
 
-                    <script>
-                    function myFunction() {
-                    location.replace("order-view.php?id=<?php echo $row['request_id'] ?>")
-                    }
-                    </script>
+                    
 
                     
                 </tr>

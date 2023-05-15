@@ -85,7 +85,8 @@
                 </head>
         <body>
             <div class="report_header">
-            <img src="http://localhost/file_struct/Event_Management/images/logo.png" class="logo"/>
+            <img src="http://localhost/e/IS2102_G29/Event_Management/images/logo.png" class="logo"/>
+            
             <p class="date">'.$date.'</p>
             <div class="report_topic">
                 <div class="eventra" >Eventra</div>

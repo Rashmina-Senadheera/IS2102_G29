@@ -106,7 +106,7 @@ if(!empty($_GET['session_id'])){
                         $payment_id = $prevRow['id']; 
                     }else{ 
                         // Insert transaction data into the database 
-                        $eventName = "hello";
+                        
                         $sqlQ = "INSERT INTO transactions (customer_name,customer_email,item_name,item_number,item_price,item_price_currency,paid_amount,paid_amount_currency,txn_id,payment_status,stripe_checkout_session_id,created,modified) VALUES (?,?,?,?,?,?,?,?,?,?,?,NOW(),NOW())"; 
                         $stmt = $conn->prepare($sqlQ); 
                         $stmt->bind_param("ssssdsdssss",  $customer_name, $customer_email, $productName, $productID, $itemPrice, $currency, $paidAmount, $paidCurrency, $transactionID, $payment_status, $session_id); 
@@ -114,7 +114,9 @@ if(!empty($_GET['session_id'])){
                          
                         if($insert){ 
                             $payment_id = $stmt->insert_id; 
+                            
                         } 
+                        
                     } 
                      
                     $status = 'success'; 
@@ -138,20 +140,29 @@ if(!empty($_GET['session_id'])){
     
     $status = "Ongoing";
     
+    $event_date_sql = "SELECT event_date FROM cust_req_general WHERE request_id=$reqId";
+    $res_date = mysqli_query($conn,$event_date_sql);
+    $event_date = mysqli_fetch_assoc($res_date);
     
-    $sql_sup_booking = "INSERT INTO `supplier_booking`( `EP_id`, `supplier_id`, `EP_quotation_id`, `supplier_quote_id`, `payment_id`,`status`) VALUES ('$ep_id','$sup_id','$epQuotId','$supQuotId','$payment_id','$status')"; 
-    $sql_ep_booking = "INSERT INTO `ep_booking`(`customer_id`, `EP_id`, `ep_quot_id`, `payment_id`,`status`) VALUES ('$cus_id','$ep_id','$epQuotId','$payment_id','$status')";
+    
+    $supplier_id = json_decode($sup_id);
+    $supplier_quote_id = json_decode($supQuotId);
+    for ($i=0; $i < sizeof($supplier_id) ; $i++){
+        $sql_sup_booking = "INSERT INTO `supplier_booking`( `EP_id`, `supplier_id`, `EP_quotation_id`, `supplier_quote_id`, `payment_id`,`status`,`date`) VALUES ('$ep_id','$supplier_id[$i]','$epQuotId','$supplier_quote_id[$i]','$payment_id','$status','$event_date')"; 
+        $res = mysqli_query($conn,$sql_sup_booking);
+    }
+    $sql_ep_booking = "INSERT INTO `ep_booking`(`customer_id`, `EP_id`, `ep_quot_id`, `payment_id`,`status`,`date`) VALUES ('$cus_id','$ep_id','$epQuotId','$payment_id','$status','$event_date')";
     $cus_req = "UPDATE `request_ep_quotation` SET `status`='$status' WHERE request_id=$reqId";
     $sup_req = "UPDATE `request_supplier_quotation` SET `status`='$status' WHERE for_cus_req=$reqId";
-    $res = mysqli_query($conn,$sql_sup_booking);
+
+    
     $res1 = mysqli_query($conn,$sql_ep_booking);
     $res2 = mysqli_query($conn,$cus_req);
     $res3 = mysqli_query($conn,$sup_req);
     
     
-
     if($res && $res1 && $res2 && $res3){
-        echo "<script> location.replace('http://localhost/file_struct/Event_Management/pages/customer/OngoingEvents.php'); </script>";
+        echo "<script> location.replace('http://localhost/e/IS2102_G29/Event_Management/pages/customer/OngoingEvents.php'); </script>";
     }else{
         echo "Error in inserting data";
     }

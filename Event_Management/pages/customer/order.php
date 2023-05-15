@@ -2,6 +2,7 @@
 session_start();
 include('customer_sidenav.php');
 include('customer_header.php');
+$cus_Id = $_SESSION['user_id'];
 ?>
 
 
@@ -79,7 +80,8 @@ if ($conn->connect_error) {
                     JOIN request_ep_quotation 
                     ON cust_req_general.request_id = request_ep_quotation.request_id 
                     JOIN user 
-                    ON request_ep_quotation.EP_id = user.user_id";
+                    ON request_ep_quotation.EP_id = user.user_id
+                    WHERE request_ep_quotation.customer_id = $cus_Id";
             $result = $conn->query($sql);
 
 
